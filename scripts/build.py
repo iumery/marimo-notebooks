@@ -5,6 +5,7 @@ import subprocess
 import argparse
 from typing import List
 from pathlib import Path
+import shutil
 
 
 def export_html_wasm(notebook_path: str, output_dir: str, as_app: bool = False) -> bool:
@@ -112,6 +113,12 @@ def main() -> None:
     # Generate index only if all exports succeeded
     generate_index(all_notebooks, args.output_dir)
 
+    # Copy assets (e.g., images) into _site/assets
+    assets_src = Path("assets")
+    assets_dst = Path(args.output_dir) / "assets"
+    
+    if assets_src.exists():
+        shutil.copytree(assets_src, assets_dst, dirs_exist_ok=True)
 
 if __name__ == "__main__":
     main()
