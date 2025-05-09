@@ -7,6 +7,7 @@ app = marimo.App(width="columns")
 @app.cell(column=0)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -78,7 +79,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""By the Euclidean algorithm, $$\begin{aligned}528 &= 1 \cdot 303 + 225 \\ 303 &= 1 \cdot 225 + 78 \\ 225 &= 2 \cdot 78 + 69 \\ 78 &= 1 \cdot 69 + 9 \\ 69 &= 7 \cdot 9 + 6 \\ 9 &= 1 \cdot 6 + 3 \\ 6 &= 2 \cdot 3 + 0\end{aligned}$$ thus $GCD(528, 303) = 3$.""")
+    mo.md(
+        r"""By the Euclidean algorithm, $$\begin{aligned}528 &= 1 \cdot 303 + 225 \\ 303 &= 1 \cdot 225 + 78 \\ 225 &= 2 \cdot 78 + 69 \\ 78 &= 1 \cdot 69 + 9 \\ 69 &= 7 \cdot 9 + 6 \\ 9 &= 1 \cdot 6 + 3 \\ 6 &= 2 \cdot 3 + 0\end{aligned}$$ thus $GCD(528, 303) = 3$."""
+    )
     return
 
 
@@ -164,8 +167,10 @@ def _(mo):
     return
 
 
-app._unparsable_cell(
-    r"""
+@app.cell(column=2)
+def _(mo):
+    mo.md(
+        r"""
     ## Section 0.7
 
     ### Exercise 0
@@ -209,13 +214,15 @@ app._unparsable_cell(
     If $2$ or more objects are assigned to box No. 1, then clearly this map is not injective; if $1$ object is assigned to box No. 1, then we have $m + 1$ objects and $m$ boxes to be assigned. By assumption, there is no injective map to do so; if $0$ object is assigned to box No. 1, then we have $m + 2$ objects and $m$ boxes to be assigned. By assumption, there is no injective map to assign $m + 1$ objects to $m$ boxes injectively, thus clearly there is no injective map to assign $m + 2 - (m + 1) = 1$ more object.
 
     Thus by induction, any map from a set with $n + 1$ objects to a set with n objects is not injective.
-    """,
-    column=2, disabled=False, hide_code=False, name="_"
-)
+    """
+    )
+    return
 
 
-app._unparsable_cell(
-    r"""
+@app.cell(column=3)
+def _(mo):
+    mo.md(
+        r"""
     ## Section 0.7
 
     ### Exercise 0
@@ -259,13 +266,15 @@ app._unparsable_cell(
     If $2$ or more objects are assigned to box No. 1, then clearly this map is not injective; if $1$ object is assigned to box No. 1, then we have $m + 1$ objects and $m$ boxes to be assigned. By assumption, there is no injective map to do so; if $0$ object is assigned to box No. 1, then we have $m + 2$ objects and $m$ boxes to be assigned. By assumption, there is no injective map to assign $m + 1$ objects to $m$ boxes injectively, thus clearly there is no injective map to assign $m + 2 - (m + 1) = 1$ more object.
 
     Thus by induction, any map from a set with $n + 1$ objects to a set with n objects is not injective.
-    """,
-    column=3, disabled=False, hide_code=False, name="_"
-)
+    """
+    )
+    return
 
 
-app._unparsable_cell(
-    r"""
+@app.cell(column=4)
+def _(mo):
+    mo.md(
+        r"""
     ## Section 0.7
 
     ### Exercise 0
@@ -309,13 +318,15 @@ app._unparsable_cell(
     If $2$ or more objects are assigned to box No. 1, then clearly this map is not injective; if $1$ object is assigned to box No. 1, then we have $m + 1$ objects and $m$ boxes to be assigned. By assumption, there is no injective map to do so; if $0$ object is assigned to box No. 1, then we have $m + 2$ objects and $m$ boxes to be assigned. By assumption, there is no injective map to assign $m + 1$ objects to $m$ boxes injectively, thus clearly there is no injective map to assign $m + 2 - (m + 1) = 1$ more object.
 
     Thus by induction, any map from a set with $n + 1$ objects to a set with n objects is not injective.
-    """,
-    column=4, disabled=False, hide_code=False, name="_"
-)
+    """
+    )
+    return
 
 
-app._unparsable_cell(
-    r"""
+@app.cell(column=5)
+def _(mo):
+    mo.md(
+        r"""
     ## Section 0.7
 
     ### Exercise 0
@@ -359,9 +370,9 @@ app._unparsable_cell(
     If $2$ or more objects are assigned to box No. 1, then clearly this map is not injective; if $1$ object is assigned to box No. 1, then we have $m + 1$ objects and $m$ boxes to be assigned. By assumption, there is no injective map to do so; if $0$ object is assigned to box No. 1, then we have $m + 2$ objects and $m$ boxes to be assigned. By assumption, there is no injective map to assign $m + 1$ objects to $m$ boxes injectively, thus clearly there is no injective map to assign $m + 2 - (m + 1) = 1$ more object.
 
     Thus by induction, any map from a set with $n + 1$ objects to a set with n objects is not injective.
-    """,
-    column=5, disabled=False, hide_code=False, name="_"
-)
+    """
+    )
+    return
 
 
 if __name__ == "__main__":
