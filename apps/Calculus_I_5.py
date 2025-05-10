@@ -1,14 +1,16 @@
 import marimo
 
 __generated_with = "0.13.6"
-app = marimo.App(width="medium")
+app = marimo.App()
 
 
 @app.cell
 def _():
     import marimo as mo
+    import numpy as np
+    import plotly.graph_objects as go
 
-    return (mo,)
+    return go, mo, np
 
 
 @app.cell
@@ -25,15 +27,14 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""We say that $f(x)$ goes to infinity as $x$ goes to $a$, and write $\lim\limits_{x \to a} f(x) = \infty$, provided that the value of $f(x)$ is arbitrarily large when $x$ is sufficiently close to $a$. The line $x = a$ is called a vertical asymptote of the graph of $f(x)$.""")
+    mo.md(
+        r"""We say that $f(x)$ goes to infinity as $x$ goes to $a$, and write $\lim\limits_{x \to a} f(x) = \infty$, provided that the value of $f(x)$ is arbitrarily large when $x$ is sufficiently close to $a$. The line $x = a$ is called a vertical asymptote of the graph of $f(x)$."""
+    )
     return
 
 
 @app.cell
-def _():
-    import numpy as np
-    import plotly.graph_objects as go
-
+def _(go, np):
     # Define domain avoiding the vertical asymptote at x = 2
     x11 = np.linspace(-4, 1.95, 500)
     x12 = np.linspace(2.05, 6, 500)
@@ -46,33 +47,47 @@ def _():
     fig_1 = go.Figure()
 
     # Add both branches of the function
-    fig_1.add_trace(go.Scatter(x=x11, y=y11, mode='lines', name='f(x)', line=dict(color='blue')))
-    fig_1.add_trace(go.Scatter(x=x12, y=y12, mode='lines', name='', line=dict(color='blue'), showlegend=False))
+    fig_1.add_trace(
+        go.Scatter(x=x11, y=y11, mode="lines", name="f(x)", line=dict(color="blue"))
+    )
+    fig_1.add_trace(
+        go.Scatter(
+            x=x12,
+            y=y12,
+            mode="lines",
+            name="",
+            line=dict(color="blue"),
+            showlegend=False,
+        )
+    )
 
     # Add vertical asymptote at x = 2
-    fig_1.add_trace(go.Scatter(
-        x=[2, 2], y=[-40, 40],
-        mode='lines',
-        line=dict(color='red', dash='dot'),
-        name='Vertical Asymptote'
-    ))
+    fig_1.add_trace(
+        go.Scatter(
+            x=[2, 2],
+            y=[-40, 40],
+            mode="lines",
+            line=dict(color="red", dash="dot"),
+            name="Vertical Asymptote",
+        )
+    )
 
     # Update layout
     fig_1.update_layout(
-        title=r'f(x) = x² / (x - 2)',
-        xaxis_title='x',
-        yaxis_title='f(x)',
+        title=r"f(x) = x² / (x - 2)",
+        xaxis_title="x",
+        yaxis_title="f(x)",
         yaxis_range=[-40, 40],
-        template='plotly_white'
+        template="plotly_white",
     )
-
-    fig_1.show()
-    return go, np
+    return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""We say that $f(x)$ goes to $L$ as $x$ goes to infinity, and write $\lim\limits_{x \to \infty}f(x) = L$, provided that the value of $f(x)$ is arbitrarily close to $L$ when $x$ is sufficiently large. The line $y = L$ is called a horizontal asymptote of the graph of $f(x)$.""")
+    mo.md(
+        r"""We say that $f(x)$ goes to $L$ as $x$ goes to infinity, and write $\lim\limits_{x \to \infty}f(x) = L$, provided that the value of $f(x)$ is arbitrarily close to $L$ when $x$ is sufficiently large. The line $y = L$ is called a horizontal asymptote of the graph of $f(x)$."""
+    )
     return
 
 
@@ -86,25 +101,28 @@ def _(go, np):
     fig_2 = go.Figure()
 
     # Plot the function
-    fig_2.add_trace(go.Scatter(x=x2, y=y2, mode='lines', name='f(x)', line=dict(color='blue')))
+    fig_2.add_trace(
+        go.Scatter(x=x2, y=y2, mode="lines", name="f(x)", line=dict(color="blue"))
+    )
 
     # Add horizontal asymptote at y = 0
-    fig_2.add_trace(go.Scatter(
-        x=[-50, 50], y=[0, 0],
-        mode='lines',
-        line=dict(color='red', dash='dot'),
-        name='Horizontal Asymptote'
-    ))
+    fig_2.add_trace(
+        go.Scatter(
+            x=[-50, 50],
+            y=[0, 0],
+            mode="lines",
+            line=dict(color="red", dash="dot"),
+            name="Horizontal Asymptote",
+        )
+    )
 
     # Layout
     fig_2.update_layout(
-        title=r'f(x) = (2x + 3) / (x² + 1)',
-        xaxis_title='x',
-        yaxis_title='f(x)',
-        template='plotly_white'
+        title=r"f(x) = (2x + 3) / (x² + 1)",
+        xaxis_title="x",
+        yaxis_title="f(x)",
+        template="plotly_white",
     )
-
-    fig_2.show()
     return
 
 
@@ -161,31 +179,63 @@ def _(go, np):
     asymptote2 = x32 + 2
 
     # Plot
-    fig3 = go.Figure()
+    fig_3 = go.Figure()
 
     # f(x)
-    fig3.add_trace(go.Scatter(x=x31, y=y31, mode='lines', name='f(x)', line=dict(color='blue')))
-    fig3.add_trace(go.Scatter(x=x32, y=y32, mode='lines', name='', line=dict(color='blue'), showlegend=False))
-
-    # Slant asymptote
-    fig3.add_trace(go.Scatter(x=x31, y=asymptote1, mode='lines', name='Slant Asymptote',
-                             line=dict(color='red', dash='dot')))
-    fig3.add_trace(go.Scatter(x=x32, y=asymptote2, mode='lines', name='', line=dict(color='red', dash='dot'), showlegend=False))
-
-    # Vertical asymptote
-    fig3.add_trace(go.Scatter(x=[2, 2], y=[-100, 100], mode='lines', name='Vertical Asymptote',
-                             line=dict(color='black', dash='dot')))
-
-    # Layout
-    fig3.update_layout(
-        title=r'f(x) = (x² + 1) / (x - 2)',
-        xaxis_title='x',
-        yaxis_title='f(x)',
-        yaxis_range=[-50, 50],
-        template='plotly_white'
+    fig_3.add_trace(
+        go.Scatter(x=x31, y=y31, mode="lines", name="f(x)", line=dict(color="blue"))
+    )
+    fig_3.add_trace(
+        go.Scatter(
+            x=x32,
+            y=y32,
+            mode="lines",
+            name="",
+            line=dict(color="blue"),
+            showlegend=False,
+        )
     )
 
-    fig3.show()
+    # Slant asymptote
+    fig_3.add_trace(
+        go.Scatter(
+            x=x31,
+            y=asymptote1,
+            mode="lines",
+            name="Slant Asymptote",
+            line=dict(color="red", dash="dot"),
+        )
+    )
+    fig_3.add_trace(
+        go.Scatter(
+            x=x32,
+            y=asymptote2,
+            mode="lines",
+            name="",
+            line=dict(color="red", dash="dot"),
+            showlegend=False,
+        )
+    )
+
+    # Vertical asymptote
+    fig_3.add_trace(
+        go.Scatter(
+            x=[2, 2],
+            y=[-100, 100],
+            mode="lines",
+            name="Vertical Asymptote",
+            line=dict(color="black", dash="dot"),
+        )
+    )
+
+    # Layout
+    fig_3.update_layout(
+        title=r"f(x) = (x² + 1) / (x - 2)",
+        xaxis_title="x",
+        yaxis_title="f(x)",
+        yaxis_range=[-50, 50],
+        template="plotly_white",
+    )
     return
 
 
@@ -236,7 +286,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Let $r > 0$ be an rational number and $c$ be any real number, then $\displaystyle \lim\limits_{x \to \infty}\frac{c}{x^r} = 0$ and $\displaystyle \lim\limits_{x \to -\infty} \frac{c}{x^r} = 0$.""")
+    mo.md(
+        r"""Let $r > 0$ be an rational number and $c$ be any real number, then $\displaystyle \lim\limits_{x \to \infty}\frac{c}{x^r} = 0$ and $\displaystyle \lim\limits_{x \to -\infty} \frac{c}{x^r} = 0$."""
+    )
     return
 
 

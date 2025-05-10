@@ -1,13 +1,96 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>My Notebooks</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zedan's Marimo Notebooks</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <style>
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(5px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+    </style>
   </head>
-  <body>
-    <h1>Welcome</h1>
-    <ul>
-      <li><a href="notebooks/topological_geometric_distance.html">TDA</a></li>
-      <li><a href="apps/Calculus_I_0.html">Calculus</a></li>
-    </ul>
+  <body class="bg-white text-gray-800 font-sans">
+    <!-- Main content -->
+    <main class="max-w-4xl mx-auto p-6 space-y-6 fade-in">
+      <!-- Intro Section -->
+      <section class="max-w-4xl mx-auto mt-8 px-6 fade-in flex items-center gap-4">
+        <img src="https://avatars.githubusercontent.com/u/182949785?v=4" alt="Zedan Liu" class="w-20 h-20 rounded-full shadow" />
+        <div>
+          <h2 class="text-xl font-semibold">Hi, I'm Zedan Liu 👋</h2>
+          <p class="text-gray-600 mt-1 text-sm">
+            I'm a PhD student in mathematics at University of Miami. I'm interested in data science, topological data analysis, algorithmic trading, and interactive computing. This is where I share my notebooks and apps built with <a href="https://marimo.io" class="text-blue-500 hover:underline">Marimo</a>.
+          </p>
+        </div>
+      </section>
+      <!-- Section: Calculus I -->
+      <section>
+        <button onclick="toggleSection('list-1', 'arrow-1')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
+        <span>📗 Calculus I</span>
+          <svg id="arrow-1" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        <div id="list-1" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 gap-4 pl-4">
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="apps/Calculus_I_0.html" class="text-blue-600 hover:underline font-medium">0 Review</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Foundations</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="apps/Calculus_I_1.html" class="text-blue-600 hover:underline font-medium">1.1-1.2 Functions</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Basic properties of functions</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="apps/Calculus_I_2.html" class="text-blue-600 hover:underline font-medium">1.3 the Limit of a Function</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Definition of limit</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="apps/Calculus_I_3.html" class="text-blue-600 hover:underline font-medium">1.4 Calculating Limits</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Standard strategies to calculate limits</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="apps/Calculus_I_4.html" class="text-blue-600 hover:underline font-medium">1.5 Continuity</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Continuity with limit</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="apps/Calculus_I_5.html" class="text-blue-600 hover:underline font-medium">1.6 Limits Involving Infinity</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Function and asymptotes</p>
+          </div>
+        </div>
+      </section>
+      <!-- Section: Topological Data Analysis -->
+      <section>
+        <button onclick="toggleSection('list-2', 'arrow-2')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
+        <span>🧪 Topological Data Analysis</span>
+          <svg id="arrow-2" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        <div id="list-2" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 gap-4 pl-4">
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/topological_geometric_distance.html" class="text-blue-600 hover:underline font-medium">TDA</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">TDA</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="text-center text-sm text-gray-400 mt-16 mb-4 fade-in">
+      Built by <a href="https://github.com/iumery/marimo-notebooks" class="hover:underline text-blue-400">Zedan Liu</a> • Hosted on GitHub Pages
+    </footer>
+    <!-- JavaScript for toggle -->
+    <script>
+      function toggleSection(contentId, arrowId) {
+        const content = document.getElementById(contentId);
+        const arrow = document.getElementById(arrowId);
+        content.classList.toggle("hidden");
+        arrow.classList.toggle("rotate-90"); // rotates 90° when active
+      }
+    </script>
   </body>
 </html>

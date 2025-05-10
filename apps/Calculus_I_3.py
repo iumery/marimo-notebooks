@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.13.6"
-app = marimo.App(width="medium")
+app = marimo.App()
 
 
 @app.cell
@@ -25,7 +25,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Recall that we say $\lim\limits_{x\to a}f(x) = L$ if there exists $L$ such that $f(x)$ is arbitrarily close to $L$ whenever $x$ is sufficiently close to $a$.""")
+    mo.md(
+        r"""Recall that we say $\lim\limits_{x\to a}f(x) = L$ if there exists $L$ such that $f(x)$ is arbitrarily close to $L$ whenever $x$ is sufficiently close to $a$."""
+    )
     return
 
 
@@ -118,36 +120,51 @@ def _():
 
     # Define x ranges
     x1 = np.linspace(-5, 2, 300, endpoint=False)  # x < 2
-    x2 = np.linspace(2, 5, 300)                  # x >= 2
+    x2 = np.linspace(2, 5, 300)  # x >= 2
 
     # Define y values for each piece
-    y1 = x1**2 + 5*x1
-    y2 = 6*x2 + 2
+    y1 = x1**2 + 5 * x1
+    y2 = 6 * x2 + 2
 
     # Evaluate the function exactly at x = 2
     x_split = 2
-    y_split = 6*x_split + 2  # Since x = 2 is included in the second piece
+    y_split = 6 * x_split + 2  # Since x = 2 is included in the second piece
 
     # Create figure
     fig = go.Figure()
 
     # Add first piece: solid line
-    fig.add_trace(go.Scatter(x=x1, y=y1, mode='lines', name='x² + 5x', line=dict(dash='solid', width=3)))
+    fig.add_trace(
+        go.Scatter(
+            x=x1, y=y1, mode="lines", name="x² + 5x", line=dict(dash="solid", width=3)
+        )
+    )
 
     # Add second piece: dashed line
-    fig.add_trace(go.Scatter(x=x2, y=y2, mode='lines', name='6x + 2', line=dict(dash='dash', width=3)))
+    fig.add_trace(
+        go.Scatter(
+            x=x2, y=y2, mode="lines", name="6x + 2", line=dict(dash="dash", width=3)
+        )
+    )
 
     # Add splitting point marker
-    fig.add_trace(go.Scatter(x=[x_split], y=[y_split], mode='markers', name='transition point',
-                             marker=dict(size=10, color='red', symbol='circle')))
+    fig.add_trace(
+        go.Scatter(
+            x=[x_split],
+            y=[y_split],
+            mode="markers",
+            name="transition point",
+            marker=dict(size=10, color="red", symbol="circle"),
+        )
+    )
 
     # Layout customization
     fig.update_layout(
-        title='Piecewise Function Visualization',
-        xaxis_title='x',
-        yaxis_title='f(x)',
+        title="Piecewise Function Visualization",
+        xaxis_title="x",
+        yaxis_title="f(x)",
         showlegend=True,
-        template='plotly_white'
+        template="plotly_white",
     )
 
     fig.show()
@@ -180,7 +197,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f(x) \le g(x)$ when $x$ is near $a$ (except possibly at $a$), and both $\lim\limits_{x\to a}f(x)$, $\lim\limits_{x\to a}g(x)$ exist, then $\lim\limits_{x\to a}f(x) \le \lim\limits_{x\to a}g(x)$.""")
+    mo.md(
+        r"""Suppose $f(x) \le g(x)$ when $x$ is near $a$ (except possibly at $a$), and both $\lim\limits_{x\to a}f(x)$, $\lim\limits_{x\to a}g(x)$ exist, then $\lim\limits_{x\to a}f(x) \le \lim\limits_{x\to a}g(x)$."""
+    )
     return
 
 
@@ -192,7 +211,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f(x) \le g(x) \le h(x)$ when $x$ is near $a$ (except possibly at $a$), and $\lim\limits_{x\to a}f(x) = \lim\limits_{x \to a}h(x) = L$, then we also have $\lim\limits_{x \to a}g(x) = L$.""")
+    mo.md(
+        r"""Suppose $f(x) \le g(x) \le h(x)$ when $x$ is near $a$ (except possibly at $a$), and $\lim\limits_{x\to a}f(x) = \lim\limits_{x \to a}h(x) = L$, then we also have $\lim\limits_{x \to a}g(x) = L$."""
+    )
     return
 
 
@@ -230,7 +251,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""<img src="public/Pasted image 20220828094454.png" width="600" style="display: block; margin-left: auto; margin-right: auto;" />""")
+    mo.md(
+        r"""<img src="public/Pasted image 20220828094454.png" width="600" style="display: block; margin-left: auto; margin-right: auto;" />"""
+    )
     return
 
 

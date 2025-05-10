@@ -1,7 +1,7 @@
 import marimo
 
 __generated_with = "0.13.6"
-app = marimo.App(width="medium")
+app = marimo.App()
 
 
 @app.cell
@@ -185,7 +185,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f$ is continuous on an closed interval $[a, b]$, and $f(a) \ne f(b)$. Let $m$ be a number between $f(a)$ and $f(b)$, then there exists a number $c \in (a, b)$ such that $f(c) = m$.""")
+    mo.md(
+        r"""Suppose $f$ is continuous on an closed interval $[a, b]$, and $f(a) \ne f(b)$. Let $m$ be a number between $f(a)$ and $f(b)$, then there exists a number $c \in (a, b)$ such that $f(c) = m$."""
+    )
     return
 
 
