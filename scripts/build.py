@@ -111,14 +111,23 @@ def main() -> None:
         export_html_wasm(nb, args.output_dir, as_app=nb.startswith("apps/"))
 
     # Generate index only if all exports succeeded
-    generate_index(all_notebooks, args.output_dir)
+    # Use custom, manually written index.html
+    custom_index = Path("index.html")  # Or wherever you place it
+    target_index = Path(args.output_dir) / "index.html"
+
+    if custom_index.exists():
+        shutil.copyfile(custom_index, target_index)
+        print("Copied static index.html to _site/")
+    else:
+        print("Warning: index.html not found!")
 
     # Copy assets (e.g., images) into _site/assets
     assets_src = Path("assets")
     assets_dst = Path(args.output_dir) / "assets"
-    
+
     if assets_src.exists():
         shutil.copytree(assets_src, assets_dst, dirs_exist_ok=True)
+
 
 if __name__ == "__main__":
     main()
