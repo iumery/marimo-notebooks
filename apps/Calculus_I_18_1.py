@@ -36,7 +36,7 @@ def _(mo, np):
     r_slider = mo.ui.slider(
         steps=np.linspace(4, 8, 10001),
         label="Radius of the Cylinder",
-        value=4,
+        value=6,
     )
     r_slider
     return (r_slider,)
@@ -44,7 +44,7 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Try it youself using the above slidebar!""")
+    mo.md(r"""**Try it youself using the above slidebar!**""")
     return
 
 
@@ -133,19 +133,22 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    n_trees = mo.ui.slider(0, 80, value=0, label="Number of Trees to Plant")
+    n_trees = mo.ui.slider(0, 80, value=40, label="Number of Trees to Plant")
     n_trees
     return (n_trees,)
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""**Try it youself using the above slidebar!**""")
+    return
 
 
 @app.cell
 def _(mo, n_trees):
     total_output = (50 + n_trees.value) * (800 - 10 * n_trees.value)
     mo.md(
-        f"""
-        Try it youself using the above slidebar!
-
-        If we plant {n_trees.value} new trees, total output is going to be (50 + {n_trees.value}) x (800 - 10 x {n_trees.value}) = {total_output}.
+        f"""If we plant {n_trees.value} new trees, total output is going to be (50 + {n_trees.value}) x (800 - 10 x {n_trees.value}) = {total_output}.
     """
     )
     return

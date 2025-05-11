@@ -36,7 +36,7 @@ def _(mo, np):
     corner_slider = mo.ui.slider(
         steps=np.linspace(1, 15, 10001),
         label="Size of the square cut out",
-        value=1,
+        value=8,
     )
     corner_slider
     return (corner_slider,)
@@ -44,7 +44,7 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Try it youself using the above slidebar!""")
+    mo.md(r"""**Try it youself using the above slidebar!**""")
     return
 
 
@@ -274,7 +274,7 @@ def _(mo, np):
     height_slider = mo.ui.slider(
         steps=np.linspace(4, 20, 10001),
         label="Height of the page",
-        value=4,
+        value=12,
     )
     height_slider
     return (height_slider,)
@@ -282,7 +282,7 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Try it youself using the above slidebar!""")
+    mo.md(r"""**Try it youself using the above slidebar!**""")
     return
 
 
@@ -432,7 +432,7 @@ def _(go, height_slider):
             scaleanchor="x",
         ),
         template="plotly_white",
-        showlegend=False,
+        showlegend=False
     )
     return
 

@@ -36,7 +36,7 @@ def _(mo, np):
     theta_slider_1 = mo.ui.slider(
         steps=np.linspace(np.pi / 16, 1 * np.pi, 10001),
         label="Angle of the sector cut out",
-        value=np.pi/16,
+        value=np.pi * 0.53125,
     )
     theta_slider_1
     return (theta_slider_1,)
@@ -44,7 +44,7 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Try it youself using the above slidebar!""")
+    mo.md(r"""**Try it youself using the above slidebar!**""")
     return
 
 
@@ -210,7 +210,7 @@ def _(mo, np):
     base_slider = mo.ui.slider(
         steps=np.linspace(30, 50, 10001),
         label="Base of the box",
-        value=30,
+        value=40,
     )
     base_slider
     return (base_slider,)
@@ -218,7 +218,7 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Try it youself using the above slidebar!""")
+    mo.md(r"""**Try it youself using the above slidebar!**""")
     return
 
 

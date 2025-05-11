@@ -36,7 +36,7 @@ def _(mo, np):
     x_slider = mo.ui.slider(
         steps=np.linspace(0, 5, 10001),
         label="x Coordinate of the top-right vertice",
-        value=0,
+        value=2.5,
     )
     x_slider
     return (x_slider,)
@@ -44,7 +44,7 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Try it youself using the above slidebar!""")
+    mo.md(r"""**Try it youself using the above slidebar!**""")
     return
 
 
@@ -186,7 +186,7 @@ def _(mo, np):
     x_slider_1 = mo.ui.slider(
         steps=np.linspace(-1, 1, 10001),
         label="x Coordinate of the point",
-        value=-1,
+        value=0,
     )
     x_slider_1
     return (x_slider_1,)
@@ -194,7 +194,7 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Try it youself using the above slidebar!""")
+    mo.md(r"""**Try it youself using the above slidebar!**""")
     return
 
 

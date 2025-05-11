@@ -44,7 +44,7 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Try it youself using the above slidebar!""")
+    mo.md(r"""**Try it youself using the above slidebar!**""")
     return
 
 
@@ -166,7 +166,7 @@ def _(mo, np):
     x_slider_2 = mo.ui.slider(
         steps=np.linspace(0, 1, 10001),
         label="x Coordinate of the top-right vertice of the trapezoid",
-        value=0,
+        value=0.5,
     )
     x_slider_2
     return (x_slider_2,)
@@ -174,7 +174,7 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Try it youself using the above slidebar!""")
+    mo.md(r"""**Try it youself using the above slidebar!**""")
     return
 
 
@@ -234,6 +234,52 @@ def _(go, np, x_slider_2):
         )
     )
 
+    # Vertical dotted line from (x0_trap, y0_trap) to (x0_trap, 0)
+    fig_trapezoid.add_trace(
+        go.Scatter(
+            x=[x0_trap, x0_trap],
+            y=[0, y0_trap],
+            mode="lines",
+            line=dict(color="black", dash="dot"),
+            showlegend=False,
+        )
+    )
+
+    # Horizontal dotted line from (0, y0_trap) to (x0_trap, y0_trap)
+    fig_trapezoid.add_trace(
+        go.Scatter(
+            x=[0, x0_trap],
+            y=[y0_trap, y0_trap],
+            mode="lines",
+            line=dict(color="black", dash="dot"),
+            showlegend=False,
+        )
+    )
+
+    # Label height as y
+    fig_trapezoid.add_trace(
+        go.Scatter(
+            x=[x0_trap + 0.05],
+            y=[y0_trap / 2],
+            mode="text",
+            text=["y"],
+            textfont=dict(size=14, color="black"),
+            showlegend=False,
+        )
+    )
+
+    # Label width as x
+    fig_trapezoid.add_trace(
+        go.Scatter(
+            x=[x0_trap / 2],
+            y=[y0_trap+0.05],
+            mode="text",
+            text=["x"],
+            textfont=dict(size=14, color="black"),
+            showlegend=False,
+        )
+    )
+
     # Layout
     fig_trapezoid.update_layout(
         title="Trapezoid Inscribed in the Unit Circle",
@@ -269,10 +315,16 @@ def _(mo, np):
     theta_slider = mo.ui.slider(
         steps=np.linspace(0, np.pi / 2, 10001),
         label="Angle between the top-right vertice of the trapezoid and the x-axis",
-        value=0,
+        value=np.pi / 4,
     )
     theta_slider
     return (theta_slider,)
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""**Try it youself using the above slidebar!**""")
+    return
 
 
 @app.cell
@@ -371,6 +423,53 @@ def _(go, np, theta_slider):
             showlegend=False,
         )
     )
+
+    # Vertical dotted line from (x_corner, y_corner) to (x_corner, 0)
+    fig_ang.add_trace(
+        go.Scatter(
+            x=[x_corner, x_corner],
+            y=[0, y_corner],
+            mode="lines",
+            line=dict(color="black", dash="dot"),
+            showlegend=False,
+        )
+    )
+
+    # Horizontal dotted line from (0, y_corner) to (x_corner, y_corner)
+    fig_ang.add_trace(
+        go.Scatter(
+            x=[0, x_corner],
+            y=[y_corner, y_corner],
+            mode="lines",
+            line=dict(color="black", dash="dot"),
+            showlegend=False,
+        )
+    )
+
+    # Label sin(theta)
+    fig_ang.add_trace(
+        go.Scatter(
+            x=[x_corner + 0.05],
+            y=[y_corner / 2],
+            mode="text",
+            text=["sin(θ)"],
+            textfont=dict(size=14, color="black"),
+            showlegend=False,
+        )
+    )
+
+    # Label cos(theta)
+    fig_ang.add_trace(
+        go.Scatter(
+            x=[x_corner / 2],
+            y=[y_corner + 0.05],
+            mode="text",
+            text=["cos(θ)"],
+            textfont=dict(size=14, color="black"),
+            showlegend=False,
+        )
+    )
+
 
     # Layout
     fig_ang.update_layout(
