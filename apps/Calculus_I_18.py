@@ -83,6 +83,8 @@ def _(mo):
         r"""
     A company needs to produce a container of cylindrical shape to hold $1 \text{ L}$ (or $1000 \text{ cm}^3$) of liquid. Find the dimension of the container that minimize the material usage.
 
+    Solution:
+
     Suppose we have a cylindrical container with height $h$ and radius $r$, then the volume of the container is $\pi r^2 h$, we want it to be $1000$. On the other hand, to produce such a cylindrical container we need two disks, and a rectangle shape of material.
 
     The disks have radius $r$, so we need $2 \pi r^2$ (unit in squared centimeter) of material to produce them; the rectangle has length $2\pi r$ (the perimeter of the disk) and width $h$, so we need $2\pi r h$ (unit in squared centimeter) of material to produce it.
@@ -107,13 +109,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-    There are $50$ apple trees in an orchard and each of them are producing $800$ apples. For each additional tree planted in the orchard, the output of each tree drops by $10$ apples. How many trees should be added to the existing orchard to maximize the total output?
-
-    Suppose we add $x$ apple trees, then there are $50+x$ trees and the output per tree becomes $800 - 10x$, thus the total output is $(50+x)(800 - 10x) = O$. Take derivative with respect to $x$, we get $O' = 300 - 20x$, it is $0$ when $x = 15$. It is easy to see that when $x<15$, $O'>0$, and when $x > 15$, $O'<0$, so this is the absolute maximum. Thus we should plant $15$ more trees.
-    """
-    )
+    mo.md(r"""There are $50$ apple trees in an orchard and each of them are producing $800$ apples. For each additional tree planted in the orchard, the output of each tree drops by $10$ apples. How many trees should be added to the existing orchard to maximize the total output?""")
     return
 
 
@@ -125,10 +121,25 @@ def _(mo):
 
 
 @app.cell
-def _(n_trees):
-    print('Try it youself using the above slidebar!')
+def _(mo, n_trees):
     total_output = (50+n_trees.value) * (800 - 10*n_trees.value)
-    print(f'If we plant {n_trees.value} new trees, total output is going to be {total_output}.')
+    mo.md(f"""
+        Try it youself using the above slidebar!
+    
+        If we plant {n_trees.value} new trees, total output is going to be (50 + {n_trees.value}) x (800 - 10 x {n_trees.value}) = {total_output}.
+    """)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+    Solution: 
+
+    Suppose we add $x$ apple trees, then there are $50+x$ trees and the output per tree becomes $800 - 10x$, thus the total output is $(50+x)(800 - 10x) = O$. Take derivative with respect to $x$, we get $O' = 300 - 20x$, it is $0$ when $x = 15$. It is easy to see that when $x<15$, $O'>0$, and when $x > 15$, $O'<0$, so this is the absolute maximum. Thus we should plant $15$ more trees.
+    """
+    )
     return
 
 
@@ -140,19 +151,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-    Find the area of the largest rectangle that can be inscribed inside the ellipse $\displaystyle \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ for arbitrary positive constant $a, b$.
-
-    Notice that, the vertices of the rectangle is on four different quadrant, and once the vertices inside one quadrant is chosen, the other three are fixed. Thus we can assume we are choosing from the first quadrant - that is, both $x, y$ are positive.
-
-    Suppose then we choose a positive $x$, then $y$ is fixed by the formula $\displaystyle y = \sqrt{1- \frac{x^2}{a^2}}\cdot b$. The area of the rectangle is then $\displaystyle A = 4xy = 4 x \sqrt{1- \frac{x^2}{a^2}}\cdot b$. We want to maximize this $A$.
-
-    Take the derivative we get $\displaystyle A' = \frac{4b(a^2 - 2x^2)}{a^2\sqrt{1-\frac{x^2}{a^2}}}$, thus it equals $0$ when $2x^2 = a^2$, or $\displaystyle x = \frac{\sqrt{2}}{2}\cdot a$ (we assumed $x$ and $a$ are positive). It is not hard to check with the First Derivative Test and Closed Interval Method (notice $0\le x \le a$) that this is the (absolute) maximum.
-
-    If $\displaystyle x = \frac{\sqrt{2}}{2}\cdot a$, then $\displaystyle y = \frac{\sqrt{2}}{2}\cdot b$, and thus the area of the rectangle is $4xy = 2ab$.
-    """
-    )
+    mo.md(r"""Find the area of the largest rectangle that can be inscribed inside the ellipse $\displaystyle \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ for arbitrary positive constant $a, b$.""")
     return
 
 
@@ -161,6 +160,14 @@ def _(mo, np):
     x_slider = mo.ui.slider(steps=np.linspace(0, 5, 10001), label="x Coordinate of the top-right vertice", value=0)
     x_slider
     return (x_slider,)
+
+
+@app.cell
+def _(mo):
+    mo.md(f"""
+        Try it youself using the above slidebar!
+    """)
+    return
 
 
 @app.cell
@@ -228,6 +235,24 @@ def _(go, np, x_slider):
         xaxis=dict(scaleanchor='y', range=[-6, 6]),
         yaxis=dict(scaleanchor='x', range=[-4, 4]),
         template='plotly_white'
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+    Solution:
+
+    Notice that, the vertices of the rectangle is on four different quadrant, and once the vertices inside one quadrant is chosen, the other three are fixed. Thus we can assume we are choosing from the first quadrant - that is, both $x, y$ are positive.
+
+    Suppose then we choose a positive $x$, then $y$ is fixed by the formula $\displaystyle y = \sqrt{1- \frac{x^2}{a^2}}\cdot b$. The area of the rectangle is then $\displaystyle A = 4xy = 4 x \sqrt{1- \frac{x^2}{a^2}}\cdot b$. We want to maximize this $A$.
+
+    Take the derivative we get $\displaystyle A' = \frac{4b(a^2 - 2x^2)}{a^2\sqrt{1-\frac{x^2}{a^2}}}$, thus it equals $0$ when $2x^2 = a^2$, or $\displaystyle x = \frac{\sqrt{2}}{2}\cdot a$ (we assumed $x$ and $a$ are positive). It is not hard to check with the First Derivative Test and Closed Interval Method (notice $0\le x \le a$) that this is the (absolute) maximum.
+
+    If $\displaystyle x = \frac{\sqrt{2}}{2}\cdot a$, then $\displaystyle y = \frac{\sqrt{2}}{2}\cdot b$, and thus the area of the rectangle is $4xy = 2ab$.
+    """
     )
     return
 
