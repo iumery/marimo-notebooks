@@ -253,12 +253,10 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-    <img src="public/Pasted image 20230813095937.png"/>
-    <img src="public/Pasted image 20230813100003.png"/>
-    <img src="public/Pasted image 20230813100104.png"/>
-    """
+    mo.pdf(
+        src="public/Detailed Graphing.pdf",
+        width="100%",
+        height="200vh",
     )
     return
 
