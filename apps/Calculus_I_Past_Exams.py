@@ -7,13 +7,26 @@ app = marimo.App(width="columns")
 @app.cell(column=0)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.pdf(
-        src="/public/Exam 1.pdf",
+        src="public/Exam 1.pdf",
         width="100%",
         height="50vh",
     )
@@ -23,7 +36,7 @@ def _(mo):
 @app.cell(column=1)
 def _(mo):
     mo.pdf(
-        src="/public/Exam 2.pdf",
+        src="public/Exam 2.pdf",
         width="100%",
         height="50vh",
     )
@@ -33,7 +46,7 @@ def _(mo):
 @app.cell(column=2)
 def _(mo):
     mo.pdf(
-        src="/public/Exam 3.pdf",
+        src="public/Exam 3.pdf",
         width="100%",
         height="50vh",
     )
