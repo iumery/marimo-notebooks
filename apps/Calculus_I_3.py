@@ -13,6 +13,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 1.4 Calculating Limits""")
     return
 
@@ -25,7 +37,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Recall that we say $\lim\limits_{x\to a}f(x) = L$ if there exists $L$ such that $f(x)$ is arbitrarily close to $L$ whenever $x$ is sufficiently close to $a$.""")
+    mo.md(
+        r"""Recall that we say $\lim\limits_{x\to a}f(x) = L$ if there exists $L$ such that $f(x)$ is arbitrarily close to $L$ whenever $x$ is sufficiently close to $a$."""
+    )
     return
 
 
@@ -195,7 +209,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f(x) \le g(x)$ when $x$ is near $a$ (except possibly at $a$), and both $\lim\limits_{x\to a}f(x)$, $\lim\limits_{x\to a}g(x)$ exist, then $\lim\limits_{x\to a}f(x) \le \lim\limits_{x\to a}g(x)$.""")
+    mo.md(
+        r"""Suppose $f(x) \le g(x)$ when $x$ is near $a$ (except possibly at $a$), and both $\lim\limits_{x\to a}f(x)$, $\lim\limits_{x\to a}g(x)$ exist, then $\lim\limits_{x\to a}f(x) \le \lim\limits_{x\to a}g(x)$."""
+    )
     return
 
 
@@ -207,7 +223,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f(x) \le g(x) \le h(x)$ when $x$ is near $a$ (except possibly at $a$), and $\lim\limits_{x\to a}f(x) = \lim\limits_{x \to a}h(x) = L$, then we also have $\lim\limits_{x \to a}g(x) = L$.""")
+    mo.md(
+        r"""Suppose $f(x) \le g(x) \le h(x)$ when $x$ is near $a$ (except possibly at $a$), and $\lim\limits_{x\to a}f(x) = \lim\limits_{x \to a}h(x) = L$, then we also have $\lim\limits_{x \to a}g(x) = L$."""
+    )
     return
 
 
@@ -245,7 +263,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""<img src="public/Pasted image 20220828094454.png" width="600" style="display: block; margin-left: auto; margin-right: auto;" />""")
+    mo.md(
+        r"""<img src="public/Pasted image 20220828094454.png" width="600" style="display: block; margin-left: auto; margin-right: auto;" />"""
+    )
     return
 
 

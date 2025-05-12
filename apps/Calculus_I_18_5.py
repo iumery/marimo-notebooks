@@ -17,7 +17,7 @@ def _():
 def _(mo):
     nav_menu = mo.nav_menu(
         {
-            "https://iumery.com": f"{mo.icon('lucide:home')} Home",
+            "/index.html": f"{mo.icon('lucide:home')} Home",
             "Optimization Problems Example Sets": {
                 "/apps/Calculus_I_18_1.html": f"{mo.icon('lucide:file-text')} Set 1",
                 "/apps/Calculus_I_18_2.html": f"{mo.icon('lucide:file-text')} Set 2",

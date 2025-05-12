@@ -13,6 +13,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 3.7 Antiderivative""")
     return
 
@@ -150,7 +162,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Sometimes we will be given extra information so that we can determine what is the constant term $c$. This information is usually called initial condition.""")
+    mo.md(
+        r"""Sometimes we will be given extra information so that we can determine what is the constant term $c$. This information is usually called initial condition."""
+    )
     return
 
 

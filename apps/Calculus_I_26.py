@@ -13,6 +13,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 7.2 Volumes by Slicing""")
     return
 
@@ -73,7 +85,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""The formula for volume of a solid of revolution about $x$-axis is $$\boxed{\text{volume by rotating about }x\text{-axis} = \int\limits_a^b\pi r^2(x)dx}.$$ And the formula for volume of a solid of revolution about $y$-axis is $$\boxed{\text{volume by rotating about }y\text{-axis} = \int\limits_a^b\pi r^2(y)dy}.$$""")
+    mo.md(
+        r"""The formula for volume of a solid of revolution about $x$-axis is $$\boxed{\text{volume by rotating about }x\text{-axis} = \int\limits_a^b\pi r^2(x)dx}.$$ And the formula for volume of a solid of revolution about $y$-axis is $$\boxed{\text{volume by rotating about }y\text{-axis} = \int\limits_a^b\pi r^2(y)dy}.$$"""
+    )
     return
 
 

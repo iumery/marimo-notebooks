@@ -13,6 +13,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 1.5 Continuity""")
     return
 
@@ -185,7 +197,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f$ is continuous on an closed interval $[a, b]$, and $f(a) \ne f(b)$. Let $m$ be a number between $f(a)$ and $f(b)$, then there exists a number $c \in (a, b)$ such that $f(c) = m$.""")
+    mo.md(
+        r"""Suppose $f$ is continuous on an closed interval $[a, b]$, and $f(a) \ne f(b)$. Let $m$ be a number between $f(a)$ and $f(b)$, then there exists a number $c \in (a, b)$ such that $f(c) = m$."""
+    )
     return
 
 

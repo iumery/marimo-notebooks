@@ -13,7 +13,8 @@ def _():
     import numpy as np
     import matplotlib.pyplot as plt
     import matplotlib as mpl
-    mpl.rcParams['text.usetex'] = False
+
+    mpl.rcParams["text.usetex"] = False
     from ripser import Rips
     import persim
     from scipy.spatial.distance import pdist, squareform
@@ -24,13 +25,28 @@ def _():
     from scipy.spatial.distance import euclidean
     from scipy.stats import uniform
     import warnings
+
     warnings.filterwarnings("ignore", category=RuntimeWarning)
     return Rips, dtw, euclidean, gd, gr, np, nx, pdist, persim, plt, squareform
 
 
 @app.cell
+def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
 def _(Rips, np, nx, pdist, persim, plt, squareform):
-    def analyze_series_with_orientation(log_returns, delay=1, dimension=2, add_sign=True, epsilon_factor=1.5):
+    def analyze_series_with_orientation(
+        log_returns, delay=1, dimension=2, add_sign=True, epsilon_factor=1.5
+    ):
         """
         Analyze a log return series:
         - 2x2 grid of plots for trajectory, embedded points, Rips complex, and persistence diagram
@@ -49,7 +65,12 @@ def _(Rips, np, nx, pdist, persim, plt, squareform):
         axs[0, 0].grid(True)
 
         # === 2️⃣ Takens embedding ===
-        embedding = np.array([log_returns[i : i + dimension * delay : delay] for i in range(len(log_returns) - (dimension - 1) * delay)])
+        embedding = np.array(
+            [
+                log_returns[i : i + dimension * delay : delay]
+                for i in range(len(log_returns) - (dimension - 1) * delay)
+            ]
+        )
 
         if add_sign:
             signs = np.sign(embedding[:, 0]).reshape(-1, 1)
@@ -84,7 +105,9 @@ def _(Rips, np, nx, pdist, persim, plt, squareform):
                     G.add_edge(i, j)
 
         pos = nx.get_node_attributes(G, "pos")
-        nx.draw(G, pos, node_size=10, edge_color="gray", with_labels=False, ax=axs[1, 0])
+        nx.draw(
+            G, pos, node_size=10, edge_color="gray", with_labels=False, ax=axs[1, 0]
+        )
         axs[1, 0].set_title(f"Rips Complex (ε={epsilon:.4f})")
         axs[1, 0].set_xlabel("rₜ")
         axs[1, 0].set_ylabel("rₜ₊₁")
@@ -101,6 +124,7 @@ def _(Rips, np, nx, pdist, persim, plt, squareform):
         plt.show()
 
         return embedding, diagrams
+
     return (analyze_series_with_orientation,)
 
 
@@ -108,46 +132,72 @@ def _(Rips, np, nx, pdist, persim, plt, squareform):
 def _(analyze_series_with_orientation, np):
     neg_log_returns = -np.abs(np.random.normal(0, 0.05, 50))
 
-    neg_embedding, neg_diagrams = analyze_series_with_orientation(neg_log_returns, delay=3, dimension=3, add_sign=False, epsilon_factor=0.5)
+    neg_embedding, neg_diagrams = analyze_series_with_orientation(
+        neg_log_returns, delay=3, dimension=3, add_sign=False, epsilon_factor=0.5
+    )
 
     pos_log_returns = np.abs(np.random.normal(0, 0.05, 50))
 
-    pos_embedding, pos_diagrams = analyze_series_with_orientation(pos_log_returns, delay=3, dimension=3, add_sign=False, epsilon_factor=0.5)
+    pos_embedding, pos_diagrams = analyze_series_with_orientation(
+        pos_log_returns, delay=3, dimension=3, add_sign=False, epsilon_factor=0.5
+    )
 
     rnd_log_returns = np.random.normal(0, 0.05, 50)
 
-    rnd_embedding, rnd_diagrams = analyze_series_with_orientation(rnd_log_returns, delay=3, dimension=3, add_sign=False, epsilon_factor=0.5)
+    rnd_embedding, rnd_diagrams = analyze_series_with_orientation(
+        rnd_log_returns, delay=3, dimension=3, add_sign=False, epsilon_factor=0.5
+    )
     return neg_diagrams, pos_diagrams, rnd_diagrams
 
 
 @app.cell
 def _(neg_diagrams, persim, pos_diagrams, rnd_diagrams):
-    wasserstein_distance = persim.wasserstein(neg_diagrams[1], pos_diagrams[1], matching=False)
-    print(f"\n✅ Wasserstein Distance (H₁, loops) between negative and positive series: {wasserstein_distance}")
+    wasserstein_distance = persim.wasserstein(
+        neg_diagrams[1], pos_diagrams[1], matching=False
+    )
+    print(
+        f"\n✅ Wasserstein Distance (H₁, loops) between negative and positive series: {wasserstein_distance}"
+    )
 
-    wasserstein_distance = persim.wasserstein(neg_diagrams[1], rnd_diagrams[1], matching=False)
-    print(f"\n✅ Wasserstein Distance (H₁, loops) between negative and random series: {wasserstein_distance}")
+    wasserstein_distance = persim.wasserstein(
+        neg_diagrams[1], rnd_diagrams[1], matching=False
+    )
+    print(
+        f"\n✅ Wasserstein Distance (H₁, loops) between negative and random series: {wasserstein_distance}"
+    )
 
-    wasserstein_distance = persim.wasserstein(rnd_diagrams[1], pos_diagrams[1], matching=False)
-    print(f"\n✅ Wasserstein Distance (H₁, loops) between random and positive series: {wasserstein_distance}")
+    wasserstein_distance = persim.wasserstein(
+        rnd_diagrams[1], pos_diagrams[1], matching=False
+    )
+    print(
+        f"\n✅ Wasserstein Distance (H₁, loops) between random and positive series: {wasserstein_distance}"
+    )
     return
 
 
 @app.cell
 def _(dtw, euclidean, gd, gr, np, plt):
-    def compute_persistence_diagram(time_series, lags=[1], max_edge_length=2.0, max_dimension=1):
+    def compute_persistence_diagram(
+        time_series, lags=[1], max_edge_length=2.0, max_dimension=1
+    ):
         """
         Compute the persistence diagram of a time series using Vietoris-Rips filtration.
         :param time_series: 1D NumPy array representing the time series.
         :param dim: Maximum homology dimension (default is 1 for loops).
         :return: Persistence diagram as a NumPy array.
         """
-        point_cloud = np.array([[time_series[i + j] for j in [0] + lags] for i in range(len(time_series) - max(lags))])
+        point_cloud = np.array(
+            [
+                [time_series[i + j] for j in [0] + lags]
+                for i in range(len(time_series) - max(lags))
+            ]
+        )
         rips = gd.RipsComplex(points=point_cloud, max_edge_length=max_edge_length)
         simplex_tree = rips.create_simplex_tree(max_dimension=max_dimension)
         persistence = simplex_tree.persistence()
-        return np.array(simplex_tree.persistence_intervals_in_dimension(max_dimension - 1))
-
+        return np.array(
+            simplex_tree.persistence_intervals_in_dimension(max_dimension - 1)
+        )
 
     def sliced_wasserstein_distance(diag1, diag2, num_directions=100):
         """
@@ -159,7 +209,6 @@ def _(dtw, euclidean, gd, gr, np, plt):
         """
         sw = gr.WassersteinDistance()
         return sw(diag1, diag2)
-
 
     def geometric_distance(time_series1, time_series2, method="dtw"):
         """
@@ -175,7 +224,6 @@ def _(dtw, euclidean, gd, gr, np, plt):
             return dtw(time_series1, time_series2)
         else:
             raise ValueError("Unsupported geometric distance method.")
-
 
     def tgmd(
         time_series1,
@@ -197,14 +245,20 @@ def _(dtw, euclidean, gd, gr, np, plt):
         :return: TGMD distance.
         """
         # Compute persistence diagrams
-        pd1 = compute_persistence_diagram(time_series1, lags, max_edge_length, max_dimension)
-        pd2 = compute_persistence_diagram(time_series2, lags, max_edge_length, max_dimension)
+        pd1 = compute_persistence_diagram(
+            time_series1, lags, max_edge_length, max_dimension
+        )
+        pd2 = compute_persistence_diagram(
+            time_series2, lags, max_edge_length, max_dimension
+        )
 
         # Compute Sliced Wasserstein Distance (SWD) for topological similarity
         topological_similarity = sliced_wasserstein_distance(pd1, pd2, num_directions)
 
         # Normalize topological similarity to [0, 1]
-        topological_similarity = np.exp(-topological_similarity)  # Map to (0,1) using exponential decay
+        topological_similarity = np.exp(
+            -topological_similarity
+        )  # Map to (0,1) using exponential decay
 
         # Compute geometric distance
         geo_dist = geometric_distance(time_series1, time_series2, method=geo_method)
@@ -226,8 +280,9 @@ def _(dtw, euclidean, gd, gr, np, plt):
 
         return tgmd_distance
 
-
-    def plot_time_series_and_stock_trajectory(time_series1, time_series2, tgmd_distance):
+    def plot_time_series_and_stock_trajectory(
+        time_series1, time_series2, tgmd_distance
+    ):
         """
         Plot two time series and their corresponding stock price trajectories assuming returns.
         :param time_series1: First time series (returns).
@@ -241,8 +296,12 @@ def _(dtw, euclidean, gd, gr, np, plt):
         fig, axes = plt.subplots(2, 1, figsize=(10, 8))
 
         # Plot the time series (returns)
-        axes[0].plot(time_series1, label="Returns - Time Series 1", linestyle="--", marker="o")
-        axes[0].plot(time_series2, label="Returns - Time Series 2", linestyle="-", marker="s")
+        axes[0].plot(
+            time_series1, label="Returns - Time Series 1", linestyle="--", marker="o"
+        )
+        axes[0].plot(
+            time_series2, label="Returns - Time Series 2", linestyle="-", marker="s"
+        )
         axes[0].set_title(f"Time Series (TGMD Distance: {tgmd_distance:.4f})")
         axes[0].set_xlabel("Time")
         axes[0].set_ylabel("Returns")
@@ -258,6 +317,7 @@ def _(dtw, euclidean, gd, gr, np, plt):
 
         plt.tight_layout()
         plt.show()
+
     return plot_time_series_and_stock_trajectory, tgmd
 
 
@@ -278,7 +338,9 @@ def _(np, plot_time_series_and_stock_trajectory, tgmd):
     )
     print(f"TGMD Distance: {tgmd_result}")
 
-    plot_time_series_and_stock_trajectory(time_series_ran1, time_series_ran2, tgmd_result)
+    plot_time_series_and_stock_trajectory(
+        time_series_ran1, time_series_ran2, tgmd_result
+    )
     return
 
 
@@ -294,7 +356,7 @@ def _():
 
 @app.cell
 def _(np):
-    def TimeDelayEmbedding(x,edim,delay=1):
+    def TimeDelayEmbedding(x, edim, delay=1):
         """time delay embedding of a d-dim times series into R^{d*edim}
         the time series is assumed to be periodic
         parameters:
@@ -305,27 +367,31 @@ def _(np):
         """
         ts = np.asarray(x)
         if len(np.shape(ts)) == 1:
-            ts = np.reshape(ts,(1,ts.shape[0]))
+            ts = np.reshape(ts, (1, ts.shape[0]))
         ts_d = ts.shape[0]
         ts_length = ts.shape[1]
         output = ts
-        for i in range(edim-1):
-            output = np.concatenate((output,np.roll(ts,-(i+1)*delay,axis=1)),axis=0)
+        for i in range(edim - 1):
+            output = np.concatenate(
+                (output, np.roll(ts, -(i + 1) * delay, axis=1)), axis=0
+            )
         return output
+
     return (TimeDelayEmbedding,)
 
 
 @app.cell
 def _(np):
-    flute = np.genfromtxt('flute.csv', delimiter=',')
-    clarinet = np.genfromtxt('clarinet.csv', delimiter=',')
+    flute = np.genfromtxt("flute.csv", delimiter=",")
+    clarinet = np.genfromtxt("clarinet.csv", delimiter=",")
     return clarinet, flute
 
 
 @app.cell
 def _(clarinet, flute, plt):
-    fig1 = plt.figure(figsize=(15,5))
-    ax1_1 = fig1.add_subplot(1,2,1); ax1_2 = fig1.add_subplot(1,2,2)
+    fig1 = plt.figure(figsize=(15, 5))
+    ax1_1 = fig1.add_subplot(1, 2, 1)
+    ax1_2 = fig1.add_subplot(1, 2, 2)
     ax1_1.plot(range(1000), flute[0:1000])
     ax1_2.plot(range(1000), clarinet[0:1000])
     return
@@ -333,21 +399,22 @@ def _(clarinet, flute, plt):
 
 @app.cell
 def _(tde):
-    tde.T/2
+    tde.T / 2
     return
 
 
 @app.cell
 def _(gd, plt, tde):
-    rips = gd.RipsComplex(points = tde.T/2, max_edge_length = 0.3)
+    rips = gd.RipsComplex(points=tde.T / 2, max_edge_length=0.3)
     st = rips.create_simplex_tree(max_dimension=2)
 
-    barcode = st.persistence(homology_coeff_field = 2)
-    fig = plt.figure(figsize=(15,5))
-    ax1 = fig.add_subplot(1,2,1); ax2 = fig.add_subplot(1,2,2)
+    barcode = st.persistence(homology_coeff_field=2)
+    fig = plt.figure(figsize=(15, 5))
+    ax1 = fig.add_subplot(1, 2, 1)
+    ax2 = fig.add_subplot(1, 2, 2)
 
-    gd.plot_persistence_barcode(barcode, axes = ax1)
-    gd.plot_persistence_diagram(barcode, axes = ax2)
+    gd.plot_persistence_barcode(barcode, axes=ax1)
+    gd.plot_persistence_diagram(barcode, axes=ax2)
     return
 
 
@@ -356,14 +423,16 @@ def _(TimeDelayEmbedding, clarinet, gd, np):
     n_cycles = []
     len_sample = 500
     for j in range(5):
-        print('Sample {}'.format(j))
-        i = np.random.randint(0,len(clarinet)-len_sample)
-        sample = clarinet[i:i+len_sample]
+        print("Sample {}".format(j))
+        i = np.random.randint(0, len(clarinet) - len_sample)
+        sample = clarinet[i : i + len_sample]
         tde = TimeDelayEmbedding(sample, edim=2, delay=2)
-        rips_sample = gd.RipsComplex(points = tde.T/2, max_edge_length = 0.1)
+        rips_sample = gd.RipsComplex(points=tde.T / 2, max_edge_length=0.1)
         st_sample = rips_sample.create_simplex_tree(max_dimension=2)
-        barcode_sample = st_sample.persistence(homology_coeff_field = 2)
-        large_persistence = [(a, b) for (j, (a, b)) in barcode_sample if b - a > 0.015 and j == 1]
+        barcode_sample = st_sample.persistence(homology_coeff_field=2)
+        large_persistence = [
+            (a, b) for (j, (a, b)) in barcode_sample if b - a > 0.015 and j == 1
+        ]
         n_cycles.append(len(large_persistence))
     print()
     print(np.mean(n_cycles))
@@ -384,8 +453,8 @@ def _():
 def _():
     import pickle as pickle
 
-    file = open("acc.txt","rb")
-    data = pickle.load(file,encoding="latin1")
+    file = open("acc.txt", "rb")
+    data = pickle.load(file, encoding="latin1")
     file.close()
 
     data_A = data[0]
@@ -398,10 +467,10 @@ def _():
 def _(data_A, plt):
     data_A_sample = data_A[0]
 
-    figA = plt.figure(figsize=(10,10))
-    ax = figA.add_subplot(111, projection='3d')
-    ax.scatter(data_A_sample [:,0],data_A_sample [:,1],data_A_sample [:,2], c = 'black')
-    ax.plot(data_A_sample [:,0],data_A_sample [:,1],data_A_sample [:,2])
+    figA = plt.figure(figsize=(10, 10))
+    ax = figA.add_subplot(111, projection="3d")
+    ax.scatter(data_A_sample[:, 0], data_A_sample[:, 1], data_A_sample[:, 2], c="black")
+    ax.plot(data_A_sample[:, 0], data_A_sample[:, 1], data_A_sample[:, 2])
     return
 
 
@@ -410,8 +479,10 @@ def _(data_A, data_B, data_C, gd):
     barcodes = []
     for person in [data_A, data_B, data_C]:
         for series in person:
-            st_person = gd.RipsComplex(points = series/2, max_edge_length = 1).create_simplex_tree(max_dimension=2)
-            st_person.persistence(homology_coeff_field = 2)
+            st_person = gd.RipsComplex(
+                points=series / 2, max_edge_length=1
+            ).create_simplex_tree(max_dimension=2)
+            st_person.persistence(homology_coeff_field=2)
             barcode_person = st_person.persistence_intervals_in_dimension(1)
             barcodes.append(barcode_person)
     return (barcodes,)
@@ -430,14 +501,16 @@ def _(barcodes, gd, np):
 def _(dist, plt):
     from sklearn import manifold
 
-    mds = manifold.MDS(n_components=3, max_iter=3000, eps=1e-9, dissimilarity="precomputed", n_jobs=1)
+    mds = manifold.MDS(
+        n_components=3, max_iter=3000, eps=1e-9, dissimilarity="precomputed", n_jobs=1
+    )
     pos = mds.fit(dist).embedding_
-    figm = plt.figure(figsize = (10,10))
-    axm = figm.add_subplot(111, projection='3d')
+    figm = plt.figure(figsize=(10, 10))
+    axm = figm.add_subplot(111, projection="3d")
 
-    n = int(len(pos)/3)
-    label_color = ['magenta']*n+['blue']*n+['green']*n
-    axm.scatter(pos[:,0], pos[:, 1], pos[:,2], s=70, color=label_color)
+    n = int(len(pos) / 3)
+    label_color = ["magenta"] * n + ["blue"] * n + ["green"] * n
+    axm.scatter(pos[:, 0], pos[:, 1], pos[:, 2], s=70, color=label_color)
     return
 
 

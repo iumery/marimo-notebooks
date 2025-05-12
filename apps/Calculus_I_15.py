@@ -16,6 +16,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 3.2 The Mean Value Theorem""")
     return
 
@@ -60,84 +72,120 @@ def _(mo):
 @app.cell
 def _(go, make_subplots, np):
     # Create subplots
-    fig_rolle = make_subplots(rows=3, cols=1, subplot_titles=[
-        "1. Not continuous at endpoints",
-        "2. Not differentiable (corner at x=5)",
-        "3. End-points values are different"
-    ])
+    fig_rolle = make_subplots(
+        rows=3,
+        cols=1,
+        subplot_titles=[
+            "1. Not continuous at endpoints",
+            "2. Not differentiable (corner at x=5)",
+            "3. End-points values are different",
+        ],
+    )
 
     # --- First plot: f(x) = x on (0,5), f(0) = f(5) = 1
     x_f = np.linspace(0, 5, 300)
     y_f = x_f
     y_f[0] = 1
     y_f[-1] = 1
-    fig_rolle.add_trace(go.Scatter(
-        x=x_f, y=y_f,
-        mode='lines',
-        name='f(x)',
-        line=dict(color='blue')
-    ), row=1, col=1)
-    fig_rolle.add_trace(go.Scatter(
-        x=[0, 5], y=[1, 1],
-        mode='markers',
-        marker=dict(size=8, color='blue'),
-        name='f(0), f(5)'
-    ), row=1, col=1)
+    fig_rolle.add_trace(
+        go.Scatter(x=x_f, y=y_f, mode="lines", name="f(x)", line=dict(color="blue")),
+        row=1,
+        col=1,
+    )
+    fig_rolle.add_trace(
+        go.Scatter(
+            x=[0, 5],
+            y=[1, 1],
+            mode="markers",
+            marker=dict(size=8, color="blue"),
+            name="f(0), f(5)",
+        ),
+        row=1,
+        col=1,
+    )
 
     # --- Second plot: g(x) = x on [0,5], -x+10 on (5,10]
     x_g1 = np.linspace(0, 5, 200)
     y_g1 = x_g1
     x_g2 = np.linspace(5, 10, 200)
     y_g2 = -x_g2 + 10
-    fig_rolle.add_trace(go.Scatter(x=x_g1, y=y_g1, mode='lines', name='g(x)', line=dict(color='green')), row=2, col=1)
-    fig_rolle.add_trace(go.Scatter(x=x_g2, y=y_g2, mode='lines', name='', line=dict(color='green'), showlegend=False), row=2, col=1)
-    fig_rolle.add_trace(go.Scatter(
-        x=[0, 10], y=[0, 0],
-        mode='markers',
-        marker=dict(size=8, color='red'),
-        name='g(0), g(10)'
-    ), row=2, col=1)
+    fig_rolle.add_trace(
+        go.Scatter(x=x_g1, y=y_g1, mode="lines", name="g(x)", line=dict(color="green")),
+        row=2,
+        col=1,
+    )
+    fig_rolle.add_trace(
+        go.Scatter(
+            x=x_g2,
+            y=y_g2,
+            mode="lines",
+            name="",
+            line=dict(color="green"),
+            showlegend=False,
+        ),
+        row=2,
+        col=1,
+    )
+    fig_rolle.add_trace(
+        go.Scatter(
+            x=[0, 10],
+            y=[0, 0],
+            mode="markers",
+            marker=dict(size=8, color="red"),
+            name="g(0), g(10)",
+        ),
+        row=2,
+        col=1,
+    )
 
     # --- Third plot: h(x) = 1/5 x² on [1,6]
     x_h = np.linspace(1, 6, 300)
-    y_h = (1/5) * x_h**2
-    fig_rolle.add_trace(go.Scatter(
-        x=x_h,
-        y=y_h,
-        mode='lines',
-        name='h(x)',
-        line=dict(color='purple')
-    ), row=3, col=1)
-    fig_rolle.add_trace(go.Scatter(
-        x=[1, 6], y=[(1/5)*1**2, (1/5)*6**2],
-        mode='markers',
-        marker=dict(size=8, color='red'),
-        name='h(1), h(6)'
-    ), row=3, col=1)
+    y_h = (1 / 5) * x_h**2
+    fig_rolle.add_trace(
+        go.Scatter(x=x_h, y=y_h, mode="lines", name="h(x)", line=dict(color="purple")),
+        row=3,
+        col=1,
+    )
+    fig_rolle.add_trace(
+        go.Scatter(
+            x=[1, 6],
+            y=[(1 / 5) * 1**2, (1 / 5) * 6**2],
+            mode="markers",
+            marker=dict(size=8, color="red"),
+            name="h(1), h(6)",
+        ),
+        row=3,
+        col=1,
+    )
 
     # Mark h(1) = h(6) = 1.2 for clarity
-    fig_rolle.add_trace(go.Scatter(
-        x=[1, 6], y=[1.2, 1.2],
-        mode='text',
-        text=["h(1) = 1.2", "h(6) = 1.2"],
-        textposition='top center',
-        showlegend=False
-    ), row=3, col=1)
+    fig_rolle.add_trace(
+        go.Scatter(
+            x=[1, 6],
+            y=[1.2, 1.2],
+            mode="text",
+            text=["h(1) = 1.2", "h(6) = 1.2"],
+            textposition="top center",
+            showlegend=False,
+        ),
+        row=3,
+        col=1,
+    )
 
     # Layout
     fig_rolle.update_layout(
-        title='Rolle\'s Theorem: Importance of Assumptions',
-        template='plotly_white',
+        title="Rolle's Theorem: Importance of Assumptions",
+        template="plotly_white",
         showlegend=False,
-        height=1200
+        height=1200,
     )
 
-    fig_rolle.update_xaxes(title_text='x', row=1, col=1)
-    fig_rolle.update_yaxes(title_text='f(x)', row=1, col=1)
-    fig_rolle.update_xaxes(title_text='x', row=2, col=1)
-    fig_rolle.update_yaxes(title_text='g(x)', row=2, col=1)
-    fig_rolle.update_xaxes(title_text='x', row=3, col=1)
-    fig_rolle.update_yaxes(title_text='h(x)', row=3, col=1)
+    fig_rolle.update_xaxes(title_text="x", row=1, col=1)
+    fig_rolle.update_yaxes(title_text="f(x)", row=1, col=1)
+    fig_rolle.update_xaxes(title_text="x", row=2, col=1)
+    fig_rolle.update_yaxes(title_text="g(x)", row=2, col=1)
+    fig_rolle.update_xaxes(title_text="x", row=3, col=1)
+    fig_rolle.update_yaxes(title_text="h(x)", row=3, col=1)
     return
 
 
@@ -217,53 +265,67 @@ def _(go, np):
     fig_log = go.Figure()
 
     # Function curve
-    fig_log.add_trace(go.Scatter(
-        x=x_vals_log, y=y_vals_log,
-        mode='lines',
-        name='f(x)',
-        line=dict(color='blue')
-    ))
+    fig_log.add_trace(
+        go.Scatter(
+            x=x_vals_log,
+            y=y_vals_log,
+            mode="lines",
+            name="f(x)",
+            line=dict(color="blue"),
+        )
+    )
 
     # Secant line
-    fig_log.add_trace(go.Scatter(
-        x=[a_log, b_log], y=[fa_log, fb_log],
-        mode='lines',
-        name='Secant Line',
-        line=dict(color='green', dash='dot')
-    ))
+    fig_log.add_trace(
+        go.Scatter(
+            x=[a_log, b_log],
+            y=[fa_log, fb_log],
+            mode="lines",
+            name="Secant Line",
+            line=dict(color="green", dash="dot"),
+        )
+    )
 
     # Tangent at c
-    fig_log.add_trace(go.Scatter(
-        x=x_tangent_log, y=y_tangent_log,
-        mode='lines',
-        name='Tangent at c',
-        line=dict(color='red', dash='dash')
-    ))
+    fig_log.add_trace(
+        go.Scatter(
+            x=x_tangent_log,
+            y=y_tangent_log,
+            mode="lines",
+            name="Tangent at c",
+            line=dict(color="red", dash="dash"),
+        )
+    )
 
     # Mark point c
-    fig_log.add_trace(go.Scatter(
-        x=[c_log], y=[fc_log],
-        mode='markers',
-        text=[f"c ≈ {round(c_log, 2)}"],
-        textposition='top right',
-        marker=dict(size=8, color='black'),
-        name='Point c'
-    ))
+    fig_log.add_trace(
+        go.Scatter(
+            x=[c_log],
+            y=[fc_log],
+            mode="markers",
+            text=[f"c ≈ {round(c_log, 2)}"],
+            textposition="top right",
+            marker=dict(size=8, color="black"),
+            name="Point c",
+        )
+    )
 
     # Layout
     fig_log.update_layout(
-        title='Mean Value Theorem',
-        xaxis_title='x',
-        yaxis_title='f(x)',
-        template='plotly_white',
-        showlegend=True
+        title="Mean Value Theorem",
+        xaxis_title="x",
+        yaxis_title="f(x)",
+        template="plotly_white",
+        showlegend=True,
     )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""Rolle's Theorem is a special case of the MVT: if $f(a) = f(b)$, then $\frac{f(b) - f(a)}{b - a} = \frac{0}{b-a} = 0$ as stated in the Rolle's Theorem. Again, whenever you are asked to, or need to apply MVT, **you MUST verify the assumptions**.""")
+    mo.md(
+        r"""Rolle's Theorem is a special case of the MVT: if $f(a) = f(b)$, then $\frac{f(b) - f(a)}{b - a} = \frac{0}{b-a} = 0$ as stated in the Rolle's Theorem. Again, whenever you are asked to, or need to apply MVT, **you MUST verify the assumptions**."""
+    )
     return
 
 
@@ -348,7 +410,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f$ is a function defined on an open interval $(a, b)$, then $f$ is a constant on $(a, b)$ if and only if $f'(x) = 0$ for all $x \in (a, b)$.""")
+    mo.md(
+        r"""Suppose $f$ is a function defined on an open interval $(a, b)$, then $f$ is a constant on $(a, b)$ if and only if $f'(x) = 0$ for all $x \in (a, b)$."""
+    )
     return
 
 
@@ -360,7 +424,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f, g$ are two functions defined on an open interval $(a, b)$ and $f'(x) = g'(x)$ for all $x \in (a, b)$, then $f - g$ is a constant on $(a, b)$. In other words, $f(x) = g(x) + c$ for some constant $c$ for all $x \in (a, b)$.""")
+    mo.md(
+        r"""Suppose $f, g$ are two functions defined on an open interval $(a, b)$ and $f'(x) = g'(x)$ for all $x \in (a, b)$, then $f - g$ is a constant on $(a, b)$. In other words, $f(x) = g(x) + c$ for some constant $c$ for all $x \in (a, b)$."""
+    )
     return
 
 

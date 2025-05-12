@@ -13,6 +13,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 4.5 Substitution Method""")
     return
 
@@ -43,7 +55,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $g(x)$ is differentiable (with range $I$) and $f, g'$ are integrable (on $I$). Write $u = g(x)$ for simplicity, then: $$\boxed{\int f(u)u'~dx = \int f(u)du}.$$ The important point is that the variable that we take integration with has changed. The process of applying the Substitution Rule is sometimes referred as 'U-substitution', because we often use $u$ as the dummy variable in the mid-step.""")
+    mo.md(
+        r"""Suppose $g(x)$ is differentiable (with range $I$) and $f, g'$ are integrable (on $I$). Write $u = g(x)$ for simplicity, then: $$\boxed{\int f(u)u'~dx = \int f(u)du}.$$ The important point is that the variable that we take integration with has changed. The process of applying the Substitution Rule is sometimes referred as 'U-substitution', because we often use $u$ as the dummy variable in the mid-step."""
+    )
     return
 
 
@@ -140,7 +154,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Always try to do simplification **at each step** when you take integration.""")
+    mo.md(
+        r"""Always try to do simplification **at each step** when you take integration."""
+    )
     return
 
 
@@ -238,7 +254,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Notice above, when we take $\displaystyle \int \frac{1}{6}u^5du$, $u^6$ is **NOT** an antiderivative, it should be $\displaystyle \frac{u^6}{6 \cdot 6}$. Be careful about calculation.""")
+    mo.md(
+        r"""Notice above, when we take $\displaystyle \int \frac{1}{6}u^5du$, $u^6$ is **NOT** an antiderivative, it should be $\displaystyle \frac{u^6}{6 \cdot 6}$. Be careful about calculation."""
+    )
     return
 
 
@@ -250,7 +268,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""When apply U-substitution to definition integral, remember to change the upper and lower limits of the integral. Also, when we finally plug-in the upper and lower limits to evaluate the integral, **do not substitute back x**: see the above example, we evaluated $\displaystyle = \frac{u^6}{36}|_1^3$ $\displaystyle = \frac{3^6}{36} - \frac{1^6}{36}$, **not** $\displaystyle = \frac{u^6}{36}|_1^3$ $\displaystyle = \frac{(1+2x^3)^6}{36}|_1^3$ $\displaystyle = \frac{(1+2\cdot 3^3)^6}{36} - \frac{(1+2\cdot 1^3)^6}{36}$. This is because $3$ and $1$ are already corresponding to $u$, not $x$. In fact, if you really insist substituting back $u = 1+2x^3$, you need to change the upper and lower limits back to $0$ and $1$.""")
+    mo.md(
+        r"""When apply U-substitution to definition integral, remember to change the upper and lower limits of the integral. Also, when we finally plug-in the upper and lower limits to evaluate the integral, **do not substitute back x**: see the above example, we evaluated $\displaystyle = \frac{u^6}{36}|_1^3$ $\displaystyle = \frac{3^6}{36} - \frac{1^6}{36}$, **not** $\displaystyle = \frac{u^6}{36}|_1^3$ $\displaystyle = \frac{(1+2x^3)^6}{36}|_1^3$ $\displaystyle = \frac{(1+2\cdot 3^3)^6}{36} - \frac{(1+2\cdot 1^3)^6}{36}$. This is because $3$ and $1$ are already corresponding to $u$, not $x$. In fact, if you really insist substituting back $u = 1+2x^3$, you need to change the upper and lower limits back to $0$ and $1$."""
+    )
     return
 
 

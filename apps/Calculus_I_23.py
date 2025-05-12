@@ -15,6 +15,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 4.4 Fundamental Theorem of Calculus""")
     return
 
@@ -27,7 +39,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""If $f$ is integrable on $[a, b]$, we can define a function $g$ by $\displaystyle g(x) = \int\limits_a^x f(t)dt$, $x \in [a, b]$. Then $g$ is continuous on $[a,b]$, is differentiable on $(a, b)$, and $g'(x) = f(x)$. In other words: $$\frac{d}{dx} \int_a^x f(t) dt = f(x).$$""")
+    mo.md(
+        r"""If $f$ is integrable on $[a, b]$, we can define a function $g$ by $\displaystyle g(x) = \int\limits_a^x f(t)dt$, $x \in [a, b]$. Then $g$ is continuous on $[a,b]$, is differentiable on $(a, b)$, and $g'(x) = f(x)$. In other words: $$\frac{d}{dx} \int_a^x f(t) dt = f(x).$$"""
+    )
     return
 
 
@@ -39,7 +53,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Remember to use a different variable in $f$ and after $d$ (in the statement we use $t$) to differ from the variable in the upper limit.""")
+    mo.md(
+        r"""Remember to use a different variable in $f$ and after $d$ (in the statement we use $t$) to differ from the variable in the upper limit."""
+    )
     return
 
 
@@ -102,14 +118,42 @@ def _(go, np):
     fig_1 = go.Figure()
 
     # Line y = 2x + 1
-    fig_1.add_trace(go.Scatter(x=x_line, y=y_line, mode='lines', name='y = 2x + 1', line=dict(color='blue')))
+    fig_1.add_trace(
+        go.Scatter(
+            x=x_line, y=y_line, mode="lines", name="y = 2x + 1", line=dict(color="blue")
+        )
+    )
 
     # Vertical lines
-    fig_1.add_trace(go.Scatter(x=x1, y=y_vert, mode='lines', name='x = 1', line=dict(color='red', dash='dot')))
-    fig_1.add_trace(go.Scatter(x=x3, y=y_vert, mode='lines', name='x = 3', line=dict(color='red', dash='dot')))
+    fig_1.add_trace(
+        go.Scatter(
+            x=x1,
+            y=y_vert,
+            mode="lines",
+            name="x = 1",
+            line=dict(color="red", dash="dot"),
+        )
+    )
+    fig_1.add_trace(
+        go.Scatter(
+            x=x3,
+            y=y_vert,
+            mode="lines",
+            name="x = 3",
+            line=dict(color="red", dash="dot"),
+        )
+    )
 
     # Horizontal line y = 3 from x = 1 to x = 3
-    fig_1.add_trace(go.Scatter(x=x_horiz, y=y_horiz, mode='lines', name='y = 3', line=dict(color='green', dash='dash')))
+    fig_1.add_trace(
+        go.Scatter(
+            x=x_horiz,
+            y=y_horiz,
+            mode="lines",
+            name="y = 3",
+            line=dict(color="green", dash="dash"),
+        )
+    )
 
     # Points with labels
     points_1 = [
@@ -117,27 +161,30 @@ def _(go, np):
         (1, 0, "(1, 0)"),
         (3, 3, "(x, 3)"),
         (3, 0, "(x, 0)"),
-        (3, 7, "(x, 2x+1)")
+        (3, 7, "(x, 2x+1)"),
     ]
 
     for x_pt_1, y_pt_1, label_1 in points_1:
-        fig_1.add_trace(go.Scatter(
-            x=[x_pt_1], y=[y_pt_1],
-            mode='markers+text',
-            marker=dict(size=8, color='black'),
-            text=[label_1],
-            textposition='top right',
-            showlegend=False
-        ))
+        fig_1.add_trace(
+            go.Scatter(
+                x=[x_pt_1],
+                y=[y_pt_1],
+                mode="markers+text",
+                marker=dict(size=8, color="black"),
+                text=[label_1],
+                textposition="top right",
+                showlegend=False,
+            )
+        )
 
     # Layout
     fig_1.update_layout(
-        title='Integrating y = 2x + 1',
-        xaxis_title='x',
-        yaxis_title='y',
-        xaxis=dict(range=[0, 4], scaleanchor='y'),
+        title="Integrating y = 2x + 1",
+        xaxis_title="x",
+        yaxis_title="y",
+        xaxis=dict(range=[0, 4], scaleanchor="y"),
         yaxis=dict(range=[-1, 8]),
-        template='plotly_white'
+        template="plotly_white",
     )
     return
 
@@ -224,7 +271,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""In general, $$\boxed{\frac{d}{dx} \int_a^{g(x)} f(t) dt = f(g(x))\cdot g'(x)}$$ and $$\boxed{\frac{d}{dx} \int_{g(x)}^a f(t) dt = -f(g(x))\cdot g'(x)}$$ as we worked out above.""")
+    mo.md(
+        r"""In general, $$\boxed{\frac{d}{dx} \int_a^{g(x)} f(t) dt = f(g(x))\cdot g'(x)}$$ and $$\boxed{\frac{d}{dx} \int_{g(x)}^a f(t) dt = -f(g(x))\cdot g'(x)}$$ as we worked out above."""
+    )
     return
 
 
@@ -240,20 +289,40 @@ def _(go, np):
 
     # 1. Line from (-4, 1) to (-2, 3)
     x21, y21 = [-4, -2], [1, 3]
-    fig_2.add_trace(go.Scatter(x=x21, y=y21, mode='lines', name='Segment 1', line=dict(color='blue')))
+    fig_2.add_trace(
+        go.Scatter(
+            x=x21, y=y21, mode="lines", name="Segment 1", line=dict(color="blue")
+        )
+    )
 
     # 2. Line from (-2, 3) to (-1, 0)
     x22, y22 = [-2, -1], [3, 0]
-    fig_2.add_trace(go.Scatter(x=x22, y=y22, mode='lines', name='Segment 2', line=dict(color='blue')))
+    fig_2.add_trace(
+        go.Scatter(
+            x=x22, y=y22, mode="lines", name="Segment 2", line=dict(color="blue")
+        )
+    )
 
     # 3. Lower half of unit circle: x in [-1, 1], y = -sqrt(1 - x^2)
     x_circle = np.linspace(-1, 1, 400)
     y_circle = -np.sqrt(1 - x_circle**2)
-    fig_2.add_trace(go.Scatter(x=x_circle, y=y_circle, mode='lines', name='Lower Unit Circle', line=dict(color='blue')))
+    fig_2.add_trace(
+        go.Scatter(
+            x=x_circle,
+            y=y_circle,
+            mode="lines",
+            name="Lower Unit Circle",
+            line=dict(color="blue"),
+        )
+    )
 
     # 4. Line from (1, 0) to (3, -1)
     x24, y24 = [1, 3], [0, -1]
-    fig_2.add_trace(go.Scatter(x=x24, y=y24, mode='lines', name='Segment 3', line=dict(color='blue')))
+    fig_2.add_trace(
+        go.Scatter(
+            x=x24, y=y24, mode="lines", name="Segment 3", line=dict(color="blue")
+        )
+    )
 
     # Points with labels
     points_2 = [
@@ -261,27 +330,30 @@ def _(go, np):
         (-2, 3, "(-2, 3)"),
         (-1, 0, "(-1, 0)"),
         (1, 0, "(1, 0)"),
-        (3, -1, "(3, -1)")
+        (3, -1, "(3, -1)"),
     ]
 
     for x_pt_2, y_pt_2, label_2 in points_2:
-        fig_2.add_trace(go.Scatter(
-            x=[x_pt_2], y=[y_pt_2],
-            mode='markers+text',
-            marker=dict(size=8, color='black'),
-            text=[label_2],
-            textposition='top right',
-            showlegend=False
-        ))
+        fig_2.add_trace(
+            go.Scatter(
+                x=[x_pt_2],
+                y=[y_pt_2],
+                mode="markers+text",
+                marker=dict(size=8, color="black"),
+                text=[label_2],
+                textposition="top right",
+                showlegend=False,
+            )
+        )
 
     # Layout settings
     fig_2.update_layout(
-        title='Graph of f',
-        xaxis_title='x',
-        yaxis_title='y',
-        xaxis=dict(range=[-5, 4], scaleanchor='y'),
-        yaxis=dict(scaleanchor='x'),
-        template='plotly_white'
+        title="Graph of f",
+        xaxis_title="x",
+        yaxis_title="y",
+        xaxis=dict(range=[-5, 4], scaleanchor="y"),
+        yaxis=dict(scaleanchor="x"),
+        template="plotly_white",
     )
     return
 

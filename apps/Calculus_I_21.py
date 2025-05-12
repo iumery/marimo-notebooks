@@ -13,6 +13,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 4.2 Definite Integral""")
     return
 
@@ -85,7 +97,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""As a matter of fact, we do not even need to divide $[a, b]$ into $n$ **equal** parts. However, the choice of this partition is also not arbitrary. It is rather hard (and beyond the scope of this course) to carefully define those things.""")
+    mo.md(
+        r"""As a matter of fact, we do not even need to divide $[a, b]$ into $n$ **equal** parts. However, the choice of this partition is also not arbitrary. It is rather hard (and beyond the scope of this course) to carefully define those things."""
+    )
     return
 
 

@@ -16,6 +16,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 4.1 Areas""")
     return
 
@@ -73,40 +85,42 @@ def _(go, np):
     fig_1 = go.Figure()
 
     # Plot upper unit circle
-    fig_1.add_trace(go.Scatter(
-        x=x_curve,
-        y=y_curve,
-        mode='lines',
-        name='Upper Unit Circle',
-        line=dict(color='blue')
-    ))
+    fig_1.add_trace(
+        go.Scatter(
+            x=x_curve,
+            y=y_curve,
+            mode="lines",
+            name="Upper Unit Circle",
+            line=dict(color="blue"),
+        )
+    )
 
     # Left-endpoint rectangles
     n_rects = 4
-    x_left = np.linspace(-1, 1 - 2/n_rects, n_rects)  # left x values
+    x_left = np.linspace(-1, 1 - 2 / n_rects, n_rects)  # left x values
     dx = 2 / n_rects
 
     for x0 in x_left:
         height_left = np.sqrt(1 - x0**2)
         fig_1.add_shape(
-            type='rect',
+            type="rect",
             x0=x0,
             x1=x0 + dx,
             y0=0,
             y1=height_left,
-            fillcolor='rgba(255, 165, 0, 0.5)',  # semi-transparent orange
-            line=dict(color='orange')
+            fillcolor="rgba(255, 165, 0, 0.5)",  # semi-transparent orange
+            line=dict(color="orange"),
         )
 
     # Layout
     fig_1.update_layout(
-        title='Upper Unit Circle with 4 Left-Endpoint Rectangles',
-        xaxis_title='x',
-        yaxis_title='y',
-        xaxis=dict(scaleanchor='y', range=[-1.2, 1.2]),
-        yaxis=dict(scaleanchor='x', range=[-0.1, 1.2]),
-        template='plotly_white',
-        showlegend=True
+        title="Upper Unit Circle with 4 Left-Endpoint Rectangles",
+        xaxis_title="x",
+        yaxis_title="y",
+        xaxis=dict(scaleanchor="y", range=[-1.2, 1.2]),
+        yaxis=dict(scaleanchor="x", range=[-0.1, 1.2]),
+        template="plotly_white",
+        showlegend=True,
     )
     return dx, n_rects, x_curve, y_curve
 
@@ -134,13 +148,15 @@ def _(dx, go, n_rects, np, x_curve, y_curve):
     fig_2 = go.Figure()
 
     # Plot upper unit circle
-    fig_2.add_trace(go.Scatter(
-        x=x_curve,
-        y=y_curve,
-        mode='lines',
-        name='Upper Unit Circle',
-        line=dict(color='blue')
-    ))
+    fig_2.add_trace(
+        go.Scatter(
+            x=x_curve,
+            y=y_curve,
+            mode="lines",
+            name="Upper Unit Circle",
+            line=dict(color="blue"),
+        )
+    )
 
     # Right-endpoint rectangles
     x_right = np.linspace(-1 + dx, 1, n_rects)  # right x values
@@ -148,24 +164,24 @@ def _(dx, go, n_rects, np, x_curve, y_curve):
     for x1 in x_right:
         height_right = np.sqrt(1 - x1**2)
         fig_2.add_shape(
-            type='rect',
+            type="rect",
             x0=x1 - dx,
             x1=x1,
             y0=0,
             y1=height_right,
-            fillcolor='rgba(0, 200, 255, 0.4)',  # semi-transparent cyan
-            line=dict(color='teal')
+            fillcolor="rgba(0, 200, 255, 0.4)",  # semi-transparent cyan
+            line=dict(color="teal"),
         )
 
     # Layout
     fig_2.update_layout(
-        title='Upper Unit Circle with 4 Right-Endpoint Rectangles',
-        xaxis_title='x',
-        yaxis_title='y',
-        xaxis=dict(scaleanchor='y', range=[-1.2, 1.2]),
-        yaxis=dict(scaleanchor='x', range=[-0.1, 1.2]),
-        template='plotly_white',
-        showlegend=True
+        title="Upper Unit Circle with 4 Right-Endpoint Rectangles",
+        xaxis_title="x",
+        yaxis_title="y",
+        xaxis=dict(scaleanchor="y", range=[-1.2, 1.2]),
+        yaxis=dict(scaleanchor="x", range=[-0.1, 1.2]),
+        template="plotly_white",
+        showlegend=True,
     )
     return
 
@@ -193,38 +209,40 @@ def _(dx, go, n_rects, np, x_curve, y_curve):
     fig_3 = go.Figure()
 
     # Plot the upper unit circle
-    fig_3.add_trace(go.Scatter(
-        x=x_curve,
-        y=y_curve,
-        mode='lines',
-        name='Upper Unit Circle',
-        line=dict(color='blue')
-    ))
+    fig_3.add_trace(
+        go.Scatter(
+            x=x_curve,
+            y=y_curve,
+            mode="lines",
+            name="Upper Unit Circle",
+            line=dict(color="blue"),
+        )
+    )
 
     # Midpoint rectangles
-    x_mid = np.linspace(-1 + dx/2, 1 - dx/2, n_rects)  # midpoints
+    x_mid = np.linspace(-1 + dx / 2, 1 - dx / 2, n_rects)  # midpoints
 
     for x_m in x_mid:
         height_mid = np.sqrt(1 - x_m**2)
         fig_3.add_shape(
-            type='rect',
-            x0=x_m - dx/2,
-            x1=x_m + dx/2,
+            type="rect",
+            x0=x_m - dx / 2,
+            x1=x_m + dx / 2,
             y0=0,
             y1=height_mid,
-            fillcolor='rgba(0, 255, 0, 0.4)',  # semi-transparent green
-            line=dict(color='darkgreen')
+            fillcolor="rgba(0, 255, 0, 0.4)",  # semi-transparent green
+            line=dict(color="darkgreen"),
         )
 
     # Layout
     fig_3.update_layout(
-        title='Upper Unit Circle with 4 Midpoint Rectangles',
-        xaxis_title='x',
-        yaxis_title='y',
-        xaxis=dict(scaleanchor='y', range=[-1.2, 1.2]),
-        yaxis=dict(scaleanchor='x', range=[-0.1, 1.2]),
-        template='plotly_white',
-        showlegend=True
+        title="Upper Unit Circle with 4 Midpoint Rectangles",
+        xaxis_title="x",
+        yaxis_title="y",
+        xaxis=dict(scaleanchor="y", range=[-1.2, 1.2]),
+        yaxis=dict(scaleanchor="x", range=[-0.1, 1.2]),
+        template="plotly_white",
+        showlegend=True,
     )
     return
 
@@ -255,7 +273,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""In the above case, all the rectangles have *positive* height ($y$-values). But in general this may not be the case (for example, if we want to evaluate the 'area' under the sine curve). The area calculated in this way may be called a signed area. **If we want to calculate the area in the usual sense (unsigned area), we should use the absolute value of each $y$-value**.""")
+    mo.md(
+        r"""In the above case, all the rectangles have *positive* height ($y$-values). But in general this may not be the case (for example, if we want to evaluate the 'area' under the sine curve). The area calculated in this way may be called a signed area. **If we want to calculate the area in the usual sense (unsigned area), we should use the absolute value of each $y$-value**."""
+    )
     return
 
 
@@ -345,7 +365,7 @@ def _(go, make_subplots, np):
     fig_c = make_subplots(
         rows=1,
         cols=2,
-        subplot_titles=("Riemann (x-subdivision)", "Lebesgue (y-subdivision)")
+        subplot_titles=("Riemann (x-subdivision)", "Lebesgue (y-subdivision)"),
     )
 
     # --- Left: Riemann integration (x-subdivision) ---
@@ -354,21 +374,27 @@ def _(go, make_subplots, np):
     x_left_c = np.linspace(-1, 1 - dx_c, n_rects_c)
 
     # Curve
-    fig_c.add_trace(go.Scatter(x=x_curve_c, y=y_curve_c, mode='lines', name='f(x)', line=dict(color='blue')), row=1, col=1)
+    fig_c.add_trace(
+        go.Scatter(
+            x=x_curve_c, y=y_curve_c, mode="lines", name="f(x)", line=dict(color="blue")
+        ),
+        row=1,
+        col=1,
+    )
 
     # Riemann rectangles
     for x0_c in x_left_c:
         height_c = f_c(x0_c)
         fig_c.add_shape(
-            type='rect',
+            type="rect",
             x0=x0_c,
             x1=x0_c + dx_c,
             y0=0,
             y1=height_c,
-            fillcolor='rgba(0, 150, 255, 0.4)',
-            line=dict(color='blue'),
+            fillcolor="rgba(0, 150, 255, 0.4)",
+            line=dict(color="blue"),
             row=1,
-            col=1
+            col=1,
         )
 
     # --- Right: Lebesgue integration (y-subdivision) ---
@@ -378,7 +404,17 @@ def _(go, make_subplots, np):
     y_bands_c = np.linspace(0, 1 - dy_c, n_bands_c)
 
     # Curve
-    fig_c.add_trace(go.Scatter(x=x_curve_c, y=y_curve_c, mode='lines', showlegend=False, line=dict(color='green')), row=1, col=2)
+    fig_c.add_trace(
+        go.Scatter(
+            x=x_curve_c,
+            y=y_curve_c,
+            mode="lines",
+            showlegend=False,
+            line=dict(color="green"),
+        ),
+        row=1,
+        col=2,
+    )
 
     # Lebesgue horizontal bands
     for y0_c in y_bands_c:
@@ -389,26 +425,26 @@ def _(go, make_subplots, np):
             continue
         x_min_c, x_max_c = x_band_c[0], x_band_c[-1]
         fig_c.add_shape(
-            type='rect',
+            type="rect",
             x0=x_min_c,
             x1=x_max_c,
             y0=y0_c,
             y1=y1_c,
-            fillcolor='rgba(0, 200, 0, 0.4)',
-            line=dict(color='green'),
+            fillcolor="rgba(0, 200, 0, 0.4)",
+            line=dict(color="green"),
             row=1,
-            col=2
+            col=2,
         )
 
     # Layout
     fig_c.update_layout(
-        title='Riemann vs Lebesgue Integration Illustration',
-        xaxis=dict(scaleanchor='y', range=[-1.2, 1.2]),
-        yaxis=dict(scaleanchor='x', range=[-0.1, 1.1]),
-        xaxis2=dict(scaleanchor='y2', range=[-1.2, 1.2]),
-        yaxis2=dict(scaleanchor='x2', range=[-0.1, 1.1]),
-        template='plotly_white',
-        showlegend=False
+        title="Riemann vs Lebesgue Integration Illustration",
+        xaxis=dict(scaleanchor="y", range=[-1.2, 1.2]),
+        yaxis=dict(scaleanchor="x", range=[-0.1, 1.1]),
+        xaxis2=dict(scaleanchor="y2", range=[-1.2, 1.2]),
+        yaxis2=dict(scaleanchor="x2", range=[-0.1, 1.1]),
+        template="plotly_white",
+        showlegend=False,
     )
     return
 

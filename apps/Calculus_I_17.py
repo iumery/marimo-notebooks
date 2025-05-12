@@ -16,6 +16,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 3.4 Curve Sketching""")
     return
 
@@ -114,73 +126,98 @@ def _(go, make_subplots, np):
     # Define x range and functions
     x_vals_side = np.linspace(-3, 3, 400)
     y_up = x_vals_side**2
-    y_down = -x_vals_side**2
+    y_down = -(x_vals_side**2)
 
     # Create subplots
-    fig_side = make_subplots(
-        rows=2, cols=1,
-        subplot_titles=["f(x) = x²", "f(x) = -x²"]
-    )
+    fig_side = make_subplots(rows=2, cols=1, subplot_titles=["f(x) = x²", "f(x) = -x²"])
 
     # --- Plot x^2
-    fig_side.add_trace(go.Scatter(
-        x=x_vals_side, y=y_up, mode='lines', name='x²', line=dict(color='blue')
-    ), row=1, col=1)
+    fig_side.add_trace(
+        go.Scatter(
+            x=x_vals_side, y=y_up, mode="lines", name="x²", line=dict(color="blue")
+        ),
+        row=1,
+        col=1,
+    )
 
     # Label left half: Concave up & Decreasing
-    fig_side.add_trace(go.Scatter(
-        x=[-2], y=[4],
-        mode='text',
-        text=["Concave Up<br>Decreasing"],
-        textposition='bottom center',
-        showlegend=False
-    ), row=1, col=1)
+    fig_side.add_trace(
+        go.Scatter(
+            x=[-2],
+            y=[4],
+            mode="text",
+            text=["Concave Up<br>Decreasing"],
+            textposition="bottom center",
+            showlegend=False,
+        ),
+        row=1,
+        col=1,
+    )
 
     # Label right half: Concave up & Increasing
-    fig_side.add_trace(go.Scatter(
-        x=[2], y=[4],
-        mode='text',
-        text=["Concave Up<br>Increasing"],
-        textposition='bottom center',
-        showlegend=False
-    ), row=1, col=1)
+    fig_side.add_trace(
+        go.Scatter(
+            x=[2],
+            y=[4],
+            mode="text",
+            text=["Concave Up<br>Increasing"],
+            textposition="bottom center",
+            showlegend=False,
+        ),
+        row=1,
+        col=1,
+    )
 
     # --- Plot -x^2
-    fig_side.add_trace(go.Scatter(
-        x=x_vals_side, y=y_down, mode='lines', name='-x²', line=dict(color='red')
-    ), row=2, col=1)
+    fig_side.add_trace(
+        go.Scatter(
+            x=x_vals_side, y=y_down, mode="lines", name="-x²", line=dict(color="red")
+        ),
+        row=2,
+        col=1,
+    )
 
     # Label left half: Concave Down & Increasing
-    fig_side.add_trace(go.Scatter(
-        x=[-2], y=[-4],
-        mode='text',
-        text=["Concave Down<br>Increasing"],
-        textposition='top center',
-        showlegend=False
-    ), row=2, col=1)
+    fig_side.add_trace(
+        go.Scatter(
+            x=[-2],
+            y=[-4],
+            mode="text",
+            text=["Concave Down<br>Increasing"],
+            textposition="top center",
+            showlegend=False,
+        ),
+        row=2,
+        col=1,
+    )
 
     # Label right half: Concave Down & Decreasing
-    fig_side.add_trace(go.Scatter(
-        x=[2], y=[-4],
-        mode='text',
-        text=["Concave Down<br>Decreasing"],
-        textposition='top center',
-        showlegend=False
-    ), row=2, col=1)
+    fig_side.add_trace(
+        go.Scatter(
+            x=[2],
+            y=[-4],
+            mode="text",
+            text=["Concave Down<br>Decreasing"],
+            textposition="top center",
+            showlegend=False,
+        ),
+        row=2,
+        col=1,
+    )
 
     # Layout
     fig_side.update_layout(
-        title='Concavity and Monotonicity of f(x) = x² vs f(x) = -x²',
-        template='plotly_white',
+        title="Concavity and Monotonicity of f(x) = x² vs f(x) = -x²",
+        template="plotly_white",
         height=800,
-        width=600
+        width=600,
     )
 
     # Axis titles
-    fig_side.update_xaxes(title_text='x', row=1, col=1)
-    fig_side.update_yaxes(title_text='f(x)', row=1, col=1)
-    fig_side.update_xaxes(title_text='x', row=1, col=2)
-    fig_side.update_yaxes(title_text='f(x)', row=1, col=2)
+    fig_side.update_xaxes(title_text="x", row=1, col=1)
+    fig_side.update_yaxes(title_text="f(x)", row=1, col=1)
+    fig_side.update_xaxes(title_text="x", row=1, col=2)
+    fig_side.update_yaxes(title_text="f(x)", row=1, col=2)
     return
 
 

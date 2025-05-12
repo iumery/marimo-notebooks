@@ -16,6 +16,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 3.3 Derivatives and the Shapes of Graphs""")
     return
 
@@ -46,47 +58,54 @@ def _(mo):
 def _(go, np):
     # Define function
     x_parabola = np.linspace(-3, 3, 400)
-    y_parabola = -x_parabola**2 + 4
+    y_parabola = -(x_parabola**2) + 4
 
     # Maximum point
     x_max = 0
-    y_max = -x_max**2 + 4
+    y_max = -(x_max**2) + 4
 
     # Create figure
     fig_parabola = go.Figure()
 
     # Plot the function
-    fig_parabola.add_trace(go.Scatter(
-        x=x_parabola,
-        y=y_parabola,
-        mode='lines',
-        name='f(x) = -x² + 4',
-        line=dict(color='blue')
-    ))
+    fig_parabola.add_trace(
+        go.Scatter(
+            x=x_parabola,
+            y=y_parabola,
+            mode="lines",
+            name="f(x) = -x² + 4",
+            line=dict(color="blue"),
+        )
+    )
 
     # Mark local max at (0, 4)
-    fig_parabola.add_trace(go.Scatter(
-        x=[x_max], y=[y_max],
-        mode='markers+text',
-        text=['Local Max<br>(0, 4)'],
-        textposition='top right',
-        marker=dict(size=10, color='red'),
-        name='Local Max'
-    ))
+    fig_parabola.add_trace(
+        go.Scatter(
+            x=[x_max],
+            y=[y_max],
+            mode="markers+text",
+            text=["Local Max<br>(0, 4)"],
+            textposition="top right",
+            marker=dict(size=10, color="red"),
+            name="Local Max",
+        )
+    )
 
     # Layout
     fig_parabola.update_layout(
-        title='f(x) = -x² + 4 with Local Maximum at x = 0',
-        xaxis_title='x',
-        yaxis_title='f(x)',
-        template='plotly_white'
+        title="f(x) = -x² + 4 with Local Maximum at x = 0",
+        xaxis_title="x",
+        yaxis_title="f(x)",
+        template="plotly_white",
     )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""A natural way to characterize the local maximum $0$, is that $f$ is **increasing before $0$, but decreasing after $0$**. A natural way to characterize the local minimum $0$, is that $f$ is **decreasing before $0$, and increasing after $0$**.""")
+    mo.md(
+        r"""A natural way to characterize the local maximum $0$, is that $f$ is **increasing before $0$, but decreasing after $0$**. A natural way to characterize the local minimum $0$, is that $f$ is **decreasing before $0$, and increasing after $0$**."""
+    )
     return
 
 
@@ -164,59 +183,101 @@ def _(mo):
 def _(go, make_subplots, np):
     # Create subplot grid
     fig_fd = make_subplots(
-        rows=2, cols=2,
-        subplot_titles=[
-            "No Extrema",
-            "No Extrema",
-            "Local Min",
-            "Local Max"
-        ]
+        rows=2,
+        cols=2,
+        subplot_titles=["No Extrema", "No Extrema", "Local Min", "Local Max"],
     )
 
     # x range
     x_vals_fd = np.linspace(-2, 2, 400)
 
-    y1 = -x_vals_fd**3
-    fig_fd.add_trace(go.Scatter(x=x_vals_fd, y=y1, mode='lines', name='Local Max', line=dict(color='blue')), row=1, col=1)
-    fig_fd.add_trace(go.Scatter(
-        x=[0], y=[0], mode='markers+text',
-        text=['No Extrema'],
-        textposition='top right',
-        marker=dict(size=8, color='red')
-    ), row=1, col=1)
+    y1 = -(x_vals_fd**3)
+    fig_fd.add_trace(
+        go.Scatter(
+            x=x_vals_fd, y=y1, mode="lines", name="Local Max", line=dict(color="blue")
+        ),
+        row=1,
+        col=1,
+    )
+    fig_fd.add_trace(
+        go.Scatter(
+            x=[0],
+            y=[0],
+            mode="markers+text",
+            text=["No Extrema"],
+            textposition="top right",
+            marker=dict(size=8, color="red"),
+        ),
+        row=1,
+        col=1,
+    )
 
     y2 = x_vals_fd**3
-    fig_fd.add_trace(go.Scatter(x=x_vals_fd, y=y2, mode='lines', name='Local Min', line=dict(color='green')), row=1, col=2)
-    fig_fd.add_trace(go.Scatter(
-        x=[0], y=[0], mode='markers+text',
-        text=['No Extrema'],
-        textposition='bottom right',
-        marker=dict(size=8, color='red')
-    ), row=1, col=2)
+    fig_fd.add_trace(
+        go.Scatter(
+            x=x_vals_fd, y=y2, mode="lines", name="Local Min", line=dict(color="green")
+        ),
+        row=1,
+        col=2,
+    )
+    fig_fd.add_trace(
+        go.Scatter(
+            x=[0],
+            y=[0],
+            mode="markers+text",
+            text=["No Extrema"],
+            textposition="bottom right",
+            marker=dict(size=8, color="red"),
+        ),
+        row=1,
+        col=2,
+    )
 
     y3 = x_vals_fd**2
-    fig_fd.add_trace(go.Scatter(x=x_vals_fd, y=y3, mode='lines', name='Local Min', line=dict(color='orange')), row=2, col=1)
-    fig_fd.add_trace(go.Scatter(
-        x=[0], y=[0], mode='markers+text',
-        text=['Local Min'],
-        textposition='bottom right',
-        marker=dict(size=8, color='red')
-    ), row=2, col=1)
+    fig_fd.add_trace(
+        go.Scatter(
+            x=x_vals_fd, y=y3, mode="lines", name="Local Min", line=dict(color="orange")
+        ),
+        row=2,
+        col=1,
+    )
+    fig_fd.add_trace(
+        go.Scatter(
+            x=[0],
+            y=[0],
+            mode="markers+text",
+            text=["Local Min"],
+            textposition="bottom right",
+            marker=dict(size=8, color="red"),
+        ),
+        row=2,
+        col=1,
+    )
 
-    y4 = -x_vals_fd**2
-    fig_fd.add_trace(go.Scatter(x=x_vals_fd, y=y4, mode='lines', name='Local Min', line=dict(color='purple')), row=2, col=2)
-    fig_fd.add_trace(go.Scatter(
-        x=[0], y=[0], mode='markers+text',
-        text=['Local Max'],
-        textposition='bottom right',
-        marker=dict(size=8, color='red')
-    ), row=2, col=2)
+    y4 = -(x_vals_fd**2)
+    fig_fd.add_trace(
+        go.Scatter(
+            x=x_vals_fd, y=y4, mode="lines", name="Local Min", line=dict(color="purple")
+        ),
+        row=2,
+        col=2,
+    )
+    fig_fd.add_trace(
+        go.Scatter(
+            x=[0],
+            y=[0],
+            mode="markers+text",
+            text=["Local Max"],
+            textposition="bottom right",
+            marker=dict(size=8, color="red"),
+        ),
+        row=2,
+        col=2,
+    )
 
     # Layout
     fig_fd.update_layout(
-        title="First Derivative Test — 4 Scenarios",
-        template="plotly_white",
-        height=700
+        title="First Derivative Test — 4 Scenarios", template="plotly_white", height=700
     )
     return
 
@@ -344,37 +405,46 @@ def _(go, np):
     fig_inflect = go.Figure()
 
     # Concave down region
-    fig_inflect.add_trace(go.Scatter(
-        x=x_left, y=y_left,
-        mode='lines',
-        name='Concave Down',
-        line=dict(color='blue', dash='solid')
-    ))
+    fig_inflect.add_trace(
+        go.Scatter(
+            x=x_left,
+            y=y_left,
+            mode="lines",
+            name="Concave Down",
+            line=dict(color="blue", dash="solid"),
+        )
+    )
 
     # Concave up region
-    fig_inflect.add_trace(go.Scatter(
-        x=x_right, y=y_right,
-        mode='lines',
-        name='Concave Up',
-        line=dict(color='green', dash='solid')
-    ))
+    fig_inflect.add_trace(
+        go.Scatter(
+            x=x_right,
+            y=y_right,
+            mode="lines",
+            name="Concave Up",
+            line=dict(color="green", dash="solid"),
+        )
+    )
 
     # Inflection point
-    fig_inflect.add_trace(go.Scatter(
-        x=[0], y=[0],
-        mode='markers+text',
-        text=["Inflection Point<br>(0, 0)"],
-        textposition='top right',
-        marker=dict(size=10, color='red'),
-        name='Inflection Point'
-    ))
+    fig_inflect.add_trace(
+        go.Scatter(
+            x=[0],
+            y=[0],
+            mode="markers+text",
+            text=["Inflection Point<br>(0, 0)"],
+            textposition="top right",
+            marker=dict(size=10, color="red"),
+            name="Inflection Point",
+        )
+    )
 
     # Layout
     fig_inflect.update_layout(
-        title='Concavity and Inflection Point: f(x) = x³',
-        xaxis_title='x',
-        yaxis_title='f(x)',
-        template='plotly_white'
+        title="Concavity and Inflection Point: f(x) = x³",
+        xaxis_title="x",
+        yaxis_title="f(x)",
+        template="plotly_white",
     )
     return
 
@@ -506,31 +576,35 @@ def _(go, np):
     # Create plot
     fig_custom = go.Figure()
 
-    fig_custom.add_trace(go.Scatter(
-        x=x_vals_plot,
-        y=y_vals_plot,
-        mode='lines',
-        name=r'$f(x) = (x - 1)^{1/3} \cdot (x + 1)$',
-        line=dict(color='blue')
-    ))
+    fig_custom.add_trace(
+        go.Scatter(
+            x=x_vals_plot,
+            y=y_vals_plot,
+            mode="lines",
+            name=r"$f(x) = (x - 1)^{1/3} \cdot (x + 1)$",
+            line=dict(color="blue"),
+        )
+    )
 
     # Optional: mark origin or key point
-    fig_custom.add_trace(go.Scatter(
-        x=[1],
-        y=[f_custom(1)],
-        mode='markers+text',
-        text=["x = 1"],
-        textposition='top right',
-        marker=dict(size=8, color='red'),
-        name='x = 1'
-    ))
+    fig_custom.add_trace(
+        go.Scatter(
+            x=[1],
+            y=[f_custom(1)],
+            mode="markers+text",
+            text=["x = 1"],
+            textposition="top right",
+            marker=dict(size=8, color="red"),
+            name="x = 1",
+        )
+    )
 
     # Layout
     fig_custom.update_layout(
-        title=r'Graph of $f(x) = (x - 1)^{1/3}(x + 1)$',
-        xaxis_title='x',
-        yaxis_title='f(x)',
-        template='plotly_white'
+        title=r"Graph of $f(x) = (x - 1)^{1/3}(x + 1)$",
+        xaxis_title="x",
+        yaxis_title="f(x)",
+        template="plotly_white",
     )
     return
 

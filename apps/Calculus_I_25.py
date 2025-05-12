@@ -15,6 +15,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 7.1 Area between Curves""")
     return
 
@@ -45,7 +57,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""We usually think of $y = f(x)$ being a function of $x$- but there is no reason that this must be the case - we can also take $x = g(y)$ to be a function of $y$:""")
+    mo.md(
+        r"""We usually think of $y = f(x)$ being a function of $x$- but there is no reason that this must be the case - we can also take $x = g(y)$ to be a function of $y$:"""
+    )
     return
 
 
@@ -59,20 +73,22 @@ def _(go, np):
     fig_parab = go.Figure()
 
     # Plot x = y^2 + 2
-    fig_parab.add_trace(go.Scatter(
-        x=x_vals_parab,
-        y=y_vals_parab,
-        mode='lines',
-        name=r'$x = y^2 + 2$',
-        line=dict(color='blue')
-    ))
+    fig_parab.add_trace(
+        go.Scatter(
+            x=x_vals_parab,
+            y=y_vals_parab,
+            mode="lines",
+            name=r"$x = y^2 + 2$",
+            line=dict(color="blue"),
+        )
+    )
 
     # Layout
     fig_parab.update_layout(
-        title='Function of y',
-        xaxis_title='x',
-        yaxis_title='y',
-        template='plotly_white',
+        title="Function of y",
+        xaxis_title="x",
+        yaxis_title="y",
+        template="plotly_white",
         xaxis=dict(range=[0, 12]),
         yaxis=dict(range=[-4, 4]),
     )
@@ -81,14 +97,16 @@ def _(go, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Notice though that when we talk about a function, each input corresponds to exact **one** output, so the following graph cannot be the graph of a function of $y$ (because $y = 0$ corresponds to more than one $x$ values), you can only view it as a function of $x$:""")
+    mo.md(
+        r"""Notice though that when we talk about a function, each input corresponds to exact **one** output, so the following graph cannot be the graph of a function of $y$ (because $y = 0$ corresponds to more than one $x$ values), you can only view it as a function of $x$:"""
+    )
     return
 
 
 @app.cell
 def _(go, np):
     # Function
-    f = lambda x: x**3 - 3*x**2 + 2
+    f = lambda x: x**3 - 3 * x**2 + 2
     x_vals = np.linspace(-1, 4, 400)
     y_vals = f(x_vals)
 
@@ -96,28 +114,33 @@ def _(go, np):
     fig_func = go.Figure()
 
     # Plot f(x)
-    fig_func.add_trace(go.Scatter(
-        x=x_vals, y=y_vals,
-        mode='lines',
-        name='f(x) = x³ - 3x² + 2',
-        line=dict(color='blue')
-    ))
+    fig_func.add_trace(
+        go.Scatter(
+            x=x_vals,
+            y=y_vals,
+            mode="lines",
+            name="f(x) = x³ - 3x² + 2",
+            line=dict(color="blue"),
+        )
+    )
 
     # Plot horizontal line y = 0
-    fig_func.add_trace(go.Scatter(
-        x=[-1, 4],
-        y=[0, 0],
-        mode='lines',
-        name='y = 0',
-        line=dict(color='red', dash='dash')
-    ))
+    fig_func.add_trace(
+        go.Scatter(
+            x=[-1, 4],
+            y=[0, 0],
+            mode="lines",
+            name="y = 0",
+            line=dict(color="red", dash="dash"),
+        )
+    )
 
     # Layout
     fig_func.update_layout(
-        title='Function Fails Horizontal Line Test',
-        xaxis_title='x',
-        yaxis_title='y',
-        template='plotly_white'
+        title="Function Fails Horizontal Line Test",
+        xaxis_title="x",
+        yaxis_title="y",
+        template="plotly_white",
     )
     return
 
@@ -147,64 +170,76 @@ def _(go, np):
     fig_shaded = go.Figure()
 
     # Filled region between x = y^2 + 2 and x = 0
-    fig_shaded.add_trace(go.Scatter(
-        x=np.concatenate([x_axis, x_parab[::-1]]),
-        y=np.concatenate([y_fill, y_fill[::-1]]),
-        fill='toself',
-        fillcolor='rgba(255, 165, 0, 0.4)',
-        line=dict(color='orange'),
-        name='Shaded Region'
-    ))
+    fig_shaded.add_trace(
+        go.Scatter(
+            x=np.concatenate([x_axis, x_parab[::-1]]),
+            y=np.concatenate([y_fill, y_fill[::-1]]),
+            fill="toself",
+            fillcolor="rgba(255, 165, 0, 0.4)",
+            line=dict(color="orange"),
+            name="Shaded Region",
+        )
+    )
 
     # Parabola: x = y^2 + 2
-    fig_shaded.add_trace(go.Scatter(
-        x=x_parab,
-        y=y_fill,
-        mode='lines',
-        name=r'$x = y^2 + 2$',
-        line=dict(color='blue')
-    ))
+    fig_shaded.add_trace(
+        go.Scatter(
+            x=x_parab,
+            y=y_fill,
+            mode="lines",
+            name=r"$x = y^2 + 2$",
+            line=dict(color="blue"),
+        )
+    )
 
     # y-axis (x = 0)
-    fig_shaded.add_trace(go.Scatter(
-        x=[0, 0],
-        y=[-2.5, 2.5],
-        mode='lines',
-        name='y-axis',
-        line=dict(color='black', dash='dot')
-    ))
+    fig_shaded.add_trace(
+        go.Scatter(
+            x=[0, 0],
+            y=[-2.5, 2.5],
+            mode="lines",
+            name="y-axis",
+            line=dict(color="black", dash="dot"),
+        )
+    )
 
     # y = -2 and y = 2
-    fig_shaded.add_trace(go.Scatter(
-        x=[0, 10],
-        y=[-2, -2],
-        mode='lines',
-        name='y = -2',
-        line=dict(color='gray', dash='dot')
-    ))
-    fig_shaded.add_trace(go.Scatter(
-        x=[0, 10],
-        y=[2, 2],
-        mode='lines',
-        name='y = 2',
-        line=dict(color='gray', dash='dot')
-    ))
+    fig_shaded.add_trace(
+        go.Scatter(
+            x=[0, 10],
+            y=[-2, -2],
+            mode="lines",
+            name="y = -2",
+            line=dict(color="gray", dash="dot"),
+        )
+    )
+    fig_shaded.add_trace(
+        go.Scatter(
+            x=[0, 10],
+            y=[2, 2],
+            mode="lines",
+            name="y = 2",
+            line=dict(color="gray", dash="dot"),
+        )
+    )
 
     # Layout
     fig_shaded.update_layout(
-        title='Region Bounded by Function of y',
-        xaxis_title='x',
-        yaxis_title='y',
-        xaxis=dict(range=[-1, 10], scaleanchor='y'),
+        title="Region Bounded by Function of y",
+        xaxis_title="x",
+        yaxis_title="y",
+        xaxis=dict(range=[-1, 10], scaleanchor="y"),
         yaxis=dict(range=[-2.5, 2.5]),
-        template='plotly_white'
+        template="plotly_white",
     )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""How to evaluate the value of the area? There is nothing new. Recall that the signed area under curve $f(x)$ on $x \in [a, b]$ is given by $\displaystyle \int\limits_a^bf(x)dx$, so similarly, the signed area 'under' curve $g(y)$ on $y \in [a, b]$ is given by $\displaystyle \int\limits_a^b g(y)dy$.""")
+    mo.md(
+        r"""How to evaluate the value of the area? There is nothing new. Recall that the signed area under curve $f(x)$ on $x \in [a, b]$ is given by $\displaystyle \int\limits_a^bf(x)dx$, so similarly, the signed area 'under' curve $g(y)$ on $y \in [a, b]$ is given by $\displaystyle \int\limits_a^b g(y)dy$."""
+    )
     return
 
 
@@ -219,73 +254,81 @@ def _(go, np):
     # Domain
     x = np.linspace(0, 2, 400)
     fb = np.sin(x) + 2
-    gb = (1/3) * x + 1
+    gb = (1 / 3) * x + 1
 
     # Create figure
     fig = go.Figure()
 
     # --- Curves ---
-    fig.add_trace(go.Scatter(
-        x=x, y=fb,
-        mode='lines',
-        name='f(x) = sin(x) + 2',
-        line=dict(color='red')
-    ))
+    fig.add_trace(
+        go.Scatter(
+            x=x, y=fb, mode="lines", name="f(x) = sin(x) + 2", line=dict(color="red")
+        )
+    )
 
-    fig.add_trace(go.Scatter(
-        x=x, y=gb,
-        mode='lines',
-        name='g(x) = 1/3 x + 1',
-        line=dict(color='green')
-    ))
+    fig.add_trace(
+        go.Scatter(
+            x=x, y=gb, mode="lines", name="g(x) = 1/3 x + 1", line=dict(color="green")
+        )
+    )
 
     # --- Fill: area under g (Region B) ---
-    fig.add_trace(go.Scatter(
-        x=np.concatenate([x, x[::-1]]),
-        y=np.concatenate([gb, np.zeros_like(x)]),
-        fill='toself',
-        line=dict(width=0),
-        fillcolor='rgba(0, 200, 0, 0.3)',
-        name='Region B',
-        showlegend=False
-    ))
+    fig.add_trace(
+        go.Scatter(
+            x=np.concatenate([x, x[::-1]]),
+            y=np.concatenate([gb, np.zeros_like(x)]),
+            fill="toself",
+            line=dict(width=0),
+            fillcolor="rgba(0, 200, 0, 0.3)",
+            name="Region B",
+            showlegend=False,
+        )
+    )
 
     # --- Fill: area between f and g (Region A) ---
-    fig.add_trace(go.Scatter(
-        x=np.concatenate([x, x[::-1]]),
-        y=np.concatenate([fb, gb[::-1]]),
-        fill='toself',
-        line=dict(width=0),
-        fillcolor='rgba(255, 0, 0, 0.3)',
-        name='Region A',
-        showlegend=False
-    ))
+    fig.add_trace(
+        go.Scatter(
+            x=np.concatenate([x, x[::-1]]),
+            y=np.concatenate([fb, gb[::-1]]),
+            fill="toself",
+            line=dict(width=0),
+            fillcolor="rgba(255, 0, 0, 0.3)",
+            name="Region A",
+            showlegend=False,
+        )
+    )
 
     # --- Labels A and B ---
-    fig.add_trace(go.Scatter(
-        x=[1], y=[2.1],
-        mode='text',
-        text=["A"],
-        textfont=dict(size=18, color='darkred'),
-        showlegend=False
-    ))
+    fig.add_trace(
+        go.Scatter(
+            x=[1],
+            y=[2.1],
+            mode="text",
+            text=["A"],
+            textfont=dict(size=18, color="darkred"),
+            showlegend=False,
+        )
+    )
 
-    fig.add_trace(go.Scatter(
-        x=[1], y=[0.6],
-        mode='text',
-        text=["B"],
-        textfont=dict(size=18, color='darkgreen'),
-        showlegend=False
-    ))
+    fig.add_trace(
+        go.Scatter(
+            x=[1],
+            y=[0.6],
+            mode="text",
+            text=["B"],
+            textfont=dict(size=18, color="darkgreen"),
+            showlegend=False,
+        )
+    )
 
     # Layout
     fig.update_layout(
-        title='Shaded Regions: A (between f and g), B (under g)',
-        xaxis_title='x',
-        yaxis_title='y',
+        title="Shaded Regions: A (between f and g), B (under g)",
+        xaxis_title="x",
+        yaxis_title="y",
         xaxis=dict(range=[-0.5, 2.5]),
         yaxis=dict(range=[0, 4]),
-        template='plotly_white'
+        template="plotly_white",
     )
     return
 
@@ -298,7 +341,7 @@ app._unparsable_cell(
 
     In particular, say the red curve is given by $f$ and green curve is given by $g$, then the area under the red curve is $\displaystyle \int\limits_a^bf(x)dx$, area under the green curve is $\displaystyle \int\limits_a^bg(x)dx$, thus the area between the red and green curves is $\displaystyle \int\limits_a^bf(x)dx - \int\limits_a^bg(x)dx$, using the property of integral, we have: $$\boxed{\text{signed area between }f\text{ and }g = \int\limits_a^b f(x) - g(x) dx}.$$
     """,
-    name="_"
+    name="_",
 )
 
 
@@ -325,35 +368,33 @@ def _(go, np):
     # Domain and functions
     x2 = np.linspace(0, 6, 400)
     fb2 = np.sin(x2) + 2
-    gb2 = (1/3) * x2 + 1
+    gb2 = (1 / 3) * x2 + 1
 
     # Create figure
     fig_2 = go.Figure()
 
     # --- Curves ---
-    fig_2.add_trace(go.Scatter(
-        x=x2, y=fb2,
-        mode='lines',
-        name='f(x) = sin(x) + 2',
-        line=dict(color='red')
-    ))
+    fig_2.add_trace(
+        go.Scatter(
+            x=x2, y=fb2, mode="lines", name="f(x) = sin(x) + 2", line=dict(color="red")
+        )
+    )
 
-    fig_2.add_trace(go.Scatter(
-        x=x2, y=gb2,
-        mode='lines',
-        name='g(x) = 1/3 x + 1',
-        line=dict(color='green')
-    ))
+    fig_2.add_trace(
+        go.Scatter(
+            x=x2, y=gb2, mode="lines", name="g(x) = 1/3 x + 1", line=dict(color="green")
+        )
+    )
 
     # --- Conditional fill between curves ---
     above = fb2 > gb2
     regions = []
     current_region = []
     for i in range(len(x2)):
-        if i == 0 or above[i] == above[i-1]:
+        if i == 0 or above[i] == above[i - 1]:
             current_region.append(i)
         else:
-            regions.append((above[i-1], current_region.copy()))
+            regions.append((above[i - 1], current_region.copy()))
             current_region = [i]
     regions.append((above[-1], current_region))
 
@@ -362,40 +403,48 @@ def _(go, np):
         x_region = x2[idx_group]
         y_upper = fb2[idx_group] if is_above else gb2[idx_group]
         y_lower = gb2[idx_group] if is_above else fb2[idx_group]
-        color = 'rgba(255, 0, 0, 0.3)' if is_above else 'rgba(0, 200, 0, 0.3)'
-        fig_2.add_trace(go.Scatter(
-            x=np.concatenate([x_region, x_region[::-1]]),
-            y=np.concatenate([y_upper, y_lower[::-1]]),
-            fill='toself',
-            line=dict(width=0),
-            fillcolor=color,
-            showlegend=False
-        ))
+        color = "rgba(255, 0, 0, 0.3)" if is_above else "rgba(0, 200, 0, 0.3)"
+        fig_2.add_trace(
+            go.Scatter(
+                x=np.concatenate([x_region, x_region[::-1]]),
+                y=np.concatenate([y_upper, y_lower[::-1]]),
+                fill="toself",
+                line=dict(width=0),
+                fillcolor=color,
+                showlegend=False,
+            )
+        )
 
     # --- Optional labels ---
-    fig_2.add_trace(go.Scatter(
-        x=[1.5], y=[2],
-        mode='text',
-        text=["A: f > g"],
-        textfont=dict(size=16, color='darkred'),
-        showlegend=False
-    ))
-    fig_2.add_trace(go.Scatter(
-        x=[5], y=[2],
-        mode='text',
-        text=["B: g > f"],
-        textfont=dict(size=16, color='darkgreen'),
-        showlegend=False
-    ))
+    fig_2.add_trace(
+        go.Scatter(
+            x=[1.5],
+            y=[2],
+            mode="text",
+            text=["A: f > g"],
+            textfont=dict(size=16, color="darkred"),
+            showlegend=False,
+        )
+    )
+    fig_2.add_trace(
+        go.Scatter(
+            x=[5],
+            y=[2],
+            mode="text",
+            text=["B: g > f"],
+            textfont=dict(size=16, color="darkgreen"),
+            showlegend=False,
+        )
+    )
 
     # --- Layout ---
     fig_2.update_layout(
-        title='Region between Two Curves that Crosses Each Other',
-        xaxis_title='x',
-        yaxis_title='y',
+        title="Region between Two Curves that Crosses Each Other",
+        xaxis_title="x",
+        yaxis_title="y",
         xaxis=dict(range=[-0.5, 6.5]),
         yaxis=dict(range=[0, 4]),
-        template='plotly_white'
+        template="plotly_white",
     )
     return
 
@@ -422,7 +471,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Put the two generalization together, we can get: $$\boxed{\text{area between }f\text{ and }g\text{ that depend on }y = \int\limits_a^b | f(y) - g(y) | dy}.$$""")
+    mo.md(
+        r"""Put the two generalization together, we can get: $$\boxed{\text{area between }f\text{ and }g\text{ that depend on }y = \int\limits_a^b | f(y) - g(y) | dy}.$$"""
+    )
     return
 
 
@@ -443,40 +494,48 @@ def _(go, np):
     fig_m = go.Figure()
 
     # Plot y = sin(x)
-    fig_m.add_trace(go.Scatter(
-        x=x_vals_m, y=y_sin_m,
-        mode='lines',
-        name='f(x) = sin(x)',
-        line=dict(color='blue')
-    ))
+    fig_m.add_trace(
+        go.Scatter(
+            x=x_vals_m,
+            y=y_sin_m,
+            mode="lines",
+            name="f(x) = sin(x)",
+            line=dict(color="blue"),
+        )
+    )
 
     # Plot y = (2/π) x
-    fig_m.add_trace(go.Scatter(
-        x=x_vals_m, y=y_line_m,
-        mode='lines',
-        name='g(x) = (2/π)x',
-        line=dict(color='green')
-    ))
+    fig_m.add_trace(
+        go.Scatter(
+            x=x_vals_m,
+            y=y_line_m,
+            mode="lines",
+            name="g(x) = (2/π)x",
+            line=dict(color="green"),
+        )
+    )
 
     # Shaded region between curves
-    fig_m.add_trace(go.Scatter(
-        x=np.concatenate([x_vals_m, x_vals_m[::-1]]),
-        y=np.concatenate([y_sin_m, y_line_m[::-1]]),
-        fill='toself',
-        fillcolor='rgba(255, 0, 0, 0.3)',
-        line=dict(width=0),
-        name='Region between f and g',
-        showlegend=False
-    ))
+    fig_m.add_trace(
+        go.Scatter(
+            x=np.concatenate([x_vals_m, x_vals_m[::-1]]),
+            y=np.concatenate([y_sin_m, y_line_m[::-1]]),
+            fill="toself",
+            fillcolor="rgba(255, 0, 0, 0.3)",
+            line=dict(width=0),
+            name="Region between f and g",
+            showlegend=False,
+        )
+    )
 
     # Layout
     fig_m.update_layout(
-        title=r'Region Bounded by Two Curves',
-        xaxis_title='x',
-        yaxis_title='y',
-        template='plotly_white',
+        title=r"Region Bounded by Two Curves",
+        xaxis_title="x",
+        yaxis_title="y",
+        template="plotly_white",
         xaxis=dict(range=[0, np.pi]),
-        yaxis=dict(range=[0, 2.2])
+        yaxis=dict(range=[0, 2.2]),
     )
     return
 
@@ -593,40 +652,48 @@ def _(go, np):
     fig_r = go.Figure()
 
     # Plot x = (12 - y^2)/4
-    fig_r.add_trace(go.Scatter(
-        x=x_parab_r, y=y_vals_r,
-        mode='lines',
-        name=r'$4x + y^2 = 12$',
-        line=dict(color='blue')
-    ))
+    fig_r.add_trace(
+        go.Scatter(
+            x=x_parab_r,
+            y=y_vals_r,
+            mode="lines",
+            name=r"$4x + y^2 = 12$",
+            line=dict(color="blue"),
+        )
+    )
 
     # Plot x = y
-    fig_r.add_trace(go.Scatter(
-        x=x_line_r, y=y_vals_r,
-        mode='lines',
-        name=r'$x = y$',
-        line=dict(color='green')
-    ))
+    fig_r.add_trace(
+        go.Scatter(
+            x=x_line_r,
+            y=y_vals_r,
+            mode="lines",
+            name=r"$x = y$",
+            line=dict(color="green"),
+        )
+    )
 
     # Fill between the curves
-    fig_r.add_trace(go.Scatter(
-        x=np.concatenate([x_parab_r, x_line_r[::-1]]),
-        y=np.concatenate([y_vals_r, y_vals_r[::-1]]),
-        fill='toself',
-        fillcolor='rgba(255, 0, 0, 0.3)',
-        line=dict(width=0),
-        name='Shaded Region',
-        showlegend=False
-    ))
+    fig_r.add_trace(
+        go.Scatter(
+            x=np.concatenate([x_parab_r, x_line_r[::-1]]),
+            y=np.concatenate([y_vals_r, y_vals_r[::-1]]),
+            fill="toself",
+            fillcolor="rgba(255, 0, 0, 0.3)",
+            line=dict(width=0),
+            name="Shaded Region",
+            showlegend=False,
+        )
+    )
 
     # Layout
     fig_r.update_layout(
-        title=r'Region Enclosed by Two Curves',
-        xaxis_title='x',
-        yaxis_title='y',
-        template='plotly_white',
-        xaxis=dict(scaleanchor='y', range=[-6, 4]),
-        yaxis=dict(range=[-7, 3])
+        title=r"Region Enclosed by Two Curves",
+        xaxis_title="x",
+        yaxis_title="y",
+        template="plotly_white",
+        xaxis=dict(scaleanchor="y", range=[-6, 4]),
+        yaxis=dict(range=[-7, 3]),
     )
     return
 

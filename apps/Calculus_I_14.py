@@ -15,6 +15,18 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 3.1 Maximum and Minimum Values""")
     return
 
@@ -45,7 +57,7 @@ def _(mo):
 @app.cell
 def _(go, np):
     # Define function and domain
-    x_vals_b = np.linspace(-np.pi, np.pi-0.5, 800)
+    x_vals_b = np.linspace(-np.pi, np.pi - 0.5, 800)
     f_b = lambda x: np.sin(2 * x) + x / 2
     y_vals_b = f_b(x_vals_b)
 
@@ -76,63 +88,77 @@ def _(go, np):
     fig_b = go.Figure()
 
     # Plot the function
-    fig_b.add_trace(go.Scatter(
-        x=x_vals_b,
-        y=y_vals_b,
-        mode='lines',
-        name='Graph of function',
-        line=dict(color='blue')
-    ))
+    fig_b.add_trace(
+        go.Scatter(
+            x=x_vals_b,
+            y=y_vals_b,
+            mode="lines",
+            name="Graph of function",
+            line=dict(color="blue"),
+        )
+    )
 
     # Local maxima
     for i in local_max_idx_b:
-        fig_b.add_trace(go.Scatter(
-            x=[x_vals_b[i]], y=[y_vals_b[i]],
-            mode='markers+text',
-            text=[f'Local Max'],
-            textposition='top right',
-            marker=dict(size=8, color='red'),
-            name='Local Max'
-        ))
+        fig_b.add_trace(
+            go.Scatter(
+                x=[x_vals_b[i]],
+                y=[y_vals_b[i]],
+                mode="markers+text",
+                text=[f"Local Max"],
+                textposition="top right",
+                marker=dict(size=8, color="red"),
+                name="Local Max",
+            )
+        )
 
     # Local minima
     for i in local_min_idx_b:
-        fig_b.add_trace(go.Scatter(
-            x=[x_vals_b[i]], y=[y_vals_b[i]],
-            mode='markers+text',
-            text=[f'Local Min'],
-            textposition='bottom center',
-            marker=dict(size=8, color='green'),
-            name='Local Min'
-        ))
+        fig_b.add_trace(
+            go.Scatter(
+                x=[x_vals_b[i]],
+                y=[y_vals_b[i]],
+                mode="markers+text",
+                text=[f"Local Min"],
+                textposition="bottom center",
+                marker=dict(size=8, color="green"),
+                name="Local Min",
+            )
+        )
 
     # Absolute min
-    fig_b.add_trace(go.Scatter(
-        x=[abs_min_x_b], y=[abs_min_y_b],
-        mode='markers+text',
-        text=[f'Abs Min'],
-        textposition='top right',
-        marker=dict(size=10, color='black'),
-        name='Abs Min'
-    ))
+    fig_b.add_trace(
+        go.Scatter(
+            x=[abs_min_x_b],
+            y=[abs_min_y_b],
+            mode="markers+text",
+            text=[f"Abs Min"],
+            textposition="top right",
+            marker=dict(size=10, color="black"),
+            name="Abs Min",
+        )
+    )
 
     # Absolute max
-    fig_b.add_trace(go.Scatter(
-        x=[abs_max_x_b], y=[abs_max_y_b],
-        mode='markers+text',
-        text=[f'Abs Max'],
-        textposition='top left',
-        marker=dict(size=10, color='orange'),
-        name='Abs Max'
-    ))
+    fig_b.add_trace(
+        go.Scatter(
+            x=[abs_max_x_b],
+            y=[abs_max_y_b],
+            mode="markers+text",
+            text=[f"Abs Max"],
+            textposition="top left",
+            marker=dict(size=10, color="orange"),
+            name="Abs Max",
+        )
+    )
 
     # Layout
     fig_b.update_layout(
-        title='Distinct Local and Absolute Extrema',
-        xaxis_title='x',
-        yaxis_title='f(x)',
+        title="Distinct Local and Absolute Extrema",
+        xaxis_title="x",
+        yaxis_title="f(x)",
         xaxis=dict(range=[-5, 4]),
-        template='plotly_white'
+        template="plotly_white",
     )
     return
 
@@ -181,7 +207,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""If $f$ is **continuous** and is defined on a **closed interval** $[a,b]$, then $f$ attains its **absolute maximum value and absolute minimum value** on the **closed interval** $[a,b]$.""")
+    mo.md(
+        r"""If $f$ is **continuous** and is defined on a **closed interval** $[a,b]$, then $f$ attains its **absolute maximum value and absolute minimum value** on the **closed interval** $[a,b]$."""
+    )
     return
 
 
@@ -223,22 +251,51 @@ def _(go, np):
     fig_evt = go.Figure()
 
     # Left and right branches
-    fig_evt.add_trace(go.Scatter(x=x1_evt, y=y1_evt, mode='lines', name='Graph of f', line=dict(color='blue')))
-    fig_evt.add_trace(go.Scatter(x=x2_evt, y=y2_evt, mode='lines', name='', line=dict(color='blue'), showlegend=False))
-    fig_evt.add_trace(go.Scatter(x=[2], y=[0], mode='markers', name='', line=dict(color='blue'), showlegend=False))
+    fig_evt.add_trace(
+        go.Scatter(
+            x=x1_evt, y=y1_evt, mode="lines", name="Graph of f", line=dict(color="blue")
+        )
+    )
+    fig_evt.add_trace(
+        go.Scatter(
+            x=x2_evt,
+            y=y2_evt,
+            mode="lines",
+            name="",
+            line=dict(color="blue"),
+            showlegend=False,
+        )
+    )
+    fig_evt.add_trace(
+        go.Scatter(
+            x=[2],
+            y=[0],
+            mode="markers",
+            name="",
+            line=dict(color="blue"),
+            showlegend=False,
+        )
+    )
 
     # Vertical asymptote
-    fig_evt.add_trace(go.Scatter(x=x_asym_evt, y=y_asym_evt, mode='lines', name='Discontinuity at x = 2',
-                                 line=dict(color='red', dash='dot')))
+    fig_evt.add_trace(
+        go.Scatter(
+            x=x_asym_evt,
+            y=y_asym_evt,
+            mode="lines",
+            name="Discontinuity at x = 2",
+            line=dict(color="red", dash="dot"),
+        )
+    )
 
     # Layout
     fig_evt.update_layout(
-        title='Function Discontinuous on [1, 3] — EVT Fails',
-        xaxis_title='x',
-        yaxis_title='f(x)',
+        title="Function Discontinuous on [1, 3] — EVT Fails",
+        xaxis_title="x",
+        yaxis_title="f(x)",
         xaxis=dict(range=[0.9, 3.1]),
         yaxis=dict(range=[-20, 20]),
-        template='plotly_white'
+        template="plotly_white",
     )
     return f_evt, x_asym_evt, y_asym_evt
 
@@ -311,33 +368,33 @@ def _(go, np):
     fig_cp = go.Figure()
 
     # Plot f(x) = x^3
-    fig_cp.add_trace(go.Scatter(
-        x=x_cp,
-        y=y_cp,
-        mode='lines',
-        name='f(x) = x³',
-        line=dict(color='blue')
-    ))
+    fig_cp.add_trace(
+        go.Scatter(
+            x=x_cp, y=y_cp, mode="lines", name="f(x) = x³", line=dict(color="blue")
+        )
+    )
 
     # Mark the critical point at (0, 0)
-    fig_cp.add_trace(go.Scatter(
-        x=[0],
-        y=[0],
-        mode='markers+text',
-        marker=dict(size=10, color='red'),
-        text=['Critical Point (0, 0)<br>Not a Local Extrema'],
-        textposition='top right',
-        name='Critical Point'
-    ))
+    fig_cp.add_trace(
+        go.Scatter(
+            x=[0],
+            y=[0],
+            mode="markers+text",
+            marker=dict(size=10, color="red"),
+            text=["Critical Point (0, 0)<br>Not a Local Extrema"],
+            textposition="top right",
+            name="Critical Point",
+        )
+    )
 
     # Layout
     fig_cp.update_layout(
-        title='f(x) = x³ — Critical Point with No Local Min or Max',
-        xaxis_title='x',
-        yaxis_title='f(x)',
-        template='plotly_white',
+        title="f(x) = x³ — Critical Point with No Local Min or Max",
+        xaxis_title="x",
+        yaxis_title="f(x)",
+        template="plotly_white",
         xaxis=dict(range=[-6, 6]),
-        yaxis=dict(range=[-10, 10])
+        yaxis=dict(range=[-10, 10]),
     )
     return
 
@@ -373,22 +430,55 @@ def _(f_evt, go, np, x_asym_evt, y_asym_evt):
     fig_evt_2 = go.Figure()
 
     # Left and right branches
-    fig_evt_2.add_trace(go.Scatter(x=x1_evt_2, y=y1_evt_2, mode='lines', name='Graph of f', line=dict(color='blue')))
-    fig_evt_2.add_trace(go.Scatter(x=x2_evt_2, y=y2_evt_2, mode='lines', name='', line=dict(color='blue'), showlegend=False))
-    fig_evt_2.add_trace(go.Scatter(x=[2], y=[0], mode='markers', name='', line=dict(color='blue'), showlegend=False))
+    fig_evt_2.add_trace(
+        go.Scatter(
+            x=x1_evt_2,
+            y=y1_evt_2,
+            mode="lines",
+            name="Graph of f",
+            line=dict(color="blue"),
+        )
+    )
+    fig_evt_2.add_trace(
+        go.Scatter(
+            x=x2_evt_2,
+            y=y2_evt_2,
+            mode="lines",
+            name="",
+            line=dict(color="blue"),
+            showlegend=False,
+        )
+    )
+    fig_evt_2.add_trace(
+        go.Scatter(
+            x=[2],
+            y=[0],
+            mode="markers",
+            name="",
+            line=dict(color="blue"),
+            showlegend=False,
+        )
+    )
 
     # Vertical asymptote
-    fig_evt_2.add_trace(go.Scatter(x=x_asym_evt, y=y_asym_evt, mode='lines', name='Discontinuity at x = 2',
-                                 line=dict(color='red', dash='dot')))
+    fig_evt_2.add_trace(
+        go.Scatter(
+            x=x_asym_evt,
+            y=y_asym_evt,
+            mode="lines",
+            name="Discontinuity at x = 2",
+            line=dict(color="red", dash="dot"),
+        )
+    )
 
     # Layout
     fig_evt_2.update_layout(
-        title='Function Discontinuous on [1, 3] — EVT Fails',
-        xaxis_title='x',
-        yaxis_title='f(x)',
+        title="Function Discontinuous on [1, 3] — EVT Fails",
+        xaxis_title="x",
+        yaxis_title="f(x)",
         xaxis=dict(range=[0.9, 3.1]),
         yaxis=dict(range=[-20, 20]),
-        template='plotly_white'
+        template="plotly_white",
     )
     return
 
