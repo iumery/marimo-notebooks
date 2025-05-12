@@ -15,6 +15,24 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "https://iumery.com": f"{mo.icon('lucide:home')} Home",
+            "Optimization Problems Example Sets": {
+                "/apps/Calculus_I_18_1.html": f"{mo.icon('lucide:file-text')} Set 1",
+                "/apps/Calculus_I_18_2.html": f"{mo.icon('lucide:file-text')} Set 2",
+                "/apps/Calculus_I_18_3.html": f"{mo.icon('lucide:file-text')} Set 3",
+                "/apps/Calculus_I_18_4.html": f"{mo.icon('lucide:file-text')} Set 4",
+            },
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 3.5 Optimization Problems Example Set 5""")
     return
 
@@ -27,7 +45,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""A cone-shaped drinking cup is made from a circular piece of paper of radius $10$ cm by cutting out a sector and joining the edges. Find the maximum capacity of such a cup.""")
+    mo.md(
+        r"""A cone-shaped drinking cup is made from a circular piece of paper of radius $10$ cm by cutting out a sector and joining the edges. Find the maximum capacity of such a cup."""
+    )
     return
 
 
@@ -201,7 +221,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""A box with a square base and open top must have a volume of $32000$ cm³. Find the dimensions of the box that minimize the amount of material used.""")
+    mo.md(
+        r"""A box with a square base and open top must have a volume of $32000$ cm³. Find the dimensions of the box that minimize the amount of material used."""
+    )
     return
 
 

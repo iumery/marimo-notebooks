@@ -15,6 +15,25 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "https://iumery.com": f"{mo.icon('lucide:home')} Home",
+            "Optimization Problems Example Sets": {
+                "/apps/Calculus_I_18_1.html": f"{mo.icon('lucide:file-text')} Set 1",
+                "/apps/Calculus_I_18_2.html": f"{mo.icon('lucide:file-text')} Set 2",
+                "/apps/Calculus_I_18_3.html": f"{mo.icon('lucide:file-text')} Set 3",
+                "/apps/Calculus_I_18_4.html": f"{mo.icon('lucide:file-text')} Set 4",
+                "/apps/Calculus_I_18_5.html": f"{mo.icon('lucide:file-text')} Set 5",
+            },
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 3.5 Optimization Problems""")
     return
 

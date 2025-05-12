@@ -15,6 +15,24 @@ def _():
 
 @app.cell
 def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "https://iumery.com": f"{mo.icon('lucide:home')} Home",
+            "Optimization Problems Example Sets": {
+                "/apps/Calculus_I_18_1.html": f"{mo.icon('lucide:file-text')} Set 1",
+                "/apps/Calculus_I_18_2.html": f"{mo.icon('lucide:file-text')} Set 2",
+                "/apps/Calculus_I_18_4.html": f"{mo.icon('lucide:file-text')} Set 4",
+                "/apps/Calculus_I_18_5.html": f"{mo.icon('lucide:file-text')} Set 5",
+            },
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"""# 3.5 Optimization Problems Example Set 3""")
     return
 
@@ -27,7 +45,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Find the points on the ellipse $4x^2 + y^2 = 4$ that are farthest away from the point $(2,0)$.""")
+    mo.md(
+        r"""Find the points on the ellipse $4x^2 + y^2 = 4$ that are farthest away from the point $(2,0)$."""
+    )
     return
 
 
@@ -157,7 +177,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Find the area of the largest trapezoid that can be inscribed in a circle of radius $1$ and whose base is a diameter of the circle.""")
+    mo.md(
+        r"""Find the area of the largest trapezoid that can be inscribed in a circle of radius $1$ and whose base is a diameter of the circle."""
+    )
     return
 
 
@@ -272,7 +294,7 @@ def _(go, np, x_slider_2):
     fig_trapezoid.add_trace(
         go.Scatter(
             x=[x0_trap / 2],
-            y=[y0_trap+0.05],
+            y=[y0_trap + 0.05],
             mode="text",
             text=["x"],
             textfont=dict(size=14, color="black"),
@@ -470,7 +492,6 @@ def _(go, np, theta_slider):
         )
     )
 
-
     # Layout
     fig_ang.update_layout(
         title="Trapezoid under Unit Circle with Angle θ",
@@ -485,7 +506,9 @@ def _(go, np, theta_slider):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Another way of doing this is to utilize trignometry functions. A point on unit circle always can be expressed as $(\cos(\theta), \sin(\theta))$, thus the area can be expressed as $A = (\cos(\theta) + 1)\cdot \sin(\theta)$. Proceed to take derivative to find critical point(s) and find (absolute) maximum(s).""")
+    mo.md(
+        r"""Another way of doing this is to utilize trignometry functions. A point on unit circle always can be expressed as $(\cos(\theta), \sin(\theta))$, thus the area can be expressed as $A = (\cos(\theta) + 1)\cdot \sin(\theta)$. Proceed to take derivative to find critical point(s) and find (absolute) maximum(s)."""
+    )
     return
 
 
