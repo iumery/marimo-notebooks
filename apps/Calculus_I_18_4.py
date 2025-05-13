@@ -45,9 +45,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A box with an open top is to be constructed from a square piece of cardboard, $30$ cm wide, by cutting out a square from each of the four corners and bending up the sides. Find the largest volume that such a box can have."""
-    )
+    mo.md(r"""A box with an open top is to be constructed from a square piece of cardboard, $30$ cm wide, by cutting out a square from each of the four corners and bending up the sides. Find the largest volume that such a box can have.""")
     return
 
 
@@ -285,9 +283,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A rectangular page (white rectangle) is to contain $24$ square inches of print (gray rectangle). The margins at top, left, and right are to be $1$ inches, and the margin at bottom is to be $2$ inches. What should the dimensions of the page be so that least amount of paper is used?"""
-    )
+    mo.md(r"""A rectangular page (white rectangle) is to contain $24$ square inches of print (gray rectangle). The margins at top, left, and right are to be $1$ inches, and the margin at bottom is to be $2$ inches. What should the dimensions of the page be so that least amount of paper is used?""")
     return
 
 

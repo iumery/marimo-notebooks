@@ -9,8 +9,9 @@ def _():
     import marimo as mo
     import numpy as np
     import plotly.graph_objects as go
+    from plotly.subplots import make_subplots
 
-    return go, mo, np
+    return go, make_subplots, mo, np
 
 
 @app.cell
@@ -45,9 +46,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A cone-shaped drinking cup is made from a circular piece of paper of radius $10$ cm by cutting out a sector and joining the edges. Find the maximum capacity of such a cup."""
-    )
+    mo.md(r"""A cone-shaped drinking cup is made from a circular piece of paper of radius $10$ cm by cutting out a sector and joining the edges. Find the maximum capacity of such a cup.""")
     return
 
 
@@ -69,7 +68,7 @@ def _(mo):
 
 
 @app.cell
-def _(go, np, theta_slider_1):
+def _(go, make_subplots, np, theta_slider_1):
     # Parameters
     R_paper = 10
     theta_cut = theta_slider_1.value  # in radians
@@ -79,70 +78,137 @@ def _(go, np, theta_slider_1):
     r_cone = (R_paper * alpha_remain) / (2 * np.pi)
     h_cone = np.sqrt(R_paper**2 - r_cone**2)
     V_cone = (1 / 3) * np.pi * r_cone**2 * h_cone
+    arc_length_remain = alpha_remain * R_paper
 
     # ------------------------
-    # 1. Flat circular paper with cut sector
+    # Create 2x2 subplots
+    # ------------------------
+    fig = make_subplots(rows=2, cols=2, subplot_titles=[
+        "1. Circular Paper with Sector Removed",
+        "2. Base of Cone (after folding)",
+        "3. Cross-Section Triangle of Cone",
+        ""
+    ])
+
+    # ------------------------
+    # 1. Flat circular paper with cut sector and labels
     # ------------------------
     theta_full = np.linspace(0, 2 * np.pi, 400)
     x_circle = R_paper * np.cos(theta_full)
     y_circle = R_paper * np.sin(theta_full)
 
-    # Cut sector (from 0 to θ)
     theta_sector = np.linspace(0, theta_cut, 100)
-    x_cut_1 = np.concatenate([[0], R_paper * np.cos(theta_sector), [0]])
+    x_cut = np.concatenate([[0], R_paper * np.cos(theta_sector), [0]])
     y_cut = np.concatenate([[0], R_paper * np.sin(theta_sector), [0]])
 
-    fig_flat_circle = go.Figure()
-
-    # Full circle outline
-    fig_flat_circle.add_trace(
-        go.Scatter(
-            x=x_circle, y=y_circle, mode="lines", line=dict(color="black"), name="Paper"
-        )
-    )
+    # Full circle
+    fig.add_trace(go.Scatter(x=x_circle, y=y_circle, mode="lines", line=dict(color="black")), row=1, col=1)
 
     # Cut-out sector
-    fig_flat_circle.add_trace(
-        go.Scatter(
-            x=x_cut_1,
-            y=y_cut,
-            fill="toself",
-            fillcolor="rgba(200, 0, 0, 0.3)",
-            line=dict(color="red"),
-            showlegend=False,
-        )
-    )
+    fig.add_trace(go.Scatter(x=x_cut, y=y_cut, fill="toself", fillcolor="rgba(200, 0, 0, 0.3)", line=dict(color="red")), row=1, col=1)
 
-    # Theta label
-    label_x = 2.5 * np.cos(theta_cut / 2)
-    label_y = 2.5 * np.sin(theta_cut / 2)
-    fig_flat_circle.add_trace(
-        go.Scatter(
-            x=[label_x],
-            y=[label_y],
-            mode="text",
-            text=["θ"],
-            textfont=dict(size=16, color="red"),
-            showlegend=False,
-        )
-    )
+    # Remaining arc label and arc line
+    theta_remain = np.linspace(theta_cut, 2 * np.pi, 200)
+    x_remain = R_paper * np.cos(theta_remain)
+    y_remain = R_paper * np.sin(theta_remain)
+    fig.add_trace(go.Scatter(x=x_remain, y=y_remain, mode="lines", line=dict(color="blue", dash="dot")), row=1, col=1)
 
-    # Layout
-    fig_flat_circle.update_layout(
-        title="Circular Paper with Sector Removed",
-        xaxis=dict(
-            showgrid=False, showticklabels=False, zeroline=False, range=[-11, 11]
-        ),
-        yaxis=dict(
-            showgrid=False,
-            showticklabels=False,
-            zeroline=False,
-            scaleanchor="x",
-            range=[-11, 11],
-        ),
+    # θ label
+    fig.add_trace(go.Scatter(
+        x=[2.5 * np.cos(theta_cut / 2)],
+        y=[2.5 * np.sin(theta_cut / 2)],
+        mode="text",
+        text=["θ"],
+        textfont=dict(size=14, color="red"),
+        showlegend=False), row=1, col=1)
+
+    # 2pi - θ label
+    fig.add_trace(go.Scatter(
+        x=[2.5 * np.cos(theta_cut + alpha_remain / 2)],
+        y=[2.5 * np.sin(theta_cut + alpha_remain / 2)],
+        mode="text",
+        text=["2π - θ"],
+        textfont=dict(size=14, color="blue"),
+        showlegend=False), row=1, col=1)
+
+    # Arc length label
+    fig.add_trace(go.Scatter(
+        x=[x_remain[int(len(x_remain)/2)]],
+        y=[y_remain[int(len(y_remain)/2)]],
+        mode="text",
+        text=[f"Arc = 10x(2π - θ)<br>={arc_length_remain:.1f} cm"],
+        textfont=dict(size=14, color="blue"),
+        showlegend=False), row=1, col=1)
+
+    # ------------------------
+    # 2. Base of the cone (circle)
+    # ------------------------
+    theta_base = np.linspace(0, 2 * np.pi, 400)
+    x_base = r_cone * np.cos(theta_base)
+    y_base = r_cone * np.sin(theta_base)
+
+    fig.add_trace(go.Scatter(x=x_base, y=y_base, mode="lines", line=dict(color="blue")), row=1, col=2)
+
+    # Radius line
+    fig.add_trace(go.Scatter(
+        x=[0, r_cone],
+        y=[0, 0],
+        mode="lines+text",
+        text=[f"r= Perimeter/2π<br>={arc_length_remain/(2*np.pi):.1f} cm"],
+        textposition="middle right",
+        line=dict(color="black", dash="dot"),
+        showlegend=False), row=1, col=2)
+
+    # Perimeter label
+    fig.add_trace(go.Scatter(
+        x=[0],
+        y=[r_cone + 0.5],
+        mode="text",
+        text=[f"Circumference = {arc_length_remain:.1f} cm"],
+        textfont=dict(size=14, color="blue"),
+        showlegend=False), row=1, col=2)
+
+    # ------------------------
+    # 3. Cross-section triangle of cone
+    # ------------------------
+    fig.add_trace(go.Scatter(
+        x=[-r_cone, r_cone, 0, -r_cone],
+        y=[0, 0, h_cone, 0],
+        mode="lines",
+        line=dict(color="blue"),
+        showlegend=False), row=2, col=1)
+
+    # Label base
+    fig.add_trace(go.Scatter(
+        x=[0],
+        y=[-1.5],
+        mode="text",
+        text=[f"2r={arc_length_remain/(np.pi):.1f} cm"],
+        textfont=dict(size=14),
+        showlegend=False), row=2, col=1)
+
+    # Label slant height
+    fig.add_trace(go.Scatter(
+        x=[-r_cone - 0.5],
+        y=[h_cone / 2],
+        mode="text",
+        text=["10 cm"],
+        textfont=dict(size=14),
+        showlegend=False), row=2, col=1)
+
+    # Layout adjustments
+    fig.update_layout(
         template="plotly_white",
         showlegend=False,
+        title="Cone Construction from Circular Paper",
     )
+
+    fig.update_xaxes(range=[-12, 12], showgrid=False, zeroline=False, showticklabels=False, row=1, col=1, scaleanchor="y",)
+    fig.update_yaxes(range=[-11, 11], showgrid=False, zeroline=False, showticklabels=False, row=1, col=1, scaleanchor="x",)
+    fig.update_xaxes(range=[-8, 8], showgrid=False, zeroline=False, showticklabels=False, row=1, col=2, scaleanchor="y",)
+    fig.update_yaxes(range=[-8, 8], showgrid=False, zeroline=False, showticklabels=False, row=1, col=2, scaleanchor="x",)
+    fig.update_xaxes(showgrid=False, zeroline=False, showticklabels=False, row=2, col=1, scaleanchor="y",)
+    fig.update_yaxes(showgrid=False, zeroline=False, showticklabels=False, row=2, col=1, scaleanchor="x",)
     return V_cone, h_cone, r_cone
 
 
@@ -221,9 +287,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A box with a square base and open top must have a volume of $32000$ cm³. Find the dimensions of the box that minimize the amount of material used."""
-    )
+    mo.md(r"""A box with a square base and open top must have a volume of $32000$ cm³. Find the dimensions of the box that minimize the amount of material used.""")
     return
 
 

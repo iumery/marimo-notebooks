@@ -45,9 +45,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A company needs to produce a container of cylindrical shape to hold $1 \text{ L}$ (or $1000 \text{ cm}^3$) of liquid. Find the dimension of the container that minimize the material usage."""
-    )
+    mo.md(r"""A company needs to produce a container of cylindrical shape to hold $1 \text{ L}$ (or $1000 \text{ cm}^3$) of liquid. Find the dimension of the container that minimize the material usage.""")
     return
 
 
@@ -147,9 +145,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""There are $50$ apple trees in an orchard and each of them are producing $800$ apples. For each additional tree planted in the orchard, the output of each tree drops by $10$ apples. How many trees should be added to the existing orchard to maximize the total output?"""
-    )
+    mo.md(r"""There are $50$ apple trees in an orchard and each of them are producing $800$ apples. For each additional tree planted in the orchard, the output of each tree drops by $10$ apples. How many trees should be added to the existing orchard to maximize the total output?""")
     return
 
 

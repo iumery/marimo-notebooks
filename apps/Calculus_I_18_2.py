@@ -45,9 +45,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""Find the area of the largest rectangle that can be inscribed inside the ellipse $\displaystyle \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ for arbitrary positive constant $a, b$."""
-    )
+    mo.md(r"""Find the area of the largest rectangle that can be inscribed inside the ellipse $\displaystyle \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ for arbitrary positive constant $a, b$.""")
     return
 
 
@@ -145,6 +143,7 @@ def _(go, np, x_slider):
         xaxis=dict(scaleanchor="y", range=[-6, 6]),
         yaxis=dict(scaleanchor="x", range=[-4, 4]),
         template="plotly_white",
+        showlegend=False,
     )
     return
 
@@ -197,9 +196,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""What is the minimum vertical distance between the parabolas $y = x^2 + 1$ and $y = x - x^2$?"""
-    )
+    mo.md(r"""What is the minimum vertical distance between the parabolas $y = x^2 + 1$ and $y = x - x^2$?""")
     return
 
 
@@ -283,6 +280,7 @@ def _(go, np, x_slider_1):
         template="plotly_white",
         xaxis=dict(range=[-2, 2]),
         yaxis=dict(range=[-4, 4]),
+        showlegend=False,
     )
     return
 
