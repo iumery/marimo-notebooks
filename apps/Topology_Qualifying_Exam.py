@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -103,7 +104,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Prove that the set $X = \{(x,y) \in \mathbb{R}^2|x^2 = y^3\}$ is not a smooth manifold**.""")
+    mo.md(
+        r"""**Prove that the set $X = \{(x,y) \in \mathbb{R}^2|x^2 = y^3\}$ is not a smooth manifold**."""
+    )
     return
 
 

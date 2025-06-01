@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -116,9 +117,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Let $f: \mathbb{D}\to \mathbb{D}$ be a holomorphic map of the unit disk to itself, and $f$ is not the identity map. Show that $f$ can have at most one fixed point**."""
-    )
+    mo.md(r"""**Let $f: \mathbb{D}\to \mathbb{D}$ be a holomorphic map of the unit disk to itself, and $f$ is not the identity map. Show that $f$ can have at most one fixed point**.""")
     return
 
 
@@ -130,9 +129,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Let $f: D \to \mathbb{C}$ be a complex-valued function on a domain $D$, and $g(z) = zf(z)$. Show that $f \in H(D)$ if and only if both $f$ and $g$ are harmonic**."""
-    )
+    mo.md(r"""**Let $f: D \to \mathbb{C}$ be a complex-valued function on a domain $D$, and $g(z) = zf(z)$. Show that $f \in H(D)$ if and only if both $f$ and $g$ are harmonic**.""")
     return
 
 
@@ -156,9 +153,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Let $\Omega$ be a lattice in $\mathbb{C}$, $\mathbb{P}$ its period parallelogram, $P$ the Weierstrass function for $\Omega$, and $f$ an elliptic function of order $2$. Fix $z_0 \in \mathbb{P}$ such that $f'(z_0) = 0$. Then $g(z) = \frac{1}{f(z+z_0) -f(z_0)}$ has a pole of order $\_\_\_\_\_\_\_\_\_\_$ at $\_\_\_\_\_\_\_\_\_\_$. Use this fact to show that** $$f(z) = \frac{aP(z-z_0)+b}{cP(z-z_0)+d}$$ **for some $a, b, c, d \in \mathbb{C}$**."""
-    )
+    mo.md(r"""**Let $\Omega$ be a lattice in $\mathbb{C}$, $\mathbb{P}$ its period parallelogram, $P$ the Weierstrass function for $\Omega$, and $f$ an elliptic function of order $2$. Fix $z_0 \in \mathbb{P}$ such that $f'(z_0) = 0$. Then $g(z) = \frac{1}{f(z+z_0) -f(z_0)}$ has a pole of order $\_\_\_\_\_\_\_\_\_\_$ at $\_\_\_\_\_\_\_\_\_\_$. Use this fact to show that** $$f(z) = \frac{aP(z-z_0)+b}{cP(z-z_0)+d}$$ **for some $a, b, c, d \in \mathbb{C}$**.""")
     return
 
 
@@ -170,9 +165,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Consider the Riemann surface $S$ of the algebraic function given by** $$w = \sqrt{(\sqrt{z}+1)(\sqrt[3]{z}-1)}.$$ **What are the branching points of $S$? What are their orders? What is the genus of $S$? Sketch the scheme of $S$**."""
-    )
+    mo.md(r"""**Consider the Riemann surface $S$ of the algebraic function given by** $$w = \sqrt{(\sqrt{z}+1)(\sqrt[3]{z}-1)}.$$ **What are the branching points of $S$? What are their orders? What is the genus of $S$? Sketch the scheme of $S$**.""")
     return
 
 
@@ -201,9 +194,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Let $D = \mathbb{D} \setminus(-1,0]$, and $f(z) = z^i$. How do you make $f(z)$ a single-valued function on $D$? Is it possible to construct a sequence of polynomials $P_n$ such that $\lim\limits_{n \to \infty}P_n(z) = z^i$ for all $z \in D$? Explain carefully**."""
-    )
+    mo.md(r"""**Let $D = \mathbb{D} \setminus(-1,0]$, and $f(z) = z^i$. How do you make $f(z)$ a single-valued function on $D$? Is it possible to construct a sequence of polynomials $P_n$ such that $\lim\limits_{n \to \infty}P_n(z) = z^i$ for all $z \in D$? Explain carefully**.""")
     return
 
 
@@ -215,9 +206,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Consider a polynomial $P(z) = a_0 + a_1z + \dots + a_nz^n$, and suppose that $P$ is one-to-one in $\mathbb{D}$. Suppose also that $n > 1$ and $a_1 = 1$. Show that $|na_n|\le 1$**."""
-    )
+    mo.md(r"""**Consider a polynomial $P(z) = a_0 + a_1z + \dots + a_nz^n$, and suppose that $P$ is one-to-one in $\mathbb{D}$. Suppose also that $n > 1$ and $a_1 = 1$. Show that $|na_n|\le 1$**.""")
     return
 
 

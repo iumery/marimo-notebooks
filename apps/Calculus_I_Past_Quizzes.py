@@ -7,6 +7,7 @@ app = marimo.App(width="columns")
 @app.cell(column=0)
 def _():
     import marimo as mo
+
     return (mo,)
 
 

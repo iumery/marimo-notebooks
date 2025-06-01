@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.6"
+__generated_with = "0.13.15"
 app = marimo.App()
 
 
@@ -389,7 +389,6 @@ def _(mo):
 
 @app.cell
 def _(go, np):
-
     # Function and domain
     x_inflect = np.linspace(-3, 3, 400)
     f_inflect = x_inflect**3

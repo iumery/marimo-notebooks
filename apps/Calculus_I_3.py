@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.6"
+__generated_with = "0.13.15"
 app = marimo.App()
 
 
@@ -39,7 +39,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Recall that we say $\lim\limits_{x\to a}f(x) = L$ if there exists $L$ such that $f(x)$ is arbitrarily close to $L$ whenever $x$ is sufficiently close to $a$.""")
+    mo.md(
+        r"""Recall that we say $\lim\limits_{x\to a}f(x) = L$ if there exists $L$ such that $f(x)$ is arbitrarily close to $L$ whenever $x$ is sufficiently close to $a$."""
+    )
     return
 
 
@@ -206,7 +208,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f(x) \le g(x)$ when $x$ is near $a$ (except possibly at $a$), and both $\lim\limits_{x\to a}f(x)$, $\lim\limits_{x\to a}g(x)$ exist, then $\lim\limits_{x\to a}f(x) \le \lim\limits_{x\to a}g(x)$.""")
+    mo.md(
+        r"""Suppose $f(x) \le g(x)$ when $x$ is near $a$ (except possibly at $a$), and both $\lim\limits_{x\to a}f(x)$, $\lim\limits_{x\to a}g(x)$ exist, then $\lim\limits_{x\to a}f(x) \le \lim\limits_{x\to a}g(x)$."""
+    )
     return
 
 
@@ -218,7 +222,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Suppose $f(x) \le g(x) \le h(x)$ when $x$ is near $a$ (except possibly at $a$), and $\lim\limits_{x\to a}f(x) = \lim\limits_{x \to a}h(x) = L$, then we also have $\lim\limits_{x \to a}g(x) = L$.""")
+    mo.md(
+        r"""Suppose $f(x) \le g(x) \le h(x)$ when $x$ is near $a$ (except possibly at $a$), and $\lim\limits_{x\to a}f(x) = \lim\limits_{x \to a}h(x) = L$, then we also have $\lim\limits_{x \to a}g(x) = L$."""
+    )
     return
 
 
@@ -280,117 +286,141 @@ def _(go, np):
     fig_circle = go.Figure()
 
     # Sector arc
-    fig_circle.add_trace(go.Scatter(
-        x=x_arc,
-        y=y_arc,
-        mode="lines",
-        line=dict(color="blue"),
-        name="Sector Arc",
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=x_arc,
+            y=y_arc,
+            mode="lines",
+            line=dict(color="blue"),
+            name="Sector Arc",
+            showlegend=False,
+        )
+    )
 
-    fig_circle.add_trace(go.Scatter(
-        x=x_arc*0.1,
-        y=y_arc*0.1,
-        mode="lines",
-        line=dict(color="grey"),
-        name="Sector Arc",
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=x_arc * 0.1,
+            y=y_arc * 0.1,
+            mode="lines",
+            line=dict(color="grey"),
+            name="Sector Arc",
+            showlegend=False,
+        )
+    )
 
     # Angle arm
-    fig_circle.add_trace(go.Scatter(
-        x=[0, x_point],
-        y=[0, y_point],
-        mode="lines",
-        line=dict(color="black"),
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=[0, x_point],
+            y=[0, y_point],
+            mode="lines",
+            line=dict(color="black"),
+            showlegend=False,
+        )
+    )
 
     # sin(x) projection
-    fig_circle.add_trace(go.Scatter(
-        x=[x_point, x_point],
-        y=[0, y_point],
-        mode="lines",
-        line=dict(color="red", dash="dot"),
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=[x_point, x_point],
+            y=[0, y_point],
+            mode="lines",
+            line=dict(color="red", dash="dot"),
+            showlegend=False,
+        )
+    )
 
     # Tangent line at point (cos(x), sin(x))
-    fig_circle.add_trace(go.Scatter(
-        x=x_tangent_range,
-        y=y_tangent,
-        mode="lines",
-        line=dict(color="green"),
-        name="Tangent at x",
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=x_tangent_range,
+            y=y_tangent,
+            mode="lines",
+            line=dict(color="green"),
+            name="Tangent at x",
+            showlegend=False,
+        )
+    )
 
     # θ label
-    fig_circle.add_trace(go.Scatter(
-        x=[0.15 * np.cos(x_angle / 2)],
-        y=[0.15 * np.sin(x_angle / 2)],
-        mode="text",
-        text=["x"],
-        textfont=dict(size=14),
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=[0.15 * np.cos(x_angle / 2)],
+            y=[0.15 * np.sin(x_angle / 2)],
+            mode="text",
+            text=["x"],
+            textfont=dict(size=14),
+            showlegend=False,
+        )
+    )
 
     # sin(x) label
-    fig_circle.add_trace(go.Scatter(
-        x=[0.7],
-        y=[0.3],
-        mode="text",
-        text=["sin(x)"],
-        textfont=dict(size=14, color='red'),
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=[0.7],
+            y=[0.3],
+            mode="text",
+            text=["sin(x)"],
+            textfont=dict(size=14, color="red"),
+            showlegend=False,
+        )
+    )
 
     # Arc length label
-    fig_circle.add_trace(go.Scatter(
-        x=[x_arc[-1] + 0.05],
-        y=[y_arc[-1] + 0.05],
-        mode="text",
-        text=["Arc Length = x"],
-        textfont=dict(size=14, color='blue'),
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=[x_arc[-1] + 0.05],
+            y=[y_arc[-1] + 0.05],
+            mode="text",
+            text=["Arc Length = x"],
+            textfont=dict(size=14, color="blue"),
+            showlegend=False,
+        )
+    )
 
-    fig_circle.add_trace(go.Scatter(
-        x=[0.4],
-        y=[0.34],
-        mode="text",
-        text=["1"],
-        textfont=dict(size=14, color='black'),
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=[0.4],
+            y=[0.34],
+            mode="text",
+            text=["1"],
+            textfont=dict(size=14, color="black"),
+            showlegend=False,
+        )
+    )
 
     # tan(x) label (on tangent line)
-    fig_circle.add_trace(go.Scatter(
-        x=[1.1],
-        y=[0.3],
-        mode="text",
-        text=["tan(x)"],
-        textfont=dict(size=14, color='green'),
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=[1.1],
+            y=[0.3],
+            mode="text",
+            text=["tan(x)"],
+            textfont=dict(size=14, color="green"),
+            showlegend=False,
+        )
+    )
 
     # X and Y axes
-    fig_circle.add_trace(go.Scatter(
-        x=[-0.1, 1.4],
-        y=[0, 0],
-        mode="lines",
-        line=dict(color="black", width=1),
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=[-0.1, 1.4],
+            y=[0, 0],
+            mode="lines",
+            line=dict(color="black", width=1),
+            showlegend=False,
+        )
+    )
 
-    fig_circle.add_trace(go.Scatter(
-        x=[0, 0],
-        y=[-0.1, 0.6],
-        mode="lines",
-        line=dict(color="black", width=1),
-        showlegend=False
-    ))
+    fig_circle.add_trace(
+        go.Scatter(
+            x=[0, 0],
+            y=[-0.1, 0.6],
+            mode="lines",
+            line=dict(color="black", width=1),
+            showlegend=False,
+        )
+    )
 
     # Layout
     fig_circle.update_layout(
@@ -398,7 +428,7 @@ def _(go, np):
         xaxis=dict(scaleanchor="y", range=[-0.1, 1.3], showgrid=False, zeroline=False),
         yaxis=dict(scaleanchor="x", range=[-0.1, 0.6], showgrid=False, zeroline=False),
         template="plotly_white",
-        showlegend=False
+        showlegend=False,
     )
     return
 

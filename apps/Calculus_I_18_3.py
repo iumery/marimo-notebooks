@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.6"
+__generated_with = "0.13.15"
 app = marimo.App()
 
 
@@ -45,7 +45,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Find the points on the ellipse $4x^2 + y^2 = 4$ that are farthest away from the point $(2,0)$.""")
+    mo.md(
+        r"""Find the points on the ellipse $4x^2 + y^2 = 4$ that are farthest away from the point $(2,0)$."""
+    )
     return
 
 
@@ -175,7 +177,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Find the area of the largest trapezoid that can be inscribed in a circle of radius $1$ and whose base is a diameter of the circle.""")
+    mo.md(
+        r"""Find the area of the largest trapezoid that can be inscribed in a circle of radius $1$ and whose base is a diameter of the circle."""
+    )
     return
 
 
@@ -504,7 +508,9 @@ def _(go, np, theta_slider):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Another way of doing this is to utilize trignometry functions. A point on unit circle always can be expressed as $(\cos(\theta), \sin(\theta))$, thus the area can be expressed as $A = (\cos(\theta) + 1)\cdot \sin(\theta)$. Proceed to take derivative to find critical point(s) and find (absolute) maximum(s).""")
+    mo.md(
+        r"""Another way of doing this is to utilize trignometry functions. A point on unit circle always can be expressed as $(\cos(\theta), \sin(\theta))$, thus the area can be expressed as $A = (\cos(\theta) + 1)\cdot \sin(\theta)$. Proceed to take derivative to find critical point(s) and find (absolute) maximum(s)."""
+    )
     return
 
 

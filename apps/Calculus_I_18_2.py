@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.6"
+__generated_with = "0.13.15"
 app = marimo.App()
 
 
@@ -45,7 +45,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""Find the area of the largest rectangle that can be inscribed inside the ellipse $\displaystyle \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ for arbitrary positive constant $a, b$.""")
+    mo.md(
+        r"""Find the area of the largest rectangle that can be inscribed inside the ellipse $\displaystyle \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ for arbitrary positive constant $a, b$."""
+    )
     return
 
 
@@ -196,7 +198,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""What is the minimum vertical distance between the parabolas $y = x^2 + 1$ and $y = x - x^2$?""")
+    mo.md(
+        r"""What is the minimum vertical distance between the parabolas $y = x^2 + 1$ and $y = x - x^2$?"""
+    )
     return
 
 

@@ -191,7 +191,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""The root(s) for $ax^2 + bx + c = 0, a \ne 0$ is(are) $$\boxed{x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}}.$$ In particular if $b^2-4ac$ is positive, there are two distinct real roots, if it is $0$, there is one double-root (i.e. technically they are still two roots, but they are equal), if it is negative, there is no real root.""")
+    mo.md(
+        r"""The root(s) for $ax^2 + bx + c = 0, a \ne 0$ is(are) $$\boxed{x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}}.$$ In particular if $b^2-4ac$ is positive, there are two distinct real roots, if it is $0$, there is one double-root (i.e. technically they are still two roots, but they are equal), if it is negative, there is no real root."""
+    )
     return
 
 
@@ -222,7 +224,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""$$\begin{aligned}&(\frac{1}{x} + \frac{1}{x+y})\cdot (x+y)^{-2} \cdot \frac{x^2 - y^2}{y^2} \\ =& (\frac{1\cdot(x+y)}{x\cdot(x+y)} + \frac{1 \cdot x}{(x+y) \cdot x}) \cdot \frac{1}{(x+y)^2} \cdot \frac{(x+y)(x-y)}{y^2}\\ =& \frac{x+y+x}{x(x+y)}\cdot \frac{1}{(x+y)^2} \cdot \frac{(x+y)(x-y)}{y^2} \\ =& \frac{(x+y+x)(x+y)(x-y)}{x(x+y)(x+y)^2y^2} \\ =&\frac{(2x+y)(x-y)}{x(x+y)^2y^2} \end{aligned}$$""")
+    mo.md(
+        r"""$$\begin{aligned}&(\frac{1}{x} + \frac{1}{x+y})\cdot (x+y)^{-2} \cdot \frac{x^2 - y^2}{y^2} \\ =& (\frac{1\cdot(x+y)}{x\cdot(x+y)} + \frac{1 \cdot x}{(x+y) \cdot x}) \cdot \frac{1}{(x+y)^2} \cdot \frac{(x+y)(x-y)}{y^2}\\ =& \frac{x+y+x}{x(x+y)}\cdot \frac{1}{(x+y)^2} \cdot \frac{(x+y)(x-y)}{y^2} \\ =& \frac{(x+y+x)(x+y)(x-y)}{x(x+y)(x+y)^2y^2} \\ =&\frac{(2x+y)(x-y)}{x(x+y)^2y^2} \end{aligned}$$"""
+    )
     return
 
 
