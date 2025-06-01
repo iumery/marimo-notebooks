@@ -68,10 +68,6 @@
               <a href="apps/Calculus_I_Past_Quizzes.html" class="text-blue-600 hover:underline font-medium">Sample Quizzes</a>
             </div>
           </div>
-
-
-
-
           <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
             <a href="apps/Calculus_I_0.html" class="text-blue-600 hover:underline font-medium">0 Review</a>
           </div>
@@ -174,7 +170,7 @@
       <!-- Section: Topological Data Analysis -->
       <section>
         <button onclick="toggleSection('list-2', 'arrow-2')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
-        <span>🧪 Topological Data Analysis</span>
+        <span>🪢 Topological Data Analysis</span>
           <svg id="arrow-2" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M9 5l7 7-7 7" />
           </svg>
@@ -186,45 +182,237 @@
           </div>
         </div>
       </section>
-      <!-- Section: Machine Learning -->
+      <!-- Section: Undergraduate Math Courses -->
       <section>
-        <button onclick="toggleSection('list-ml', 'arrow-ml')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
-          <span>🤖 IN WORK</span>
-          <svg id="arrow-ml" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <button onclick="toggleSection('undergrad-math', 'arrow-undergrad-math')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
+          <span>📘 Undergraduate Math Courses</span>
+          <svg id="arrow-undergrad-math" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M9 5l7 7-7 7" />
           </svg>
         </button>
-        <div id="list-ml" class="hidden mt-2 space-y-4 pl-4">
-          <!-- Sub-section: Supervised Learning -->
-          <button onclick="toggleSection('list-ml-supervised', 'arrow-ml-supervised')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
-            <span>Supervised Learning</span>
-            <svg id="arrow-ml-supervised" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <div id="undergrad-math" class="hidden mt-2 space-y-4 pl-4">
+          <!-- Sub-section: General Topology -->
+          <button onclick="toggleSection('undergrad-math-general-topology', 'arrow-undergrad-math-general-topology')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>General Topology</span>
+            <svg id="arrow-undergrad-math-general-topology" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M9 5l7 7-7 7" />
             </svg>
           </button>
-          <div id="list-ml-supervised" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+          <div id="undergrad-math-general-topology" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+            <!-- Sub-sub-section: Exams -->
             <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-              <a href="#" class="text-blue-600 hover:underline font-medium">Linear Regression</a>
+              <a href="#" class="text-blue-600 hover:underline font-medium">Exams (Placeholder)</a>
             </div>
+            <!-- Sub-sub-section: Homework -->
             <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-              <a href="#" class="text-blue-600 hover:underline font-medium">Classification Trees</a>
+              <a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a>
+            </div>
+            <!-- Sub-sub-section: Lectures -->
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Lectures (Placeholder)</a>
             </div>
           </div>
-          <!-- Sub-section: Unsupervised Learning -->
-          <button onclick="toggleSection('list-ml-unsupervised', 'arrow-ml-unsupervised')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
-            <span>Unsupervised Learning</span>
-            <svg id="arrow-ml-unsupervised" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <!-- Sub-section: Differential Topology -->
+          <button onclick="toggleSection('undergrad-math-diff-topology', 'arrow-undergrad-math-diff-topology')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Differential Topology</span>
+            <svg id="arrow-undergrad-math-diff-topology" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+          <div id="undergrad-math-diff-topology" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Exams (Placeholder)</a></div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a></div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Lectures (Placeholder)</a></div>
+          </div>
+
+          <!-- Sub-section: Mathematical Analysis I -->
+          <button onclick="toggleSection('undergrad-math-analysis-i', 'arrow-undergrad-math-analysis-i')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Mathematical Analysis I</span>
+            <svg id="arrow-undergrad-math-analysis-i" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+          <div id="undergrad-math-analysis-i" class="hidden space-y-4 mt-2 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a></div>
+          </div>
+
+          <!-- Sub-section: Mathematical Analysis II -->
+          <button onclick="toggleSection('undergrad-math-analysis-ii', 'arrow-undergrad-math-analysis-ii')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Mathematical Analysis II</span>
+            <svg id="arrow-undergrad-math-analysis-ii" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+          <div id="undergrad-math-analysis-ii" class="hidden space-y-4 mt-2 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a></div>
+          </div>
+
+          <!-- Sub-section: Abstract Algebra I -->
+          <button onclick="toggleSection('undergrad-math-algebra-i', 'arrow-undergrad-math-algebra-i')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Abstract Algebra I</span>
+            <svg id="arrow-undergrad-math-algebra-i" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+          <div id="undergrad-math-algebra-i" class="hidden space-y-4 mt-2 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a></div>
+          </div>
+
+          <!-- Sub-section: Abstract Algebra II -->
+          <button onclick="toggleSection('undergrad-math-algebra-ii', 'arrow-undergrad-math-algebra-ii')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Abstract Algebra II</span>
+            <svg id="arrow-undergrad-math-algebra-ii" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+          <div id="undergrad-math-algebra-ii" class="hidden space-y-4 mt-2 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a></div>
+          </div>
+        </div>
+      </section>
+      <!-- Section: Graduate Math Courses -->
+      <section>
+        <button onclick="toggleSection('grad-math', 'arrow-grad-math')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
+          <span>📓 Graduate Math Courses</span>
+          <svg id="arrow-grad-math" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        <div id="grad-math" class="hidden mt-2 space-y-4 pl-4">
+          <!-- Sub-section: Real Analysis I -->
+          <button onclick="toggleSection('grad-math-real-analysis', 'arrow-grad-math-real-analysis')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Real Analysis I</span>
+            <svg id="arrow-grad-math-real-analysis" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M9 5l7 7-7 7" />
             </svg>
           </button>
-          <div id="list-ml-unsupervised" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
+          <div id="grad-math-real-analysis" class="hidden space-y-4 mt-2 pl-4">
+            <!-- Sub-sub-section: Homework -->
             <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-              <a href="#" class="text-blue-600 hover:underline font-medium">K-Means Clustering</a>
-            </div>
-            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-              <a href="#" class="text-blue-600 hover:underline font-medium">PCA</a>
+              <a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a>
             </div>
           </div>
+          <!-- Sub-section: Real Analysis II -->
+          <button onclick="toggleSection('grad-math-real-analysis-ii', 'arrow-grad-math-real-analysis-ii')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Real Analysis II</span>
+            <svg id="arrow-grad-math-real-analysis-ii" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <div id="grad-math-real-analysis-ii" class="hidden space-y-4 mt-2 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a>
+            </div>
+          </div>
+
+          <!-- Sub-section: Complex Analysis I -->
+          <button onclick="toggleSection('grad-math-complex-analysis-i', 'arrow-grad-math-complex-analysis-i')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Complex Analysis I</span>
+            <svg id="arrow-grad-math-complex-analysis-i" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <div id="grad-math-complex-analysis-i" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Exams (Placeholder)</a>
+            </div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a>
+            </div>
+          </div>
+          <!-- Sub-section: Complex Analysis II -->
+          <button onclick="toggleSection('grad-math-complex-analysis-ii', 'arrow-grad-math-complex-analysis-ii')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Complex Analysis II</span>
+            <svg id="arrow-grad-math-complex-analysis-ii" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <div id="grad-math-complex-analysis-ii" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Exams (Placeholder)</a>
+            </div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a>
+            </div>
+          </div>
+
+
+
+          <!-- Sub-section: Algebraic Topology I -->
+          <button onclick="toggleSection('grad-math-algebraic-topology-i', 'arrow-grad-math-algebraic-topology-i')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Algebraic Topology I</span>
+            <svg id="arrow-grad-math-algebraic-topology-i" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <div id="grad-math-algebraic-topology-i" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Exams (Placeholder)</a>
+            </div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a>
+            </div>
+          </div>
+          <!-- Sub-section: Algebraic Topology II -->
+          <button onclick="toggleSection('grad-math-algebraic-topology-ii', 'arrow-grad-math-algebraic-topology-ii')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Algebraic Topology II</span>
+            <svg id="arrow-grad-math-algebraic-topology-ii" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <div id="grad-math-algebraic-topology-ii" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Exams (Placeholder)</a>
+            </div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a>
+            </div>
+          </div>
+
+
+          <!-- Sub-section: Abstract Algebra I -->
+          <button onclick="toggleSection('grad-math-algebra-i', 'arrow-grad-math-algebra-i')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Abstract Algebra I</span>
+            <svg id="arrow-grad-math-algebra-i" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <div id="grad-math-algebra-i" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Exams (Placeholder)</a>
+            </div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a>
+            </div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Lectures (Placeholder)</a>
+            </div>
+          </div>
+          <!-- Sub-section: Abstract Algebra II -->
+          <button onclick="toggleSection('grad-math-algebra-ii', 'arrow-grad-math-algebra-ii')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+            <span>Abstract Algebra II</span>
+            <svg id="arrow-grad-math-algebra-ii" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+          <div id="grad-math-algebra-ii" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Exams (Placeholder)</a>
+            </div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Homework (Placeholder)</a>
+            </div>
+            <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Lectures (Placeholder)</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section: Qualifying Exams -->
+      <section>
+        <button onclick="toggleSection('qualifying-exams', 'arrow-qualifying-exams')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
+          <span>🎓 Qualifying Exams</span>
+          <svg id="arrow-qualifying-exams" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+        </button>
+        <div id="qualifying-exams" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="apps/Abstract_Algebra_Qualifying_Exam.html" class="text-blue-600 hover:underline font-medium">Abstract Algebra</a></div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Algebraic Topology - Exam</a></div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Algebraic Topology - Reference</a></div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="apps/Complex_Analysis_Qualifying_Exam.html" class="text-blue-600 hover:underline font-medium">Complex Analysis</a></div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Mathematical Analysis</a></div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">Real Analysis</a></div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">General & Differential Topology - Exam</a></div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="#" class="text-blue-600 hover:underline font-medium">General & Differential Topology - Past Exams</a></div>
         </div>
       </section>
 
