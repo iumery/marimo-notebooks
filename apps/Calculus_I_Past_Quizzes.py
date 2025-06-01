@@ -1,26 +1,25 @@
 import marimo
 
-__generated_with = "0.13.6"
+__generated_with = "0.13.15"
 app = marimo.App(width="columns")
 
 
 @app.cell(column=0)
 def _():
     import marimo as mo
-
     return (mo,)
 
 
 @app.cell
 def _(mo):
-    nav_menu_1 = mo.nav_menu(
+    nav_menu = mo.nav_menu(
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
         },
         orientation="vertical",
     )
-    nav_menu_1
-    return
+    nav_menu
+    return (nav_menu,)
 
 
 @app.cell
@@ -34,14 +33,8 @@ def _(mo):
 
 
 @app.cell(column=1)
-def _(mo):
-    nav_menu_2 = mo.nav_menu(
-        {
-            "/index.html": f"{mo.icon('lucide:home')} Home",
-        },
-        orientation="vertical",
-    )
-    nav_menu_2
+def _(nav_menu):
+    nav_menu
     return
 
 
@@ -56,14 +49,8 @@ def _(mo):
 
 
 @app.cell(column=2)
-def _(mo):
-    nav_menu_3 = mo.nav_menu(
-        {
-            "/index.html": f"{mo.icon('lucide:home')} Home",
-        },
-        orientation="vertical",
-    )
-    nav_menu_3
+def _(nav_menu):
+    nav_menu
     return
 
 
@@ -78,14 +65,8 @@ def _(mo):
 
 
 @app.cell(column=3)
-def _(mo):
-    nav_menu_4 = mo.nav_menu(
-        {
-            "/index.html": f"{mo.icon('lucide:home')} Home",
-        },
-        orientation="vertical",
-    )
-    nav_menu_4
+def _(nav_menu):
+    nav_menu
     return
 
 
@@ -100,14 +81,8 @@ def _(mo):
 
 
 @app.cell(column=4)
-def _(mo):
-    nav_menu_5 = mo.nav_menu(
-        {
-            "/index.html": f"{mo.icon('lucide:home')} Home",
-        },
-        orientation="vertical",
-    )
-    nav_menu_5
+def _(nav_menu):
+    nav_menu
     return
 
 
@@ -122,14 +97,8 @@ def _(mo):
 
 
 @app.cell(column=5)
-def _(mo):
-    nav_menu_6 = mo.nav_menu(
-        {
-            "/index.html": f"{mo.icon('lucide:home')} Home",
-        },
-        orientation="vertical",
-    )
-    nav_menu_6
+def _(nav_menu):
+    nav_menu
     return
 
 
@@ -144,14 +113,8 @@ def _(mo):
 
 
 @app.cell(column=6)
-def _(mo):
-    nav_menu_7 = mo.nav_menu(
-        {
-            "/index.html": f"{mo.icon('lucide:home')} Home",
-        },
-        orientation="vertical",
-    )
-    nav_menu_7
+def _(nav_menu):
+    nav_menu
     return
 
 
