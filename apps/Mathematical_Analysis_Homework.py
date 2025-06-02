@@ -1,12 +1,13 @@
 import marimo
 
 __generated_with = "0.13.15"
-app = marimo.App(width="full")
+app = marimo.App()
 
 
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
