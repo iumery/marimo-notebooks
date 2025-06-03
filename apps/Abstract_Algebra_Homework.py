@@ -257,7 +257,7 @@ def _(mo):
 
     ### Exercise 12
 
-    **A positive integer $m$ is called ==square-free== if either $m$ is a prime or $m$ is a product of distinct primes. Show that $\mathbb{Z}_m$ is reduced if and only if $m$ is a square-free**.
+    **A positive integer $m$ is called square-free if either $m$ is a prime or $m$ is a product of distinct primes. Show that $\mathbb{Z}_m$ is reduced if and only if $m$ is a square-free**.
 
     Proof
 

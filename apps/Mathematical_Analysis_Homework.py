@@ -7,7 +7,6 @@ app = marimo.App()
 @app.cell
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -52,17 +51,17 @@ def _(mo):
     	2. If $((p_1, q_1), (p_2, q_2)) \in \mathcal{R}$ and $((p_2, q_2), (p_1, q_1)) \in \mathcal{R}$, then:
     		1. If $p_1 < p_2$ then $p_2 > p_1 \implies ((p_2, q_2), (p_1, q_1)) \notin \mathcal{R}$, similarly if $p_2 < p_1$ then $p_1 > p_2 \implies ((p_1, q_1), (p_2, q_2)) \notin \mathcal{R}$ Thus $p_1 = p_2$;
     		2. Under the condition that $p_1 = p_2$, if $q_1 < q_2$ then $q_2 > q_1 \implies ((p_2, q_2), (p_1, q_1)) \notin \mathcal{R}$, similarly if $q_2 < q_1$ then $q_1 > q_2 \implies ((p_1, q_1), (p_2, q_2)) \notin \mathcal{R}$. Thus $q_1 = q_2$.
-		
+
     		Thus $(p_1, q_1) = (p_2, q_2)$ and anti-symmetry holds;
     	3. If $((p_1, q_1), (p_2, q_2)) \in \mathcal{R}$ and $((p_2, q_2), (p_3, q_3)) \in \mathcal{R}$, then either: 1. $p_1 < p_2$ and $p_2 < p_3$ thus $p_1 < p_3$ or; 2. $p_1 < p_2$ and $p_2 = p_3$ and $q_2 \le q_3$ thus $p_1 < p_3$ or; 3. $p_1 = p_2$ and $q_1 \le q_2$ and $p_2 < p_3$ thus $p_1 < p_3$ or; 4. $p_1 = p_2$ and $q_1 \le q_2$ and $p_2 = p_3$ and $q_2 \le q_3$ thus $p_1 = p_3$ and $q_1 \le q_3$.
-	
+
     	Thus in either case $((p_1, q_1), (p_3, q_3)) \in \mathcal{R}$ and thus transitivity holds.
     	Thus $\mathcal{R}$ is an order relation;
     2. $\forall (p_1, q_1), (p_2, q_2) \in \mathbb{Z} \times \mathbb{Z}$:
     	1. If $p_1 < p_2$ then $((p_1, q_1), (p_2, q_2)) \in \mathcal{R}$, i.e. $(p_1, q_1) \le (p_2, q_2)$;
     	2. If $p_2 < p_1$ then $((p_2, q_2), (p_1, q_1)) \in \mathcal{R}$, i.e. $(p_2, q_2) \le (p_1, q_1)$;
     	3. If $p_1 = p_2$: 1. If $q_1 \le q_2$ then $((p_1, q_1), (p_2, q_2)) \in \mathcal{R}$, i.e. $(p_1, q_1) \le (p_2, q_2)$; 2. If $q_2 < q_1$ then $((p_2, q_2), (p_1, q_1)) \in \mathcal{R}$, i.e. $(p_2, q_2) \le (p_1, q_1)$;
-	
+
     	The above argument listed all possible situation for two pairs in $\mathbb{Z} \times \mathbb{Z}$. Thus any two pairs can be compared;
     3. We may define the lexicographic order on $\mathbb{Z}^k$ by: $(p_1^1, p_1^2, \dots, p_1^k) \le (p_2^1, p_2^2, \dots, p_2^k)$ if either $(p_1^1 < p_2^1) \text{ or } (p_1^1 = p_2^1$ and $(p_1^2, \dots, p_1^k) \le (p_2^2, \dots, p_2^k)$ by the lexicographic order on $\mathbb{Z}^{k-1})$.
     	In the infinite case, let $P = (p_1, p_2, p_3, \dots) = p_1 p_2 p_3 \dots$ and $Q = q_1 q_2 q_3 \dots$ be two infinite words. Then: $P \le Q$ if either $\exists t \in \mathbb{Z}_+ + \lbrace 0 \rbrace$ such that $p_i = q_i, \forall i \le t$ and $p_{i+1} < q_{i+1}$ and $p_i = q_i, \forall i$.
@@ -83,10 +82,10 @@ def _(mo):
     	2. If $((p_1, q_1), (p_2, q_2)) \in \mathcal{R}$ and $((p_2, q_2), (p_1, q_1)) \in \mathcal{R}$, then:
     		1. If $p_1 < p_2$ then $p_2 > p_1 \implies ((p_2, q_2), (p_1, q_1)) \notin \mathcal{R}$, similarly if $p_2 < p_1$ then $p_1 > p_2 \implies ((p_1, q_1), (p_2, q_2)) \notin \mathcal{R}$. Thus $p_1 = p_2$;
     		2. Under the condition that $p_1 = p_2$, if $q_1 < q_2$ then $q_2 > q_1 \implies ((p_2, q_2), (p_1, q_1)) \notin \mathcal{R}$, similarly if $q_2 < q_1$ then $q_1 > q_2 \implies ((p_1, q_1), (p_2, q_2)) \notin \mathcal{R}$. Thus $q_1 = q_2$.
-		
+
     		Thus anti-symmetry holds;
     	3. If $((p_1, q_1), (p_2, q_2)) \in \mathcal{R}$ and $((p_2, q_2), (p_3, q_3)) \in \mathcal{R}$, then $p_1 \le p_2$ and $q_1 \le q_2$ and $p_2 \le p_3$ and $q_2 \le q_3$ thus $p_1 \le p_3$ and $q_1 \le q_3$. Thus $((p_1, q_1), (p_3, q_3)) \in \mathcal{R}$ and thus transitivity holds.
-	
+
     	Thus $\mathcal{R}$ is an order relation;
     2. Clearly $(1, 4)$ and $(3, 2)$ are two pairs in $\mathbb{Z} \times \mathbb{Z}$.
     	Since $4 > 2$, $(1, 4) > (3, 2)$;
@@ -131,7 +130,6 @@ def _(mo):
     Thus $\mathcal{R}$ is an equivalence relation on $A$.
 
     Suppose we have an $x$, then $x \in A = \bigcup\limits_{i \in I}C_i$ if and only if $x \in C_i$ for some $i$. Since $C_i \cap C_{i'} = \varnothing, \forall i \ne i'$, we have $x \notin C_j, \forall j \ne i$. If $x' \in \hat{x} = \lbrace x' \in A | x \mathcal{R} x' \rbrace$ then $\exists j \in I, x, x' \in C_j$. Since $x \notin C_j, \forall j \ne i$, $x \in C_i$ and $x' \in C_i$, thus $\hat{x} \subseteq C_i$. If $x' \in C_i$, then by definition $x \mathcal{R}x'$ thus $x' \in \hat{x}$ thus $C_i \subseteq \hat{x}$. Thus $\hat{x} = C_i$. Thus $A/ \mathcal{R} =$ class of all (distinct) equivalence classes $= \lbrace C_i | i \in I \rbrace$.
-
     """
     )
     return
@@ -261,7 +259,6 @@ def _(mo):
     (b): Following exercise 12, if $f$ is injective, then $b = f(a_0) = f(a_1) \implies a_0 = a_1$, we can thus substitute all $a_0, a_1$ by $a$ and equality holds.
 
     (c): $f(E) - f(F) = \lbrace b | b = f(a_0)$ for at least one $a_0 \in E \rbrace - \lbrace b | b = f(a_1)$ for at least one $a_1 \in F \rbrace = \lbrace b | b = f(a_0)$ for at least one $a_0 \in E$ and $b \ne f(a_1)$ for all $a_1 \in F \rbrace = \lbrace b | b = f(a)$ for at least one $a \in E - F \rbrace - \lbrace b | b = f(a)$ for at least one $a \in E - F$ and for at least one $a \in F \rbrace \subseteq \lbrace b | b = f(a)$ for at least one $a \in E - F \rbrace = f(E - F)$. If $f$ is injective, then $f(a') = f(a) \implies a' = a$, thus $a \in E - F \implies a \notin F$ thus $\lbrace b | b = f(a)$ for at least one $a \in E - F$ and for at least one $a \in F \rbrace = \varnothing$, thus equality holds.
-
     """
     )
     return
@@ -372,7 +369,6 @@ def _(mo):
     If $p$ does not divide $n$, since $p$ prime, $p, n$ are relatively prime. By previous exercise, $\exists a, b$ such that $a p + b n = 1$, thus $a p m + b n m = m$, by construction we have that there exists a $k$ such that $k p = n m$, thus $a p m + b k p = m \implies p(a m + b k) = m$, which implies that $p$ divides $m$.
 
     With the same argument, if $p$ does not divide $m$, it divides $n$. Thus we conclude $p$ divides $n$ or it divides $m$.
-
     """
     )
     return
@@ -480,7 +476,6 @@ def _(mo):
     	1. $\sup\limits_A{\lbrace f + g \rbrace} = \sup\limits{ \lbrace f(x) + g(y) | x, y \in A \rbrace}$ $\le^{\text{by Theorem 1.5.7 (e)}} \sup\limits{ \lbrace f(x) + g(x) | x \in A \rbrace} = \sup\limits_A{f} + \sup\limits_A{g}$;
     	2. $\inf\limits_A{\lbrace f + g \rbrace} = \inf{ \lbrace f(x) + g(y) | x, y \in A \rbrace}$ $\ge \inf{ \lbrace f(x) + g(x) | x \in A \rbrace} = \inf\limits_A{f} + \inf\limits_A{g}$;
     4. $\sup\limits{ \lbrace f(x) - f(y) | x, y \in A \rbrace} = \sup\limits{ \lbrace f(x) | x \in A \rbrace} + \sup\limits{ \lbrace - f(x) | x \in A \rbrace}$ $= \sup\limits{ \lbrace f(x) | x \in A \rbrace} - \inf{ \lbrace f(x) | x \in A \rbrace} = \sup\limits_A{f} - \inf\limits_A{f}$.
-
     """
     )
     return
@@ -539,7 +534,6 @@ def _(mo):
     Proof
 
     Take $b_n$ as the above exercise stated. Then for any $\varepsilon > 0$, $| b_N | = b_N \le \sqrt{\frac{2}{N-1}}$, take $N$ such that $\sqrt{\frac{2}{N-1}} < \varepsilon$, i.e. $\frac{2}{\varepsilon^2}+1 < N$ then for all $n > N$, $| b_n | < \varepsilon$, i.e. $\lim\limits b_n = 0$. Thus $\lim\limits(b_n + 1) = 0 + 1 = 1 \implies \lim\limits n^{1/n} = 1$.
-
     """
     )
     return
@@ -703,7 +697,6 @@ def _(mo):
     Proof
 
     Consider the inequality $\sup\limits_{n \ge k}a_n \sup\limits_{n \ge k}b_n \ge a_l b_l$ for any $l > k$, thus $\sup\limits_{n \ge k}a_n b_n \le \sup\limits_{n \ge k}a_n \sup\limits_{n \ge k}b_n$. Take limit each side we have $\limsup\limits_{n \ge k}a_n b_n \le \lim\limits(\sup\limits_{n \ge k}a_n \sup\limits_{n \ge k}b_n) = (\limsup\limits_{n \ge k}a_n) (\limsup\limits_{n \ge k}b_n)$. Since $b_n$ converges, $\limsup\limits_{n \ge k}b_n = \lim\limits{b_n}$, thus we have $\limsup{a_n b_n} = (\limsup{a_n})(\lim\limits{b_n})$.
-
     """
     )
     return
@@ -818,7 +811,6 @@ def _(mo):
     Proof
 
     For each given $n$ consider the function $f: \mathbb{R}_{\ge 0} \implies \mathbb{R}$ given by $x \mapsto x^n$. Clearly $f(0) = 0$, thus $f(0) < a$ for any positive $a$. Now take $x = \max{(1, a)}$, then if $a \le 1$ then $f(x) = 1^n = 1 \ge a$, if $a > 1$ then $f(x) = a^n \ge a$ for all natural $n$. In either case, we have $f(0) < a \le f(x)$, thus $a$ is a value that $f$ achieves by IVT, in other word, there exists $a' \in \mathbb{R}_{\ge 0}$ such that $a'^n = a$, where $a'$ could be considered as a positive $n$-th root of this arbitrary positive $a$.
-
     """
     )
     return
@@ -903,7 +895,6 @@ def _(mo):
     Solution
 
     We proved in the last homework that if we define $f(0) = 0$ then the extension of $f$ on $[0, 1]$ is continuous (the case at $1$ is natural), thus $f$ is uniformly continuous on $(0, 1)$.
-
     """
     )
     return
@@ -1021,7 +1012,6 @@ def _(mo):
     Proof
 
     Since $\lim\limits_{x\to\infty}f(x) = \infty$, we have $\lim\limits_{x\to\infty}e^{f(x)} = \infty$, and observe that the area below $e^{f(t)}$ from $0$ to $x$ goes to infinity as $x$ goes (I cannot see a way to explicitly write it…). If we take derivatives for both numerator and denominator we have $(e^{f(x)})' = f'(x)e^{f(x)}$ and $(\int_0^x e^{f(t)}dt)' = e^{f(x)}$ by Fundamental Theorem of Calculus. It is easy to see that now we can apply L'Hôpital's Rule and thus the original limit equals $\lim\limits_{x\to \infty}f'(x) = L$.
-
     """
     )
     return
@@ -1168,7 +1158,6 @@ def _(mo):
     Solution
 
     Theorem 5.3.1 requires $f$ to be continuous on $[a,b]$ and differentiable on $(a,b)$, neither conditions is met, so I do not see why we can even apply the theorem here.
-
     """
     )
     return
@@ -1317,7 +1306,6 @@ def _(mo):
     Proof
 
     By assumption we can find $N \in \mathbb{N}$ such that $a_k = b_k$ whenever $k > N$, otherwise there are infinitely many different $a_k \ne b_k$. Now $\sum\limits_{k \in \mathbb{N}}a_k$ converges if and only if $\sum\limits_{k > N} a_k = \sum\limits_{k > N} b_k$ converges if and only if $\sum\limits_{k \in \mathbb{N}}b_k$ converges. Same for divergent series.
-
     """
     )
     return
@@ -1419,7 +1407,6 @@ def _(mo):
     Solution
 
     For start we have $\frac{1}{1-x} = \sum\limits_{n=0}^{\infty}x^n = 1+x+x^2+x^3+\dots$. Notice that $x \in (-1,1) \implies -x^2 \in (-1,0]$ so we can take a substitution: $\frac{1}{1+x^2} = \sum\limits_{n=0}^{\infty}(-x^2)^n = 1-x^2+x^4-x^6+\dots$. The radius of convergence of this power series is clearly $1$, because the coefficients $c_k$ is of the form $-1^k$, denote $f(x) = \frac{1}{1+x^2} = \sum\limits_{n=0}^{\infty}(-x^2)^n = \sum\limits_{n=0}^{\infty}(-1)^nx^{2n}$, we have that $\int_0^x f(x)dx = \arctan{x} = \sum\limits_{n=0}^{\infty}\frac{(-1)^n}{2n+1}x^{2n+1} = x-\frac{x^3}{3}+\frac{x^5}{5}-\dots$ on $(-1,1)$.
-
     """
     )
     return
@@ -1595,7 +1582,6 @@ def _(mo):
     1. The shortest path from $x$ to $y$ and $y$ to $x$ naturally should be the same;
     2. The shortest path from a room to the same room is $0$, and if the path is $0$ (i.e. we do not move), then we clearly stay in the same room;
     3. Suppose not (i.e. the shortest path from $x$ to $z$ is longer than from $x$ to $y$ plus from $y$ to $z$), then we go first from $x$ to $y$ then from $y$ to $z$ gives us a shorter path from $x$ to $z$, which contradict the fact that we are given a 'shortest' path from $x$ to $z$.
-
     """
     )
     return
@@ -1636,7 +1622,6 @@ def _(mo):
     $\lim\limits_{n \to \infty}\sum\limits_{k=1}^n(\frac{1}{\sqrt{n}+\frac{k}{\sqrt{n}}})^2$ $=\lim\limits_{n \to \infty}\sum\limits_{k=1}^n\frac{1}{n+\frac{k^2}{n}+2k}$ $=\lim\limits_{n \to \infty}\sum\limits_{k=1}^n\frac{1}{n}\frac{1}{1+\frac{k^2}{n^2}+\frac{2k}{n}}$ $=\lim\limits_{n \to \infty}\sum\limits_{k=1}^{n}\frac{1}{n}\frac{1}{(1+\frac{k}{n})^2}$.
 
     Recognize this as the Riemann sum $= \int_0^1 \frac{1}{(1+x)^2}dx$ ($\frac{1}{(1+x)^2}$ is continuous and bounded on $[0,1]$), since $(-\frac{1}{1+x})' = \frac{1}{(1+x)^2}$, we have the integral $= -\frac{1}{1+1} + \frac{1}{1+0} = \frac{1}{2}$.
-
     """
     )
     return
@@ -1787,7 +1772,6 @@ def _(mo):
     Now let $x \in X$ be an arbitrary point, if for any $\varepsilon$ the ball $B(x, \varepsilon)$ contains a point from $(a_i)$ (except for $x$ itself), then by choosing $\varepsilon = 1, 1/2, 1/3, \dots$ and pick point in $(a_i)$ in the ball we have a convergent subsequence of $(a_i)$, which is by assumption does not exists, thus we have the negation: there is some $\varepsilon_x$ (for the particular $x$) such that $B(x, \varepsilon_x)$ does not contain any $(a_i)$ other than possibly $x$ itself.
 
     Since $x$ is arbitrary, consider the union $\bigcup\limits_x B(x, \varepsilon_x)$, this is an open cover for compact $X$, thus admit a finite sub-cover. But then each $B(x, \varepsilon_x)$ contains at most one point in $(a_i)$, thus a finite union of them contains only finitely many $a_i$, that is, $(a_i)$ contains only finitely many distinct point, we have a contradiction.
-
     """
     )
     return
@@ -1943,7 +1927,6 @@ def _(mo):
     Conversely we have that $\lim\limits_{h \to 0}\frac{F(a+h)-F(a)-L(h)}{\| h \|} = 0$ for some linear $L$ for all $a$. Consider $G:\mathbb{R}^p \to \mathbb{R}^q$ given by $G(x) = F(x) - L(x)$, then we have that for any $a$, $\lim\limits_{h \to 0}\frac{G(a+h)-G(a)}{\| h \|}$ $=\lim\limits \frac{F(a+h)-L(a+h) - F(a) +L(a)}{\| h \|}$ $=\lim\limits_{h \to 0}\frac{F(a+h)-F(a)-L(h)}{\| h \|} = 0$, thus $G$ is differentiable everywhere with the differential matrix being constant zero.
 
     Now fix any two points $x, y \in \mathbb{R}^p$, the whole line from $x$ to $y$ is also inside $\mathbb{R}^p$. Let us consider a parametrization $r(t) = G(tx+(1-t)y)$, where $t \in [0,1]$. Since $G$ is differentiable everywhere and $tx+(1-t)y$ is differentiable (seeing $x,y$ as constant), we can use the Chain Rule to see $r'(t) = 0$ for any $t$ because $dG(\cdot) \equiv 0$ by above. Thus $r$ is a constant, taking $t = 0$ and $1$ we have that $G(x) = G(y)$. Since this works for arbitrary $x,y$, we conclude $G$ is a constant map, and then $F = G+L$ is by definition affine.
-
     """
     )
     return

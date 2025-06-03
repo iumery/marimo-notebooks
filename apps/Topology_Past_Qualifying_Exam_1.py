@@ -1,10 +1,10 @@
 import marimo
 
 __generated_with = "0.13.15"
-app = marimo.App(width="columns")
+app = marimo.App()
 
 
-@app.cell(column=0)
+@app.cell
 def _():
     import marimo as mo
 
@@ -20,7 +20,13 @@ def _(mo):
         orientation="vertical",
     )
     nav_menu
-    return (nav_menu,)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 1""")
+    return
 
 
 @app.cell
@@ -198,9 +204,9 @@ def _(mo):
     return
 
 
-@app.cell(column=1)
-def _(nav_menu):
-    nav_menu
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 2""")
     return
 
 
@@ -385,9 +391,9 @@ def _(mo):
     return
 
 
-@app.cell(column=2)
-def _(nav_menu):
-    nav_menu
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 3""")
     return
 
 
@@ -399,9 +405,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Let $A$ be a subset of a topological space $X$, prove that $A$ is open in $X$ if and only if every point in $A$ has a neighborhood contained in $A$**."""
-    )
+    mo.md(r"""**Let $A$ be a subset of a topological space $X$, prove that $A$ is open in $X$ if and only if every point in $A$ has a neighborhood contained in $A$**.""")
     return
 
 
@@ -559,9 +563,9 @@ def _(mo):
     return
 
 
-@app.cell(column=3)
-def _(nav_menu):
-    nav_menu
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 4""")
     return
 
 
@@ -749,9 +753,9 @@ def _(mo):
     return
 
 
-@app.cell(column=4)
-def _(nav_menu):
-    nav_menu
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 5""")
     return
 
 
@@ -943,9 +947,9 @@ def _(mo):
     return
 
 
-@app.cell(column=5)
-def _(nav_menu):
-    nav_menu
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 6""")
     return
 
 
@@ -1112,7 +1116,7 @@ def _(mo):
 
     We did not really study cobordant in the course so I guess this should not be in our exam, nevertheless, here we go, first a definition:
 
-    Two manifolds of the same dimension are ==cobordant== if their disjoint union is the boundary of a compact manifold one dimension higher.
+    Two manifolds of the same dimension are cobordant if their disjoint union is the boundary of a compact manifold one dimension higher.
 
     Since they are cobordant, $\int_{Z_0 - Z_1}w = \int_X dw$, but $w$ is closed, so $= 0$, and we have the desired statement.
     """

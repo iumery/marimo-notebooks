@@ -1,13 +1,12 @@
 import marimo
 
 __generated_with = "0.13.15"
-app = marimo.App(width="columns")
+app = marimo.App()
 
 
-@app.cell(column=0)
+@app.cell
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -20,7 +19,13 @@ def _(mo):
         orientation="vertical",
     )
     nav_menu
-    return (nav_menu,)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 7""")
+    return
 
 
 @app.cell
@@ -143,7 +148,7 @@ def _(mo):
     1. For any $p$, $dF_p = (1,df_p)$ is never zero so it is injective, i.e. $F$ immersion;
     2. If $(x_1,f(x_1)) = (x_2,f(x_2))$ then automatically $x_1 = x_2$ thus $F$ injective;
     3. $F$ is a continuous map from compact $X$ to Hausdorff $X \times Y$ thus it is proper.
-	
+
     By the way, actually we do not need to require $X,Y$ to be compact: consider any open set in $X \times Y$, since we have the product topology open set are of the form $U\times V$ where $U$ open in $X$ and $V$ open in $Y$, and the preimage is just $U$ by the construction, now if $U\times V$ is compact, then it is closed and bounded, so $U$ is closed, because it is preimage of closed set under continuous $F$, $U$ is bounded because $U \times V$ is bounded.
     """
     )
@@ -171,9 +176,9 @@ def _(mo):
     return
 
 
-@app.cell(column=1)
-def _(nav_menu):
-    nav_menu
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 8""")
     return
 
 
@@ -357,9 +362,9 @@ def _(mo):
     return
 
 
-@app.cell(column=2)
-def _(nav_menu):
-    nav_menu
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 9""")
     return
 
 
@@ -371,9 +376,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Let $X$ be a topological space, prove that a subspace $A \subseteq X$ is dense if and only if its complement $X-A$ has empty interior**."""
-    )
+    mo.md(r"""**Let $X$ be a topological space, prove that a subspace $A \subseteq X$ is dense if and only if its complement $X-A$ has empty interior**.""")
     return
 
 
@@ -385,9 +388,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Prove that every continuous map $f:[0,1] \to [0,1]$ has a fixed point, is the same true for continuous maps $(0,1) \to (0,1)$**?"""
-    )
+    mo.md(r"""**Prove that every continuous map $f:[0,1] \to [0,1]$ has a fixed point, is the same true for continuous maps $(0,1) \to (0,1)$**?""")
     return
 
 
@@ -505,9 +506,9 @@ def _(mo):
     return
 
 
-@app.cell(column=3)
-def _(nav_menu):
-    nav_menu
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 10""")
     return
 
 
@@ -678,9 +679,9 @@ def _(mo):
     return
 
 
-@app.cell(column=4)
-def _(nav_menu):
-    nav_menu
+@app.cell
+def _(mo):
+    mo.md(r"""# Exam 11""")
     return
 
 
@@ -788,9 +789,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Let $f:X\to Y$ be a smooth map of compact smooth manifolds, show that the map $F:X\to X\times Y$ given by $F(x) = (x,f(x))$ is an embedding**."""
-    )
+    mo.md(r"""**Let $f:X\to Y$ be a smooth map of compact smooth manifolds, show that the map $F:X\to X\times Y$ given by $F(x) = (x,f(x))$ is an embedding**.""")
     return
 
 
