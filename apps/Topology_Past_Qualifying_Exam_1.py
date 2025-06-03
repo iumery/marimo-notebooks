@@ -405,7 +405,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Let $A$ be a subset of a topological space $X$, prove that $A$ is open in $X$ if and only if every point in $A$ has a neighborhood contained in $A$**.""")
+    mo.md(
+        r"""**Let $A$ be a subset of a topological space $X$, prove that $A$ is open in $X$ if and only if every point in $A$ has a neighborhood contained in $A$**."""
+    )
     return
 
 

@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -376,7 +377,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Let $X$ be a topological space, prove that a subspace $A \subseteq X$ is dense if and only if its complement $X-A$ has empty interior**.""")
+    mo.md(
+        r"""**Let $X$ be a topological space, prove that a subspace $A \subseteq X$ is dense if and only if its complement $X-A$ has empty interior**."""
+    )
     return
 
 
@@ -388,7 +391,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Prove that every continuous map $f:[0,1] \to [0,1]$ has a fixed point, is the same true for continuous maps $(0,1) \to (0,1)$**?""")
+    mo.md(
+        r"""**Prove that every continuous map $f:[0,1] \to [0,1]$ has a fixed point, is the same true for continuous maps $(0,1) \to (0,1)$**?"""
+    )
     return
 
 
@@ -789,7 +794,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Let $f:X\to Y$ be a smooth map of compact smooth manifolds, show that the map $F:X\to X\times Y$ given by $F(x) = (x,f(x))$ is an embedding**.""")
+    mo.md(
+        r"""**Let $f:X\to Y$ be a smooth map of compact smooth manifolds, show that the map $F:X\to X\times Y$ given by $F(x) = (x,f(x))$ is an embedding**."""
+    )
     return
 
 

@@ -25,6 +25,12 @@ def _(mo):
 
 @app.cell
 def _(mo):
+    mo.md(r"""# Summary""")
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(
         r"""
     1. Deformation retraction:
