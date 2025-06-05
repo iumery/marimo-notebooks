@@ -7,7 +7,6 @@ app = marimo.App()
 @app.cell
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -49,7 +48,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""<img src="/public/Pasted image 20241116092602.png" width="250"/>""")
+    mo.md(r"""<img src="public/Pasted image 20241116092602.png" width="250"/>""")
     return
 
 
@@ -79,7 +78,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""<img src="/public/Pasted image 20230813095136.png" width="400" />""")
+    mo.md(r"""<img src="public/Pasted image 20230813095136.png" width="400" />""")
     return
 
 
