@@ -68,7 +68,7 @@ def _(mo):
         To prove $g \circ f$ is a homotopy equivalence, we need to find a function $h$ satisfies that $(g \circ f) \circ h \simeq \text{id}$ and $h \simeq (g \circ f) \simeq \text{id}$.
         Consider the map $\tilde{f} \circ \tilde{g}$, we have $g \circ f \circ \tilde{f} \circ \tilde{g}$ $= g \circ (f \circ \tilde{f}) \circ \tilde{g}$ (composition of functions is associative) $\simeq g \circ \text{id}_Y \circ \tilde{g}$ (by above lemma) $= g \circ \tilde{g}$ $=\text{id}_Z$; and similarly, $(\tilde{f} \circ \tilde{g})\circ(g \circ f)$ $\simeq \text{id}_X$. Thus by definition, $g\circ f$ is a homotopy equivalence.
         To prove that homotopy equivalence is an equivalence relation we follow the axioms:
-    
+
         1. Reflexivity: any space is homotopy equivalent to itself by $f_t = \text{id}, \forall t$;
         2. Symmetry: if $f: X\to Y$ is a homotopy equivalence from $X$ to $Y$ and is realized by some $g$ such that $f\circ g \simeq 1$ and $g \circ f \simeq 1$, then $g: Y \to X$ is a homotopy equivalence from $Y$ to $X$ realized by $f$;
         3. Transitivity: this is what we proved above;
@@ -127,7 +127,6 @@ def _(mo):
     <img src="public/Pasted image 20221231121329.png" width="600" />
 
     We know this is a standard plane model for a Möbius band. So the mapping cylinder in the question is a Möbius band.
-
     """
     )
     return
@@ -155,12 +154,12 @@ def _(mo):
 
     1. Increase $v$ by $1$ until we get the desired number, to maintain the equation $v - e + f = 2$ we must increase $e$ by $1$: we attach one end of the new $1$-cell to the first $0$-cell, and attach the other end of the new $1$-cell to the new $0$-cell; we then modify *the* attaching map of the $2$-cell to the existing $1$-skeleton by letting it glue along the new components:
 
-    <img src="public/Pasted image 20230101071207.png" width="600" />
+        <img src="public/Pasted image 20230101071207.png" width="600" />
 
     2. Increase $f$ by $1$ until we get the desired number, to maintain the equation $v - e + f = 2$ we must increase $e$ by $1$: we attach both ends of the new $1$-cell to the first $0$-cell; we then modify the (first) attaching map so that it glue along the new component; attach the new $2$-cell along the new $1$-cell and the first $0$-cell from the 'inside':
 
         <img src="public/Pasted image 20230101071213.png" width="600" />
-	
+
         We should now achieve the desired $v, e, f$ and a corresponding cell structure on $S^2$.
 
     ## Additional Problem 1
@@ -230,7 +229,6 @@ def _(mo):
     The wedge sum $Y = S^m \vee S^n$ is given by the disjoint union of $S^m$ and $S^n$ (so $2$ $0$-cells, an $m$-cell and an $n$-cell) with the two $0$-cells identified. In particular, $Y$ is the same as $X^m$.
 
     Thus by taking quotient, $X/Y$ has a CW-complex structure with a $0$-cell and an $m+n$-cell attaching to it (through a constant map), which means it is $S^{m+n}$.
-
     """
     )
     return
@@ -314,7 +312,6 @@ def _(mo):
     	Thus the chain groups are $C_0(X) \cong \mathbb{Z}$, $C_1(X) \cong \mathbb{Z}^n$, $C_2(X) \cong \mathbb{Z}$, and everything else is the trivial group.
     	The boundary operators are: $\partial_0$ is again of course $0$; for each $i$, $\partial_1(a_i) = 0$ thus $\partial_1 = 0$ again; $\partial_2$ is different from before, we have $\partial_2(D^2) = a_1 + a_1 + \dots + a_n + a_n$, i.e. $\partial_2:\mathbb{Z} \to \mathbb{Z}^n$ by $\partial_2(x) \mapsto (2x,\dots,2x)$ (but the only independent term is $2x$). All the other boundary operators are the zero maps.
     	Thus we may calculate the homology group: $H_0(X) = \ker{\partial_0}/im{\partial_1}$ $= \mathbb{Z}/0 \cong \mathbb{Z}$; $H_1(X) = \ker{\partial_1}/im{\partial_2}$ $=\mathbb{Z}^{n}/2\mathbb{Z}$ $\cong \mathbb{Z}^{n-1} \times\mathbb{Z_2}$; $H_2(X) = \ker{\partial_2}/im{\partial_3}$ $= 0/0 \cong 0$ (because $(2x,\dots,2x) = (0,\dots, 0)$ $\implies x = 0$). Everything else is the trivial group.
-
     """
     )
     return
@@ -442,7 +439,6 @@ def _(mo):
     7. If $n > 1$, then $H^{\Delta}_1(X)$ $= \ker{\partial_1}/im{\partial_2}$ $\cong \langle \sigma_{\delta_1} \rangle/\langle \sigma_{\delta_1} \rangle$ $\cong 0$; however if $n = 1$, then $im{\partial_2}$ would be $0$ thus $H^{\Delta}_1(X)$ $\cong \mathbb{Z}/0$ $\cong \mathbb{Z}$;
     8. $H^{\Delta}_2(X)$ $= \ker{\partial_2}/im{\partial_3}$ $\cong 0/im{\partial_3}$ $\cong 0$; and we can see that it does not depends on if $n > 2$ or not;
     9. So again, we can see a pattern here from the calculation: $$H^{\Delta}_k(X) \cong \begin{cases}\mathbb{Z},&k = 0\\0,&n < k\\\mathbb{Z},&k\text{ odd and }k = n\\0,&k\text{ odd and }k < n\\0,&k\text{ even} \end{cases}$$ (or put it in another way, if $n$ is even, then the only non-trivial homology group is $H^{\Delta}_0(X) \cong \mathbb{Z}$, and if $n$ is odd, then the only non-trivial homology group is $H^{\Delta}_0(X), H^{\Delta}_n(X) \cong \mathbb{Z}$)
-
     """
     )
     return
@@ -509,7 +505,6 @@ def _(mo):
     So we want to find some $i: \mathbb{Z}_4 \to \mathbb{Z}_8 \oplus \mathbb{Z}_2$ that is injective, and $j: \mathbb{Z}_8 \oplus \mathbb{Z}_2 \to \mathbb{Z}_4$ that is surjective, and $\text{im}(i) = \ker{(j)}$. Merely from the point of order of groups ($4\times 4 = 16$), there can be a short exact sequence, indeed:
 
     One example is to have $i(1) = (2, 1)$, then $\text{im}(i) = \lbrace (2,1), (4, 0), (6,1), (0,0) \rbrace$ (so that it is a homomorphism). Notice then $(\mathbb{Z}_8 \oplus \mathbb{Z}_2)/\text{im}(i)$ $= \lbrace [(0,0)],[(1,0)],[(2,0)],[3,0] \rbrace$ $= \mathbb{Z}_4$, then the natural projection map $\mathbb{Z}_8 \oplus \mathbb{Z}_2 \to (\mathbb{Z}_8 \oplus \mathbb{Z}_2)/\text{im}(i)$ may serve as a desired $j$.
-
     """
     )
     return
@@ -553,7 +548,6 @@ def _(mo):
         First we assume $X$ is path-connected, then either $A = \varnothing$ or $A$ is path-connected and non-empty. If $A$ is empty, then of course $H_0(A) \to H_0(X)$ is injective. If $A$ is path-connected and non-empty, pick any $x \in A \subset X$, then the homology class $[x] \in H_0(A)$ is mapped to $[x] \in H_0(X)$. In fact, in this case the map $H_0(A) \to H_0(X)$ is just the identity, so of course is injective.
         For the general case, we have that $H_0(A) = \bigoplus H_0(A_i) \to H_0(X) = \bigoplus H_0(X_i)$ is injective because each $H_0(A_i) \to H_0(X_i)$ is injective.
         Conversely, suppose there is some path-component of $X$ contains at least two path-components of $A$. So for certain $i$, we have $H_0(A_i) \cong \mathbb{Z}^n$ ($n >1$) and $H_0(X_i) \cong \mathbb{Z}$. But for $n > 1$, there is no injective homomorphism $\mathbb{Z}^n \to \mathbb{Z}$, so $H_0(A_i) \to H_0(X_i)$ is not injective. Then $\bigoplus H_0(A_i) \to \bigoplus H_0(X_i)$ also cannot be injective.
-
     """
     )
     return
@@ -631,7 +625,6 @@ def _(mo):
     Claim: $$H_i(\mathbb{C}P^n) = \begin{cases} \mathbb{Z}&, i\text{ even}, 0\le i \le 2n,\\0&,\text{ otherwise.} \end{cases}$$ We prove the claim with an induction. It's not hard to see this statement is true for $n = 0, 1$. Suppose the statement is true for $n-1$, we show it is true for $n$.
 
     Consider the pair $(\mathbb{C}P^n, \mathbb{C}P^{n-1})$ we have the following LES: $$\begin{array}{cccccccc} &&&\dots \\ \to & H_{2n+1}(\mathbb{C}P^{n-1}) & \to & H_{2n+1}(\mathbb{C}P^n) & \to & H_{2n+1}(\mathbb{C}P^n, \mathbb{C}P^{n-1}) & \to & \\ \to & H_{2n}(\mathbb{C}P^{n-1}) & \to & H_{2n}(\mathbb{C}P^n) & \to & H_{2n}(\mathbb{C}P^n, \mathbb{C}P^{n-1}) & \to &  \\ \to & H_{2n-1}(\mathbb{C}P^{n-1}) & \to & H_{2n-1}(\mathbb{C}P^n) & \to & H_{2n-1}(\mathbb{C}P^n, \mathbb{C}P^{n-1}) & \to & \\ &&&\dots \\ \to & H_{2m+1}(\mathbb{C}P^{n-1}) & \to & H_{2m+1}(\mathbb{C}P^n) & \to & H_{2m+1}(\mathbb{C}P^n, \mathbb{C}P^{n-1}) & \to & \\ \to & H_{2m}(\mathbb{C}P^{n-1}) & \to & H_{2m}(\mathbb{C}P^n) & \to & H_{2m}(\mathbb{C}P^n, \mathbb{C}P^{n-1}) & \to &  \\ \to & H_{2m-1}(\mathbb{C}P^{n-1}) & \to & H_{2m-1}(\mathbb{C}P^n) & \to & H_{2m-1}(\mathbb{C}P^n, \mathbb{C}P^{n-1}) & \to &\\ &&&\dots \\ \to & H_1(\mathbb{C}P^{n-1}) & \to & H_1(\mathbb{C}P^n) & \to & H_1(\mathbb{C}P^n, \mathbb{C}P^{n-1}) & \to & \\ \to & H_0(\mathbb{C}P^{n-1}) & \to & H_0(\mathbb{C}P^n) & \to & H_0(\mathbb{C}P^n, \mathbb{C}P^{n-1}) & \to &0 \end{array}$$ By the inductive assumption, the fact that $\mathbb{C}P^n$ has dimension $2n$, and that $H_i(\mathbb{C}P^n,\mathbb{C}P^{n-1}) = \tilde{H}_i(S^{2n})$, the above LES is the same as: $$\begin{array}{cccccccc} &&&\dots \\ \to & 0 & \to & 0 & \to & 0 & \to & \\ \to & 0 & \to & H_{2n}(\mathbb{C}P^n) & \to & \mathbb{Z} & \to &  \\ \to & 0 & \to & H_{2n-1}(\mathbb{C}P^n) & \to & 0 & \to & \\ &&&\dots \\ \to & 0 & \to & H_{2m+1}(\mathbb{C}P^n) & \to & 0 & \to & \\ \to & \mathbb{Z} & \to & H_{2m}(\mathbb{C}P^n) & \to & 0 & \to &  \\ \to & 0 & \to & H_{2m-1}(\mathbb{C}P^n) & \to & 0 & \to &\\ &&&\dots \\ \to & 0 & \to & H_1(\mathbb{C}P^n) & \to & 0 & \to & \\ \to & \mathbb{Z} & \to & H_0(\mathbb{C}P^n) & \to & 0 & \to &0 \end{array}$$ So that $0 \to H_{2n}(\mathbb{C}P^n) \to \mathbb{Z} \to 0$ implies $H_{2n}(\mathbb{C}P^n) \cong \mathbb{Z}$; for any $i$ odd, we have $0 \to H_i(\mathbb{C}P^n) \to 0$ thus $H_i(\mathbb{C}P^n) = 0$; and for any $0 \le i < n$ even, we have $0 \to \mathbb{Z} \to H_i(\mathbb{C}P^n) \to 0$ thus $H_i(\mathbb{C}P^n) \cong \mathbb{Z}$, as desired.
-
     """
     )
     return
@@ -671,14 +664,14 @@ def _(mo):
     2. Case 2, $x$ is on an edge of the skeleton. In this case $U$ is half of a disk and $x$ is on its boundary, so again both $U$ and $U-x$ is contractible, so the calculation is the same as case 1, so $H_n(U, U-x) =0$ for all $n$;
     3. Case 3, $x$ is on the interior of one of the triangle connecting an edge and the barycenter. In this case $U$ is a disk and $x$ is in its interior, so $U$ is contractible and $U-x$ is homotopy equivalent with $S^1$, thus the LES becomes $$\begin{array}{cccccccc} &\dots&\to&0&\to&H_3(U,U-x)&\to &\\ \to & 0 & \to & 0 & \to & H_2(U, U-x) & \to & \\ \to & \mathbb{Z} & \to & 0 & \to & H_1(U, U-x) & \to & \\ \to & \mathbb{Z} & \to & \mathbb{Z} & \to & H_0(U, U-x) & \to &0 \end{array}$$ The calculation on $H_0(U, U-x)$ and $H_1(U, U-x)$ is the same, and it's not hard to see $H_2(U, U-x) \cong \mathbb{Z}$ and $H_3(U, U-x) = 0$, so $H_n(U,U-x) = \begin{cases} \mathbb{Z}&,n=2 \\ 0&,\text{ otherwise}\end{cases}$;
     4. Case 4, $x$ is the barycenter. In this case $U$ is $6$ triangles glued together in a way that three of them are glued like in case 1 and the other three are also glued like in case 1, and the two parts are then glued along the sides. $U$ is again contractible, $U-x$ in this case can deformation retract to the skeleton of $\Delta_3$ (think of deformation retract each triangle without a tip to the opposite side). So we first need to calculate the homology groups of $U-x$. Start by giving the skeleton (call it $S$) a CW-complex structure:
-	
+
         <img src="public/Pasted image 20230101073400.png" width="600" />
-	
+
         So $C_0(S) \cong \mathbb{Z}^4$ and $C_1(S) \cong \mathbb{Z}^5$, and the boundary operator has $\partial_1(\delta_0)$ (the one correspond to $e_0$) $= v_1 - v_0$, $\partial_1(\delta_1) = v_2 - v_0$, $\partial_1(\delta_2) = v_3 - v_0$, $\partial_1(\delta_3) = v_2 - v_1$, $\partial_1(\delta_4) = v_3 - v_2$, $\partial_1(\delta_5) = v_3 - v_1$. So in general $\partial_1(a_0\delta_0 + \dots + a_5\delta_5) = v_0(-a_0-a_1-a_2) + v_1(a_0 - a_3 - a_5) + v_2(a_1 + a_3 - a_4) + v_3(a_2 + a_4 + a_5)$. We want to get the image and kernel of this map. Write the map in form of matrix and do row reduction, we get from $\begin{pmatrix} -1&-1&-1&0&0&0 \\ 1&0&0&-1&0&-1 \\ 0&1&0&1&-1&0 \\ 0&0&1&0&1&1 \end{pmatrix}$ to $\begin{pmatrix} 1&0&0&-1&0&-1 \\ 0&1&0&1&-1&0 \\ 0&0&1&0&1&1 \\ 0&0&0&0&0&0 \end{pmatrix}$ So the image is $\mathbb{Z}^3$ generated by any three of $v_0,v_1,v_2, v_3$ and thus $H_0(S) = \langle v_0,v_1,v_2,v_3 \rangle/\langle v_0,v_1,v_2 \rangle \cong \mathbb{Z}$. The kernel is also $\mathbb{Z}^{6-3} = \mathbb{Z}^3$, and thus $H_1(S) = \mathbb{Z}^3/0 = \mathbb{Z}^3$. So we get the LES: $$\begin{array}{cccccccc} &\dots&\to&0&\to&H_3(U,U-x)&\to &\\ \to & 0 & \to & 0 & \to & H_2(U, U-x) & \to & \\ \to & \mathbb{Z}^3 & \to & 0 & \to & H_1(U, U-x) & \to & \\ \to & \mathbb{Z} & \to & \mathbb{Z} & \to & H_0(U, U-x) & \to &0 \end{array}$$ So again $H_0(U,U-x), H_1(U, U-x) = 0$ and $H_2(U, U-x) = \mathbb{Z}^3$;
     5. Case 5, $x$ is on an edge of one of the triangles. In this case $U$ is three half disk glued along the straight edge, which is again contractible, and $U-x$ deformation retract to the space below (again we give it a CW-complex structure and call the space $S$):
-	
+
         <img src="public/Pasted image 20230101073407.png" width="600" />
-	
+
         So $C_0(S) \cong \mathbb{Z}^2$ and $C_1(S) \cong \mathbb{Z}^3$. We have $\partial_1(e_i) = v_1 - v_0$ thus in general $\partial_1(a_0e_0 + a_1e_1 + a_2e_2) = (a_0+a_1+a_2)(v_1 - v_0)$ and in this case it's rather easy to see the image is isomorphic to $\mathbb{Z}$ and kernel is isomorphic to $\mathbb{Z}^2$ (choice of any two of $a_0,a_1,a_2$ fixes the third one). So similarly as above we have $H_0(S) = \mathbb{Z}$ and $H_1(S) = \mathbb{Z}^2$. So we have the LES: $$\begin{array}{cccccccc} &\dots&\to&0&\to&H_3(U,U-x)&\to &\\ \to & 0 & \to & 0 & \to & H_2(U, U-x) & \to & \\ \to & \mathbb{Z}^2 & \to & 0 & \to & H_1(U, U-x) & \to & \\ \to & \mathbb{Z} & \to & \mathbb{Z} & \to & H_0(U, U-x) & \to &0 \end{array}$$ The only difference is we have $\mathbb{Z}^2$ instead of $\mathbb{Z}^3$ now, so similarly $H_0(U,U-x), H_1(U, U-x) = 0$ and $H_2(U, U-x) = \mathbb{Z}^2$.
 
     That concludes all the calculation.
@@ -759,20 +752,19 @@ def _(mo):
     1. Let us call the space $X$.
     	First we need to give $X$ a CW-complex structure. Let's start with the structure on $S^2$ consists of $2$ $0$-cells (north and south poles), $2$ $1$-cells (connecting the north and south poles), and $2$ $2$-cells (two hemisphere). To identify north and south poles, we just combine the $2$ $0$-cells to one $0$-cell.
     	Thus $C^{CW}_0(X) \cong \mathbb{Z}$, and $C^{CW}_1(X) \cong \mathbb{Z}^2$, $C^{CW}_2(X) \cong \mathbb{Z}^2$, generated by $n$-cells respectively.
-	
+
         <img src="public/Pasted image 20230101073418.png" width="600" />
-	
+
         Now we need to evaluate the boundary map $d_n$ 's.
     	There are two $2$-cells: $d_2(f_1) = \varepsilon_{1,1}e_1 + \varepsilon_{1,2}e_2$ where $\varepsilon_{1,i}$ is the degree of $\Delta_{1,i}: S^1_1 \xrightarrow{\varphi} X^1 \xrightarrow{j} X^1/X^0 \xrightarrow{q_i} S^1_i$. We can think of the boundary of the $2$-cell goes once around each $1$-cell once, so both $\varepsilon_{1,i} = 1$, $d_2(f_1) = e_1 + e_2$. The other $2$-cell is doing the similar thing but in the other direction, thus $d_2(f_2) = -e_1 - e_2$. So we can see from the linear dependency that $\ker{d_2} = \langle f_1 + f_2 \rangle$ and $im{d_2} = \langle e_1 + e_2 \rangle$.
     	$d_1$ is easy to compute because there is only one $0$-cell, it is simply the zero map. Thus $\ker{d_1} = \langle e_1,e_2 \rangle$ and $im{d_1} = 0$.
     	Thus $H^{CW}_0(X) = \ker{d_0}/im{d_1}$ $\cong \mathbb{Z}$. $H_1^{CW}(X) = \ker{d_1}/im{d_2}$ $= \langle e_1,e_2 \rangle/\langle e_1 + e_2 \rangle$ $\cong \langle e_1 \rangle$ $\cong \mathbb{Z}$. And $H_2^{CW}(X) = \ker{d_2}/im{d_3}$ $\cong \ker{d_2}$ $= \langle f_1 + f_2 \rangle$ $\cong \mathbb{Z}$. $H_i^{CW}(X)$ for $i \ge 3$ is obviously $0$.
     2. Still, let us call this space $X$ and give it a CW-complex structure. It looks like a bigger donut and a smaller donut where the smaller one's outer longitude is glued with the bigger one's inner longitude. There are $1$ $0$-cell, $3$ $1$-cells, and $2$ $2$-cells. The two cell $f_1$ (the smaller donut) is glued to $X^1$ going along $e_1e_3e_1^{-1}e_3^{-1}$ and $f_2$ (the bigger donut) goes along $e_2e_3e_2^{-1}e_3^{-1}$, just like how we glue the standard torus.
-	
+
         <img src="public/Pasted image 20230101073422.png" width="600" />
-	
+
         Evaluate the boundary map: the degree of $\Delta_{1,1}: S^1_1 \xrightarrow{\varphi} X^1 \xrightarrow{j} X^1/X^0 \xrightarrow{q_1} S^1_1$ is zero, because it can be thought as sending the boundary to warp $e_1$ once and then warp it in the different direction. Similarly for other $\Delta_{i,j}$'s. Thus $d_2$ is the zero map. $d_1$ is also the zero map, because there is only one $0$-cell. Thus all boundary maps are zero map.
     	Thus $H_i^{CW}(X) \cong C_i^{CW}(X)$ for each $i$, i.e. $H_n^{CW}(X) = \begin{cases}\mathbb{Z}&,n=0\\\mathbb{Z}^3&,n=1\\\mathbb{Z}^2&,n=2\\0&,\text{ otherwise} \end{cases}$.
-
     """
     )
     return
@@ -863,7 +855,6 @@ def _(mo):
     2. Again let us call the space $X$, it consists of $A = \mathbb{R}P^2$, $B$ be a Möbius band, their intersection $A \cap B$ is a circle. We know that $H_n(A)= \begin{cases} \mathbb{Z}&,n = 0 \\ \mathbb{Z}_2&, n = 1\\0&,\text{ otherwise}\end{cases}$. $H_n(B)$ and $H_n(A \cap B)$ are the same as part 1.
         For the generator, say $H_1(A)$ is generated by $e^1_a = a$ (but also with a relation $2a = 0$), $H_1(B)$ by $e_b^1$, and $H_1(A \cap B)$ is generated also by $a$ because it's attached directed to the boundary of $A$. The Mayer-Vietoris LES gives: $$\begin{array}{cccccccc} \to & 0 & \to & 0 & \to & H_2(X) & \to \\ \to & \langle a \rangle & \to & \langle a, b \mid 2a = 0 \rangle & \to & H_1(X) & \to \\ \to & 0 & \to & 0 & \to & \tilde{H}_0(X) & \to & 0 \\ \end{array}$$ so again $\tilde{H}_0(X) = 0$ and we have the following exact sequence $0 \to H_2(X) \xrightarrow{i} \langle  a  \rangle \xrightarrow{j} \langle a,b|2a=0 \rangle \xrightarrow{k} H_1(X) \to 0$ Similar as above, we have $j(a) = (a, -2b)$. So again $j$ is injective so with the same reasoning we can split the sequence. The first part immediately gives $H_2(X) = 0$. The second part is again a short exact sequence and we have $H_1(X) \cong \langle a,b|2a = 0 \rangle/\langle a-2b \rangle$ $\cong \langle a,b|2a = 0,a =2b \rangle$, which is isomorphic to $\mathbb{Z}_4$ because $b$ has period $4$.
         So in short, $H_n(X) = \begin{cases} \mathbb{Z}&,n = 0 \\ \mathbb{Z}_4&,n = 1 \\ 0&,\text{ otherwise}\end{cases}$.
-
     """
     )
     return
@@ -903,12 +894,12 @@ def _(mo):
         8. $\delta(\hat{c})(L)$ $= \hat{a}(\partial(L))$ $=\hat{a}(a-c+b)$ $= -1$.
 
         Thus:
-    
+
         1. $\delta(\hat{v}) = 0$;
         2. $\delta(\hat{a}) = \hat{U} + \hat{L}$;
         3. $\delta(\hat{b}) = \hat{U} + \hat{L}$;
         4. $\delta(\hat{c}) = -\hat{U} - \hat{L}$.
-    
+
         So observe $\delta$'s are rather simple maps and we don't really need to use matrixes to calculate. We have $\delta_0$ is the zero map, so $\text{im}(\delta_0) = 0$ and $\ker{\delta_0} = \langle \hat{v}\rangle \cong \mathbb{Z}$. $\text{im}(\delta_1) = \langle \hat{U}+ \hat{L}\rangle \cong \mathbb{Z}$, and $\ker{\delta_1} = \langle \hat{a} - \hat{b}, \hat{a} + \hat{c}\rangle$. And we have $H_{\Delta}^0(X; \mathbb{Z}) = \ker{\delta_0} \cong \mathbb{Z}$, $H_{\Delta}^1(X; \mathbb{Z})$ $= \ker{\delta_1}/\text{im}(\delta_0)$ $\cong \mathbb{Z}^2$, and $H_{\Delta}^2(X; \mathbb{Z})$ $= \ker{0}/\text{im}(\delta_1)$ $\cong \langle \hat{U},\hat{L}\rangle /\langle \hat{U}+\hat{L}\rangle$ $\cong \mathbb{Z}$.
         Work with $\mathbb{Z}_2$, everything basically stays the same before the calculation of coboundary maps (replacing $(\_,\mathbb{Z})$ by $(\_,\mathbb{Z}_2)$). For the coboundary map: $\delta_0$ is still $0$, $\delta_1$ also becomes simpler because in $\mathbb{Z}_2$ there is no difference between $\pm 1$, so we have $\delta(\hat{a})(U)$ $= \delta(\hat{b})(U)$ $= \delta(\hat{c})(U)$ $= \delta(\hat{a})(L)$ $= \delta(\hat{b})(L)$ $= \delta(\hat{b})(L) = 1$.
         Thus $H_{\Delta}^0(X; \mathbb{Z}_2) = \ker{\delta_0} \cong \mathbb{Z}_2$, $H_{\Delta}^1(X; \mathbb{Z}_2)$ $= \ker{\delta_1}/\text{im}(\delta_0)$ $=\langle \hat{a} - \hat{b}, \hat{a} - \hat{c}; 2\hat{a}, 2\hat{b}, 2\hat{c}\rangle$ $\cong \mathbb{Z}^2_2$, and $H_{\Delta}^2(X; \mathbb{Z}_2)$ $= \ker{0}/\text{im}(\delta_1)$ $\cong \langle \hat{U},\hat{L}; 2\hat{U}, 2\hat{L}, \hat{U}+\hat{L}\rangle$ $\cong \mathbb{Z}_2$.
@@ -925,25 +916,25 @@ def _(mo):
         8. $\delta(\hat{b})(L)$ $= -1$;
         9. $\delta(\hat{c})(U)$ $= 1$;
         10. $\delta(\hat{c})(L)$ $= 1$.
-    
+
         Thus:
-    
+
         1. $\delta(\hat{v}) = -\hat{a} - \hat{b}$;
         2. $\delta(\hat{w}) = \hat{a} + \hat{b}$;
         3. $\delta(\hat{a}) = \hat{L} - \hat{U}$;
         4. $\delta(\hat{b}) = \hat{U} - \hat{L}$;
         5. $\delta(\hat{c}) = \hat{U} + \hat{L}$.
-    
+
         So $\ker{\delta_0} = \langle \hat{v}+\hat{w} \rangle$ and $\text{im}(\delta_0) = \langle \hat{a} + \hat{b}\rangle$; $\ker{\delta_1} = \langle \hat{a} + \hat{b} \rangle$ and $\text{im}(\delta_1) = \langle \hat{L} - \hat{U}, \hat{L} + \hat{U} \rangle$.
         Thus $H^0_{\Delta}(X;\mathbb{Z}) \cong \ker{\delta_0} \cong \mathbb{Z}$; $H^1_{\Delta}(X;\mathbb{Z}) \cong \ker{\delta_1}/\text{im}(\delta_0) \cong 0$; $H^2_{\Delta}(X;\mathbb{Z}) \cong \ker{0}/\text{im}(\delta_1)$ $\cong \langle \hat{U}, \hat{L}; \hat{L} - \hat{U}, \hat{L} + \hat{U}\rangle$ $\cong \langle \hat{U}; 2\hat{U}\rangle \cong \mathbb{Z}_2$.
         Work with $\mathbb{Z}_2$, we then have:
-    
+
         1. $\delta(\hat{v}) = \hat{a} + \hat{b}$;
         2. $\delta(\hat{w}) = \hat{a} + \hat{b}$;
         3. $\delta(\hat{a}) = \hat{U} + \hat{L}$;
         4. $\delta(\hat{b}) = \hat{U} + \hat{L}$;
         5. $\delta(\hat{c}) = \hat{U} + \hat{L}$.
-    
+
         So these are rather simple maps, and we get $H^0_{\Delta}(X;\mathbb{Z}_2) \cong \mathbb{Z}_2$; $H^1_{\Delta}(X;\mathbb{Z}_2) \cong \langle \hat{a}-\hat{b}, \hat{a} - \hat{c};2\hat{a},2\hat{b},2\hat{c},\hat{a}+ \hat{b}\rangle \cong \mathbb{Z}_2$; $H^2_{\Delta}(X;\mathbb{Z}_2) \cong \mathbb{Z}_2$.
     3. Now we have $X$ being a Klein Bottle. We have chain complex: $0 \to \mathbb{Z}^2 \to \mathbb{Z}^3 \to \mathbb{Z} \to 0$ and cochain complex: $$0 \leftarrow \mathbb{Z}^2_{\cong \langle \hat{U},\hat{L} \rangle} \leftarrow^{\delta} \mathbb{Z}^3_{\cong \langle \hat{a},\hat{b}, \hat{c} \rangle} \leftarrow^{\delta} \mathbb{Z}_{\cong \langle \hat{v} \rangle} \leftarrow 0.$$ Evaluate coboundary maps:
 
@@ -954,23 +945,23 @@ def _(mo):
         5. $\delta(\hat{b})(L)$ $=-1$;
         6. $\delta(\hat{c})(U)$ $=-1$;
         7. $\delta(\hat{c})(L)$ $=1$.
-    
+
         Thus:
-    
+
         1. $\delta(\hat{v}) = 0$;
         2. $\delta(\hat{a}) = \hat{U} + \hat{L}$;
         3. $\delta(\hat{b}) = \hat{U} - \hat{L}$;
         4. $\delta(\hat{c}) = \hat{L} - \hat{U}$.
-    
+
         So $\ker{\delta_0} = \langle \hat{v} \rangle$ and $\text{im}(\delta_0) = 0$; $\ker{\delta_1} = \langle \hat{b} + \hat{c} \rangle$ and $\text{im}(\delta_1) = \langle \hat{L} - \hat{U}, \hat{L} + \hat{U} \rangle$.
         Thus $H^0_{\Delta}(X;\mathbb{Z}) \cong \ker{\delta_0} \cong \mathbb{Z}$; $H^1_{\Delta}(X;\mathbb{Z}) \cong \ker{\delta_1}/\text{im}(\delta_0) \cong \mathbb{Z}$; $H^2_{\Delta}(X;\mathbb{Z}) \cong \ker{0}/\text{im}(\delta_1) \cong \langle \hat{U}, \hat{L}; \hat{L} - \hat{U}, \hat{L} + \hat{U}\rangle \cong \mathbb{Z}_2$.
         Work with $\mathbb{Z}_2$, we then have:
-    
+
         1. $\delta(\hat{v}) = 0$;
         2. $\delta(\hat{a}) = \hat{U} + \hat{L}$;
         3. $\delta(\hat{b}) = \hat{U} + \hat{L}$;
         4. $\delta(\hat{c}) = \hat{U} + \hat{L}$.
-    
+
         Thus $H^0_{\Delta}(X;\mathbb{Z}_2) \cong \mathbb{Z}_2$; $H^1_{\Delta}(X;\mathbb{Z}_2) \cong \langle \hat{a}-\hat{b}, \hat{a} - \hat{c};2\hat{a},2\hat{b},2\hat{c} \rangle \cong \mathbb{Z}_2^2$; $H^2_{\Delta}(X;\mathbb{Z}_2) \cong \mathbb{Z}_2$.
 
     ## Problem 8
@@ -986,7 +977,6 @@ def _(mo):
     Induction Step: consider the pair $(D^n,S^{n-1}= \partial D^n)$. Then the LES of the pair gives us: $$\begin{aligned}\dots \leftarrow H^{i+1}(D^n;G) \leftarrow H^{i+1}(D^n,S^{n-1};G) \\\leftarrow H^i(S^{n-1};G) \leftarrow H^i(D^n;G) \leftarrow \dots\end{aligned}$$ Use that $D^n$ is contractible and that $D^n/S^{n-1} = S^n$, we get that $0 \leftarrow H^{i+1}(S^n;G) \leftarrow H^i(S^{n-1};G) \leftarrow 0$ Which implies that $H^{i+1}(S^n;G) \cong H^i(S^{n-1};G)$. Thus $H^0(S^n;G) \cong H^n(S^n;G) \cong G$ and $0$ otherwise.
 
     With Mayer-Vietoris sequence: consider $X = S^n$ being the union of two hemisphere (with boundary) $A$ and $B$, then the MV sequence gives: $$\begin{aligned}\dots \leftarrow H^{i+1}(A;G)\oplus H^{i+1}(B;G) \leftarrow H^{i+1}(X; G) \\ \leftarrow H^i(A \cap B;G) \leftarrow H^i(A;G)\oplus H^i(B;G)\leftarrow \dots\end{aligned}$$ Use that $A,B$ are contractible and that $A \cap B \cong S^{n-1}$, we get that $0 \leftarrow H^{i+1}(S^n;G) \leftarrow H^i(S^{n-1};G) \leftarrow 0$ So that they are isomorphic, as above.
-
     """
     )
     return
@@ -1013,7 +1003,6 @@ def _(mo):
     ## Problem 3
 
     **Regarding $\mathbb{Z}_2$ as a module over the ring $\mathbb{Z}_4$, construct a resolution of $\mathbb{Z}_2$ by free modules over $\mathbb{Z}_4$ and use this to show that $\text{Ext}_{\mathbb{Z}_4}^n(\mathbb{Z}_2, \mathbb{Z}_2)$ is non-zero for all $n$**.
-
     """
     )
     return
