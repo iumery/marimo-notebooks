@@ -7,7 +7,20 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
+
+
+@app.cell
+def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
 
 
 @app.cell(hide_code=True)
@@ -68,7 +81,9 @@ class TopologicalSpace:
         self.topology = topology
 
         # Validate the provided topology
-        assert self._validate_topology(), "Invalid topology: Topology must satisfy closure conditions."
+        assert (
+            self._validate_topology()
+        ), "Invalid topology: Topology must satisfy closure conditions."
 
     def _validate_topology(self):
         """
@@ -191,8 +206,12 @@ class Homeomorphism:
             bool: True if the function f is a homeomorphism, False otherwise.
         """
         # Check continuity of f and f_inv using the ContinuousFunction class
-        is_f_continuous = ContinuousFunction(self.f, self.space1, self.space2).is_continuous()
-        is_f_inv_continuous = ContinuousFunction(self.f_inv, self.space2, self.space1).is_continuous()
+        is_f_continuous = ContinuousFunction(
+            self.f, self.space1, self.space2
+        ).is_continuous()
+        is_f_inv_continuous = ContinuousFunction(
+            self.f_inv, self.space2, self.space1
+        ).is_continuous()
 
         # A homeomorphism requires both f and f_inv to be continuous
         return is_f_continuous and is_f_inv_continuous
@@ -233,7 +252,6 @@ def _():
     topology_Y = [set(), {"a"}, {"a", "b"}, Y]
     space_Y = TopologicalSpace(Y, topology_Y)
 
-
     # Define a bijective function f from X to Y
     def f(x):
         """
@@ -241,7 +259,6 @@ def _():
         """
         mapping = {1: "a", 2: "b", 3: "c"}
         return mapping[x]
-
 
     # Define the inverse of f
     def f_inv(y):
@@ -251,10 +268,11 @@ def _():
         inverse_mapping = {"a": 1, "b": 2, "c": 3}
         return inverse_mapping[y]
 
-
     # Check if f and f_inv form a homeomorphism between space_X and space_Y
     homeo_f_X_Y = Homeomorphism(f, f_inv, space_X, space_Y)
-    print(homeo_f_X_Y.is_homeomorphism())  # Output: True or False depending on the topology
+    print(
+        homeo_f_X_Y.is_homeomorphism()
+    )  # Output: True or False depending on the topology
     return f, f_inv
 
 

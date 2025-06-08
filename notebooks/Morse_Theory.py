@@ -7,7 +7,20 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
+
+
+@app.cell
+def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
 
 
 @app.cell(hide_code=True)
@@ -42,6 +55,7 @@ def _(mo):
 def _():
     import numpy as np
     import matplotlib.pyplot as plt
+
     return np, plt
 
 
@@ -61,7 +75,6 @@ def _(np):
         """
         return np.where(np.isclose(f, c, atol=atol))
 
-
     def identify_critical_points(f, x):
         """
         Identify the critical points by checking where the gradient of the function is approximately zero.
@@ -77,7 +90,6 @@ def _(np):
         gradient = np.gradient(f, x)
         # Use compute_level_set to find where the gradient is close to zero (critical points)
         return compute_level_set(gradient, 0)
-
 
     def construct_reeb_graph(f, x):
         """
@@ -96,13 +108,14 @@ def _(np):
         critical_points = identify_critical_points(f, x)
 
         # Construct vertices as the (x, f(x)) pairs for the critical points
-        vertices = [(x[i], f[i]) for i in critical_points[0]]  # critical_points is a tuple from np.where()
+        vertices = [
+            (x[i], f[i]) for i in critical_points[0]
+        ]  # critical_points is a tuple from np.where()
 
         # Construct edges by connecting consecutive critical points
         edges = [(vertices[i], vertices[i + 1]) for i in range(len(vertices) - 1)]
 
         return {"vertices": vertices, "edges": edges}
-
 
     def anomaly_detection_reeb_graph(f, x):
         """
@@ -129,7 +142,6 @@ def _(np):
 
         return anomalies
 
-
     def is_anomalous(vertex):
         """
         Example condition for classifying an anomaly. This function flags points with function
@@ -142,6 +154,7 @@ def _(np):
             True if the vertex is considered anomalous, False otherwise.
         """
         return vertex[1] > 0.8 or vertex[1] < -0.8
+
     return (
         anomaly_detection_reeb_graph,
         compute_level_set,
@@ -181,12 +194,16 @@ def _(anomalies, f_data, np, plt, x_data):
     plt.scatter(x_data, f_data, label="Data Points", color="blue", s=1)
 
     # Plot the gradient of the function for reference
-    plt.scatter(x_data, np.gradient(f_data, x_data), label="Gradient", color="green", s=1)
+    plt.scatter(
+        x_data, np.gradient(f_data, x_data), label="Gradient", color="green", s=1
+    )
 
     # Separate the anomalies into x and y components for plotting
     if anomalies:
         anomalies_x, anomalies_y = zip(*anomalies)
-        plt.scatter(anomalies_x, anomalies_y, label="Anomalies", color="red", marker="x", s=100)
+        plt.scatter(
+            anomalies_x, anomalies_y, label="Anomalies", color="red", marker="x", s=100
+        )
 
     # Add labels and a legend
     plt.xlabel("x_data")
@@ -203,7 +220,6 @@ def _(anomalies, f_data, np, plt, x_data):
 def _(np):
     from scipy.linalg import eigh
 
-
     def morse_function_example(x):
         """
         Example of a Morse function in 2D.
@@ -214,7 +230,6 @@ def _(np):
             The function value at the given point.
         """
         return x[0] ** 3 - 3 * x[0] * x[1] ** 2
-
 
     def compute_gradient_at_point(f, x):
         """
@@ -228,7 +243,9 @@ def _(np):
         Returns:
             grad: The gradient vector (array) at the given point.
         """
-        epsilon = np.sqrt(np.finfo(float).eps)  # Small perturbation for finite differences
+        epsilon = np.sqrt(
+            np.finfo(float).eps
+        )  # Small perturbation for finite differences
         grad = np.zeros_like(x)  # Initialize the gradient vector
 
         # Loop over each variable (dimension) to compute partial derivatives
@@ -238,7 +255,6 @@ def _(np):
             grad[i] = (f(x_step) - f(x)) / epsilon  # Approximate partial derivative
 
         return grad
-
 
     def compute_gradient_on_grid(f, *grid_points):
         """
@@ -265,7 +281,9 @@ def _(np):
         while not it.finished:
             # Extract the point in n-dimensions (e.g., [x, y, z] for 3D)
             point = np.array([m[it.multi_index] for m in mesh])
-            grad = compute_gradient_at_point(f, point)  # Compute gradient at the current point
+            grad = compute_gradient_at_point(
+                f, point
+            )  # Compute gradient at the current point
 
             # Assign the computed gradient components to the respective arrays
             for i in range(len(grid_points)):
@@ -274,7 +292,6 @@ def _(np):
             it.iternext()
 
         return grad_components
-
 
     def find_critical_points(*grad_components, tolerance=1e-3):
         """
@@ -292,10 +309,11 @@ def _(np):
 
         # Check if each gradient component is close to zero for all variables
         for grad in grad_components:
-            is_critical_point &= np.abs(grad) < tolerance  # Logical AND for all components
+            is_critical_point &= (
+                np.abs(grad) < tolerance
+            )  # Logical AND for all components
 
         return is_critical_point
-
 
     def compute_hessian(f, x):
         """
@@ -310,11 +328,15 @@ def _(np):
         """
         x = np.asarray(x, dtype=float)  # Ensure x is an array
         hessian = np.zeros((len(x), len(x)))  # Initialize Hessian matrix
-        epsilon = np.sqrt(np.finfo(float).eps)  # Small perturbation for finite differences
+        epsilon = np.sqrt(
+            np.finfo(float).eps
+        )  # Small perturbation for finite differences
 
         # Loop over each combination of variables (i, j) to compute second-order partial derivatives
         for i in range(len(x)):
-            for j in range(i, len(x)):  # Only compute upper triangle (Hessian is symmetric)
+            for j in range(
+                i, len(x)
+            ):  # Only compute upper triangle (Hessian is symmetric)
                 # Define a function to perturb the variables by epsilon
                 def shift_epsilon(e_i, e_j):
                     x_new = x.copy()
@@ -323,14 +345,18 @@ def _(np):
                     return f(x_new)
 
                 # Compute second-order partial derivatives using central differences
-                hessian[i, j] = (shift_epsilon(epsilon, epsilon) - shift_epsilon(epsilon, 0) - shift_epsilon(0, epsilon) + shift_epsilon(0, 0)) / (epsilon**2)
+                hessian[i, j] = (
+                    shift_epsilon(epsilon, epsilon)
+                    - shift_epsilon(epsilon, 0)
+                    - shift_epsilon(0, epsilon)
+                    + shift_epsilon(0, 0)
+                ) / (epsilon**2)
 
                 # Copy the value to the lower triangular part (Hessian is symmetric)
                 if i != j:
                     hessian[j, i] = hessian[i, j]
 
         return hessian
-
 
     def is_morse(f, x):
         """
@@ -350,6 +376,7 @@ def _(np):
             return np.all(eigvals != 0)  # Return True if all eigenvalues are non-zero
         except np.linalg.LinAlgError:
             return False  # If Hessian computation fails, it's not a Morse point
+
     return (
         compute_gradient_on_grid,
         find_critical_points,
