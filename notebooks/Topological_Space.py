@@ -11,7 +11,7 @@ def _():
     return (mo,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     nav_menu = mo.nav_menu(
         {
@@ -46,7 +46,7 @@ def _(mo):
     We first define a `TopologicalSpace` class that models a topological space $(X, \mathcal{T})$, where:
 
     - $X$ is a set of points,
-    - $\mathcal{T}$ is a collection of subsets of X called the open sets,
+    - $\mathcal{T}$ is a collection of subsets of $X$ called the open sets,
     - and $\mathcal{T}$ satisfies the standard axioms: it contains the empty set and the whole space, is closed under arbitrary unions, and closed under finite intersections.
 
     Since we are using finite sets, we verify these conditions exhaustively.
@@ -113,9 +113,7 @@ def _(mo):
         r"""
     ## Continuity
 
-    We then define a `ContinuousFunction` class that models a continuous map between two topological spaces. The definition follows the usual "preimage" criterion:
-
-    $f : X \to Y$ is continuous if $\forall V \in \mathcal{T}_Y$, $f^{-1}(V) \in \mathcal{T}_X$.
+    We then define a `ContinuousFunction` class that models a continuous map between two topological spaces. The definition follows the usual "preimage" criterion: $$f : X \to Y\text{ is continuous if }\forall V \in \mathcal{T}_Y, f^{-1}(V) \in \mathcal{T}_X.$$
 
     The class explicitly computes the preimages of all open sets and verifies whether these are open in the domain topology.
 
@@ -225,12 +223,12 @@ def _(mo):
 
     We construct two toy spaces:
 
-     - $X = \lbrace 1, 2, 3 \rbrace$ with topology $\mathcal{T}_X = \lbrace\emptyset, \lbrace1\rbrace, \lbrace1, 2\rbrace, X\rbrace$;
-     - $Y = \lbrace\text{"a"}, \text{"b"}, \text{"c"}\rbrace$ with topology $\mathcal{T}_Y = \lbrace\emptyset, \lbrace\text{"a"}\rbrace, \lbrace\text{"a"}, \text{"b"}\rbrace, Y\rbrace$,
+     - $X = \lbrace 1, 2, 3 \rbrace$ with topology $\mathcal{T}_X = \lbrace \emptyset, \lbrace 1 \rbrace, \lbrace 1, 2 \rbrace, X \rbrace$;
+     - $Y = \lbrace a, b, c \rbrace$ with topology $\mathcal{T}_Y = \lbrace \emptyset, \lbrace a \rbrace, \lbrace a, b \rbrace, Y \rbrace$,
 
     and define a bijection between them by:
 
-    $f(1) = "a"$, $f(2) = "b"$, $f(3) = "c"$.
+    $f(1) = a$, $f(2) = b$, $f(3) = c$.
 
     The code verifies that this mapping is indeed a homeomorphism.
     """
@@ -282,7 +280,7 @@ def _(mo):
         r"""
     ## Non-Example
 
-    The following is a non-example: $M$ and $N$, although have the exact same elements with $X$ and $Y$ together with the same functions, are not homeomorphic to each other as the underlying topology has changed. For example, preimage of the set $\lbrace "a" \rbrace$ under $f$ is $\lbrace 1 \rbrace$ which is not a member of $\mathcal{T}_M$.
+    The following is a non-example: $M$ and $N$, although have the exact same elements with $X$ and $Y$ together with the same functions, are not homeomorphic to each other as the underlying topology has changed. For example, preimage of the set $\lbrace a \rbrace$ under $f$ is $\lbrace 1 \rbrace$ which is not a member of $\mathcal{T}_M$.
     """
     )
     return

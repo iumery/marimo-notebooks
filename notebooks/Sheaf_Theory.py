@@ -31,7 +31,7 @@ def _(mo):
 
     In this notebook, we give a first glimpse of sheaf theory using a simple example over a simplicial complex.
 
-    While topological data analysis often studies global topological invariants (like homology groups), sheaf theory allows us to systematically handle **local data attached to spaces** and study how this local information can (or cannot) be assembled into global information.
+    While topological data analysis often studies global topological invariants (like homology groups), sheaf theory allows us to systematically handle local data attached to spaces and study how this local information can (or cannot) be assembled into global information.
     """
     )
     return
@@ -45,8 +45,8 @@ def _(mo):
 
     Roughly speaking, a sheaf is a data structure that assigns:
 
-    - Local data to open sets (or simplices, in our discrete setting).
-    - Restriction maps that allow data on larger sets to be restricted to smaller subsets.
+    - Local data to open sets (or simplices, in our discrete setting);
+    - Restriction maps that allow data on larger sets to be restricted to smaller subsets;
     - Consistency conditions that govern how local data can be glued together into global data.
 
     In practice, sheaves are used to model situations where different parts of a system carry partial information that must be compatible where they overlap.
@@ -61,12 +61,9 @@ def _(mo):
         r"""
     ## Sheaf Model in This Notebook
 
-    We model a sheaf over a simplicial complex.
+    We model a sheaf over a simplicial complex. The underlying space is a simplicial complex: a set of vertices, edges, and higher-dimensional simplices. Local data is assigned to each simplex as a list of values, one for each vertex of that simplex. A restriction map allows data on higher-dimensional simplices to be projected down to faces by selecting only the data corresponding to shared vertices.
 
-    - The underlying space is a simplicial complex: a set of vertices, edges, and higher-dimensional simplices;
-    - Local data is assigned to each simplex as a list of values, one for each vertex of that simplex;
-    - A restriction map allows data on higher-dimensional simplices to be projected down to faces by selecting only the data corresponding to shared vertices;
-    - The sheaf is **consistent** if, for every simplex and its faces, the restricted data matches the local data assigned to the faces.
+    The sheaf is said to be consistent if for every simplex and its faces, the restricted data matches the local data assigned to the faces.
 
     In this simple model:
 
@@ -199,14 +196,13 @@ def _(mo):
     - Triangle: $(1,2,3)$.
 
     We assign local data as:
+
     - Edge $(1,2)$: $[10, 20]$ (meaning vertex $1$ has $10$, vertex $2$ has $20$).
     - Edge $(2,3)$: $[20, 30]$.
     - Edge $(1,3)$: $[10, 30]$.
     - Triangle $(1,2,3)$: $[10, 20, 30]$.
 
-    The restriction maps project data from higher simplices to their faces:
-    - For example, restricting $[10, 20, 30]$ from the triangle to edge $(1,2)$ gives $[10, 20]$, which matches the assigned data on $(1,2)$.
-    - Similar checks succeed for all faces.
+    The restriction maps project data from higher simplices to their faces. For example, restricting $[10, 20, 30]$ from the triangle to edge $(1,2)$ gives $[10, 20]$, which matches the assigned data on $(1,2)$. Similar checks succeed for all faces.
 
     Since all restriction maps agree with assigned data, the sheaf is consistent, and we successfully obtain a global section: the full assignment of data across all simplices.
     """
@@ -250,7 +246,7 @@ def _(mo):
     The simplicial complex is the same as before.
 
     This time, we assign local data:
-    
+
     - Edge $(1,2)$: $[10, 20]$.
     - Edge $(2,3)$: $[20, -30]$.
     - Edge $(1,3)$: $[10, 30]$.
@@ -299,9 +295,9 @@ def _(mo):
         r"""
     ## What Does Inconsistency Mean in Practice?
 
-    Intuitively, inconsistency means that local pieces of data cannot be glued together into a coherent global picture. The data assigned to lower-dimensional simplices is incompatible with the data induced from higher-dimensional ones. In many applications (sensor networks, distributed systems, multi-scale data), inconsistency signals conflicts or contradictions in local observations.
+    Intuitively, inconsistency means that local pieces of data cannot be glued together into a coherent global picture. The data assigned to lower-dimensional simplices is incompatible with the data induced from higher-dimensional ones. In many applications, inconsistency signals conflicts or contradictions in local observations.
 
-    In this simplified example, you can think of it as: The triangle “wants” vertex $3$ to have value $30$. The edge $(2,3)$ instead claims vertex $3$ has value $-30$. Both cannot be true simultaneously, so no global assignment exists that satisfies all local constraints.
+    In this simplified example, you can think of it as: The triangle "wants" vertex $3$ to have value $30$. The edge $(2,3)$ instead claims vertex $3$ has value $-30$. Both cannot be true simultaneously, so no global assignment exists that satisfies all local constraints.
     """
     )
     return
@@ -313,16 +309,16 @@ def _(mo):
         r"""
     ## How Sheaf Theory Relates to TDA
 
-    While much of topological data analysis focuses on global invariants like homology or persistent homology, sheaf theory offers a complementary perspective. It provides a flexible way to encode **local data constraints** over a topological space or a simplicial complex.
+    While much of topological data analysis focuses on global invariants like homology or persistent homology, sheaf theory offers a complementary perspective. It provides a flexible way to encode local data constraints over a topological space or a simplicial complex.
 
     In TDA, sheaves can model:
 
-    - Local measurements attached to different regions of data.
-    - Multi-scale or hierarchical data integration.
-    - Compatibility conditions between local computations.
+    - Local measurements attached to different regions of data;
+    - Multi-scale or hierarchical data integration;
+    - Compatibility conditions between local computations;
     - Obstructions to building global structures from local information.
 
-    Sheaves have been applied in sensor networks, distributed systems, multiscale geometry, and even generalized persistent homology frameworks. They allow TDA to go beyond simply measuring the "shape" of data, and begin addressing how information is organized and consistent across different parts of a dataset.
+    Sheaves have been applied in sensor networks, distributed systems, multiscale geometry, and generalized persistent homology frameworks. They allow TDA to go beyond simply measuring the "shape" of data, and begin addressing how information is organized and consistent across different parts of a dataset.
     """
     )
     return

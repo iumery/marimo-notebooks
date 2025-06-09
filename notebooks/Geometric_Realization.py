@@ -29,9 +29,9 @@ def _(mo):
         r"""
     # Abstract Simplicial Complexes and Geometric Realization
 
-    In topological data analysis (TDA), we often construct simplicial complexes from data, but it’s important to distinguish between two closely related notions:
+    In topological data analysis, we often construct simplicial complexes from data, but it's important to distinguish between two closely related notions:
 
-    - Abstract simplicial complexes: purely combinatorial structures.
+    - Abstract simplicial complexes: purely combinatorial structures;
     - Geometric realizations: embeddings of these combinatorial structures into Euclidean space.
 
     This notebook provides a simple illustration of both concepts.
@@ -89,6 +89,7 @@ def _():
         """
         Perform geometric realization of a simplex into Euclidean space.
         (Random placement for illustration.)
+        Mathematically, one should check if the resulting random points are in a general position, but we omit the procedure here.
         """
         return np.random.rand(len(simplex), dimension)
 

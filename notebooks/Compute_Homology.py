@@ -840,7 +840,7 @@ def _(mo):
 
     The second complex resembles two overlapping triangles glued along a shared edge, which produces a different homological structure compared to the first complex.
 
-    We compute homology for both complexes using two different methods: directly via chain complexes and via persistence pairs. Finally, we compute the bottleneck distance between their persistence diagrams to compare the topological summaries of the two complexes.
+    We compute homology for both complexes using two different methods: directly via chain complexes (using `ChainComplex`) and via persistence pairs (using `SimplicialComplex`). Finally, we compute the bottleneck distance between their persistence diagrams to compare the topological summaries of the two complexes.
     """
     )
     return

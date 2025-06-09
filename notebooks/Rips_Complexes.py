@@ -29,7 +29,7 @@ def _(mo):
         r"""
     # Vietoris-Rips Complex: Constructing Simplicial Complexes from Point Clouds
 
-    Topological data analysis (TDA) provides a way to study the "shape" of data. At the heart of TDA lies the idea of building simplicial complexes from finite sets of points in metric spaces. In this notebook, we focus on one of the most widely used constructions in practice: the Vietoris-Rips complex.
+    Topological data analysis provides a way to study the "shape" of data. At the heart of TDA lies the idea of building simplicial complexes from finite sets of points in metric spaces. In this notebook, we focus on one of the most widely used constructions in practice: the Vietoris-Rips complex.
     """
     )
     return
@@ -77,15 +77,13 @@ def _(mo):
         r"""
     ## Code Structure
 
-    In this notebook:
-    - We define a `VietorisRipsComplex` class that:
-      - Accepts a point cloud;
-      - Computes the Vietoris-Rips complex at any chosen scale;
-      - Supports visualization in both 2D and 3D;
-    - We fully separate:
-      - The mathematical logic of complex construction;
-      - The visualization logic (with both static and interactive options);
-      - The class supports arbitrary distance metrics via the `scipy.spatial.distance package`.
+    In this notebook, we define a `VietorisRipsComplex` class that:
+
+    - Accepts a point cloud;
+    - Computes the Vietoris-Rips complex at any chosen scale;
+    - Supports visualization in both 2D and 3D.
+
+    We fully separate the mathematical logic of complex construction, the visualization logic (with both static and interactive options), and the class supports arbitrary distance metrics via the `scipy.spatial.distance package`.
     """
     )
     return
@@ -337,11 +335,11 @@ def _(mo):
         r"""
     ## The Limitation of Single Radius and the Idea of Filtrations
 
-    As we can see above, a big drawback of building a simplicial complex at a single scale parameter $r$ is that the resulting complex depends heavily on this arbitrary choice. If $r$ is too small, the complex may be disconnected and fail to capture any meaningful structure. If $r$ is too large, the complex may quickly become contractible and lose all useful topological information.
+    As we can see in the above plots, a big drawback of building a simplicial complex at a single scale parameter $r$ is that the resulting complex depends heavily on this arbitrary choice. If $r$ is too small, the complex may be disconnected and fail to capture any meaningful structure. If $r$ is too large, the complex may quickly become contractible and lose all useful topological information.
 
     To address this, TDA works not with a single complex, but with a filtration, a nested sequence of complexes, indexed by scale parameter.
 
-    For example, a Vietoris-Rips filtration is a family: $$\mathbb{VR}^{r_1}(P) \subseteq \mathbb{VR}^{r_2}(P) \subseteq \cdots \subseteq \mathbb{VR}^{r_n}(P)$$ as $r_1 < r_2 < \cdots < r_n$.
+    For example, a Vietoris-Rips filtration is a family: $$\mathbb{VR}^{r_1}(P) \subseteq \mathbb{VR}^{r_2}(P) \subseteq \cdots \subseteq \mathbb{VR}^{r_n}(P)$$ as $r_1 \le r_2 \le \cdots \le r_n$.
 
     This allows us to track how topological features (connected components, loops, voids, etc.) appear and disappear as $r$ varies, a process known as persistent homology.
     """

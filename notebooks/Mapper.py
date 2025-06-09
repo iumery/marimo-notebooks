@@ -33,10 +33,10 @@ def _(mo):
 
     Mapper is a method for extracting a simplified topological summary (usually a graph) from high-dimensional data. Unlike simplicial complexes such as Vietoris-Rips or Čech, Mapper can be thought of as a combination of:
 
-    - Filtering (via a chosen lens function)
-    - Covering (via intervals or overlapping bins)
-    - Clustering (inside each bin)
-    - Nerve construction (on the clustered cover)
+    - Filtering (via a chosen lens function);
+    - Covering (via intervals or overlapping bins);
+    - Clustering (inside each bin);
+    - Nerve construction (on the clustered cover).
     """
     )
     return
@@ -50,14 +50,14 @@ def _(mo):
 
     The Mapper algorithm takes as input:
 
-    - A point cloud in some metric space.
-    - A filter function (or lens) that assigns scalar values to the points.
-    - A covering of the filter function's range (usually overlapping intervals).
+    - A point cloud in some metric space,
+    - A filter function (or lens) that assigns scalar values to the points,
+    - A covering of the filter function's range (usually overlapping intervals),
     - A clustering algorithm to partition points inside each interval.
 
     It outputs a simplicial complex (often just a 1-skeleton graph) where:
 
-    - Vertices correspond to clusters.
+    - Vertices correspond to clusters,
     - Edges are drawn between overlapping clusters.
 
     Mapper can reveal global structure such as loops, branches, and connected components, even in noisy high-dimensional data.
@@ -118,9 +118,9 @@ def _(np, plt):
 def _(mo):
     mo.md(
         r"""
-    In the above code, we simulate data sampled from a circle in the plane, with added Gaussian noise. This provides a simple dataset with a clear one-dimensional topological structure (a loop), making it a good candidate for demonstrating Mapper.
+    In the above code, we simulate data sampled from a circle in the plane, with added Gaussian noise. This provides a simple dataset with a clear one-dimensional topological structure (several loops), making it a good candidate for demonstrating Mapper.
 
-    The data points lie approximately along the unit circle, but are randomly perturbed to simulate measurement noise often found in real-world data.
+    The data points lie approximately along the unit circle and a vertical segment, but are randomly perturbed to simulate measurement noise often found in real-world data.
     """
     )
     return
@@ -212,10 +212,10 @@ def _(np, plt, point_cloud):
 def _(mo):
     mo.md(
         r"""
-    Before running Mapper, we normalize the data so that both coordinates lie approximately in the interval $[0, 1]$. This step ensures that:
+    Before running Mapper, we normalize the data so that both coordinates lie (approximately) in the interval $[0, 1]$. This step ensures that:
 
-    - The filter function operates on a consistent scale.
-    - The cover intervals are well-aligned to the data range.
+    - The filter function operates on a consistent scale;
+    - The cover intervals are well-aligned to the data range;
     - The clustering threshold works reasonably across dimensions.
 
     Normalization is a very common preprocessing step in real-world TDA pipelines to make parameter choices more meaningful.
@@ -341,11 +341,11 @@ def _(mo):
         r"""
     In this example, we use a simple coordinate projection (the first coordinate) as the filter function. In general, any scalar-valued function can serve as a filter, including:
 
-    - Density estimators
-    - PCA projections
-    - Distance to landmark sets
-    - Eccentricity functions
-    - Domain-specific measurements
+    - Density estimators,
+    - PCA projections,
+    - Distance to landmark sets,
+    - Eccentricity functions,
+    - Domain-specific measurements.
 
     Choosing an appropriate filter function is one of the key modeling decisions when using Mapper.
     """
@@ -593,7 +593,8 @@ def _(mo):
 
     - The original noisy circle has a strong one-dimensional loop structure;
     - The Mapper graph successfully captures this loop as a cycle in the graph;
-    - The number of intervals, amount of overlap, and clustering threshold all affect the resulting Mapper graph.
+
+    Note that the number of intervals, amount of overlap, and clustering threshold all affect the resulting Mapper graph.
     """
     )
     return
