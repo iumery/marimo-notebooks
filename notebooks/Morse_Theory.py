@@ -7,11 +7,10 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
-
     return (mo,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     nav_menu = mo.nav_menu(
         {
@@ -27,11 +26,9 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-    # Reeb Graphs and Morse Theory
+    # Morse Theory and Reeb Graph: Critical Point Detection
 
-    In this notebook, we introduce some basic ideas from Morse theory and Reeb graphs, both of which are closely connected to topological data analysis.
-
-    Reeb graphs are a way to summarize how level sets of a function change as the function value varies. They capture the essential topological changes of the sublevel sets and give a compressed representation of the space with respect to a chosen function.
+    This notebook explores simple applications of Morse theory and Reeb graphs for detecting critical points in both 1D and 2D functions. The code builds everything directly from scratch to illustrate the key ideas.
     """
     )
     return
@@ -41,11 +38,11 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-    ## Morse Theory and Reeb Graphs
+    ## Morse Theory in a Nutshell
 
-    Morse theory studies the topology of manifolds by analyzing smooth functions defined on them. Given a Morse function $f : M \to \mathbb{R}$, the changes in topology of the sublevel sets $M_a = \{x \in M \mid f(x) \leq a\}$ occur only at the critical values of $f$.
+    In Morse theory, we analyze how the topology of level sets changes as a function varies. Critical points are the places where the gradient (derivative) of the function vanishes, and these points typically signal changes in topology.
 
-    The Reeb graph of a function $f$ is built by contracting each connected component of its level sets to a point. It summarizes how these components merge or split as the function value changes.
+    At each critical point, the Hessian matrix (second derivative information) tells us about the type of critical point (minimum, maximum, saddle). A Morse function is one where all critical points are non-degenerate, meaning the Hessian has no zero eigenvalues.
     """
     )
     return
@@ -55,7 +52,6 @@ def _(mo):
 def _():
     import numpy as np
     import matplotlib.pyplot as plt
-
     return np, plt
 
 
@@ -75,6 +71,7 @@ def _(np):
         """
         return np.where(np.isclose(f, c, atol=atol))
 
+
     def identify_critical_points(f, x):
         """
         Identify the critical points by checking where the gradient of the function is approximately zero.
@@ -90,6 +87,7 @@ def _(np):
         gradient = np.gradient(f, x)
         # Use compute_level_set to find where the gradient is close to zero (critical points)
         return compute_level_set(gradient, 0)
+
 
     def construct_reeb_graph(f, x):
         """
@@ -108,14 +106,13 @@ def _(np):
         critical_points = identify_critical_points(f, x)
 
         # Construct vertices as the (x, f(x)) pairs for the critical points
-        vertices = [
-            (x[i], f[i]) for i in critical_points[0]
-        ]  # critical_points is a tuple from np.where()
+        vertices = [(x[i], f[i]) for i in critical_points[0]]  # critical_points is a tuple from np.where()
 
         # Construct edges by connecting consecutive critical points
         edges = [(vertices[i], vertices[i + 1]) for i in range(len(vertices) - 1)]
 
         return {"vertices": vertices, "edges": edges}
+
 
     def anomaly_detection_reeb_graph(f, x):
         """
@@ -142,6 +139,7 @@ def _(np):
 
         return anomalies
 
+
     def is_anomalous(vertex):
         """
         Example condition for classifying an anomaly. This function flags points with function
@@ -154,13 +152,28 @@ def _(np):
             True if the vertex is considered anomalous, False otherwise.
         """
         return vertex[1] > 0.8 or vertex[1] < -0.8
-
     return (
         anomaly_detection_reeb_graph,
         compute_level_set,
         construct_reeb_graph,
         identify_critical_points,
     )
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ## 1D Example: Reeb Graph and Anomaly Detection on a Sine Wave
+
+    In the first example, we consider the function: $$f(x) = \sin(x).$$ We sample this function densely over the interval $[0, 10\pi]$. Using numerical gradients, we locate its critical points, construct a simple Reeb graph connecting these critical points, and perform basic anomaly detection.
+
+    Here:
+    - Critical points occur when the gradient is close to zero (approximately where $\cos(x) = 0$);
+    - Anomalies are defined using a trivial condition: we mark any critical point where $f(x)$ exceeds 0.8 or falls below -0.8.
+    """
+    )
+    return
 
 
 @app.cell
@@ -194,16 +207,12 @@ def _(anomalies, f_data, np, plt, x_data):
     plt.scatter(x_data, f_data, label="Data Points", color="blue", s=1)
 
     # Plot the gradient of the function for reference
-    plt.scatter(
-        x_data, np.gradient(f_data, x_data), label="Gradient", color="green", s=1
-    )
+    plt.scatter(x_data, np.gradient(f_data, x_data), label="Gradient", color="green", s=1)
 
     # Separate the anomalies into x and y components for plotting
     if anomalies:
         anomalies_x, anomalies_y = zip(*anomalies)
-        plt.scatter(
-            anomalies_x, anomalies_y, label="Anomalies", color="red", marker="x", s=100
-        )
+        plt.scatter(anomalies_x, anomalies_y, label="Anomalies", color="red", marker="x", s=100)
 
     # Add labels and a legend
     plt.xlabel("x_data")
@@ -216,9 +225,30 @@ def _(anomalies, f_data, np, plt, x_data):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ## 2D Example: Morse Theory on a Surface
+
+    Next, we analyze a classic 2D function: $$f(x, y) = x^3 - 3xy^2.$$ This is often called the "monkey saddle" type surface. It contains critical points where the gradient vanishes, and some of them are Morse critical points.
+
+    We generate a grid over $[-5, 5] \times [-5, 5]$, compute the gradient numerically across the grid, and then:
+
+    - Identify critical points where the gradient is approximately zero;
+    - Compute the Hessian matrix at each critical point;
+    - Check whether the Hessian has zero eigenvalues to determine if the point is Morse (non-degenerate).
+
+    We see on the plot that the critical point $(0, 0)$ is Morse.
+    """
+    )
+    return
+
+
 @app.cell
 def _(np):
     from scipy.linalg import eigh
+
 
     def morse_function_example(x):
         """
@@ -230,6 +260,7 @@ def _(np):
             The function value at the given point.
         """
         return x[0] ** 3 - 3 * x[0] * x[1] ** 2
+
 
     def compute_gradient_at_point(f, x):
         """
@@ -243,9 +274,7 @@ def _(np):
         Returns:
             grad: The gradient vector (array) at the given point.
         """
-        epsilon = np.sqrt(
-            np.finfo(float).eps
-        )  # Small perturbation for finite differences
+        epsilon = np.sqrt(np.finfo(float).eps)  # Small perturbation for finite differences
         grad = np.zeros_like(x)  # Initialize the gradient vector
 
         # Loop over each variable (dimension) to compute partial derivatives
@@ -255,6 +284,7 @@ def _(np):
             grad[i] = (f(x_step) - f(x)) / epsilon  # Approximate partial derivative
 
         return grad
+
 
     def compute_gradient_on_grid(f, *grid_points):
         """
@@ -281,9 +311,7 @@ def _(np):
         while not it.finished:
             # Extract the point in n-dimensions (e.g., [x, y, z] for 3D)
             point = np.array([m[it.multi_index] for m in mesh])
-            grad = compute_gradient_at_point(
-                f, point
-            )  # Compute gradient at the current point
+            grad = compute_gradient_at_point(f, point)  # Compute gradient at the current point
 
             # Assign the computed gradient components to the respective arrays
             for i in range(len(grid_points)):
@@ -292,6 +320,7 @@ def _(np):
             it.iternext()
 
         return grad_components
+
 
     def find_critical_points(*grad_components, tolerance=1e-3):
         """
@@ -309,11 +338,10 @@ def _(np):
 
         # Check if each gradient component is close to zero for all variables
         for grad in grad_components:
-            is_critical_point &= (
-                np.abs(grad) < tolerance
-            )  # Logical AND for all components
+            is_critical_point &= np.abs(grad) < tolerance  # Logical AND for all components
 
         return is_critical_point
+
 
     def compute_hessian(f, x):
         """
@@ -328,15 +356,11 @@ def _(np):
         """
         x = np.asarray(x, dtype=float)  # Ensure x is an array
         hessian = np.zeros((len(x), len(x)))  # Initialize Hessian matrix
-        epsilon = np.sqrt(
-            np.finfo(float).eps
-        )  # Small perturbation for finite differences
+        epsilon = np.sqrt(np.finfo(float).eps)  # Small perturbation for finite differences
 
         # Loop over each combination of variables (i, j) to compute second-order partial derivatives
         for i in range(len(x)):
-            for j in range(
-                i, len(x)
-            ):  # Only compute upper triangle (Hessian is symmetric)
+            for j in range(i, len(x)):  # Only compute upper triangle (Hessian is symmetric)
                 # Define a function to perturb the variables by epsilon
                 def shift_epsilon(e_i, e_j):
                     x_new = x.copy()
@@ -345,18 +369,14 @@ def _(np):
                     return f(x_new)
 
                 # Compute second-order partial derivatives using central differences
-                hessian[i, j] = (
-                    shift_epsilon(epsilon, epsilon)
-                    - shift_epsilon(epsilon, 0)
-                    - shift_epsilon(0, epsilon)
-                    + shift_epsilon(0, 0)
-                ) / (epsilon**2)
+                hessian[i, j] = (shift_epsilon(epsilon, epsilon) - shift_epsilon(epsilon, 0) - shift_epsilon(0, epsilon) + shift_epsilon(0, 0)) / (epsilon**2)
 
                 # Copy the value to the lower triangular part (Hessian is symmetric)
                 if i != j:
                     hessian[j, i] = hessian[i, j]
 
         return hessian
+
 
     def is_morse(f, x):
         """
@@ -376,7 +396,6 @@ def _(np):
             return np.all(eigvals != 0)  # Return True if all eigenvalues are non-zero
         except np.linalg.LinAlgError:
             return False  # If Hessian computation fails, it's not a Morse point
-
     return (
         compute_gradient_on_grid,
         find_critical_points,
@@ -448,6 +467,20 @@ def _(X, Y, Z, critical_points_surface, morse_points, plt):
     plt.ylabel("y")
     plt.legend()
     plt.show()
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ## Why This Belongs to TDA
+
+    Morse theory forms one of the classical foundations for topological data analysis. Persistent homology, for example, can be seen as a generalization of Morse theory, where sublevel set filtrations are used to study the evolution of topological features.
+
+    Reeb graphs also directly arise from Morse theory by tracking how connected components of level sets change as the function varies. In many data applications, Reeb graphs provide a simple yet powerful way to summarize the global shape of scalar fields, time series, and multidimensional datasets.
+    """
+    )
     return
 
 

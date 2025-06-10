@@ -7,11 +7,10 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
-
     return (mo,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     nav_menu = mo.nav_menu(
         {
@@ -84,9 +83,7 @@ def _():
             Args:
                 simplicial_complex (list of tuples): The simplicial complex, a collection of simplices.
             """
-            self.simplicial_complex = (
-                simplicial_complex  # The simplicial complex structure
-            )
+            self.simplicial_complex = simplicial_complex  # The simplicial complex structure
             self.data = {}  # Dictionary to store data assigned to simplices
 
         def assign_data(self, simplex, local_data):
@@ -107,15 +104,9 @@ def _():
             Returns:
                 dict or None: The restricted data if simplex2 is a face of simplex1, else None.
             """
-            if set(simplex2).issubset(
-                set(simplex1)
-            ):  # Check if simplex2 is a face of simplex1
+            if set(simplex2).issubset(set(simplex1)):  # Check if simplex2 is a face of simplex1
                 # Restrict data by projecting onto the shared vertices
-                restricted_data = {
-                    vertex: self.data[simplex1][i]
-                    for i, vertex in enumerate(simplex1)
-                    if vertex in simplex2
-                }
+                restricted_data = {vertex: self.data[simplex1][i] for i, vertex in enumerate(simplex1) if vertex in simplex2}
                 return restricted_data
             return None  # Return None if simplex2 is not a face of simplex1
 
@@ -125,30 +116,18 @@ def _():
             Returns:
                 bool: True if the sheaf is consistent, False otherwise.
             """
-            for (
-                sup
-            ) in (
-                self.simplicial_complex
-            ):  # Iterate over all simplices (sup: higher simplex)
-                for (
-                    sub
-                ) in (
-                    self.simplicial_complex
-                ):  # Iterate over all simplices (sub: lower simplex)
-                    if (
-                        set(sub).issubset(set(sup)) and sup != sub
-                    ):  # Check if sub is a face of sup
+            for sup in self.simplicial_complex:  # Iterate over all simplices (sup: higher simplex)
+                for sub in self.simplicial_complex:  # Iterate over all simplices (sub: lower simplex)
+                    if set(sub).issubset(set(sup)) and sup != sub:  # Check if sub is a face of sup
                         # Restrict data from sup to sub
                         restricted_data = self.restriction_map(sup, sub)
                         if restricted_data:  # If restriction is valid
                             # Construct sub's actual data for comparison
-                            sub_data = {
-                                vertex: self.data[sub][i]
-                                for i, vertex in enumerate(sub)
-                            }
+                            sub_data = {vertex: self.data[sub][i] for i, vertex in enumerate(sub)}
                             if restricted_data != sub_data:  # Check consistency
                                 return False  # Inconsistent if restriction does not match sub's data
             return True  # Return True if all checks pass
+
 
     def construct_sheaf(simplicial_complex, local_data):
         """
@@ -160,11 +139,10 @@ def _():
             sheaf_data: The constructed sheaf.
         """
         sheaf = sheaf_data(simplicial_complex)  # Initialize a sheaf
-        for simplex, data in zip(
-            simplicial_complex, local_data
-        ):  # Assign data to each simplex
+        for simplex, data in zip(simplicial_complex, local_data):  # Assign data to each simplex
             sheaf.assign_data(simplex, data)
         return sheaf  # Return the constructed sheaf
+
 
     def find_global_section(sheaf):
         """
@@ -179,7 +157,6 @@ def _():
             return {k: v for k, v in sheaf.data.items()}
         else:
             return "Inconsistency detected."  # Return an error message if inconsistent
-
     return construct_sheaf, find_global_section
 
 

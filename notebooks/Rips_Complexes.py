@@ -7,11 +7,10 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
-
     return (mo,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     nav_menu = mo.nav_menu(
         {
@@ -101,14 +100,13 @@ def _():
 
     pio.templates.default = "plotly_white"
 
+
     class VietorisRipsComplex:
         def __init__(self, point_cloud, max_dimension=None, metric="euclidean"):
             self.points = np.array(point_cloud)
             self.n = len(self.points)
             self.dim = self.points.shape[1]
-            self.max_dimension = (
-                max_dimension if max_dimension is not None else self.dim
-            )
+            self.max_dimension = max_dimension if max_dimension is not None else self.dim
             self.metric = metric
             self.distance = distance.cdist(self.points, self.points, metric=self.metric)
             self.rips_complex = None
@@ -154,9 +152,7 @@ def _():
         def _plot_3d(self, simplices, radius, box_aspect):
             fig = plt.figure(figsize=(10, 8))
             ax = fig.add_subplot(111, projection="3d")
-            ax.scatter(
-                self.points[:, 0], self.points[:, 1], self.points[:, 2], color="r", s=5
-            )
+            ax.scatter(self.points[:, 0], self.points[:, 1], self.points[:, 2], color="r", s=5)
             for simplex in simplices:
                 pts = self.points[list(simplex)]
                 if len(simplex) == 2:
@@ -220,7 +216,6 @@ def _():
                 showlegend=False,
             )
             fig.show()
-
     return VietorisRipsComplex, np
 
 
@@ -247,6 +242,7 @@ def _(np):
         y = (R + r * np.cos(v)) * np.sin(u) + np.random.normal(0, noise, u.shape)
         z = r * np.sin(v) + np.random.normal(0, noise, u.shape)
         return list(zip(x.flatten(), y.flatten(), z.flatten()))
+
 
     point_cloud = generate_torus()
     return (point_cloud,)
