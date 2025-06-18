@@ -40,52 +40,6 @@ def export_html_wasm(notebook_path: str, output_dir: str, as_app: bool = False) 
         return False
 
 
-def generate_index(all_notebooks: List[str], output_dir: str) -> None:
-    """Generate the index.html file."""
-    print("Generating index.html")
-
-    index_path = os.path.join(output_dir, "index.html")
-    os.makedirs(output_dir, exist_ok=True)
-
-    try:
-        with open(index_path, "w") as f:
-            f.write(
-                """<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>marimo</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  </head>
-  <body class="font-sans max-w-2xl mx-auto p-8 leading-relaxed">
-    <div class="mb-8">
-      <img src="assets/example.png" alt="Example" class="h-20" />
-    </div>
-    <div class="grid gap-4">
-"""
-            )
-            for notebook in all_notebooks:
-                notebook_name = notebook.split("/")[-1].replace(".py", "")
-                display_name = notebook_name.replace("_", " ").title()
-
-                f.write(
-                    f'      <div class="p-4 border border-gray-200 rounded">\n'
-                    f'        <h3 class="text-lg font-semibold mb-2">{display_name}</h3>\n'
-                    f'        <div class="flex gap-2">\n'
-                    f'          <a href="{notebook.replace(".py", ".html")}" class="px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded">Open Notebook</a>\n'
-                    f"        </div>\n"
-                    f"      </div>\n"
-                )
-            f.write(
-                """    </div>
-  </body>
-</html>"""
-            )
-    except IOError as e:
-        print(f"Error generating index.html: {e}")
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build marimo notebooks")
     parser.add_argument(
@@ -111,6 +65,15 @@ def main() -> None:
         export_html_wasm(nb, args.output_dir, as_app=nb.startswith("apps/"))
 
     # Generate index only if all exports succeeded
+    # Copy all standalone .html files to the output directory
+    for html_file in Path(".").glob("*.html"):
+        if (
+            html_file.name != "index.html"
+        ):  # Avoid duplicating index, we handle it below
+            target_file = Path(args.output_dir) / html_file.name
+            shutil.copyfile(html_file, target_file)
+            print(f"Copied {html_file} to {target_file}")
+
     # Use custom, manually written index.html
     custom_index = Path("index.html")  # Or wherever you place it
     target_index = Path(args.output_dir) / "index.html"
