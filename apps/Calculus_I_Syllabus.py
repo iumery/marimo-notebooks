@@ -25,7 +25,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""<img src="public/university of miami logo.png" alt="university of miami logo" style="display: block; margin: auto; zoom:6%;" />""")
+    mo.md(r"""<img src="public/university of miami logo.gif" alt="university of miami logo" style="display: block; margin: auto; zoom:35%;" />""")
     return
 
 
@@ -184,7 +184,7 @@ def _(mo):
     | ---------------------- | :------------------------------------------------------------ |
     | Department Coordinator | Dr. Leticia Oropesa |
     | Email | l.oropesa@miami.edu |
-    | Office Hours | In-person at Ungar 515F<br/>Mondays, Tuesdays, Wednesdays, Thursdays 3:00 PM to 5:00 PM<br/>Schedule a meeting at [Calendly](https://calendly.com/l-oropesa/dr-oropesa-s-office-hours) or by arrangement |
+    | Office Location | Ungar 515F |
 
     **Well-Being Resources and Support**: As you complete your coursework, consider how you can maintain your health and well-being as a top priority. To help you become familiar with the many programs and services available on campus, review the information collected on the [Division of Student Affairs Student Well-Being and Resiliency website](https://www.studentaffairs.miami.edu/student-well-being/index.html). Please reach out to the Department Coordinator or any of the resources listed on the site if you need assistance or support throughout the semester.
     """
