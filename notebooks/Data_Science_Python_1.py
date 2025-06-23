@@ -10,7 +10,20 @@ def _():
     import numpy as np
     from numpy.typing import NDArray
     import matplotlib.pyplot as plt
+
     return NDArray, mo, np, plt
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    nav_menu = mo.nav_menu(
+        {
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+        },
+        orientation="vertical",
+    )
+    nav_menu
+    return
 
 
 @app.cell(hide_code=True)
@@ -143,8 +156,7 @@ def _(a: int, c: complex, d: complex, np):
     x: np.float64 = 1 / (1 + np.exp(-(a - 15) / 6))
     # When we are certain that the operation will yield a real number, we can take the real part by .real and annotate the type as float
     y: np.float64 = (
-        np.log(np.real((c + d) * (c - d)) * np.sin(a * np.pi / 3))
-        / (c * np.conj(c))
+        np.log(np.real((c + d) * (c - d)) * np.sin(a * np.pi / 3)) / (c * np.conj(c))
     ).real
     return
 
@@ -466,6 +478,7 @@ def _(np):
             if np.abs(z_current) > 2:
                 return n
         return N
+
     return (escapeVelocity,)
 
 
@@ -512,6 +525,7 @@ def _(NDArray, escapeVelocity, np):
         )
         M: NDArray[int] = escape(z0=Z, c=c, N=N)
         return M
+
     return (julia,)
 
 
@@ -531,6 +545,7 @@ def _(NDArray, julia, np, plt):
         plt.colorbar()
         plt.title(f"Escape Velocity Map with\nz={zMax},\n c={c},\nand N={N}")
         plt.show()
+
     return (plot_julia,)
 
 
@@ -576,6 +591,7 @@ def _(NDArray, escapeVelocity, np):
         )
         M: NDArray[int] = escape(z0=0, c=Z, N=N)
         return M
+
     return (benoit,)
 
 
@@ -594,6 +610,7 @@ def _(NDArray, benoit, np, plt):
         plt.colorbar()
         plt.title(f"Escape Velocity Map with\nz={zMax} and N={N}")
         plt.show()
+
     return (plot_benoit,)
 
 
