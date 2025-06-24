@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.14.6"
 app = marimo.App()
 
 
@@ -37,8 +37,6 @@ def _(mo):
     - Mapper algorithm
     - Morse theory and Reeb graphs
     - Sheaf theory on simplicial complexes
-
-    More topics may be added in the future as the project continues to develop.
     """
     )
     return
@@ -50,11 +48,9 @@ def _(mo):
         r"""
     ## Prerequisites
 
-    This series is not meant to be fully formal or mathematically rigorous. It's more like me trying to write down what I learned and how I understand these topics, mostly by coding things out directly.
+    This series is not meant to be formal or mathematically rigorous. It's more like me trying to write down what I learned and how I understand these topics, mostly by coding things out directly.
 
-    That being said, some basic background in topology and algebraic topology will definitely help. If you've seen things like topological spaces, continuous maps, simplicial complexes, or homology groups, you'll probably feel more comfortable following along.
-
-    For anyone looking for a much more systematic and rigorous introduction to topological data analysis, I highly recommend the textbook by Dey & Wang, Computational Topology for Data Analysis, which this series loosely draws inspiration from. That book is excellent if you’re looking for formal study.
+    Some basic background in (algebraic) topology will definitely help. If you've seen things like topological spaces, continuous maps, simplicial complexes, or homology groups, you'll probably feel more comfortable following along.
     """
     )
     return
@@ -66,11 +62,9 @@ def _(mo):
         r"""
     ## Reference
 
-    Much of the general framework and terminology in this series draws inspiration from the excellent textbook:
-
     **Tamal K. Dey & Yusu Wang, _Computational Topology for Data Analysis_**
 
-    A free pre-publication version is available online. This is a highly recommended reference for anyone interested in a rigorous but approachable introduction to the subject. The notebooks in this project do not directly follow the book’s structure or notation, and occasionally take a slightly different route for demonstration and illustration purposes.
+    A free pre-publication version is available online. This is a highly recommended reference for anyone interested in a rigorous but approachable introduction to the subject. The notebooks in this project do not directly follow the book's structure or notation, and occasionally take a slightly different route for demonstration and illustration purposes.
     """
     )
     return
@@ -82,13 +76,11 @@ def _(mo):
         r"""
     ## Philosophy of This Series
 
-    The whole idea of these notebooks is to try and build as much as possible from scratch, not because that's always efficient or practical, but because it's the best way to really see how these algorithms work.
+    The idea of these notebooks is to try and build as much as possible from scratch, not because that's always efficient or practical, but because it's the best way to really see how these algorithms work.
 
     I avoided using big TDA libraries most of the time, so you'll see lots of very naive, unoptimized code that just walks through the basic logic step by step. These are definitely not production-ready implementations.
 
     If you're interested in real-world TDA pipelines, you should definitely check out well-developed packages like gudhi, ripser, giotto-tda, and others. They're far better for serious applications.
-
-    In short: this series is not a textbook, not a course, and not a reference manual: it's simply a set of working notes that explore the core ideas of TDA by writing simple code that shows how these things actually get built.
     """
     )
     return
