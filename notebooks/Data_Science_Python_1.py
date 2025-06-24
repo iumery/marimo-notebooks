@@ -28,7 +28,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""# Practice 1""")
+    mo.md(r"""# Warm-up""")
     return
 
 
@@ -46,7 +46,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""## Problem 1""")
+    mo.md(r"""## Section 1""")
     return
 
 
@@ -274,7 +274,7 @@ def _(C: "NDArray[int]", D: "NDArray[int]", NDArray, np):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""## Problem 2""")
+    mo.md(r"""## Section 2""")
     return
 
 
@@ -404,7 +404,7 @@ def _(
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""## Problem 3""")
+    mo.md(r"""## Section 3""")
     return
 
 
@@ -443,7 +443,7 @@ def _():
 def _(mo):
     mo.md(
         r"""
-    ## Problem 4
+    ## Section 4
 
     The following description is adapted from Wikipedia at [Julia set](http://en.wikipedia.org/wiki/Julia_set).
 
