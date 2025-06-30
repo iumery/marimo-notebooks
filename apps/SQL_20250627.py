@@ -45,7 +45,7 @@ def _(mo):
     mo.md(
         r"""
     ```{PostgreSQL}
-    WITH cte AS (
+    WITH film_revenue AS (
         SELECT 
             amount,
             title 
@@ -59,7 +59,7 @@ def _(mo):
         title, 
         SUM(amount) AS total_revenue 
     FROM 
-        cte 
+        film_revenue 
     GROUP BY
         title 
     ORDER BY 
@@ -95,7 +95,7 @@ def _(mo):
     mo.md(
         r"""
     ```{PostgreSQL}
-    WITH cte AS (
+    WITH rent_consecutive_month AS (
         SELECT 
             customer_id,
             first_name,
@@ -110,7 +110,8 @@ def _(mo):
                 first_name, 
                 last_name 
             FROM 
-                rental LEFT JOIN customer USING(customer_id)
+                rental 
+                    LEFT JOIN customer USING(customer_id)
         ) sub
     )
     SELECT DISTINCT
@@ -118,7 +119,7 @@ def _(mo):
         first_name,
         last_name
     FROM
-        cte
+        rent_consecutive_month
     WHERE
         mth_lag1 = 1
         AND

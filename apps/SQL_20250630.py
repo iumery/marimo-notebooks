@@ -63,16 +63,14 @@ def _(mo):
         customer 
             JOIN rental USING(customer_id) 
     GROUP BY 
-        customer_id,
-        first_name,
-        last_name
+        1, 2, 3
     ORDER BY
         CASE 
             WHEN COUNT(rental_id) >= 40 THEN 1 
             WHEN count(rental_id) >= 20 THEN 2 
             ELSE 3 
         END,
-        customer_id;
+        1;
     ```
     """
     )

@@ -15,8 +15,8 @@ def _(mo):
     nav_menu = mo.nav_menu(
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
-            "apps/SQL_20250627.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
-            "apps/SQL_20250630.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
+            "/apps/SQL_20250627.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
+            "/apps/SQL_20250630.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
@@ -49,9 +49,9 @@ def _(mo):
     ```{PostgreSQL}
     SELECT 
         name AS category_name,
-        ROUND(AVG(return_date::date - rental_date::date), 2) AS average_rental_duration
-        -- cast to date then take difference
-        -- take difference then extract day may behave unexpectedly, e.g. 5 days 23 hours -> 5
+        ROUND(AVG(CAST(return_date AS date) - CAST(rental_date AS date)), 2) AS average_rental_duration
+    	-- cast to date then take difference
+    	-- take difference then extract day may behave unexpectedly, e.g. 5 days 23 hours -> 5
     FROM 
         rental 
         JOIN inventory USING (inventory_id)
@@ -60,9 +60,9 @@ def _(mo):
     WHERE 
         return_date IS NOT NULL
     GROUP BY 
-        name
+        1
     ORDER BY 
-        average_rental_duration DESC;
+        2 DESC;
     ```
     """
     )
@@ -98,20 +98,21 @@ def _(mo):
             customer_id,
             first_name,
             last_name,
-            rental_date::date AS rental_day
+            CAST(rental_date AS date) AS rental_day
         FROM 
             rental
-            JOIN customer USING (customer_id)
+                JOIN customer USING (customer_id)
     ),
     grouped_streaks AS (
-        SELECT 
-            customer_id,
-            first_name,
-            last_name,
-            rental_day,
-            rental_day - (RANK() OVER (PARTITION BY customer_id ORDER BY rental_day)::int) AS grp 
-            -- must cast to int when operating with date; rank itself is bigint type
-        FROM daily_rentals
+    	SELECT 
+    	    customer_id,
+    	    first_name,
+    	    last_name,
+    	    rental_day,
+    	    rental_day - CAST(RANK() OVER (PARTITION BY customer_id ORDER BY rental_day) AS int) AS grp 
+    		-- must cast to int when operating with date, rank itself gives bigint
+    	FROM 
+            daily_rentals
     ),
     streaks AS (
         SELECT 
@@ -119,11 +120,18 @@ def _(mo):
             first_name,
             last_name,
             COUNT(*) AS streak_length
-        FROM grouped_streaks
-        GROUP BY customer_id, first_name, last_name, grp
+        FROM 
+            grouped_streaks
+        GROUP BY 
+            1, 2, 3, 
+            grp
     ),
     ranked_streaks AS (
-        SELECT *, MAX(streak_length) OVER () AS max_streak FROM streaks
+        SELECT 
+            *, 
+            MAX(streak_length) OVER () AS max_streak 
+        FROM 
+            streaks
     )
     SELECT 
         customer_id,
@@ -135,7 +143,7 @@ def _(mo):
     WHERE 
         streak_length = max_streak
     ORDER BY 
-        customer_id;
+        1;
     ```
     """
     )
