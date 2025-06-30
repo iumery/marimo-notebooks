@@ -61,7 +61,7 @@
         </svg>
       </button>
       <div id="list-calculus" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
-        <!-- Start of Calculus I notebook list -->
+        
         <div class="grid grid-cols-1 w-full col-span-full space-y-4">
           <div class="p-4 border border-yellow-300 rounded bg-yellow-50 transition hover:shadow hover:bg-yellow-100">
             <a href="apps/Calculus_I_Syllabus.html" class="text-blue-600 hover:underline font-medium">Syllabus (Updated for Fall 2025)</a>
@@ -76,6 +76,7 @@
             <a href="apps/Calculus_I_Past_Quizzes.html" class="text-blue-600 hover:underline font-medium">Sample Quizzes (Updated for Fall 2025)</a>
           </div>
         </div>
+        
         <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
           <a href="apps/Calculus_I_0.html" class="text-blue-600 hover:underline font-medium">0 Review</a>
         </div>
@@ -172,7 +173,7 @@
         <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
           <a href="apps/Calculus_I_26.html" class="text-blue-600 hover:underline font-medium">7.2 Volumes by Slicing</a>
         </div>
-        <!-- End of Calculus I notebook list -->
+
       </div>
     </section>
     
@@ -185,6 +186,7 @@
         </svg>
       </button>
       <div id="list-TDA" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+        
         <div class="grid grid-cols-1 w-full col-span-full space-y-4">
           <div class="p-4 border border-yellow-300 rounded bg-yellow-50 transition hover:shadow hover:bg-yellow-100">
             <a href="apps/Topological_Data_Analysis.html" class="text-blue-600 hover:underline font-medium">Introduction</a>
@@ -218,6 +220,7 @@
           <a href="notebooks/Sheaf_Theory.html" class="text-blue-600 hover:underline font-medium">Sheaf Theory</a>
           <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Modeling local data consistency over simplicial complexes with sheaf structures.</p>
         </div>
+
       </div>
     </section>
 
@@ -229,30 +232,72 @@
           <path d="M9 5l7 7-7 7" />
         </svg>
       </button>
-      <div id="list-data-science" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
-        <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-          <a href="/test.html" class="text-blue-600 hover:underline font-medium">test page</a>
-          <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">test description</p>
+      <div id="list-data-science" class="hidden mt-2 grid grid-cols-1 gap-4 pl-4">
+
+        <!-- Sub-section: SQL -->
+        <button onclick="toggleSection('list-data-science-sql', 'arrow-data-science-sql')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+          <span>PostgreSQL</span>
+          <svg id="arrow-data-science-sql" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <div id="list-data-science-sql" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+          
+          <div class="grid grid-cols-1 w-full col-span-full space-y-4">
+            <div class="p-4 border border-yellow-300 rounded bg-yellow-50 transition hover:shadow hover:bg-yellow-100">
+              <a href="apps/SQL.html" class="text-blue-600 hover:underline font-medium">Introduction</a>
+            </div>
+          </div>
+
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="apps/SQL_20250627.html" class="text-blue-600 hover:underline font-medium">2025 06 27</a>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="apps/SQL_20250629.html" class="text-blue-600 hover:underline font-medium">2025 06 29</a>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="apps/SQL_20250630.html" class="text-blue-600 hover:underline font-medium">2025 06 30</a>
+          </div>
+
         </div>
-        <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-          <a href="notebooks/Data_Science_Python_1.html" class="text-blue-600 hover:underline font-medium">Python and machine learning, Warm-up</a>
-          <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Get familiar with numpy and matplotlib</p>
+
+        <!-- Sub-section: Python -->
+        <button onclick="toggleSection('list-data-science-python', 'arrow-data-science-python')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+          <span>Python</span>
+          <svg id="arrow-data-science-python" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+        <div id="list-data-science-python" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+          
+          <div class="grid grid-cols-1 w-full col-span-full space-y-4">
+            <div class="p-4 border border-yellow-300 rounded bg-yellow-50 transition hover:shadow hover:bg-yellow-100">
+              <a href="#" class="text-blue-600 hover:underline font-medium">Introduction</a>
+            </div>
+          </div>
+          
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/Data_Science_Python_1.html" class="text-blue-600 hover:underline font-medium">Python and machine learning, Warm-up</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Get familiar with numpy and matplotlib</p>
+          </div>
         </div>
+
       </div>
     </section>
     
     <!-- Section: Undergraduate Math Courses -->
     <section>
-      <button onclick="toggleSection('undergrad-math', 'arrow-undergrad-math')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
+      <button onclick="toggleSection('list-undergrad-math', 'arrow-undergrad-math')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
         <span>📘 Graduate Math Preliminary Course Archive</span>
         <svg id="arrow-undergrad-math" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M9 5l7 7-7 7" />
         </svg>
       </button>
-      <div id="undergrad-math" class="hidden mt-2 space-y-4 pl-4">
+      <div id="list-undergrad-math" class="hidden mt-2 space-y-4 pl-4">
 
         <!-- Sub-section: Abstract Algebra -->
-        <button onclick="toggleSection('undergrad-math-algebra', 'arrow-undergrad-math-algebra')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+        <button onclick="toggleSection('list-undergrad-math-algebra', 'arrow-undergrad-math-algebra')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
           <span>Abstract Algebra</span>
           <div class="ml-auto text-right">
             <p class="text-sm text-gray-500">
@@ -261,12 +306,12 @@
           </div>
           <svg id="arrow-undergrad-math-algebra" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
         </button>
-        <div id="undergrad-math-algebra" class="hidden mt-2 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 pl-4">
+        <div id="list-undergrad-math-algebra" class="hidden mt-2 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 pl-4">
           <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="apps/Abstract_Algebra_Homework_1.html" class="text-blue-600 hover:underline font-medium">Homework</a></div>
         </div>
 
         <!-- Sub-section: Topology -->
-        <button onclick="toggleSection('undergrad-math-topology', 'arrow-undergrad-math-topology')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+        <button onclick="toggleSection('list-undergrad-math-topology', 'arrow-undergrad-math-topology')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
           <span>Topology</span>
           <div class="ml-auto text-right">
             <p class="text-sm text-gray-500">
@@ -278,7 +323,7 @@
             <path d="M9 5l7 7-7 7" />
           </svg>
         </button>
-        <div id="undergrad-math-topology" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+        <div id="list-undergrad-math-topology" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
           <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
             <a href="apps/Topology_Exams.html" class="text-blue-600 hover:underline font-medium">Exams</a>
           </div>
@@ -300,7 +345,7 @@
         </div>
 
         <!-- Sub-section: Complex Analysis -->
-        <button onclick="toggleSection('undergrad-math-complex', 'arrow-undergrad-math-complex')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+        <button onclick="toggleSection('list-undergrad-math-complex', 'arrow-undergrad-math-complex')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
           <span>Complex Analysis</span>
           <div class="ml-auto text-right">
             <p class="text-sm text-gray-500">
@@ -309,12 +354,12 @@
           </div>
           <svg id="arrow-undergrad-math-complex" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
         </button>
-        <div id="undergrad-math-complex" class="hidden mt-2 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 pl-4">
+        <div id="list-undergrad-math-complex" class="hidden mt-2 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4 pl-4">
           <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50"><a href="apps/Complex_Analysis_Homework_1.html" class="text-blue-600 hover:underline font-medium">Homework</a></div>
         </div>
 
         <!-- Sub-section: Mathematical Analysis -->
-        <button onclick="toggleSection('undergrad-math-analysis', 'arrow-undergrad-math-analysis')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+        <button onclick="toggleSection('list-undergrad-math-analysis', 'arrow-undergrad-math-analysis')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
           <span>Mathematical Analysis</span>
           <div class="ml-auto text-right">
             <p class="text-sm text-gray-500">
@@ -323,7 +368,7 @@
           </div>
           <svg id="arrow-undergrad-math-analysis" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
         </button>
-        <div id="undergrad-math-analysis" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 pl-4">
+        <div id="list-undergrad-math-analysis" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 pl-4">
           <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
             <a href="apps/Mathematical_Analysis_Homework.html" class="text-blue-600 hover:underline font-medium">Homework</a>
           </div>
@@ -337,16 +382,16 @@
     
     <!-- Section: Graduate Math Courses -->
     <section>
-      <button onclick="toggleSection('grad-math', 'arrow-grad-math')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
+      <button onclick="toggleSection('list-grad-math', 'arrow-grad-math')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
         <span>📓 Graduate Math Core Course Archive</span>
         <svg id="arrow-grad-math" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M9 5l7 7-7 7" />
         </svg>
       </button>
-      <div id="grad-math" class="hidden mt-2 space-y-4 pl-4">
+      <div id="list-grad-math" class="hidden mt-2 space-y-4 pl-4">
 
         <!-- Sub-section: Abstract Algebra -->
-        <button onclick="toggleSection('grad-math-algebra', 'arrow-grad-math-algebra')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+        <button onclick="toggleSection('list-grad-math-algebra', 'arrow-grad-math-algebra')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
           <span>Abstract Algebra</span>
             <div class="ml-auto text-right">
               <p class="text-sm text-gray-500">
@@ -359,7 +404,7 @@
               <path d="M9 5l7 7-7 7" />
             </svg>
         </button>
-        <div id="grad-math-algebra" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+        <div id="list-grad-math-algebra" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
           <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
             <a href="apps/Abstract_Algebra_Exams.html" class="text-blue-600 hover:underline font-medium">Exams</a>
           </div>
@@ -375,7 +420,7 @@
         </div>
 
         <!-- Sub-section: Algebraic Topology -->
-        <button onclick="toggleSection('grad-math-algebraic-topology', 'arrow-grad-math-algebraic-topology')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+        <button onclick="toggleSection('list-grad-math-algebraic-topology', 'arrow-grad-math-algebraic-topology')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
           <span>Algebraic Topology</span>
           <div class="ml-auto text-right">
             <p class="text-sm text-gray-500">
@@ -386,7 +431,7 @@
             <path d="M9 5l7 7-7 7" />
           </svg>
         </button>
-        <div id="grad-math-algebraic-topology" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+        <div id="list-grad-math-algebraic-topology" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
           <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
             <a href="apps/Algebraic_Topology_Exams.html" class="text-blue-600 hover:underline font-medium">Exams</a>
           </div>
@@ -411,7 +456,7 @@
         </div>
 
         <!-- Sub-section: Complex Analysis -->
-        <button onclick="toggleSection('grad-math-complex-analysis', 'arrow-grad-math-complex-analysis')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+        <button onclick="toggleSection('list-grad-math-complex-analysis', 'arrow-grad-math-complex-analysis')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
           <span>Complex Analysis</span>
           <div class="ml-auto text-right">
             <p class="text-sm text-gray-500">
@@ -423,7 +468,7 @@
             <path d="M9 5l7 7-7 7" />
           </svg>
         </button>
-        <div id="grad-math-complex-analysis" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+        <div id="list-grad-math-complex-analysis" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
           <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
             <a href="apps/Complex_Analysis_Exams.html" class="text-blue-600 hover:underline font-medium">Exams</a>
           </div>
@@ -436,7 +481,7 @@
         </div>
 
         <!-- Sub-section: Real Analysis -->
-        <button onclick="toggleSection('grad-math-real-analysis', 'arrow-grad-math-real-analysis')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+        <button onclick="toggleSection('list-grad-math-real-analysis', 'arrow-grad-math-real-analysis')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
           <span>Real Analysis</span>
           <div class="ml-auto text-right">
             <p class="text-sm text-gray-500">
@@ -447,7 +492,7 @@
             <path d="M9 5l7 7-7 7" />
           </svg>
         </button>
-        <div id="grad-math-real-analysis" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+        <div id="list-grad-math-real-analysis" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
           <!-- Sub-sub-section: Homework -->
           <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
             <a href="apps/Real_Analysis_Homework_1.html" class="text-blue-600 hover:underline font-medium">Homework Part 1</a>

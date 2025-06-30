@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.14.8"
 app = marimo.App()
 
 
@@ -114,7 +114,6 @@ def _(mo):
     By assumption, $q \ne q'$, without losing generality assume $q < q'$ thus $q + 1 \le q'$. Without losing generality assume $b > 0$, then $b q \le a < | b | + b q = b + b q = b (q + 1) \le b q' \le a < | b | + b q'$ thus $a < a$ which is a contradiction.
 
     Thus the pair $(r, q)$ is unique.
-
     """
     )
     return
@@ -187,7 +186,6 @@ def _(mo):
     Solution
 
     Let $x$ be a number which can be written in the form '$abcdabcd$'. Then $x = 10000000a + 1000000b + 100000c + 10000d + 1000a + 100b + 10c + 1d$ $= 10001000a + 1000100b + 100010c +10001d= 10001(1000a + 100b + 10c + 1d)$, notice that $10001 = 137 \cdot 73$ and $1000a + 100b + 10c + 1d$ is exactly the number written as '$abcd$', i.e. the birth year. Thus $x = 137 \cdot 73 \cdot B$ if we denote the birth year as $B$, and thus clearly the number written down, $x$, is divisible by $137$, and the answer of the division is divisible by $B$, and the answer of the division is $73$.
-
     """
     )
     return
@@ -274,7 +272,6 @@ def _(mo):
     If $a$ or $b$ is $0$ it is trivial.
 
     Suppose $a, b$ nilpotent with $n, m$ smallest positive integer make $a^n = 0$ and $b^m = 0$. Then $(a + b)^{n + m} = \sum\limits_{k = 0}^{n + m} \begin{pmatrix} n+m \\ k \end{pmatrix}a^{n+m-k}b^{k}$. While if $k \le m$ then $a^{n+m-k}=a^na^{m-k} = 0$, otherwise $b^k = b^mb^{k-m} = 0$, thus every term in the summation is $0$ thus the summation is $0$ with clearly $n+m$ is a positive integer thus by definition $(a + b)$ nilpotent.
-
     """
     )
     return
@@ -360,7 +357,6 @@ def _(mo):
     Proof
 
     Consider that $5 = (2 + i) (2 -i)$, clearly $2+i \notin (5)$ and $2 - i \notin (5)$.
-
     """
     )
     return
@@ -454,7 +450,6 @@ def _(mo):
     7. $6^3 + 2 = 218 \equiv 1$.
 
     It admits no roots, thus it is irreducible.
-
     """
     )
     return
@@ -541,7 +536,6 @@ def _(mo):
     For each $p$, clearly $x+c, 0 \le c < p, c \in \mathbb{Z}$ are the only (irreducible) monic polynomial with degree $1$. If a monic quadratic polynomial may be factorized, it must be factored into two monic degree $1$ polynomials. But there are exactly $1+2+\dots+p = p(1+p)/2$ distinct ways to combine the monic degree $1$ polynomials.
 
     For example in $\mathbb{Z}_3$, $x+0, x+1, x+2$ are the only monic degree $1$ polynomials, thus the possible monic reducible quadratic polynomials are $(x+0)(x+0)$, $(x+0)(x+1)$, $(x+0)(x+2)$, $(x+1)(x+1)$, $(x+1)(x+2)$, and $(x+2)(x+2)$. There are $3+2+1$ of them.
-
     """
     )
     return
@@ -616,7 +610,6 @@ def _(mo):
     Proof
 
     By Cauchy, there exists $g \in G$ with $\pi(g) = p$, now $\langle g \rangle$ is a subgroup of $G$ and has exactly $p$ elements.
-
     """
     )
     return
