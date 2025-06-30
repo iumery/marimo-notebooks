@@ -56,7 +56,7 @@ def _(mo):
         last_name, 
         CASE 
             WHEN COUNT(rental_id) >= 40 THEN 'High' 
-            WHEN count(rental_id) >= 20 THEN 'Medium' 
+            WHEN COUNT(rental_id) >= 20 THEN 'Medium' 
             ELSE 'Low' 
         END AS activity_level
     FROM
@@ -67,7 +67,7 @@ def _(mo):
     ORDER BY
         CASE 
             WHEN COUNT(rental_id) >= 40 THEN 1 
-            WHEN count(rental_id) >= 20 THEN 2 
+            WHEN COUNT(rental_id) >= 20 THEN 2 
             ELSE 3 
         END,
         1;
