@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -15,8 +16,8 @@ def _(mo):
     nav_menu = mo.nav_menu(
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
-            "/apps/SQL_20250630.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
-            "/apps/SQL_20250702.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
+            "/notebooks/SQL_20250630.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
+            "/notebooks/SQL_20250702.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
