@@ -30,7 +30,7 @@ def _(mo):
         r"""
     ## Problem 3: Average Rental Duration by Category
 
-    Goal: For each film category (e.g., Comedy, Action), compute the average rental duration (in days) across all rentals of films in that category.
+    Goal: Use the DVDRental databse. For each film category (e.g., Comedy, Action), compute the average rental duration (in days) across all rentals of films in that category.
 
     Requirements:
 
@@ -75,7 +75,7 @@ def _(mo):
         r"""
     ## Problem 4: Longest Consecutive Rental Streak by Customer
 
-    Goal: Find the customer(s) with the longest streak of consecutive days they rented at least one film (1+ rentals per day without gaps).
+    Goal: Use the DVDRental databse. Find the customer(s) with the longest streak of consecutive days they rented at least one film (1+ rentals per day without gaps).
 
     Requirements:
 

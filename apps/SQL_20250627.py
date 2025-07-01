@@ -29,7 +29,7 @@ def _(mo):
         r"""
     ## Problem 1: Top 3 Most Rented Movies by Revenue
 
-    Goal: Find the top 3 movies that generated the most revenue (i.e., sum of payment amounts for each film title).
+    Goal: Use the DVDRental databse. Find the top 3 movies that generated the most revenue (i.e., sum of payment amounts for each film title).
 
     Requirements:
 
@@ -78,7 +78,7 @@ def _(mo):
         r"""
     ## Problem 2: Customers With Continuous Rentals
 
-    Goal: Find customers who rented at least one film in 3 consecutive months.
+    Goal: Use the DVDRental databse. Find customers who rented at least one film in 3 consecutive months.
 
     Requirements:
 

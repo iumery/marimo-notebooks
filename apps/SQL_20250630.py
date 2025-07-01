@@ -16,6 +16,7 @@ def _(mo):
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
             "/apps/SQL_20250629.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
+            "/apps/SQL_20250701.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
@@ -29,7 +30,7 @@ def _(mo):
         r"""
     ## Problem 5: Customer Activity Classification
 
-    Goal: Classify each customer based on how many rentals they've made.
+    Goal: Use the DVDRental databse. Classify each customer based on how many rentals they've made.
 
     Requirements:
 
@@ -83,7 +84,7 @@ def _(mo):
         r"""
     ## Problem 6: Film Rental Availability Label
 
-    Goal: Label each film as 'Available', 'Rented', or 'Not in Inventory'.
+    Goal: Use the DVDRental databse. Label each film as 'Available', 'Rented', or 'Not in Inventory'.
 
     Requirements:
 
