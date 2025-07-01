@@ -1,16 +1,16 @@
 import marimo
 
-__generated_with = "0.14.8"
+__generated_with = "0.14.9"
 app = marimo.App()
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     import marimo as mo
     return (mo,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     nav_menu = mo.nav_menu(
         {
@@ -23,7 +23,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -41,38 +41,34 @@ def _(mo):
 
 
 @app.cell
-def _(mo):
-    mo.md(
-        r"""
-    ```{PostgreSQL}
+def _():
+    """
     WITH film_revenue AS (
-        SELECT 
+        SELECT
             amount,
-            title 
-        FROM 
-            payment  
+            title
+        FROM
+            payment
                 LEFT JOIN rental USING(rental_id)
                 LEFT JOIN inventory USING(inventory_id)
                 LEFT JOIN film USING(film_id)
     )
-    SELECT 
-        title, 
-        SUM(amount) AS total_revenue 
-    FROM 
-        film_revenue 
+    SELECT
+        title,
+        SUM(amount) AS total_revenue
+    FROM
+        film_revenue
     GROUP BY
-        title 
-    ORDER BY 
+        title
+    ORDER BY
         2 DESC, 1
     LIMIT
         3;
-    ```
     """
-    )
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -91,12 +87,10 @@ def _(mo):
 
 
 @app.cell
-def _(mo):
-    mo.md(
-        r"""
-    ```{PostgreSQL}
+def _():
+    """
     WITH rent_consecutive_month AS (
-        SELECT 
+        SELECT
             customer_id,
             first_name,
             last_name,
@@ -104,13 +98,13 @@ def _(mo):
             mth - LAG(mth, 1) OVER (PARTITION BY customer_id, first_name, last_name ORDER BY mth) AS mth_lag1,
             mth - LAG(mth, 2) OVER (PARTITION BY customer_id, first_name, last_name ORDER BY mth) AS mth_lag2
         FROM (
-            SELECT DISTINCT 
+            SELECT DISTINCT
                 EXTRACT(YEAR FROM rental_date) * 12 + EXTRACT(MONTH FROM rental_date) AS mth,
-                customer_id, 
-                first_name, 
-                last_name 
-            FROM 
-                rental 
+                customer_id,
+                first_name,
+                last_name
+            FROM
+                rental
                     LEFT JOIN customer USING(customer_id)
         ) sub
     )
@@ -124,11 +118,9 @@ def _(mo):
         mth_lag1 = 1
         AND
         mth_lag2 = 2
-    ORDER BY 
+    ORDER BY
         1, 2, 3;
-    ```
     """
-    )
     return
 
 

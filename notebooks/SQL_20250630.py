@@ -1,16 +1,16 @@
 import marimo
 
-__generated_with = "0.14.8"
+__generated_with = "0.14.9"
 app = marimo.App()
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     import marimo as mo
     return (mo,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     nav_menu = mo.nav_menu(
         {
@@ -24,7 +24,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -47,38 +47,34 @@ def _(mo):
 
 
 @app.cell
-def _(mo):
-    mo.md(
-        r"""
-    ```{PostgreSQL}
-    SELECT 
+def _():
+    """
+    SELECT
         customer_id,
-        first_name, 
-        last_name, 
-        CASE 
-            WHEN COUNT(rental_id) >= 40 THEN 'High' 
-            WHEN COUNT(rental_id) >= 20 THEN 'Medium' 
-            ELSE 'Low' 
+        first_name,
+        last_name,
+        CASE
+            WHEN COUNT(rental_id) >= 40 THEN 'High'
+            WHEN COUNT(rental_id) >= 20 THEN 'Medium'
+            ELSE 'Low'
         END AS activity_level
     FROM
-        customer 
-            JOIN rental USING(customer_id) 
-    GROUP BY 
+        customer
+            JOIN rental USING(customer_id)
+    GROUP BY
         1, 2, 3
     ORDER BY
-        CASE 
-            WHEN COUNT(rental_id) >= 40 THEN 1 
-            WHEN COUNT(rental_id) >= 20 THEN 2 
-            ELSE 3 
+        CASE
+            WHEN COUNT(rental_id) >= 40 THEN 1
+            WHEN COUNT(rental_id) >= 20 THEN 2
+            ELSE 3
         END,
         1;
-    ```
     """
-    )
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -101,20 +97,18 @@ def _(mo):
 
 
 @app.cell
-def _(mo):
-    mo.md(
-        r"""
-    ```{PostgreSQL}
+def _():
+    """
     WITH unique_inventory AS (
-    SELECT 
-        film_id, 
+    SELECT
+        film_id,
         title,
-        inventory_id, 
-        MAX(rental_date) AS rental_date, 
+        inventory_id,
+        MAX(rental_date) AS rental_date,
         MAX(return_date) AS return_date
-    FROM 
-        film 
-            LEFT JOIN inventory USING(film_id) 
+    FROM
+        film
+            LEFT JOIN inventory USING(film_id)
             LEFT JOIN rental USING(inventory_id)
     GROUP BY
         1, 2, 3
@@ -131,29 +125,25 @@ def _(mo):
         GROUP BY
             1, 2
     )
-    SELECT 
-        film_id, 
-        title, 
+    SELECT
+        film_id,
+        title,
         CASE
             WHEN num_inventory = 0 THEN 'Not in Inventory'
             WHEN num_returned = num_inventory THEN 'Available'
             ELSE 'Rented'
         END AS availability_status
-    FROM 
+    FROM
         inventory_count
     ORDER BY
         1;
-    ```
     """
-    )
     return
 
 
 @app.cell
-def _(mo):
-    mo.md(
-        r"""
-    ```{PostgreSQL}
+def _():
+    """
     SELECT
         film_id,
         title,
@@ -162,7 +152,7 @@ def _(mo):
             WHEN COUNT(CASE WHEN return_date IS NULL THEN 1 END) > 0 THEN 'Available'
             ELSE 'Rented'
         END AS availability_status
-    FROM 
+    FROM
         film
             LEFT JOIN inventory USING(film_id)
             LEFT JOIN rental USING(inventory_id)
@@ -170,9 +160,7 @@ def _(mo):
         1, 2
     ORDER BY
         1;
-    ```
     """
-    )
     return
 
 

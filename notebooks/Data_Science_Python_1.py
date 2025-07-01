@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.14.6"
+__generated_with = "0.14.9"
 app = marimo.App()
 
 
@@ -189,9 +189,7 @@ def _(NDArray, m: "NDArray", np, u: "NDArray", v: "NDArray"):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""`z_vec` should be an array from 0 to -1 because $\log_{10}(1/10^x) = \log_{10}(10^{-x}) = -x$."""
-    )
+    mo.md(r"""`z_vec` should be an array from 0 to -1 because $\log_{10}(1/10^x) = \log_{10}(10^{-x}) = -x$.""")
     return
 
 
@@ -211,7 +209,7 @@ def _(mo):
 
     - $X = (\mathbf{u} \cdot \mathbf{v}) A^2$
     - $Y = \mathbf{v} \cdot \mathbf{u}$
-    - $Z = \det(C) (AB)^T$ 
+    - $Z = \det(C) (AB)^T$
     """
     )
     return
@@ -410,9 +408,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""Loops and flow control: Make function called `loopTest(M, N)` that loops through the values $M$ through $N$. For each number $n$ it should display `n is divisible by 3` or `n is NOT divisible by 3` and it should stop after finding three occurrences of a number divisible by three."""
-    )
+    mo.md(r"""Loops and flow control: Make function called `loopTest(M, N)` that loops through the values $M$ through $N$. For each number $n$ it should display `n is divisible by 3` or `n is NOT divisible by 3` and it should stop after finding three occurrences of a number divisible by three.""")
     return
 
 
