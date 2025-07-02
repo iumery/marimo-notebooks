@@ -46,7 +46,7 @@ def _(mo):
         r"""
     /// attention | Attention!
 
-    Most code in this notebook **WOULD NOT** run directly because Marimo does not include the AMPL package (and it needs registration). Check AMPL's [official website](https://ampl.com) for more information.
+    Code in this notebook **WOULD NOT** run directly as Marimo does not include AMPL package (it needs registration anyway). Check AMPL [official website](https://ampl.com) for more info.
 
     ///
     """
