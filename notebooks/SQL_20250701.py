@@ -7,7 +7,6 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -51,19 +50,19 @@ def _(mo):
 def _():
     """
     SELECT
-            overall_status,
-            CASE
-                    WHEN UPPER(study_type) = 'INTERVENTIONAL' THEN 'Interventional'
-                    WHEN UPPER(study_type) LIKE 'OBSERVATIONAL%' THEN 'Observational'
-                    ELSE 'Other'
-            END AS study_type_grouped,
-            COUNT(*) AS study_count
+        overall_status,
+        CASE
+            WHEN UPPER(study_type) = 'INTERVENTIONAL' THEN 'Interventional'
+            WHEN UPPER(study_type) LIKE 'OBSERVATIONAL%' THEN 'Observational'
+            ELSE 'Other'
+        END AS study_type_grouped,
+        COUNT(*) AS study_count
     FROM
-            studies
+        studies
     GROUP BY
-            1, 2
+        1, 2
     ORDER BY
-            3 DESC;
+        3 DESC;
     """
     return
 
@@ -93,20 +92,20 @@ def _(mo):
 def _():
     """
     SELECT
-            aircraft_code,
-            arrival_airport,
-            ROUND(AVG(EXTRACT(EPOCH FROM actual_arrival - scheduled_arrival)) / 60, 2) AS avg_arrival_delay
-            -- EPOCH gives difference in seconds
-    FROM
-            flight
+        aircraft_code,
+        arrival_airport,
+        ROUND(AVG(EXTRACT(EPOCH FROM actual_arrival - scheduled_arrival)) / 60, 2) AS avg_arrival_delay
+        -- EPOCH gives difference in seconds
+        FROM
+        flight
     WHERE
-            actual_arrival > scheduled_arrival
+        actual_arrival > scheduled_arrival
     GROUP BY
-            1, 2
+        1, 2
     HAVING
-            COUNT(*) >= 50
+        COUNT(*) >= 50
     ORDER BY
-            3 DESC;
+        3 DESC;
     """
     return
 
