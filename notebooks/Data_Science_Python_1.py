@@ -10,7 +10,6 @@ def _():
     import numpy as np
     from numpy.typing import NDArray
     import matplotlib.pyplot as plt
-
     return NDArray, mo, np, plt
 
 
@@ -34,13 +33,13 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
-    ### Goal
+    mo.md(r"""## Goal""")
+    return
 
-    The goal of this practice is to strengthen Python programming skills in scientific computing by working with arrays, matrices, expressions, control flow, and plotting, and to apply these concepts to visualize fractals such as Julia and Mandelbrot sets.
-    """
-    )
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""The goal of this practice is to strengthen Python programming skills in scientific computing by working with arrays, matrices, expressions, control flow, and plotting, and to apply these concepts to visualize fractals such as Julia and Mandelbrot sets.""")
     return
 
 
@@ -437,10 +436,14 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
+    mo.md(r"""## Section 4""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
     mo.md(
         r"""
-    ## Section 4
-
     The following description is adapted from Wikipedia at [Julia set](http://en.wikipedia.org/wiki/Julia_set).
 
     Given two complex numbers $c$ and $z_0$, we define the following recursion $$z_n = z_{n-1}^2 + c,\,\,\,\,\,\, n = 1, 2,3, \dots$$ This is a dynamical system known as a quadratic map. Given a specific choice of $c$ and $z_0$, the above recursion leads to a sequence of complex numbers $z_1, z_2, z_3, \dots$ called the orbit of $z_0$. Depending on the exact choice of $c$ and $z_0$, a large range of orbit patterns are possible. For a given fixed $c$, most choices of $z_0$ yield orbits that tend towards infinity. For some values of $c$ certain choices of $z_0$ yield orbits that eventually go into a periodic loop. Finally, some starting values yield orbits that appear to dance around the complex plane, apparently at random. (This is an example of chaos.) These starting values, $z_0$ , make up the Julia set of the map, denoted $J_c$ . In this problem, you will write python code that visualizes a slightly different set, called the filled-in Julia set (or Prisoner Set), denoted $K_c$ , which is the set of all $z_0$ with orbits which do not tend towards infinity. The "normal" Julia set $J_c$ is the boundary of the filled-in Julia set.

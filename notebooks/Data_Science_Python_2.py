@@ -24,18 +24,20 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""# Optimization""")
+    mo.md(r"""# Optimization, Part 1""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""## Goal""")
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(
-        r"""
-    ## Goal
-
-    This practice set is designed to develop the ability to model and solve a variety of optimization problems. It includes problems that cover key topics: moment optimization over probability distributions, equivalence of integer program formulations, modeling logical constraints using binary variables, scheduling tasks to minimize weighted completion time, and converting general linear programs into standard form.
-    """
+        r"""This practice set is designed to develop the ability to model and solve a variety of optimization problems. It includes problems that cover key topics: moment optimization over probability distributions, equivalence of integer program formulations, modeling logical constraints using binary variables, scheduling tasks to minimize weighted completion time, and converting general linear programs into standard form."""
     )
     return
 
@@ -65,10 +67,14 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
+    mo.md(r"""## Problem 1""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
     mo.md(
         r"""
-    ## Problem 1
-
     Form a linear program that identifies the discrete probability distribution, that takes `k` values, whose first and second moment are `M_1` and `M_2`, and whose fourth moment is maximized.
 
     Solve this linear program for `k = 5; M_1 = 3.5; M_2 = 15`, and `k = 80; M_1 = 10; M_2 = 200`.
@@ -249,10 +255,14 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
+    mo.md(r"""## Problem 2""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
     mo.md(
         r"""
-    ## Problem 2
-
     Show that the following integer programs all have the same set of feasible solutions:
 
     - $97x_1 + 32x_2 + 25x_3 + 20x_4 \le 139$, $x_i \in \lbrace 0 , 1 \rbrace$
@@ -318,10 +328,14 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
+    mo.md(r"""## Problem 3""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
     mo.md(
         r"""
-    ## Problem 3
-
     Model the following constraints in choosing a subset from 1, 2, ..., 7:
 
     - You cannot choose all of them
@@ -396,10 +410,14 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
+    mo.md(r"""## Problem 4""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
     mo.md(
         r"""
-    ## Problem 4
-
     Suppose that we have a single machine and we have several tasks to perform on this machine. The machine process one task at a time but we can choose the order in which the tasks are performed. Suppose each task has a weight, we want to minimize the average weighted completion time of the tasks. To clarify, the *completion time* means the cumulative completion time. For example, suppose we have two tasks A, B. Suppose they take 1 and 10 minutes to complete, respectively, and they have weights 10 and 1, respectively, then:
 
     - If we do A then B, the average weighted completion time is calculated as $1 \cdot 10 + (1 + 10) \cdot 1 = 21$, and
@@ -511,10 +529,14 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
+    mo.md(r"""## Problem 5""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
     mo.md(
         r"""
-    ## Problem 5
-
     A linear program with the form 
 
     $$\begin{aligned} \max(c^Tx) &\text{ s.t.} \\ Ax &\le b \\ x &\ge 0 \end{aligned}$$
@@ -552,6 +574,258 @@ def _(mo):
     $$\begin{aligned} \max(-2x_1 + x_2^+ - x_2^- + 4x_3') &\text{ s.t.} \\ x_1 + x_2^+ - x_2^- + x_4^+ - x_4^- &\le 2 \\ 3x_2^+ - 3x_2^- + x_3' &\le 5 \\ -3x_2^+ + 3x_2^- - x_3' &\le -5 \\ x_3' - x_4^+ + x_4^- &\le -3 \\ x_1, x_2^+, x_2^-, x_3', x_4^+, x_4^- &\ge 0\end{aligned}$$
     """
     )
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""## An extra question for linear programs""")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    Even'Star Organic Farm was founded in 1997 by Brett Grohsgal, a former chef in Washington DC. The company owns a 104-acre farm in southern Maryland, and grows and sells organic produce. This problem describes the business issues faced by Brett, and the data is based on actual observations.
+
+    Brett has decided to grow five different types of produce: watermelon, basil, cucumbers, sweet potatoes, and winter squash. He distributes his produce through three different channels: Restaurants, Community-Supported Agriculture, and Farmers' Markets.
+
+    Initially, he sold exclusively to restaurants. He knows of 20 restaurants that will buy his produce from his connections as a former chef. As his farm expanded, he also started selling his produce at a local farmers' market, where he can command a higher price. Recently, he has also started selling through Community Supported Agriculture (CSA), a program in which individuals pay a $400 subscription price to get a box of produce each week for 15 weeks. He currently knows of 90 individuals who are interested in buying his produce through the CSA program.
+
+    Brett wanted to decide the number of cases of each type of produce to sell in each channel (there are 15 decision variables). Brett's objective is to maximize total profit (total revenue minus total cost).
+
+    The variable cost per client is:
+
+    - Restaurant: \$214.40
+    - CSA: \$31.68
+    - Farmer's Market: \$0
+
+    To compute the total variable cost for each restaurant client, we use the information that eachrestaurant client will buy 119 cases of produce during the season. So, the total number of restaurantclients served in a season can be computed as the total number of cases sold to restaurants, dividedby 119. Note that the number of restaurant clients Brett gives produce to could be fractional(like 16.57). This is a simplification we'll make for this problem, so please ignore the fact that thisnumber should be integer.
+
+    To compute the total variable cost for CSA clients, we need to know that each CSA customerwill buy $400 worth of produce during the season. So, the total number of CSA clients servedcan be computed by dividing the total dollar amount sent to CSA customers by $400. Note thatthe number of CSA clients Brett gives produce to could be fractional (like 16.57). This is againa simplification we'll make for this problem, so please ignore the fact that this number should beinteger.
+
+    There is no variable cost for farmers' market clients.
+
+    Brett has a limited amount of produce that he can sell each season, and he needs to decide howmuch produce to sell through each channel (restaurants, CSA, or farmers' markets). Brett can't sellnegative cases, and he can't sell more cases than he produces. Produce Data:
+
+    | Produce | Number of Available Cases | Restaurant Price | CSA Price | Farmer's Market Price |
+    | ------- | ------------------------- | ---------------- | --------- | --------------------- |
+    | Watermelon | 167 | \$20 | \$20 | \$20.25 |
+    | Basil | 406 | \$26 | \$36 | \$34 |
+    | Cucumber | 251 | \$24 | \$24 | \$25.20 |
+    | Sweet Potato | 107 | \$36 | \$36 | \$36 |
+    | Winter Squash | 133 | \$36 | \$36 | \$36 |
+
+    Due to the truck capacity, the number of cases sold at the farmers' market can't be more than 500. At most 20 restaurants will buy his produce, and at most 90 CSA customers will buy his produce.
+
+    Model Brett's problem as a linear optimization problem and solve it to get the optimal solution.
+
+    Now suppose that Brett has purchased additional acres of land, which allows him to produce 10 additional cases of one of his vegetables. Which vegetable should he plant on these additional acres?
+    """
+    )
+    return
+
+
+@app.cell
+def _():
+    """
+    def solve_optimize_produce_allocation_array(produce_array, produce_names, cost_data):
+
+        channels = ["Restaurant", "CSA", "FarmersMarket"]
+
+        # Basic sanity check
+        assert produce_array.shape == (
+            len(produce_names),
+            len(channels) + 1,
+        ), "produce_array shape must match (num_produce, 1 + num_channels)"
+
+        # Init AMPL
+        ampl = AMPL()
+        ampl.set_option("solver", "gurobi")
+
+        # AMPL model string
+        ampl.eval(
+            r'''
+            set PRODUCE;
+            set CHANNELS;
+
+            param Supply {PRODUCE} >= 0;
+            param Price {PRODUCE, CHANNELS} >= 0;
+            param CostPerCase {CHANNELS} default 0;
+
+            param CSACostRate;
+            param RestaurantCasePerClient;
+            param CSARevenuePerClient;
+
+            param MaxRestaurantClients;
+            param MaxCSAClients;
+            param MaxFarmersMarketCases;
+
+            var x {PRODUCE, CHANNELS} >= 0;
+
+            maximize TotalProfit:
+                sum {i in PRODUCE, j in CHANNELS} (
+                    if j = "CSA" then
+                        x[i,j] * Price[i,j] * (1 - CSACostRate)
+                    else
+                        x[i,j] * (Price[i,j] - CostPerCase[j])
+                );
+
+            subject to SupplyLimit {i in PRODUCE}:
+                sum {j in CHANNELS} x[i,j] <= Supply[i];
+
+            subject to RestaurantLimit:
+                sum {i in PRODUCE} x[i,"Restaurant"] <= MaxRestaurantClients * RestaurantCasePerClient;
+
+            subject to CSALimit:
+                sum {i in PRODUCE} x[i,"CSA"] * Price[i,"CSA"] <= MaxCSAClients * CSARevenuePerClient;
+
+            subject to FarmersMarketLimit:
+                sum {i in PRODUCE} x[i,"FarmersMarket"] <= MaxFarmersMarketCases;
+            '''
+        )
+
+        # Sets
+        ampl.set["PRODUCE"].set_values(produce_names)
+        ampl.set["CHANNELS"].set_values(channels)
+
+        # Supply
+        ampl.param["Supply"].set_values(
+            {p: produce_array[i, 0] for i, p in enumerate(produce_names)}
+        )
+
+        # Price (skip first column)
+        price_dict = {
+            (produce_names[i], channels[j]): float(produce_array[i, j + 1])
+            for i in range(len(produce_names))
+            for j in range(len(channels))
+        }
+        ampl.param["Price"].set_values(price_dict)
+
+        # Cost per case
+        restaurant_cost_per_case = (
+            cost_data["restaurant_cost_per_client"] / cost_data["num_restaurant"]
+        )
+        cost_per_case = {
+            "Restaurant": restaurant_cost_per_case,
+            "CSA": 0.0,
+            "FarmersMarket": 0.0,
+        }
+        ampl.param["CostPerCase"].set_values(cost_per_case)
+
+        # Client-level constraints
+        ampl.param["RestaurantCasePerClient"] = cost_data["num_restaurant"]
+        ampl.param["CSARevenuePerClient"] = cost_data["csa_revenue_per_client"]
+        ampl.param["CSACostRate"] = (
+            cost_data["csa_cost_per_client"] / cost_data["csa_revenue_per_client"]
+        )
+
+        ampl.param["MaxRestaurantClients"] = cost_data["max_restaurant_clients"]
+        ampl.param["MaxCSAClients"] = cost_data["max_csa_clients"]
+        ampl.param["MaxFarmersMarketCases"] = cost_data["max_farmers_market_cases"]
+
+        # Solve
+        ampl.solve()
+
+        # Extract results
+        x = ampl.get_variable("x")
+        result = {
+            produce: {channel: x[produce, channel].value() for channel in channels}
+            for produce in produce_names
+        }
+
+        return result, ampl
+    """
+    return
+
+
+@app.cell
+def _():
+    """
+    produce_names = ["Watermelon", "Basil", "Cucumber", "SweetPotato", "WinterSquash"]
+
+    # rows: Watermelon, Basil, Cucumber, SweetPotato, WinterSquash according to produce_names above
+    # cols: Supply, R Price, C Price, F Price
+    produce_array = np.array(
+        [
+            [167, 20.0, 20.0, 20.25],
+            [406, 26.0, 36.0, 34.0],
+            [251, 24.0, 24.0, 25.2],
+            [107, 36.0, 36.0, 36.0],
+            [133, 36.0, 36.0, 36.0],
+        ]
+    )
+
+    cost_data = {
+        "restaurant_cost_per_client": 214.4,
+        "num_restaurant": 119,
+        "csa_cost_per_client": 31.68,
+        "csa_revenue_per_client": 400,
+        "max_restaurant_clients": 20,
+        "max_csa_clients": 90,
+        "max_farmers_market_cases": 500,
+    }
+
+    result, ampl = solve_optimize_produce_allocation_array(
+        produce_names=produce_names,
+        produce_array=produce_array,
+        cost_data=cost_data,
+    )
+
+    result
+
+    # Gurobi 12.0.2:Gurobi 12.0.2: optimal solution; objective 31520.69725
+    # 1 simplex iteration
+    #
+    # {'Watermelon': {'Restaurant': 0.0, 'CSA': 0.0, 'FarmersMarket': 167.0},
+    #  'Basil': {'Restaurant': 0.0, 'CSA': 406.0, 'FarmersMarket': 0.0},
+    #  'Cucumber': {'Restaurant': 0.0, 'CSA': 0.0, 'FarmersMarket': 251.0},
+    #  'SweetPotato': {'Restaurant': 25.0, 'CSA': 0.0, 'FarmersMarket': 82.0},
+    #  'WinterSquash': {'Restaurant': 133.0, 'CSA': 0.0, 'FarmersMarket': 0.0}}
+    """
+    return
+
+
+@app.cell
+def _():
+    """
+    def recommend_extra_production(ampl, produce_names, extra_cases=10):
+
+        duals = ampl.get_constraint("SupplyLimit")
+        shadow_prices = {produce: duals[produce].dual() for produce in produce_names}
+
+        gains = {produce: shadow_prices[produce] * extra_cases for produce in produce_names}
+        best_produce, best_gain = max(gains.items(), key=lambda x: x[1])
+
+        print(
+            f"\nBrett should grow more {best_produce}, expecting an extra ${best_gain:.2f} profit for {extra_cases} additional cases.\n"
+        )
+
+        print(f"{'Produce':20} {'Shadow Price'}")
+        for produce in produce_names:
+            dual = shadow_prices[produce]
+            print(f"{produce:20} ${dual:.4f}")
+
+        return best_produce, best_gain
+    """
+    return
+
+
+@app.cell
+def _():
+    """
+    _, _ = recommend_extra_production(ampl, produce_names, 10)
+
+    # Brett should grow more SweetPotato, expecting an extra $341.98 profit for 10 additional cases.
+
+    # Produce              Shadow Price
+    # Watermelon           $18.4483
+    # Basil                $33.1488
+    # Cucumber             $23.3983
+    # SweetPotato          $34.1983
+    # WinterSquash         $34.1983
+    """
     return
 
 
