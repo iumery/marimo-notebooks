@@ -15,8 +15,8 @@ def _(mo):
     nav_menu = mo.nav_menu(
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
-            "/notebooks/SQL_20250711.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
-            "/notebooks/SQL_202507013.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
+            "/notebooks/SQL_20250713.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
+            "/notebooks/SQL_202507015.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
