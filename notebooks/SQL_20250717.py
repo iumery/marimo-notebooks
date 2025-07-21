@@ -16,7 +16,7 @@ def _(mo):
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
             "/notebooks/SQL_20250716.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
-            "/notebooks/SQL_202507018.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
+            "/notebooks/SQL_20250718.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
