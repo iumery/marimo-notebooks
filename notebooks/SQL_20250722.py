@@ -24,5 +24,39 @@ def _(mo):
     return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ## Problem 33: Repeated Trial Titles with Different Conditions
+
+    Goal: Find interventional studies that have the exact same title appearing in multiple trials, but linked to different conditions.
+
+    Requirements:
+
+    - Only include trials where the study_type is 'Interventional'.
+    - Titles should be matched case-insensitively and whitespace-trimmed.
+    - Show only titles that appear in at least 2 trials **with different condition groups**.
+    - For each such title, return:
+        - title
+        - number of distinct trials
+        - number of distinct condition names
+        - list of condition groups (sorted alphabetically)
+
+    Hints:
+
+    - Use `studies.title`, `studies.study_type`, and the `conditions` table
+    - Watch out for subtle whitespace and case issues in titles and condition names
+    """
+    )
+    return
+
+
+@app.cell
+def _():
+    """ """
+    return
+
+
 if __name__ == "__main__":
     app.run()

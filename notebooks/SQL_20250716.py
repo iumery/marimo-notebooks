@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -14,9 +15,9 @@ def _():
 def _(mo):
     nav_menu = mo.nav_menu(
         {
-        "/index.html": f"{mo.icon('lucide:home')} Home",
-        "/notebooks/SQL_20250715.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
-        "/notebooks/SQL_20250717.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
+            "/index.html": f"{mo.icon('lucide:home')} Home",
+            "/notebooks/SQL_20250715.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
+            "/notebooks/SQL_20250717.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
@@ -28,7 +29,7 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-    ## Problem 28: Genre Loyalty Shift
+    ## Problem 27: Genre Loyalty Shift
 
     Goal: Identify customers who switched their preferred genre between their first and last 5 rentals.
 
