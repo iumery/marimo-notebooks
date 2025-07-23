@@ -7,7 +7,6 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -17,7 +16,7 @@ def _(mo):
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
             "/notebooks/SQL_20250710.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
-            "/notebooks/SQL_20250712.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
+            "/notebooks/SQL_20250713.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
