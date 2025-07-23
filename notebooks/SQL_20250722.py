@@ -54,7 +54,34 @@ def _(mo):
 
 @app.cell
 def _():
-    """ """
+    """
+    WITH title_and_condition AS (
+        SELECT
+            TRIM(INITCAP(brief_title)) AS title,
+            name AS condition_name,
+            nct_id
+        FROM
+            studies
+                JOIN conditions USING(nct_id)
+        WHERE
+            LOWER(study_type) = 'interventional'
+    )
+    SELECT
+        title,
+        COUNT(DISTINCT nct_id) AS num_distinct_trial,
+        COUNT(DISTINCT condition_name) AS num_distinct_condition,
+        STRING_AGG(DISTINCT condition_name, ', ') AS list_condition
+    FROM
+        title_and_condition
+    GROUP BY
+        1
+    HAVING
+        COUNT(DISTINCT condition_name) > 1
+    ORDER BY
+        3 DESC,
+        2 DESC,
+        1;
+    """
     return
 
 
