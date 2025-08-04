@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.14.10"
+__generated_with = "0.14.16"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -17,7 +16,7 @@ def _(mo):
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
             "/notebooks/SQL_20250801.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
-            "/notebooks/SQL_20250803.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
+            "/notebooks/SQL_20250804.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
@@ -45,7 +44,7 @@ def _(mo):
     - Has leading zeros in any octet (like 01.02.03.04)
     - Has less or more than 4 octets
 
-    Return the result table ordered by `invalid_count`, `ip` in descending order respectively. 
+    Return the result table ordered by `invalid_count`, `ip` in descending order respectively.
     """
     )
     return
