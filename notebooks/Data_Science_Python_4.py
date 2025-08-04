@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.14.9"
+__generated_with = "0.14.16"
 app = marimo.App()
 
 
@@ -8,6 +8,7 @@ app = marimo.App()
 def _():
     import marimo as mo
     import numpy as np
+
     return mo, np
 
 
@@ -252,6 +253,7 @@ def _(np):
                 break
 
         return best_x, best_value
+
     return (knapsack_local_search,)
 
 
@@ -318,6 +320,7 @@ def _(np):
             tabu_list[move_to_make] = iteration + tabu_tenure
 
         return best_x, best_value
+
     return (knapsack_tabu_search,)
 
 
@@ -329,9 +332,7 @@ def _(mo):
 
 @app.cell
 def _(np):
-    def knapsack_simulated_annealing(
-        c, a, B, T_init=100.0, T_min=1e-3, alpha=0.95, max_iter=1000
-    ):
+    def knapsack_simulated_annealing(c, a, B, T_init=100.0, T_min=1e-3, alpha=0.95, max_iter=1000):
         n = len(c)
         c = np.array(c)
         a = np.array(a)
@@ -376,6 +377,7 @@ def _(np):
                 break
 
         return best_x, best_value
+
     return (knapsack_simulated_annealing,)
 
 
@@ -445,7 +447,6 @@ def _(np):
         B = int(np.random.uniform(0.5, 0.7) * np.sum(a))  # 50–70% of total weight
 
         return c.tolist(), a.tolist(), B
-
 
     c, a, B = generate_knapsack_instance(n=30)
     return B, a, c

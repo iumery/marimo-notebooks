@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -99,7 +100,6 @@ def _():
     import plotly.io as pio
 
     pio.templates.default = "plotly_white"
-
 
     class VietorisRipsComplex:
         def __init__(self, point_cloud, max_dimension=None, metric="euclidean"):
@@ -216,6 +216,7 @@ def _():
                 showlegend=False,
             )
             fig.show()
+
     return VietorisRipsComplex, np
 
 
@@ -242,7 +243,6 @@ def _(np):
         y = (R + r * np.cos(v)) * np.sin(u) + np.random.normal(0, noise, u.shape)
         z = r * np.sin(v) + np.random.normal(0, noise, u.shape)
         return list(zip(x.flatten(), y.flatten(), z.flatten()))
-
 
     point_cloud = generate_torus()
     return (point_cloud,)

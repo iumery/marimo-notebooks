@@ -10,6 +10,7 @@ def _():
     import numpy as np
     from numpy.typing import NDArray
     import matplotlib.pyplot as plt
+
     return NDArray, mo, np, plt
 
 
@@ -39,7 +40,9 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""The goal of this practice is to strengthen Python programming skills in scientific computing by working with arrays, matrices, expressions, control flow, and plotting, and to apply these concepts to visualize fractals such as Julia and Mandelbrot sets.""")
+    mo.md(
+        r"""The goal of this practice is to strengthen Python programming skills in scientific computing by working with arrays, matrices, expressions, control flow, and plotting, and to apply these concepts to visualize fractals such as Julia and Mandelbrot sets."""
+    )
     return
 
 
@@ -129,9 +132,7 @@ def _(NDArray, np):
     C: NDArray[int] = np.linspace(1, 100, 100).astype(int).reshape(10, 10).T
     D: NDArray[int] = np.array([[13, -1, 5], [-22, 10, 87]])
     # The result is not uniformly distributed because of the sampling and rounding process here
-    E: NDArray[int] = (
-        (-3 + 6 * np.random.random_sample(5 * 3)).round().astype(int).reshape(5, 3)
-    )
+    E: NDArray[int] = (-3 + 6 * np.random.random_sample(5 * 3)).round().astype(int).reshape(5, 3)
     return A, B, C, D
 
 
@@ -154,9 +155,7 @@ def _(mo):
 def _(a: int, c: complex, d: complex, np):
     x: np.float64 = 1 / (1 + np.exp(-(a - 15) / 6))
     # When we are certain that the operation will yield a real number, we can take the real part by .real and annotate the type as float
-    y: np.float64 = (
-        np.log(np.real((c + d) * (c - d)) * np.sin(a * np.pi / 3)) / (c * np.conj(c))
-    ).real
+    y: np.float64 = (np.log(np.real((c + d) * (c - d)) * np.sin(a * np.pi / 3)) / (c * np.conj(c))).real
     return
 
 
@@ -178,9 +177,7 @@ def _(mo):
 
 @app.cell
 def _(NDArray, m: "NDArray", np, u: "NDArray", v: "NDArray"):
-    x_vec: NDArray[np.float64] = (1 / np.sqrt(2 * np.pi * (2.5**2))) * np.exp(
-        -(v**2) / (2 * (2.5**2))
-    )
+    x_vec: NDArray[np.float64] = (1 / np.sqrt(2 * np.pi * (2.5**2))) * np.exp(-(v**2) / (2 * (2.5**2)))
     y_vec: NDArray[np.float64] = np.sqrt((u.T) ** 2 + v**2)
     z_vec: NDArray[np.float64] = np.log10(1 / m)
     return (z_vec,)
@@ -261,9 +258,7 @@ def _(C: "NDArray[int]", D: "NDArray[int]", NDArray, np):
     first_row_D: NDArray[int] = D[0, :]
     D[0] = [1, 1, 1]
     submatrix_C: NDArray[int] = C[2:10, 2:10]
-    k_vec: NDArray[int] = np.linspace(1, 20, 20).astype(int) * (-1) ** (
-        np.arange(0, 20)
-    )
+    k_vec: NDArray[int] = np.linspace(1, 20, 20).astype(int) * (-1) ** (np.arange(0, 20))
     r_vec: NDArray[np.float64] = np.random.random_sample((1, 5))
     r_vec[r_vec < 0.5] = 0
     return
@@ -407,7 +402,9 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""Loops and flow control: Make function called `loopTest(M, N)` that loops through the values $M$ through $N$. For each number $n$ it should display `n is divisible by 3` or `n is NOT divisible by 3` and it should stop after finding three occurrences of a number divisible by three.""")
+    mo.md(
+        r"""Loops and flow control: Make function called `loopTest(M, N)` that loops through the values $M$ through $N$. For each number $n$ it should display `n is divisible by 3` or `n is NOT divisible by 3` and it should stop after finding three occurrences of a number divisible by three."""
+    )
     return
 
 
@@ -511,9 +508,7 @@ def _(NDArray, escapeVelocity, np):
         rows: NDArray[np.float64]
         cols: NDArray[np.float64]
         # `np.meshgrid` will return a tuple of two ndarray's with the row and column values
-        rows, cols = np.meshgrid(
-            np.linspace(-zMax, zMax, n), np.linspace(-zMax, zMax, n), indexing="ij"
-        )
+        rows, cols = np.meshgrid(np.linspace(-zMax, zMax, n), np.linspace(-zMax, zMax, n), indexing="ij")
         # Direct operation on the rows and columns is possible
         Z: NDArray[complex] = cols + rows * 1j
         # `np.vectorize` provides a clean way to apply a function to an ndarray

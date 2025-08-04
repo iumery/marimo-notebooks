@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -243,7 +244,6 @@ def _():
     topology_Y = [set(), {"a"}, {"a", "b"}, Y]
     space_Y = TopologicalSpace(Y, topology_Y)
 
-
     # Define a bijective function f from X to Y
     def f(x):
         """
@@ -252,7 +252,6 @@ def _():
         mapping = {1: "a", 2: "b", 3: "c"}
         return mapping[x]
 
-
     # Define the inverse of f
     def f_inv(y):
         """
@@ -260,7 +259,6 @@ def _():
         """
         inverse_mapping = {"a": 1, "b": 2, "c": 3}
         return inverse_mapping[y]
-
 
     # Check if f and f_inv form a homeomorphism between space_X and space_Y
     homeo_f_X_Y = Homeomorphism(f, f_inv, space_X, space_Y)

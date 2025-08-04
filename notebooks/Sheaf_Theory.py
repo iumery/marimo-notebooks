@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -128,7 +129,6 @@ def _():
                                 return False  # Inconsistent if restriction does not match sub's data
             return True  # Return True if all checks pass
 
-
     def construct_sheaf(simplicial_complex, local_data):
         """
         Construct a sheaf by assigning local data to simplices in the simplicial complex.
@@ -143,7 +143,6 @@ def _():
             sheaf.assign_data(simplex, data)
         return sheaf  # Return the constructed sheaf
 
-
     def find_global_section(sheaf):
         """
         Find a global section of the sheaf if it is consistent.
@@ -157,6 +156,7 @@ def _():
             return {k: v for k, v in sheaf.data.items()}
         else:
             return "Inconsistency detected."  # Return an error message if inconsistent
+
     return construct_sheaf, find_global_section
 
 

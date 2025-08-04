@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -100,6 +101,7 @@ def _():
     import networkx as nx
     import matplotlib.pyplot as plt
     from scipy.linalg import null_space
+
     return math, np, null_space, nx, plt
 
 
@@ -353,7 +355,9 @@ def _(np):
             all_simplices = set(range(len(self.all_simplices)))
             # Infinite persistence corresponds to simplices that are never paired with a death simplex
             infinite_persistence_pairs = [(simplex, np.inf) for simplex in all_simplices - paired_simplices]
-            return [sorted([pair for pair in infinite_persistence_pairs if len(self.all_simplices[pair[0]]) == i]) for i in range(1, self.dimension + 2)]
+            return [
+                sorted([pair for pair in infinite_persistence_pairs if len(self.all_simplices[pair[0]]) == i]) for i in range(1, self.dimension + 2)
+            ]
 
         def _homology(self):
             """
@@ -376,6 +380,7 @@ def _(np):
                 homology[dimension] += 1  # Increment the count for this dimension
 
             return homology
+
     return (SimplicialComplex,)
 
 
@@ -418,7 +423,9 @@ def _(np, null_space):
                 for simplex in kp1_simplices:
                     faces = [simplex[:i] + simplex[i + 1 :] for i in range(len(simplex))]
                     # Create a row for each face in the k-simplices
-                    matrix.append([(1 if simplex in faces and faces.index(simplex) % 2 == 0 else -1 if simplex in faces else 0) for simplex in k_simplices])
+                    matrix.append(
+                        [(1 if simplex in faces and faces.index(simplex) % 2 == 0 else -1 if simplex in faces else 0) for simplex in k_simplices]
+                    )
                 boundary_ops.append(np.array(matrix).T)  # Transpose the matrix to align with the chain maps
 
             return boundary_ops
@@ -457,6 +464,7 @@ def _(np, null_space):
 
             # Return the rank (number of generators) of each homology group
             return [group.shape[1] for group in homology_groups]
+
     return (ChainComplex,)
 
 
@@ -559,6 +567,7 @@ def _(math, nx):
 
         # Return the bottleneck distance
         return sorted_distances[index]
+
     return (bottleneck_distance,)
 
 
@@ -647,7 +656,6 @@ def _(plt):
 
         return
 
-
     def plot_persistence_diagram_all_dimension(simplicial_complex, size_plot=10):
         """
         Plots the persistence diagram for all dimensions of a simplicial complex.
@@ -719,6 +727,7 @@ def _(plt):
         plt.show()
 
         return
+
     return (
         plot_persistence_diagram_all_dimension,
         plot_persistence_diagram_single_dimension,
@@ -836,7 +845,9 @@ def _(
     print(f"Compute using chain complex:    {cc_2.homology}")
     print(f"Compute using persistence pair: {sc_2.homology}")
 
-    print(f"The bottleneck distance between the two persistence diagrams is {bottleneck_distance(sc_1.finite_persistence_pairs, sc_2.finite_persistence_pairs)}.")
+    print(
+        f"The bottleneck distance between the two persistence diagrams is {bottleneck_distance(sc_1.finite_persistence_pairs, sc_2.finite_persistence_pairs)}."
+    )
 
     print(f"==Persistence Diagram of the First Simplicial Complex==")
 

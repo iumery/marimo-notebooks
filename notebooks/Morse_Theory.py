@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -52,6 +53,7 @@ def _(mo):
 def _():
     import numpy as np
     import matplotlib.pyplot as plt
+
     return np, plt
 
 
@@ -71,7 +73,6 @@ def _(np):
         """
         return np.where(np.isclose(f, c, atol=atol))
 
-
     def identify_critical_points(f, x):
         """
         Identify the critical points by checking where the gradient of the function is approximately zero.
@@ -87,7 +88,6 @@ def _(np):
         gradient = np.gradient(f, x)
         # Use compute_level_set to find where the gradient is close to zero (critical points)
         return compute_level_set(gradient, 0)
-
 
     def construct_reeb_graph(f, x):
         """
@@ -112,7 +112,6 @@ def _(np):
         edges = [(vertices[i], vertices[i + 1]) for i in range(len(vertices) - 1)]
 
         return {"vertices": vertices, "edges": edges}
-
 
     def anomaly_detection_reeb_graph(f, x):
         """
@@ -139,7 +138,6 @@ def _(np):
 
         return anomalies
 
-
     def is_anomalous(vertex):
         """
         Example condition for classifying an anomaly. This function flags points with function
@@ -152,6 +150,7 @@ def _(np):
             True if the vertex is considered anomalous, False otherwise.
         """
         return vertex[1] > 0.8 or vertex[1] < -0.8
+
     return (
         anomaly_detection_reeb_graph,
         compute_level_set,
@@ -249,7 +248,6 @@ def _(mo):
 def _(np):
     from scipy.linalg import eigh
 
-
     def morse_function_example(x):
         """
         Example of a Morse function in 2D.
@@ -260,7 +258,6 @@ def _(np):
             The function value at the given point.
         """
         return x[0] ** 3 - 3 * x[0] * x[1] ** 2
-
 
     def compute_gradient_at_point(f, x):
         """
@@ -284,7 +281,6 @@ def _(np):
             grad[i] = (f(x_step) - f(x)) / epsilon  # Approximate partial derivative
 
         return grad
-
 
     def compute_gradient_on_grid(f, *grid_points):
         """
@@ -321,7 +317,6 @@ def _(np):
 
         return grad_components
 
-
     def find_critical_points(*grad_components, tolerance=1e-3):
         """
         Identify critical points where the gradient is approximately zero.
@@ -341,7 +336,6 @@ def _(np):
             is_critical_point &= np.abs(grad) < tolerance  # Logical AND for all components
 
         return is_critical_point
-
 
     def compute_hessian(f, x):
         """
@@ -369,14 +363,15 @@ def _(np):
                     return f(x_new)
 
                 # Compute second-order partial derivatives using central differences
-                hessian[i, j] = (shift_epsilon(epsilon, epsilon) - shift_epsilon(epsilon, 0) - shift_epsilon(0, epsilon) + shift_epsilon(0, 0)) / (epsilon**2)
+                hessian[i, j] = (shift_epsilon(epsilon, epsilon) - shift_epsilon(epsilon, 0) - shift_epsilon(0, epsilon) + shift_epsilon(0, 0)) / (
+                    epsilon**2
+                )
 
                 # Copy the value to the lower triangular part (Hessian is symmetric)
                 if i != j:
                     hessian[j, i] = hessian[i, j]
 
         return hessian
-
 
     def is_morse(f, x):
         """
@@ -396,6 +391,7 @@ def _(np):
             return np.all(eigvals != 0)  # Return True if all eigenvalues are non-zero
         except np.linalg.LinAlgError:
             return False  # If Hessian computation fails, it's not a Morse point
+
     return (
         compute_gradient_on_grid,
         find_critical_points,

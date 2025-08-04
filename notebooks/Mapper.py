@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -71,6 +72,7 @@ def _():
     import networkx as nx
     import matplotlib.pyplot as plt
     from sklearn.cluster import DBSCAN
+
     return DBSCAN, np, nx, plt
 
 
@@ -135,7 +137,6 @@ def _(np, plt, point_cloud):
         normalized_array = (array - min_vals) / range_vals
         return [tuple(point) for point in normalized_array]
 
-
     # 2. Standardization (Z-score Normalization)
     def standardize(tuples):
         array = np.array(tuples)
@@ -144,7 +145,6 @@ def _(np, plt, point_cloud):
         std_vals = np.where(std_vals == 0, 1, std_vals)
         standardized_array = (array - mean_vals) / std_vals
         return [tuple(point) for point in standardized_array]
-
 
     # 3. Mean Normalization (Centers data to approximately [-0.5, 0.5])
     def mean_normalize(tuples):
@@ -156,7 +156,6 @@ def _(np, plt, point_cloud):
         normalized_array = (array - mean_vals) / range_vals
         return [tuple(point) for point in normalized_array]
 
-
     # 4. Unit Vector Normalization (Normalize each vector to unit length)
     def unit_vector_normalize(tuples):
         array = np.array(tuples)
@@ -164,7 +163,6 @@ def _(np, plt, point_cloud):
         norms = np.where(norms == 0, 1, norms)
         normalized_array = array / norms
         return [tuple(point) for point in normalized_array]
-
 
     # 5. Robust Scaling (Using Median and IQR)
     def robust_scale(tuples):
@@ -175,7 +173,6 @@ def _(np, plt, point_cloud):
         scaled_array = (array - median_vals) / iqr_vals
         return [tuple(point) for point in scaled_array]
 
-
     # 6. Log Transformation (For skewed data)
     def log_transform(tuples, shift_constant=1e-5):
         array = np.array(tuples)
@@ -185,7 +182,6 @@ def _(np, plt, point_cloud):
         log_transformed_array = np.log(array)
         return [tuple(point) for point in log_transformed_array]
 
-
     # 7. Max-Abs Scaling (Scaling each feature to [-1, 1] by its maximum absolute value)
     def max_abs_scale(tuples):
         array = np.array(tuples)
@@ -194,7 +190,6 @@ def _(np, plt, point_cloud):
         scaled_array = array / max_abs_vals
         return [tuple(point) for point in scaled_array]
 
-
     # 8. Decimal Scaling (Scaling by a power of 10 to fit [-1, 1])
     def decimal_scale(tuples):
         array = np.array(tuples)
@@ -202,7 +197,6 @@ def _(np, plt, point_cloud):
         j_vals = np.ceil(np.log10(np.where(max_abs_vals == 0, 1, max_abs_vals)))
         scaled_array = array / (10**j_vals)
         return [tuple(point) for point in scaled_array]
-
 
     normalized_point_cloud = min_max_normalize(point_cloud)
     x_coords_normal, y_coords_normal = zip(*normalized_point_cloud)
@@ -267,7 +261,6 @@ def _(np):
 
         return small_cubes  # Return the list of small subcubes
 
-
     def dummy_process(point):
         """
         Dummy function for processing a point.
@@ -279,7 +272,6 @@ def _(np):
             The same point (identity function).
         """
         return point
-
 
     def projection_process(point):
         """
@@ -294,7 +286,6 @@ def _(np):
             A tuple representing the projected point (in this case, just the y-coordinate).
         """
         return (point[1],)  # Return the second component of the point as the projection
-
 
     def preimage_cover(point_cloud, cover_codomain, process_function):
         """
@@ -334,6 +325,7 @@ def _(np):
                         cover_domain[item].append(point)
 
         return cover_domain  # Return the dictionary mapping subcubes to preimage points
+
     return divide_unit_n_cube, preimage_cover, projection_process
 
 
@@ -454,7 +446,6 @@ def _(DBSCAN, cover_domain, plt):
             clusters[label] = [point for point, l in zip(points, labels) if l == label]
 
         return clusters  # Return the clusters (including noise points if any)
-
 
     # Example: Choose a specific cover to cluster (e.g., the 3rd cover)
     k = 3

@@ -50,19 +50,19 @@ def _(mo):
 def _():
     """
     WITH layover_info AS (
-        SELECT 
-            leg_num, 
-            CONCAT(first_name, ' ', last_name) AS full_name, 
-            passenger_id, 
+        SELECT
+            leg_num,
+            CONCAT(first_name, ' ', last_name) AS full_name,
+            passenger_id,
             booking_id,
             is_returning,
             flight_id AS flight_id_prev,
             LEAD(scheduled_departure, 1) OVER (PARTITION BY booking_id, passenger_id, is_returning ORDER BY leg_num) - scheduled_arrival AS layover,
             LEAD(flight_id, 1) OVER (PARTITION BY booking_id, passenger_id, is_returning ORDER BY leg_num) AS flight_id_next
         FROM
-            booking 
-                JOIN booking_leg USING(booking_id) 
-                JOIN flight USING(flight_id) 
+            booking
+                JOIN booking_leg USING(booking_id)
+                JOIN flight USING(flight_id)
                 JOIN passenger USING(booking_id)
     )
     SELECT
