@@ -1,17 +1,17 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.14.16"
 app = marimo.App()
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     import marimo as mo
 
     return (mo,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     nav_menu = mo.nav_menu(
         {
@@ -23,13 +23,13 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""# Schedule""")
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
@@ -41,7 +41,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(
         r"""
