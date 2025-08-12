@@ -24,7 +24,9 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""<img src="public/university of miami logo.gif" alt="university of miami logo" style="display: block; margin: auto; zoom:35%;" />""")
+    mo.md(
+        r"""<img src="public/university of miami logo.gif" alt="university of miami logo" style="display: block; margin: auto; zoom:35%;" />"""
+    )
     return
 
 
@@ -68,7 +70,7 @@ def _(mo):
 
     ### Prerequisites
 
-    At least a **C-** in [MTH 108](https://mathematics.miami.edu/undergrad/courses/index.html#MTH108), or one of the following:
+    At least a C- in [MTH 108](https://mathematics.miami.edu/undergrad/courses/index.html#MTH108), or one of the following:
 
     - SAT Math Section Score ≥ 730  
     - ACT Math Score ≥ 31  
@@ -254,7 +256,7 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-    **Text**: Essential Calculus by Stewart (2nd Edition)
+    **Textbook**: *Essential Calculus* by Stewart, 2nd edition, ISBN: 9781337772020
 
     **Chapter 1: Functions and Limits (all sections)**: Functions and their graphs; limit of a function; limit laws; continuity; limits at infinity; precise definition of limit.
 
