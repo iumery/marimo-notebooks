@@ -24,26 +24,14 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""# Schedule""")
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
     mo.md(
         r"""
+    # Schedule
+
     **Schedule and exam covering materials are subject to change, all midterm exams will be announced at least one week ahead during lectures**. **Midterm exams are always given on Thursday of the week, 75 minutes allowed**.  
 
     **Final exam: Friday, December 5th from 08:00 PM to 10:30 PM**.
-    """
-    )
-    return
 
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(
-        r"""
     | Week # | Week of | Content | Note |
     | :----: | :-----: | :------ | :--- |
     | 1 | 08/18 | Introduction: Syllabus, Course Policies<br/>1.1: Functions and Their Representation<br/>1.2: A Catalog of Essential Functions |  |

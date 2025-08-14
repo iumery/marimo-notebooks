@@ -32,38 +32,22 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""# MTH 161 - Calculus I""")
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""## Course Information""")
-    return
-
-
-@app.cell(hide_code=True)
-def _(mo):
     mo.md(
         r"""
+    # MTH 161 - Calculus I
+
+    ## Course Information
+
     ### Basic Information
 
     | | |
     | --------------: | :--------------------------------------------- |
     | Instructor | Zedan Liu |
     | Course Section | A1, N1 |
-    | Email | zedan.liu@miami.edu or z.liu15@umiami.edu |
+    | Email | [zedan.liu@miami.edu](mailto:zedan.liu@miami.edu) or [z.liu15@umiami.edu](mailto:z.liu15@umiami.edu) |
     | Office Hour | Monday, Tuesday 9:30 - 11:00 or by appointment |
     | Office Location | Ungar 433 |
-    """
-    )
-    return
 
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(
-        r"""
     ### Course Description
 
     Limits, continuity, derivatives, integrals, and their applications.
@@ -80,14 +64,11 @@ def _(mo):
 
     ### General Information
 
-    All course information, policies, and documents are available under the **Course Information** link on the Blackboard course page. Announcements will be posted throughout the semester on Blackboard and sent via email.
-
-    > **It is your responsibility to regularly check Blackboard and stay current with all announcements and materials.**
+    All course information, policies, and documents are available under the **Course Information** link on the Blackboard course page. Announcements will be posted throughout the semester on Blackboard and sent via email. **It is your responsibility to regularly check Blackboard and stay current with all announcements and materials.**
 
     ### Diagnostic Quiz
 
-    A diagnostic quiz will be administered during the **first or second week of class**. **This quiz will not affect your course grade.**  
-    To prepare, review the [Calculus Prerequisite Review](https://mathematics.miami.edu/_assets/pdf/undergrad/prepare/prepare-calculus.pdf) document.
+    A diagnostic quiz will be administered during the **first or second week of class**. **This quiz will not affect your course grade.** To prepare, review the [Calculus Prerequisite Review](https://mathematics.miami.edu/_assets/pdf/undergrad/prepare/prepare-calculus.pdf) document.
 
     ### Organization and Notebooks
 
@@ -122,11 +103,11 @@ def _(mo):
 
     ### Final Exam
 
-    **Date**: Friday, December 5, 2025  
-    **Time**: 8:00 PM – 10:30 PM  
-    **Room**: To be announced  
+    -   **Date**: Friday, December 5, 2025
+    -   **Time**: 8:00 PM – 10:30 PM
+    -   **Room**: To be announced
 
-    > The exam is a **group final** for all sections of MTH 161. **Do not make travel plans before the date of the final exam.**
+    The exam is a group final for all sections of MTH 161. Do not make travel plans before the date of the final exam.
 
     ### Grading Scale
 
@@ -160,30 +141,21 @@ def _(mo):
 
     **Important**:
 
-    - You must notify your instructor **at least 7 days in advance** for university-approved absences  
-    - For emergencies on the exam day, contact your instructor **immediately** with documentation  
-    - **No makeups will be allowed more than 7 days after the original date.**  
+    - You should notify your instructor **at least 7 days in advance** for university-approved absences
+    - For emergencies on the exam day, contact your instructor **as soon as possible** with documentation
+    - **No makeups will be allowed more than 7 days after the original date**
+    - **You may take makeups at most 3 times in total.**
 
     ### Testing Policy
 
-    1. You may be required to show **photo ID (Cane Card)** during any exam  
-    2. **No calculators, phones, or electronic devices** are permitted during quizzes or exams  
+    1. You may be required to show **photo ID (Cane Card)** during any exam
+    2. **No calculators, phones, or electronic devices** are permitted during quizzes or exams
     3. **Exam retakes are not permitted under any circumstances.**
-    """
-    )
-    return
 
+    <div style="page-break-after: always; break-after: page;"></div>
 
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""## Honor Code""")
-    return
+    ## Honor Code
 
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(
-        r"""
     Students are expected to adhere to the University of Miami [Honor Code](https://doso.studentaffairs.miami.edu/honor-council/honor-code/index.html) in completing the entirety of this course. Students are to complete all required coursework – exams, quizzes, homework, etc. – on their own. Any work completed in class or online is to be completed without assistance from any other individual, computer program, website, online solver, outside materials, etc.
 
     The instructor reserves the right, at their discretion, to require an oral examination during an on-campus conference or a live video conference, in order for the student to justify any work submitted for this course.
@@ -195,21 +167,11 @@ def _(mo):
     Violations of the Honor Code will be referred to the Academic Integrity Committee of the College of Arts & Sciences (or the Honor Council).
 
     If a student is found responsible for an Honor Code Violation, the recommended sanction for a violation on an exam or quiz will be a 0 on that assessment. Such a grade of 0 on an assessment will not be replaced by the final exam grade nor will it be dropped from the final average in the course. If a student is found responsible for an Honor Code Violation on the final exam, the recommended sanction will be a grade of 0 and an F in the course.
-    """
-    )
-    return
 
+    <div style="page-break-after: always; break-after: page;"></div>
 
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""## Academic Support""")
-    return
+    ## Academic Support
 
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(
-        r"""
     ### Important Dates
 
     See [Academic Calendar](https://registrar.miami.edu/_assets/pdf/academic-calendar-fall-2025.pdf) and [Final Exam Schedule](https://registrar.miami.edu/_assets/pdf/final-exam-fall-2025.pdf).
@@ -226,7 +188,7 @@ def _(mo):
 
     The [Office of Disability Services](https://camnercenter.miami.edu/disability-services/accommodations/index.html) (ODS) provides academic accommodations and support to ensure that students with disabilities are able to access and participate in the opportunities available at the University of Miami. Individuals with disabilities must request academic accommodations through the Office of Disabilities Services.
 
-    *Students with ODS accommodations must provide their instructor with the approved accommodations memo by no later than week 2 of the semester. Requests for extended time must be provided to the instructor at least 7 days in advance of the scheduled exam/quiz.*
+    **Students with ODS accommodations must provide their instructor with the approved accommodations memo by no later than week 2 of the semester. Requests for extended time must be provided to the instructor at least 7 days in advance of the scheduled exam/quiz.**
 
     ### Resolution of Issues
 
@@ -235,27 +197,17 @@ def _(mo):
     | | |
     | ---------------------- | :------------------------------------------------------------ |
     | Department Coordinator | Dr. Leticia Oropesa |
-    | Email | l.oropesa@miami.edu |
+    | Email | [l.oropesa@miami.edu](mailto:l.oropesa@miami.edu) |
     | Office Location | Ungar 515F |
 
     ### Well-Being Resources and Support
 
     As you complete your coursework, consider how you can maintain your health and well-being as a top priority. To help you become familiar with the many programs and services available on campus, review the information collected on the [Division of Student Affairs Student Well-Being and Resiliency website](https://www.studentaffairs.miami.edu/student-well-being/index.html). Please reach out to the Department Coordinator or any of the resources listed on the site if you need assistance or support throughout the semester.
-    """
-    )
-    return
 
+    <div style="page-break-after: always; break-after: page;"></div>
 
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""## Course Outline""")
-    return
+    ## Course Outline
 
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(
-        r"""
     **Textbook**: *Essential Calculus* by Stewart, 2nd edition, ISBN: 9781337772020
 
     **Chapter 1: Functions and Limits (all sections)**: Functions and their graphs; limit of a function; limit laws; continuity; limits at infinity; precise definition of limit.
