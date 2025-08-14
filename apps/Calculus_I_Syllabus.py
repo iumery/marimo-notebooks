@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -24,9 +25,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""<img src="public/university of miami logo.gif" alt="university of miami logo" style="display: block; margin: auto; zoom:35%;" />"""
-    )
+    mo.md(r"""<img src="public/university of miami logo.gif" alt="university of miami logo" style="display: block; margin: auto; zoom:35%;" />""")
     return
 
 
