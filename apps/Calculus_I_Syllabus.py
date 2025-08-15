@@ -33,7 +33,7 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-    # MTH 161 - Calculus I
+    # MTH 161 – Calculus I
 
     ## Course Information
 
@@ -44,7 +44,7 @@ def _(mo):
     | Instructor | Zedan Liu |
     | Course Section | A1, N1 |
     | Email | [zedan.liu@miami.edu](mailto:zedan.liu@miami.edu) or [z.liu15@umiami.edu](mailto:z.liu15@umiami.edu) |
-    | Office Hour | Monday, Tuesday 9:30 - 11:00 or by appointment |
+    | Office Hour | Monday, Tuesday 9:30 – 11:00 or by appointment |
     | Office Location | Ungar 433 |
 
     ### Course Description
@@ -53,7 +53,7 @@ def _(mo):
 
     ### Prerequisites
 
-    At least a C- in [MTH 108](https://mathematics.miami.edu/undergrad/courses/index.html#MTH108), or one of the following:
+    At least a C– in [MTH 108](https://mathematics.miami.edu/undergrad/courses/index.html#MTH108), or one of the following:
 
     - SAT Math Section Score ≥ 730  
     - ACT Math Score ≥ 31  
@@ -88,6 +88,10 @@ def _(mo):
 
     All quizzes and exams will be submitted via **GradeScope** for fast and accurate feedback. Access GradeScope through the link on the **Blackboard course homepage**.
 
+    ### Attendance
+
+    Attendance will be taken electronically at the beginning of each class session, unless there is a test that day. **Attendance does not directly affect your grade; however, you are strongly encouraged to attend lectures**.
+
     ### Grading Policy
 
     Final grades will be based on the following components:
@@ -98,7 +102,7 @@ def _(mo):
     | **Quizzes**       | 150    | 15%    | **At least** 6 quizzes; top 5 scores count. |
     | **Homework**      | 50     | 5%     | Completed on WebAssign. Check deadlines regularly. |
     | **Final Exam**    | 250    | 25%    | Comprehensive, departmental exam (see below). |
-    | **Extra Credit**  | +15    | —      | Optional assignments as determined by the instructor. |
+    | **Extra Credit**  | +15    | –     | Optional assignments as determined by the instructor. |
 
     ### Final Exam
 
@@ -111,10 +115,10 @@ def _(mo):
     ### Grading Scale
 
     | Score Range | Letter Grade |
-    |-------------|:-------------|
+    | ----------- | :----------- |
     | 990–1000    | A+           |
     | 920–989     | A            |
-    | 895–919     | A−           |
+    | 895–919     | A–           |
     | 880–894     | B+           |
     | 820–879     | B            |
     | 795–819     | B−           |
@@ -140,8 +144,8 @@ def _(mo):
 
     **Important**:
 
-    - You should notify your instructor **at least 7 days in advance** for university-approved absences
-    - For emergencies on the exam day, contact your instructor **as soon as possible** with documentation
+    - You should notify your instructor at least 7 days in advance for university-approved absences
+    - For emergencies on the exam day, contact your instructor as soon as possible with documentation
     - **No makeups will be allowed more than 7 days after the original date**
     - **You may take makeups at most 3 times in total.**
 
@@ -177,7 +181,7 @@ def _(mo):
 
     ### Math Lab
 
-    Tutoring is available at the Math Lab for any undergraduate mathematics course, free of charge. The Math Lab is located at the Learning Commons on the 1st floor of the Richter Library. Tutoring will be available in-person, by appointment in 15 to 30 minute intervals. Appointments are made on CaneLink - Navigate. Please check the [Math Lab site](https://mathematics.miami.edu/resources/math-lab/index.html) for information regarding the schedule and tutoring availability.
+    Tutoring is available at the Math Lab for any undergraduate mathematics course, free of charge. The Math Lab is located at the Learning Commons on the 1st floor of the Richter Library. Tutoring will be available in-person, by appointment in 15 to 30 minute intervals. Appointments are made on CaneLink – Navigate. Please check the [Math Lab site](https://mathematics.miami.edu/resources/math-lab/index.html) for information regarding the schedule and tutoring availability.
 
     ### Camner Center
 
@@ -211,9 +215,9 @@ def _(mo):
 
     **Chapter 1: Functions and Limits (all sections)**: Functions and their graphs; limit of a function; limit laws; continuity; limits at infinity; precise definition of limit.
 
-    **Chapter 2: Derivatives (sections 1 - 7)**: Derivatives; formulas for differentiation; derivatives of trigonometric functions; the Chain Rule; implicit differentiation; related rates; differentials.
+    **Chapter 2: Derivatives (sections 1 – 7)**: Derivatives; formulas for differentiation; derivatives of trigonometric functions; the Chain Rule; implicit differentiation; related rates; differentials.
 
-    **Chapter 3: Applications of Differentiation (sections 1 - 5, 7)**: Maximum and minimum values; the Mean Value Theorem; first derivative test; concavity and points of inflection; curve sketching; applications involving optimization; antiderivatives.
+    **Chapter 3: Applications of Differentiation (sections 1 – 5, 7)**: Maximum and minimum values; the Mean Value Theorem; first derivative test; concavity and points of inflection; curve sketching; applications involving optimization; antiderivatives.
 
     **Chapter 4: Integral (all sections)**: Area and distances; Riemann Sums; the definite integral and its properties; the Fundamental Theorem of Calculus; evaluating definite and indefinite integrals; change of variable.
 
