@@ -44,7 +44,7 @@ def _(mo):
     | Instructor | Zedan Liu |
     | Course Section | A1, N1 |
     | Email | [zedan.liu@miami.edu](mailto:zedan.liu@miami.edu) or [z.liu15@umiami.edu](mailto:z.liu15@umiami.edu) |
-    | Office Hour | Monday, Tuesday 9:30 – 11:00 or by appointment |
+    | Office Hour | Monday 10:30 – 12:00, Tuesday 9:30 – 11:00 or by appointment |
     | Office Location | Ungar 433 |
 
     ### Course Description
