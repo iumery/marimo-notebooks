@@ -175,53 +175,6 @@
 
       </div>
     </section>
-    
-    <!-- Section: Topological Data Analysis -->
-    <section>
-      <button onclick="toggleSection('list-TDA', 'arrow-TDA')" class="flex items-center justify-between w-full text-xl font-semibold bg-white border shadow px-4 py-3 rounded hover:shadow-md transition">
-        <span>🪢 Topological Data Analysis</span>
-        <svg id="arrow-TDA" class="w-5 h-5 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-      <div id="list-TDA" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
-        
-        <div class="grid grid-cols-1 w-full col-span-full space-y-4">
-          <div class="p-4 border border-yellow-300 rounded bg-yellow-50 transition hover:shadow hover:bg-yellow-100">
-            <a href="apps/Topological_Data_Analysis.html" class="text-blue-600 hover:underline font-medium">Introduction</a>
-          </div>
-        </div>
-        <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-          <a href="notebooks/Topological_Space.html" class="text-blue-600 hover:underline font-medium">Topological Space</a>
-          <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Sets, open sets, and homeomorphisms in discrete topology.</p>
-        </div>
-        <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-          <a href="notebooks/Geometric_Realization.html" class="text-blue-600 hover:underline font-medium">Geometric Realization</a>
-          <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">From abstract simplicial complexes to concrete embeddings in Euclidean space.</p>
-        </div>
-        <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-          <a href="notebooks/Rips_Complexes.html" class="text-blue-600 hover:underline font-medium">Rips Complexes</a>
-          <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Constructing Vietoris-Rips complexes directly from distance data.</p>
-        </div>
-        <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-          <a href="notebooks/Compute_Homology.html" class="text-blue-600 hover:underline font-medium">Compute Homology</a>
-          <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Computing homology groups and persistence diagrams using two complementary methods.</p>
-        </div>
-        <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-          <a href="notebooks/Mapper.html" class="text-blue-600 hover:underline font-medium">Mapper</a>
-          <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Extracting topological summaries using filters, covers, clustering, and the Mapper algorithm.</p>
-        </div>
-        <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-          <a href="notebooks/Morse_Theory.html" class="text-blue-600 hover:underline font-medium">Morse Theory</a>
-          <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Critical points, level sets, and Reeb graphs through simple Morse functions.</p>
-        </div>
-        <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
-          <a href="notebooks/Sheaf_Theory.html" class="text-blue-600 hover:underline font-medium">Sheaf Theory</a>
-          <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Modeling local data consistency over simplicial complexes with sheaf structures.</p>
-        </div>
-
-      </div>
-    </section>
 
     <!-- Section: Data Science -->
     <section>
@@ -231,7 +184,54 @@
           <path d="M9 5l7 7-7 7" />
         </svg>
       </button>
+
       <div id="list-data-science" class="hidden mt-2 grid grid-cols-1 gap-4 pl-4">
+
+        <!-- Sub-section: TDA -->
+        <button onclick="toggleSection('list-data-science-TDA', 'arrow-data-science-TDA')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+          <span>Topological Data Analysis</span>
+          <svg id="arrow-data-science-TDA" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <div id="list-data-science-TDA" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+          
+          <div class="grid grid-cols-1 w-full col-span-full space-y-4">
+            <div class="p-4 border border-yellow-300 rounded bg-yellow-50 transition hover:shadow hover:bg-yellow-100">
+              <a href="apps/Topological_Data_Analysis.html" class="text-blue-600 hover:underline font-medium">Introduction</a>
+            </div>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/Topological_Space.html" class="text-blue-600 hover:underline font-medium">Topological Space</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Sets, open sets, and homeomorphisms in discrete topology.</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/Geometric_Realization.html" class="text-blue-600 hover:underline font-medium">Geometric Realization</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">From abstract simplicial complexes to concrete embeddings in Euclidean space.</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/Rips_Complexes.html" class="text-blue-600 hover:underline font-medium">Rips Complexes</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Constructing Vietoris-Rips complexes directly from distance data.</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/Compute_Homology.html" class="text-blue-600 hover:underline font-medium">Compute Homology</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Computing homology groups and persistence diagrams using two complementary methods.</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/Mapper.html" class="text-blue-600 hover:underline font-medium">Mapper</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Extracting topological summaries using filters, covers, clustering, and the Mapper algorithm.</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/Morse_Theory.html" class="text-blue-600 hover:underline font-medium">Morse Theory</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Critical points, level sets, and Reeb graphs through simple Morse functions.</p>
+          </div>
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/Sheaf_Theory.html" class="text-blue-600 hover:underline font-medium">Sheaf Theory</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">Modeling local data consistency over simplicial complexes with sheaf structures.</p>
+          </div>
+
+        </div>
 
         <!-- Sub-section: SQL -->
         <button onclick="toggleSection('list-data-science-sql', 'arrow-data-science-sql')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
@@ -441,6 +441,28 @@
 
         </div>
 
+        <!-- Sub-section: Causal Inference -->
+        <button onclick="toggleSection('list-data-science-CI', 'arrow-data-science-CI')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
+          <span>Causal Inference</span>
+          <svg id="arrow-data-science-CI" class="w-4 h-4 transform transition-transform duration-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+        <div id="list-data-science-CI" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
+          
+          <div class="grid grid-cols-1 w-full col-span-full space-y-4">
+            <div class="p-4 border border-yellow-300 rounded bg-yellow-50 transition hover:shadow hover:bg-yellow-100">
+              <a href="apps/Causal_Inference.html" class="text-blue-600 hover:underline font-medium">Introduction</a>
+            </div>
+          </div>
+          
+          <div class="p-4 border rounded bg-white transition hover:shadow hover:bg-gray-50">
+            <a href="notebooks/Causal_Inference_1.html" class="text-blue-600 hover:underline font-medium">Warm-up</a>
+            <p class="text-sm text-gray-500 pl-0 border-l-0 hover:border-none">A simple example</p>
+          </div>
+        </div>
+
         <!-- Sub-section: Python -->
         <button onclick="toggleSection('list-data-science-python', 'arrow-data-science-python')" class="flex items-center justify-between w-full text-lg font-semibold bg-white border shadow px-4 py-2 rounded hover:shadow-md transition mt-4">
           <span>Python</span>
@@ -448,6 +470,7 @@
             <path d="M9 5l7 7-7 7" />
           </svg>
         </button>
+
         <div id="list-data-science-python" class="hidden mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pl-4">
           
           <div class="grid grid-cols-1 w-full col-span-full space-y-4">
