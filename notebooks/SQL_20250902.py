@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -96,27 +97,17 @@ def _():
 def _():
     import pandas as pd
 
-
     def airport_with_most_traffic(flights: pd.DataFrame) -> pd.DataFrame:
         flights_airport = pd.concat(
             [
-                flights[["departure_airport", "flights_count"]].rename(
-                    columns={"departure_airport": "airport_id"}
-                ),
-                flights[["arrival_airport", "flights_count"]].rename(
-                    columns={"arrival_airport": "airport_id"}
-                ),
+                flights[["departure_airport", "flights_count"]].rename(columns={"departure_airport": "airport_id"}),
+                flights[["arrival_airport", "flights_count"]].rename(columns={"arrival_airport": "airport_id"}),
             ]
         )
-        flights_airport = (
-            flights_airport.groupby("airport_id")["flights_count"]
-            .sum()
-            .reset_index()
-        )
-        flights_airport["rank"] = flights_airport["flights_count"].rank(
-            method="min", ascending=False
-        )
+        flights_airport = flights_airport.groupby("airport_id")["flights_count"].sum().reset_index()
+        flights_airport["rank"] = flights_airport["flights_count"].rank(method="min", ascending=False)
         return flights_airport[flights_airport["rank"] == 1][["airport_id"]]
+
     return
 
 

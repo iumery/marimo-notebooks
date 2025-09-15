@@ -1,12 +1,14 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -81,15 +83,11 @@ def _():
 def _():
     import pandas as pd
 
-
     def order_two_columns(data: pd.DataFrame) -> pd.DataFrame:
-        first_data = (
-            data["first_col"].sort_values(ascending=True).reset_index(drop=True)
-        )
-        second_data = (
-            data["second_col"].sort_values(ascending=False).reset_index(drop=True)
-        )
+        first_data = data["first_col"].sort_values(ascending=True).reset_index(drop=True)
+        second_data = data["second_col"].sort_values(ascending=False).reset_index(drop=True)
         return pd.concat([first_data, second_data], axis=1)
+
     return
 
 

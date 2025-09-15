@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -96,30 +97,22 @@ def _():
 def _():
     import pandas as pd
 
-
-    def find_books_with_no_available_copies(
-        library_books: pd.DataFrame, borrowing_records: pd.DataFrame
-    ) -> pd.DataFrame:
+    def find_books_with_no_available_copies(library_books: pd.DataFrame, borrowing_records: pd.DataFrame) -> pd.DataFrame:
         # Filter borrowing_records to unreturned books only
-        borrowing_records = borrowing_records[
-            borrowing_records.return_date.isnull()
-        ]
+        borrowing_records = borrowing_records[borrowing_records.return_date.isnull()]
 
         # Count the copies per title still unreturned
         df = borrowing_records.groupby("book_id").count().reset_index()
 
         # Merge the dataframes
-        df = df.merge(library_books).rename(
-            columns={"total_copies": "current_borrowers"}
-        )
+        df = df.merge(library_books).rename(columns={"total_copies": "current_borrowers"})
 
         # Filter for titles for which all copies are unreturned
         df = df[df.record_id == df.current_borrowers]
 
         # Sort rows and rearrange columns as directed
-        return df.sort_values(
-            ["current_borrowers", "title"], ascending=[0, 1]
-        ).iloc[:, [0, 5, 6, 7, 8, 9]]
+        return df.sort_values(["current_borrowers", "title"], ascending=[False, True]).iloc[:, [0, 5, 6, 7, 8, 9]]
+
     return
 
 

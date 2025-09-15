@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -87,22 +88,16 @@ def _():
 def _():
     import pandas as pd
 
-
-    def global_ratings_change(
-        team_points: pd.DataFrame, points_change: pd.DataFrame
-    ) -> pd.DataFrame:
+    def global_ratings_change(team_points: pd.DataFrame, points_change: pd.DataFrame) -> pd.DataFrame:
         df = pd.merge(team_points, points_change, on="team_id")
         df["new_points"] = df["points"] + df["points_change"]
-        df.sort_values(
-            by=["points", "name"], ascending=[False, True], inplace=True
-        )
+        df.sort_values(by=["points", "name"], ascending=[False, True], inplace=True)
         df["old_rank"] = df.reset_index(drop=True).index
-        df.sort_values(
-            by=["new_points", "name"], ascending=[False, True], inplace=True
-        )
+        df.sort_values(by=["new_points", "name"], ascending=[False, True], inplace=True)
         df["new_rank"] = df.reset_index(drop=True).index
         df["rank_diff"] = df["old_rank"] - df["new_rank"]
         return df[["team_id", "name", "rank_diff"]]
+
     return
 
 

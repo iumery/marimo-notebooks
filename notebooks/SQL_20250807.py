@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -103,10 +104,7 @@ def _():
 def _():
     import pandas as pd
 
-
-    def find_overbooked_employees(
-        employees: pd.DataFrame, meetings: pd.DataFrame
-    ) -> pd.DataFrame:
+    def find_overbooked_employees(employees: pd.DataFrame, meetings: pd.DataFrame) -> pd.DataFrame:
         meetings["year"] = meetings.meeting_date.dt.year
         meetings["week"] = meetings.meeting_date.dt.isocalendar().week
 
@@ -117,20 +115,10 @@ def _():
             .rename(columns={"duration_hours": "meeting_heavy_weeks"})
         )
 
-        df = (
-            df[df.meeting_heavy_weeks > 20.0]
-            .groupby(["employee_id"])
-            .count()
-            .merge(employees, on="employee_id")
-        )
+        df = df[df.meeting_heavy_weeks > 20.0].groupby(["employee_id"]).count().merge(employees, on="employee_id")
 
-        return (
-            df[df.meeting_heavy_weeks > 1]
-            .sort_values(
-                ["meeting_heavy_weeks", "employee_name"], ascending=[0, 1]
-            )
-            .iloc[:, [0, 5, 6, 4]]
-        )
+        return df[df.meeting_heavy_weeks > 1].sort_values(["meeting_heavy_weeks", "employee_name"], ascending=[False, True]).iloc[:, [0, 5, 6, 4]]
+
     return
 
 

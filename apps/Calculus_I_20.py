@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -375,9 +375,7 @@ def _(go, make_subplots, np):
 
     # Curve
     fig_c.add_trace(
-        go.Scatter(
-            x=x_curve_c, y=y_curve_c, mode="lines", name="f(x)", line=dict(color="blue")
-        ),
+        go.Scatter(x=x_curve_c, y=y_curve_c, mode="lines", name="f(x)", line=dict(color="blue")),
         row=1,
         col=1,
     )

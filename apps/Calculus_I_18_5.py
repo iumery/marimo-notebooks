@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -132,9 +132,7 @@ def _(go, make_subplots, np, theta_slider_1):
     x_remain = R_paper * np.cos(theta_remain)
     y_remain = R_paper * np.sin(theta_remain)
     fig.add_trace(
-        go.Scatter(
-            x=x_remain, y=y_remain, mode="lines", line=dict(color="blue", dash="dot")
-        ),
+        go.Scatter(x=x_remain, y=y_remain, mode="lines", line=dict(color="blue", dash="dot")),
         row=1,
         col=1,
     )

@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -73,20 +74,10 @@ def _():
 def _():
     import pandas as pd
 
-
     def monthly_transactions(transactions: pd.DataFrame) -> pd.DataFrame:
-        transactions["month"] = pd.to_datetime(
-            transactions["trans_date"]
-        ).dt.strftime("%Y-%m")
-        transactions["state"] = (
-            transactions["state"]
-            .str.replace("approved", "1")
-            .replace("declined", "0")
-            .astype(int)
-        )
-        transactions["approved_total_amount"] = (
-            transactions["amount"] * transactions["state"]
-        )
+        transactions["month"] = pd.to_datetime(transactions["trans_date"]).dt.strftime("%Y-%m")
+        transactions["state"] = transactions["state"].str.replace("approved", "1").replace("declined", "0").astype(int)
+        transactions["approved_total_amount"] = transactions["amount"] * transactions["state"]
         resq = (
             transactions.groupby(["month", "country"], dropna=False)
             .agg(
@@ -106,6 +97,7 @@ def _():
                 "amount": "trans_total_amount",
             }
         )
+
     return
 
 

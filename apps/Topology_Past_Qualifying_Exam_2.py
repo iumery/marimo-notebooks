@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -391,9 +391,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""**Prove that every continuous map $f:[0,1] \to [0,1]$ has a fixed point, is the same true for continuous maps $(0,1) \to (0,1)$**?"""
-    )
+    mo.md(r"""**Prove that every continuous map $f:[0,1] \to [0,1]$ has a fixed point, is the same true for continuous maps $(0,1) \to (0,1)$**?""")
     return
 
 

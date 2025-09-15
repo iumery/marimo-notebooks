@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -37,9 +37,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""If $h(x) = f(x) \cdot g(x)$, then $$\boxed{h'(x) = f(x) g'(x) + f'(x) g(x)}.$$"""
-    )
+    mo.md(r"""If $h(x) = f(x) \cdot g(x)$, then $$\boxed{h'(x) = f(x) g'(x) + f'(x) g(x)}.$$""")
     return
 
 
@@ -69,9 +67,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""If $\displaystyle h(x) = \frac{f(x)}{g(x)}$, then $$\boxed{h'(x) = \frac{g(x)f'(x) - f(x)g'(x)}{g^2(x)}}.$$"""
-    )
+    mo.md(r"""If $\displaystyle h(x) = \frac{f(x)}{g(x)}$, then $$\boxed{h'(x) = \frac{g(x)f'(x) - f(x)g'(x)}{g^2(x)}}.$$""")
     return
 
 

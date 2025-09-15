@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -59,9 +59,7 @@ def _(go, np):
     fig_1 = go.Figure()
 
     # Add both branches of the function
-    fig_1.add_trace(
-        go.Scatter(x=x11, y=y11, mode="lines", name="f(x)", line=dict(color="blue"))
-    )
+    fig_1.add_trace(go.Scatter(x=x11, y=y11, mode="lines", name="f(x)", line=dict(color="blue")))
     fig_1.add_trace(
         go.Scatter(
             x=x12,
@@ -113,9 +111,7 @@ def _(go, np):
     fig_2 = go.Figure()
 
     # Plot the function
-    fig_2.add_trace(
-        go.Scatter(x=x2, y=y2, mode="lines", name="f(x)", line=dict(color="blue"))
-    )
+    fig_2.add_trace(go.Scatter(x=x2, y=y2, mode="lines", name="f(x)", line=dict(color="blue")))
 
     # Add horizontal asymptote at y = 0
     fig_2.add_trace(
@@ -194,9 +190,7 @@ def _(go, np):
     fig_3 = go.Figure()
 
     # f(x)
-    fig_3.add_trace(
-        go.Scatter(x=x31, y=y31, mode="lines", name="f(x)", line=dict(color="blue"))
-    )
+    fig_3.add_trace(go.Scatter(x=x31, y=y31, mode="lines", name="f(x)", line=dict(color="blue")))
     fig_3.add_trace(
         go.Scatter(
             x=x32,

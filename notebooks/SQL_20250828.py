@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -82,12 +83,12 @@ def _():
 def _():
     import pandas as pd
 
-
     def last_passenger(queue: pd.DataFrame) -> pd.DataFrame:
         df = queue[["turn", "person_name", "weight"]].sort_values("turn")
         df["total_weight"] = df["weight"].cumsum()
         df = df[df["total_weight"] <= 1000].iloc[[-1]][["person_name"]]
         return df
+
     return
 
 

@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -45,9 +45,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""Find the points on the ellipse $4x^2 + y^2 = 4$ that are farthest away from the point $(2,0)$."""
-    )
+    mo.md(r"""Find the points on the ellipse $4x^2 + y^2 = 4$ that are farthest away from the point $(2,0)$.""")
     return
 
 
@@ -177,9 +175,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""Find the area of the largest trapezoid that can be inscribed in a circle of radius $1$ and whose base is a diameter of the circle."""
-    )
+    mo.md(r"""Find the area of the largest trapezoid that can be inscribed in a circle of radius $1$ and whose base is a diameter of the circle.""")
     return
 
 
@@ -414,11 +410,7 @@ def _(go, np, theta_slider):
     )
 
     # Arc to show angle θ
-    fig_ang.add_trace(
-        go.Scatter(
-            x=x_arc, y=y_arc, mode="lines", line=dict(color="gray"), showlegend=False
-        )
-    )
+    fig_ang.add_trace(go.Scatter(x=x_arc, y=y_arc, mode="lines", line=dict(color="gray"), showlegend=False))
 
     # θ label near middle of arc
     arc_label_x = arc_radius * np.cos(theta_angle / 2)

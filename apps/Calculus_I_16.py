@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -193,9 +193,7 @@ def _(go, make_subplots, np):
 
     y1 = -(x_vals_fd**3)
     fig_fd.add_trace(
-        go.Scatter(
-            x=x_vals_fd, y=y1, mode="lines", name="Local Max", line=dict(color="blue")
-        ),
+        go.Scatter(x=x_vals_fd, y=y1, mode="lines", name="Local Max", line=dict(color="blue")),
         row=1,
         col=1,
     )
@@ -214,9 +212,7 @@ def _(go, make_subplots, np):
 
     y2 = x_vals_fd**3
     fig_fd.add_trace(
-        go.Scatter(
-            x=x_vals_fd, y=y2, mode="lines", name="Local Min", line=dict(color="green")
-        ),
+        go.Scatter(x=x_vals_fd, y=y2, mode="lines", name="Local Min", line=dict(color="green")),
         row=1,
         col=2,
     )
@@ -235,9 +231,7 @@ def _(go, make_subplots, np):
 
     y3 = x_vals_fd**2
     fig_fd.add_trace(
-        go.Scatter(
-            x=x_vals_fd, y=y3, mode="lines", name="Local Min", line=dict(color="orange")
-        ),
+        go.Scatter(x=x_vals_fd, y=y3, mode="lines", name="Local Min", line=dict(color="orange")),
         row=2,
         col=1,
     )
@@ -256,9 +250,7 @@ def _(go, make_subplots, np):
 
     y4 = -(x_vals_fd**2)
     fig_fd.add_trace(
-        go.Scatter(
-            x=x_vals_fd, y=y4, mode="lines", name="Local Min", line=dict(color="purple")
-        ),
+        go.Scatter(x=x_vals_fd, y=y4, mode="lines", name="Local Min", line=dict(color="purple")),
         row=2,
         col=2,
     )
@@ -276,9 +268,7 @@ def _(go, make_subplots, np):
     )
 
     # Layout
-    fig_fd.update_layout(
-        title="First Derivative Test — 4 Scenarios", template="plotly_white", height=700
-    )
+    fig_fd.update_layout(title="First Derivative Test — 4 Scenarios", template="plotly_white", height=700)
     return
 
 

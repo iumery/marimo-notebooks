@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -116,7 +117,6 @@ def _():
 def _():
     import pandas as pd
 
-
     def build_leadership(employees: pd.DataFrame) -> pd.DataFrame:
         out = []
         frontier = employees[employees["manager_id"].isna()].copy()
@@ -140,7 +140,6 @@ def _():
 
         return pd.concat(out, ignore_index=True)
 
-
     def build_subordinate(employees: pd.DataFrame) -> pd.DataFrame:
         base = employees[["employee_id", "salary", "manager_id"]].copy()
         results = [base]
@@ -148,9 +147,7 @@ def _():
 
         while True:
             nxt = employees.merge(
-                frontier.rename(
-                    columns={"employee_id": "parent_emp", "manager_id": "root_mgr"}
-                ),
+                frontier.rename(columns={"employee_id": "parent_emp", "manager_id": "root_mgr"}),
                 left_on="manager_id",
                 right_on="parent_emp",
                 how="inner",
@@ -164,7 +161,6 @@ def _():
 
         return pd.concat(results, ignore_index=True)
 
-
     def analyze_organization_hierarchy(employees: pd.DataFrame) -> pd.DataFrame:
         ldr = build_leadership(employees)
         sub = build_subordinate(employees)
@@ -177,17 +173,14 @@ def _():
             suffixes=("", "_sub"),
         )
 
-        out = merged.groupby(
-            ["employee_id", "employee_name", "level", "salary"], as_index=False
-        ).agg(
+        out = merged.groupby(["employee_id", "employee_name", "level", "salary"], as_index=False).agg(
             team_size=("employee_id_sub", "count"),
             sum_sub=("salary_sub", "sum"),
         )
         out["budget"] = out["sum_sub"].fillna(0) + out["salary"]
-        out = out.drop(columns=["sum_sub", "salary"]).sort_values(
-            by=["level", "budget", "employee_name"], ascending=[True, False, True]
-        )
+        out = out.drop(columns=["sum_sub", "salary"]).sort_values(by=["level", "budget", "employee_name"], ascending=[True, False, True])
         return out
+
     return
 
 

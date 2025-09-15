@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -113,10 +114,7 @@ def _():
 def _():
     import pandas as pd
 
-
-    def find_improved_efficiency_drivers(
-        drivers: pd.DataFrame, trips: pd.DataFrame
-    ) -> pd.DataFrame:
+    def find_improved_efficiency_drivers(drivers: pd.DataFrame, trips: pd.DataFrame) -> pd.DataFrame:
         # Merge drivers with their trips
         df = pd.merge(drivers, trips, on="driver_id")
 
@@ -129,15 +127,11 @@ def _():
 
         # Aggregate: total efficiency and number of trips per driver
         def aggregate_efficiency(data):
-            grouped = data.groupby(
-                ["driver_id", "driver_name"], as_index=False
-            ).agg(
+            grouped = data.groupby(["driver_id", "driver_name"], as_index=False).agg(
                 total_efficiency=("efficiency", "sum"),
                 trip_count=("trip_id", "count"),
             )
-            grouped["avg_efficiency"] = (
-                grouped["total_efficiency"] / grouped["trip_count"]
-            )
+            grouped["avg_efficiency"] = grouped["total_efficiency"] / grouped["trip_count"]
             return grouped
 
         first_agg = aggregate_efficiency(first_half)
@@ -152,9 +146,7 @@ def _():
         )
 
         # Calculate improvement
-        merged["efficiency_improvement"] = round(
-            merged["avg_efficiency_second"] - merged["avg_efficiency_first"], 2
-        )
+        merged["efficiency_improvement"] = round(merged["avg_efficiency_second"] - merged["avg_efficiency_first"], 2)
 
         # Round efficiency values for clarity
         merged["avg_efficiency_first"] = round(merged["avg_efficiency_first"], 2)
@@ -168,9 +160,8 @@ def _():
             }
         )
 
-        return improved.sort_values(
-            by=["efficiency_improvement", "driver_name"], ascending=[False, True]
-        )
+        return improved.sort_values(by=["efficiency_improvement", "driver_name"], ascending=[False, True])
+
     return
 
 

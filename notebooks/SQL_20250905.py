@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -105,7 +106,6 @@ def _():
 def _():
     import pandas as pd
 
-
     def find_topic(keywords: pd.DataFrame, posts: pd.DataFrame) -> pd.DataFrame:
         posts["content_word"] = posts["content"].str.lower().str.split()
         exploded_posts = posts.explode("content_word")
@@ -117,15 +117,10 @@ def _():
             right_on="word",
             how="left",
         )
-        grouped = (
-            common_words.groupby("post_id")["topic_id"]
-            .agg(lambda x: sorted(set(x.dropna())))
-            .reset_index()
-        )
-        grouped["topic"] = grouped["topic_id"].transform(
-            lambda x: ",".join(map(str, x)) if x else "Ambiguous!"
-        )
+        grouped = common_words.groupby("post_id")["topic_id"].agg(lambda x: sorted(set(x.dropna()))).reset_index()
+        grouped["topic"] = grouped["topic_id"].transform(lambda x: ",".join(map(str, x)) if x else "Ambiguous!")
         return grouped[["post_id", "topic"]]
+
     return
 
 

@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -59,7 +60,6 @@ def _():
 def _():
     import pandas as pd
 
-
     def analyze_subscription_conversion(
         user_activity: pd.DataFrame,
     ) -> pd.DataFrame:
@@ -78,6 +78,7 @@ def _():
             find_mean("paid", "paid_avg_duration"),
             on="user_id",
         )
+
     return
 
 

@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -101,14 +102,9 @@ def _():
 def _():
     import pandas as pd
 
-
-    def seasonal_sales_analysis(
-        products: pd.DataFrame, sales: pd.DataFrame
-    ) -> pd.DataFrame:
+    def seasonal_sales_analysis(products: pd.DataFrame, sales: pd.DataFrame) -> pd.DataFrame:
         products_sales = pd.merge(sales, products, on="product_id", how="left")
-        products_sales["sale_month"] = products_sales["sale_date"].dt.month.astype(
-            int
-        )
+        products_sales["sale_month"] = products_sales["sale_date"].dt.month.astype(int)
         products_sales["season"] = products_sales["sale_month"].map(
             {
                 1: "Winter",
@@ -125,9 +121,7 @@ def _():
                 12: "Winter",
             }
         )
-        products_sales["revenue"] = (
-            products_sales["quantity"] * products_sales["price"]
-        )
+        products_sales["revenue"] = products_sales["quantity"] * products_sales["price"]
         summary = products_sales.groupby(["season", "category"]).agg(
             total_quantity=("quantity", lambda x: sum(x)),
             total_revenue=("revenue", lambda x: sum(x)),
@@ -136,10 +130,11 @@ def _():
             summary.reset_index()
             .sort_values(
                 by=["season", "total_quantity", "total_revenue"],
-                ascending=[1, 0, 0],
+                ascending=[True, False, False],
             )
             .drop_duplicates(subset=["season"], keep="first")
         )
+
     return
 
 

@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -78,10 +79,7 @@ def _():
 def _():
     import pandas as pd
 
-
-    def confirmation_rate(
-        signups: pd.DataFrame, confirmations: pd.DataFrame
-    ) -> pd.DataFrame:
+    def confirmation_rate(signups: pd.DataFrame, confirmations: pd.DataFrame) -> pd.DataFrame:
         confirmation_rates = (
             confirmations.groupby("user_id")
             .agg(
@@ -92,10 +90,9 @@ def _():
             )
             .reset_index()
         )
-        df = pd.merge(signups, confirmation_rates, on="user_id", how="left")[
-            ["user_id", "confirmation_rate"]
-        ].fillna(0)
+        df = pd.merge(signups, confirmation_rates, on="user_id", how="left")[["user_id", "confirmation_rate"]].fillna(0)
         return df
+
     return
 
 

@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -198,9 +198,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""What is the minimum vertical distance between the parabolas $y = x^2 + 1$ and $y = x - x^2$?"""
-    )
+    mo.md(r"""What is the minimum vertical distance between the parabolas $y = x^2 + 1$ and $y = x - x^2$?""")
     return
 
 

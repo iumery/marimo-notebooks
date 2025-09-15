@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -145,18 +145,10 @@ def _(go, np):
     fig = go.Figure()
 
     # Add first piece: solid line
-    fig.add_trace(
-        go.Scatter(
-            x=x1, y=y1, mode="lines", name="x² + 5x", line=dict(dash="solid", width=3)
-        )
-    )
+    fig.add_trace(go.Scatter(x=x1, y=y1, mode="lines", name="x² + 5x", line=dict(dash="solid", width=3)))
 
     # Add second piece: dashed line
-    fig.add_trace(
-        go.Scatter(
-            x=x2, y=y2, mode="lines", name="6x + 2", line=dict(dash="dash", width=3)
-        )
-    )
+    fig.add_trace(go.Scatter(x=x2, y=y2, mode="lines", name="6x + 2", line=dict(dash="dash", width=3)))
 
     # Add splitting point marker
     fig.add_trace(

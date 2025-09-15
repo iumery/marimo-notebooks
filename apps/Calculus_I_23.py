@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -118,11 +118,7 @@ def _(go, np):
     fig_1 = go.Figure()
 
     # Line y = 2x + 1
-    fig_1.add_trace(
-        go.Scatter(
-            x=x_line, y=y_line, mode="lines", name="y = 2x + 1", line=dict(color="blue")
-        )
-    )
+    fig_1.add_trace(go.Scatter(x=x_line, y=y_line, mode="lines", name="y = 2x + 1", line=dict(color="blue")))
 
     # Vertical lines
     fig_1.add_trace(
@@ -289,19 +285,11 @@ def _(go, np):
 
     # 1. Line from (-4, 1) to (-2, 3)
     x21, y21 = [-4, -2], [1, 3]
-    fig_2.add_trace(
-        go.Scatter(
-            x=x21, y=y21, mode="lines", name="Segment 1", line=dict(color="blue")
-        )
-    )
+    fig_2.add_trace(go.Scatter(x=x21, y=y21, mode="lines", name="Segment 1", line=dict(color="blue")))
 
     # 2. Line from (-2, 3) to (-1, 0)
     x22, y22 = [-2, -1], [3, 0]
-    fig_2.add_trace(
-        go.Scatter(
-            x=x22, y=y22, mode="lines", name="Segment 2", line=dict(color="blue")
-        )
-    )
+    fig_2.add_trace(go.Scatter(x=x22, y=y22, mode="lines", name="Segment 2", line=dict(color="blue")))
 
     # 3. Lower half of unit circle: x in [-1, 1], y = -sqrt(1 - x^2)
     x_circle = np.linspace(-1, 1, 400)
@@ -318,11 +306,7 @@ def _(go, np):
 
     # 4. Line from (1, 0) to (3, -1)
     x24, y24 = [1, 3], [0, -1]
-    fig_2.add_trace(
-        go.Scatter(
-            x=x24, y=y24, mode="lines", name="Segment 3", line=dict(color="blue")
-        )
-    )
+    fig_2.add_trace(go.Scatter(x=x24, y=y24, mode="lines", name="Segment 3", line=dict(color="blue")))
 
     # Points with labels
     points_2 = [

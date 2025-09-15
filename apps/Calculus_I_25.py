@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -260,17 +260,9 @@ def _(go, np):
     fig = go.Figure()
 
     # --- Curves ---
-    fig.add_trace(
-        go.Scatter(
-            x=x, y=fb, mode="lines", name="f(x) = sin(x) + 2", line=dict(color="red")
-        )
-    )
+    fig.add_trace(go.Scatter(x=x, y=fb, mode="lines", name="f(x) = sin(x) + 2", line=dict(color="red")))
 
-    fig.add_trace(
-        go.Scatter(
-            x=x, y=gb, mode="lines", name="g(x) = 1/3 x + 1", line=dict(color="green")
-        )
-    )
+    fig.add_trace(go.Scatter(x=x, y=gb, mode="lines", name="g(x) = 1/3 x + 1", line=dict(color="green")))
 
     # --- Fill: area under g (Region B) ---
     fig.add_trace(
@@ -374,17 +366,9 @@ def _(go, np):
     fig_2 = go.Figure()
 
     # --- Curves ---
-    fig_2.add_trace(
-        go.Scatter(
-            x=x2, y=fb2, mode="lines", name="f(x) = sin(x) + 2", line=dict(color="red")
-        )
-    )
+    fig_2.add_trace(go.Scatter(x=x2, y=fb2, mode="lines", name="f(x) = sin(x) + 2", line=dict(color="red")))
 
-    fig_2.add_trace(
-        go.Scatter(
-            x=x2, y=gb2, mode="lines", name="g(x) = 1/3 x + 1", line=dict(color="green")
-        )
-    )
+    fig_2.add_trace(go.Scatter(x=x2, y=gb2, mode="lines", name="g(x) = 1/3 x + 1", line=dict(color="green")))
 
     # --- Conditional fill between curves ---
     above = fb2 > gb2

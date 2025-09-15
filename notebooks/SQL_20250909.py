@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -78,16 +79,12 @@ def _():
 def _():
     import pandas as pd
 
-
     def arrange_table(genders: pd.DataFrame) -> pd.DataFrame:
         gender_map = {"female": 0, "other": 1, "male": 2}
         genders["group"] = genders["gender"].transform(lambda x: gender_map[x])
-        genders["rank_within_group"] = genders.groupby("gender")["user_id"].rank(
-            method="min"
-        )
-        return genders.sort_values(by=["rank_within_group", "group"])[
-            ["user_id", "gender"]
-        ]
+        genders["rank_within_group"] = genders.groupby("gender")["user_id"].rank(method="min")
+        return genders.sort_values(by=["rank_within_group", "group"])[["user_id", "gender"]]
+
     return
 
 

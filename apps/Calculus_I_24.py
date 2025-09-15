@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -154,9 +154,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""Always try to do simplification **at each step** when you take integration."""
-    )
+    mo.md(r"""Always try to do simplification **at each step** when you take integration.""")
     return
 
 

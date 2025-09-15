@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -101,32 +102,18 @@ def _():
 def _():
     import pandas as pd
 
-
-    def find_covid_recovery_patients(
-        patients: pd.DataFrame, covid_tests: pd.DataFrame
-    ) -> pd.DataFrame:
-        frstPos = (
-            covid_tests[covid_tests.result == "Positive"]
-            .groupby("patient_id")
-            .agg(Pos_date=("test_date", "min"))
-            .reset_index()
-        )
+    def find_covid_recovery_patients(patients: pd.DataFrame, covid_tests: pd.DataFrame) -> pd.DataFrame:
+        frstPos = covid_tests[covid_tests.result == "Positive"].groupby("patient_id").agg(Pos_date=("test_date", "min")).reset_index()
         df = covid_tests.merge(frstPos)
 
-        frstNeg = (
-            df[(df.test_date > df.Pos_date) & (df.result == "Negative")]
-            .groupby("patient_id")
-            .agg(Neg_date=("test_date", "min"))
-            .reset_index()
-        )
+        frstNeg = df[(df.test_date > df.Pos_date) & (df.result == "Negative")].groupby("patient_id").agg(Neg_date=("test_date", "min")).reset_index()
         df = frstPos.merge(frstNeg).dropna()
 
-        df["recovery_time"] = (
-            pd.to_datetime(df.Neg_date) - pd.to_datetime(df.Pos_date)
-        ).dt.days
+        df["recovery_time"] = (pd.to_datetime(df.Neg_date) - pd.to_datetime(df.Pos_date)).dt.days
 
         df = df.merge(patients).sort_values(["recovery_time", "patient_name"])
         return df.iloc[:, [0, 4, 5, 3]]
+
     return
 
 

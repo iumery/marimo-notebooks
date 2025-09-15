@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -81,14 +82,12 @@ def _():
 def _():
     import pandas as pd
 
-
     def sales_analysis(sales: pd.DataFrame) -> pd.DataFrame:
         first_year = sales.groupby("product_id")["year"].min().reset_index()
         first_year.columns = ["product_id", "year"]
         df = pd.merge(sales, first_year, on=["product_id", "year"], how="inner")
-        return df[["product_id", "year", "quantity", "price"]].rename(
-            columns={"year": "first_year"}
-        )
+        return df[["product_id", "year", "quantity", "price"]].rename(columns={"year": "first_year"})
+
     return
 
 

@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.15.3"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -68,13 +69,11 @@ def _():
     import itertools
     import numpy as np
 
-
     def is_simplex(vertices, subset):
         """
         Check if a subset is a valid simplex (non-empty subset of the vertex set).
         """
         return set(subset).issubset(vertices) and len(subset) > 0
-
 
     def construct_simplicial_complex(vertices):
         """
@@ -86,7 +85,6 @@ def _():
                 simplicial_complex.append(list(subset))
         return simplicial_complex
 
-
     def geometric_realization(simplex, dimension):
         """
         Perform geometric realization of a simplex into Euclidean space.
@@ -94,7 +92,6 @@ def _():
         Mathematically, one should check if the resulting random points are in a general position, but we omit the procedure here.
         """
         return np.random.rand(len(simplex), dimension)
-
 
     def combinatorial_optimization(simplicial_complex, objective_func):
         """
@@ -109,12 +106,12 @@ def _():
                 optimal_solution = simplex
         return optimal_solution, optimal_value
 
-
     def dummy_objective(simplex):
         """
         Dummy objective function: minimize the size of the simplex.
         """
         return len(simplex)
+
     return (
         combinatorial_optimization,
         construct_simplicial_complex,
@@ -166,9 +163,7 @@ def _(
     vertices = ["A", "B", "C", "D", "E"]
     simplicial_complex = construct_simplicial_complex(vertices)
 
-    optimal_solution, optimal_value = combinatorial_optimization(
-        simplicial_complex, dummy_objective
-    )
+    optimal_solution, optimal_value = combinatorial_optimization(simplicial_complex, dummy_objective)
 
     geometric = geometric_realization(["A", "B"], 2)
 

@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.15.3"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -80,18 +81,12 @@ def _():
 def _():
     import pandas as pd
 
-
-    def product_sales_analysis(
-        sales: pd.DataFrame, product: pd.DataFrame
-    ) -> pd.DataFrame:
+    def product_sales_analysis(sales: pd.DataFrame, product: pd.DataFrame) -> pd.DataFrame:
         df = pd.merge(sales, product, on="product_id")
         df["spending"] = df["quantity"] * df["price"]
-        df = (
-            df.groupby("user_id", as_index=False)["spending"]
-            .sum()
-            .sort_values(by=["spending", "user_id"], ascending=[False, True])
-        )
+        df = df.groupby("user_id", as_index=False)["spending"].sum().sort_values(by=["spending", "user_id"], ascending=[False, True])
         return df
+
     return
 
 

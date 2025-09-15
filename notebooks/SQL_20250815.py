@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -98,29 +99,20 @@ def _():
 def _():
     import pandas as pd
 
-
-    def find_product_recommendation_pairs(
-        product_purchases: pd.DataFrame, product_info: pd.DataFrame
-    ) -> pd.DataFrame:
+    def find_product_recommendation_pairs(product_purchases: pd.DataFrame, product_info: pd.DataFrame) -> pd.DataFrame:
         pair_purchases = pd.merge(
             product_purchases[["user_id", "product_id"]],
             product_purchases[["user_id", "product_id"]],
             on="user_id",
         )
         pair_purchases.columns = ["user_id", "product1_id", "product2_id"]
-        pair_purchases = pair_purchases[
-            pair_purchases["product2_id"] > pair_purchases["product1_id"]
-        ]
+        pair_purchases = pair_purchases[pair_purchases["product2_id"] > pair_purchases["product1_id"]]
         pair_purchases = pair_purchases.merge(
-            product_info[["product_id", "category"]].rename(
-                columns={"product_id": "product1_id"}
-            ),
+            product_info[["product_id", "category"]].rename(columns={"product_id": "product1_id"}),
             on="product1_id",
         )
         pair_purchases = pair_purchases.merge(
-            product_info[["product_id", "category"]].rename(
-                columns={"product_id": "product2_id"}
-            ),
+            product_info[["product_id", "category"]].rename(columns={"product_id": "product2_id"}),
             on="product2_id",
         )
         pair_purchases.columns = [
@@ -149,6 +141,7 @@ def _():
             inplace=True,
         )
         return df
+
     return
 
 

@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -102,9 +102,7 @@ def _(go, np, r_slider):
 
     # Layout
     fig_cyl.update_layout(
-        title=f"Cylinder with radius r ≈ {r_slider.value:.2f} cm<br>"
-        f"height h ≈ {h_input:.2f} cm<br>"
-        f"surface area A ≈ {cylinder_area:.2f} cm²",
+        title=f"Cylinder with radius r ≈ {r_slider.value:.2f} cm<br>" f"height h ≈ {h_input:.2f} cm<br>" f"surface area A ≈ {cylinder_area:.2f} cm²",
         scene=dict(
             xaxis_title="x (cm)",
             yaxis_title="y (cm)",

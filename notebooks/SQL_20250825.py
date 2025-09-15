@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -74,11 +75,8 @@ def _():
 def _():
     import pandas as pd
 
-
     def find_loyal_customers(customer_transactions: pd.DataFrame) -> pd.DataFrame:
-        customer_transactions["transaction_date"] = pd.to_datetime(
-            customer_transactions["transaction_date"]
-        )
+        customer_transactions["transaction_date"] = pd.to_datetime(customer_transactions["transaction_date"])
         df = customer_transactions.groupby("customer_id").agg(
             date_max=("transaction_date", "max"),
             date_min=("transaction_date", "min"),
@@ -87,15 +85,12 @@ def _():
         )
         df["active_range"] = (df["date_max"] - df["date_min"]).dt.days
         df = (
-            df[
-                (df["active_range"] >= 30)
-                & (df["count_all"] >= 3)
-                & (df["refund_ratio"] < 0.2)
-            ]
+            df[(df["active_range"] >= 30) & (df["count_all"] >= 3) & (df["refund_ratio"] < 0.2)]
             .reset_index()[["customer_id"]]
             .sort_values("customer_id")
         )
         return df
+
     return
 
 

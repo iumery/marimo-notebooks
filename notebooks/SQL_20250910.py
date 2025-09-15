@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -74,16 +75,12 @@ def _():
 def _():
     import pandas as pd
 
-
     def find_the_first_day(weather: pd.DataFrame) -> pd.DataFrame:
-        weather = weather.sort_values(
-            ["degree", "day", "city_id"], ascending=[False, True, True]
-        )
+        weather = weather.sort_values(["degree", "day", "city_id"], ascending=[False, True, True])
         weather["row_number"] = weather.groupby("city_id").cumcount()
-        sub_weather = weather[weather["row_number"] == 0][
-            ["city_id", "day", "degree"]
-        ].sort_values("city_id")
+        sub_weather = weather[weather["row_number"] == 0][["city_id", "day", "degree"]].sort_values("city_id")
         return sub_weather
+
     return
 
 

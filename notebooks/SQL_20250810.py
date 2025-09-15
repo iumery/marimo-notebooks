@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -136,28 +137,18 @@ def _():
 def _():
     import pandas as pd
 
-
-    def find_consistently_improving_employees(
-        employees: pd.DataFrame, performance_reviews: pd.DataFrame
-    ) -> pd.DataFrame:
-        performance_reviews["rank"] = performance_reviews.groupby("employee_id")[
-            "review_date"
-        ].rank(ascending=False)
+    def find_consistently_improving_employees(employees: pd.DataFrame, performance_reviews: pd.DataFrame) -> pd.DataFrame:
+        performance_reviews["rank"] = performance_reviews.groupby("employee_id")["review_date"].rank(ascending=False)
 
         df = performance_reviews[performance_reviews["rank"] <= 3]
 
-        df = df.pivot(
-            index="employee_id", columns="rank", values="rating"
-        ).reset_index()
+        df = df.pivot(index="employee_id", columns="rank", values="rating").reset_index()
 
         df = df.dropna()[(df[1] > df[2]) & (df[2] > df[3])]
         df["improvement_score"] = df[1] - df[3]
 
-        return (
-            df.merge(employees)
-            .sort_values(["improvement_score", "name"], ascending=[0, 1])
-            .iloc[:, [0, 5, 4]]
-        )
+        return df.merge(employees).sort_values(["improvement_score", "name"], ascending=[False, True]).iloc[:, [0, 5, 4]]
+
     return
 
 

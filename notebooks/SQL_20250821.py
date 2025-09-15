@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -80,17 +81,13 @@ def _():
 def _():
     import pandas as pd
 
-
     def human_traffic(stadium: pd.DataFrame) -> pd.DataFrame:
         high_traffic = stadium[stadium["people"] >= 100].reset_index(drop=True)
-        high_traffic["cons_group"] = (
-            pd.Series(range(0, len(high_traffic))) - high_traffic["id"]
-        )
+        high_traffic["cons_group"] = pd.Series(range(0, len(high_traffic))) - high_traffic["id"]
         group_count = high_traffic.groupby("cons_group")["id"].count()
         high_groups = group_count[group_count >= 3].index.to_list()
-        return high_traffic[high_traffic["cons_group"].isin(high_groups)][
-            ["id", "visit_date", "people"]
-        ].reset_index(drop=True)
+        return high_traffic[high_traffic["cons_group"].isin(high_groups)][["id", "visit_date", "people"]].reset_index(drop=True)
+
     return
 
 

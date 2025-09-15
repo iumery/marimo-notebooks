@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -46,9 +46,7 @@ def _(go, np):
     # Create the plot
     fig_1 = go.Figure()
 
-    fig_1.add_trace(
-        go.Scatter(x=t, y=f_t, mode="lines", name="f(t)", line=dict(color="green"))
-    )
+    fig_1.add_trace(go.Scatter(x=t, y=f_t, mode="lines", name="f(t)", line=dict(color="green")))
 
     # Customize layout
     fig_1.update_layout(
@@ -165,11 +163,7 @@ def _(go, np):
     fig_2 = go.Figure()
 
     # Original function
-    fig_2.add_trace(
-        go.Scatter(
-            x=x, y=f_x, mode="lines", name="f(x) = -x² + x", line=dict(color="blue")
-        )
-    )
+    fig_2.add_trace(go.Scatter(x=x, y=f_x, mode="lines", name="f(x) = -x² + x", line=dict(color="blue")))
 
     # Tangent line
     fig_2.add_trace(

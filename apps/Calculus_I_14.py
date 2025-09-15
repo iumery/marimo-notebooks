@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -251,11 +251,7 @@ def _(go, np):
     fig_evt = go.Figure()
 
     # Left and right branches
-    fig_evt.add_trace(
-        go.Scatter(
-            x=x1_evt, y=y1_evt, mode="lines", name="Graph of f", line=dict(color="blue")
-        )
-    )
+    fig_evt.add_trace(go.Scatter(x=x1_evt, y=y1_evt, mode="lines", name="Graph of f", line=dict(color="blue")))
     fig_evt.add_trace(
         go.Scatter(
             x=x2_evt,
@@ -368,11 +364,7 @@ def _(go, np):
     fig_cp = go.Figure()
 
     # Plot f(x) = x^3
-    fig_cp.add_trace(
-        go.Scatter(
-            x=x_cp, y=y_cp, mode="lines", name="f(x) = x³", line=dict(color="blue")
-        )
-    )
+    fig_cp.add_trace(go.Scatter(x=x_cp, y=y_cp, mode="lines", name="f(x) = x³", line=dict(color="blue")))
 
     # Mark the critical point at (0, 0)
     fig_cp.add_trace(

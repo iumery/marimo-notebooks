@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -108,10 +109,7 @@ def _():
 def _():
     import pandas as pd
 
-
-    def find_polarized_books(
-        books: pd.DataFrame, reading_sessions: pd.DataFrame
-    ) -> pd.DataFrame:
+    def find_polarized_books(books: pd.DataFrame, reading_sessions: pd.DataFrame) -> pd.DataFrame:
         session_summary = reading_sessions.groupby("book_id").agg(
             session_count=("session_id", len),
             min_rating=("session_rating", "min"),
@@ -122,19 +120,12 @@ def _():
             ),
             polarization_score=(
                 "session_rating",
-                lambda x: round(
-                    (len(x[x >= 4]) + len(x[x <= 2])) * 1.0 / len(x), 2
-                ),
+                lambda x: round((len(x[x >= 4]) + len(x[x <= 2])) * 1.0 / len(x), 2),
             ),
             rating_spread=("session_rating", lambda x: x.max() - x.min()),
         )
         df = pd.merge(session_summary, books, on="book_id", how="left")
-        df = df[
-            (df["session_count"] >= 5)
-            & (df["min_rating"] <= 2)
-            & (df["max_rating"] >= 4)
-            & (df["polarization_score"] >= 0.6)
-        ]
+        df = df[(df["session_count"] >= 5) & (df["min_rating"] <= 2) & (df["max_rating"] >= 4) & (df["polarization_score"] >= 0.6)]
         return df[
             [
                 "book_id",
@@ -146,6 +137,7 @@ def _():
                 "polarization_score",
             ]
         ].sort_values(by=["polarization_score", "title"], ascending=[False, False])
+
     return
 
 

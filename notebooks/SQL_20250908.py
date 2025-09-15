@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -56,11 +57,9 @@ def _(mo):
 def _():
     import pandas as pd
 
-
     def dynamic_pivoting_table(products: pd.DataFrame) -> pd.DataFrame:
-        return products.pivot(
-            index="product_id", columns="store", values="price"
-        ).reset_index()
+        return products.pivot(index="product_id", columns="store", values="price").reset_index()
+
     return
 
 

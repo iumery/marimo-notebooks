@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -101,28 +102,14 @@ def _():
 def _():
     import pandas as pd
 
-
-    def find_category_recommendation_pairs(
-        product_purchases: pd.DataFrame, product_info: pd.DataFrame
-    ) -> pd.DataFrame:
-        df = product_purchases.merge(
-            product_info[["product_id", "category"]], on="product_id", how="inner"
-        )
+    def find_category_recommendation_pairs(product_purchases: pd.DataFrame, product_info: pd.DataFrame) -> pd.DataFrame:
+        df = product_purchases.merge(product_info[["product_id", "category"]], on="product_id", how="inner")
         user_cat = df[["user_id", "category"]].drop_duplicates()
-        pairs = user_cat.merge(user_cat, on="user_id", suffixes=("1", "2")).query(
-            "category1 < category2"
-        )[["category1", "category2"]]
+        pairs = user_cat.merge(user_cat, on="user_id", suffixes=("1", "2")).query("category1 < category2")[["category1", "category2"]]
 
         if pairs.empty:
-            return pd.DataFrame(
-                columns=["category1", "category2", "customer_count"]
-            )
-        out = (
-            pairs.groupby(["category1", "category2"])
-            .size()
-            .rename("customer_count")
-            .reset_index()
-        )
+            return pd.DataFrame(columns=["category1", "category2", "customer_count"])
+        out = pairs.groupby(["category1", "category2"]).size().rename("customer_count").reset_index()
         out = (
             out[out["customer_count"] >= 3]
             .sort_values(
@@ -133,6 +120,7 @@ def _():
         )
 
         return out
+
     return
 
 

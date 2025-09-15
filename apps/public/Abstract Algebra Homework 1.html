@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <!-- Preload is necessary because we show these images when we disconnect from the server,
+    but at that point we cannot load these images from the server -->
+    <link rel="preload" href="./assets/gradient-yHQUC_QB.png" as="image" />
+    <link rel="preload" href="./assets/noise-60BoTA8O.png" as="image" />
+    <!-- Preload the fonts -->
+    <link rel="preload" href="./assets/Lora-VariableFont_wght-B2ootaw-.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Regular-CxL0S8W7.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/PTSans-Bold-D9fedIX3.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Regular-BTCkDNvf.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Medium-DU3aDxX5.ttf" as="font" crossorigin="anonymous" />
+    <link rel="preload" href="./assets/FiraMono-Bold-CLVRCuM9.ttf" as="font" crossorigin="anonymous" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="a marimo app" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="manifest" href="./manifest.json" />
+
+    <script data-marimo="true">
+      function __resizeIframe(obj) {
+        var scrollbarHeight = 20; // Max between windows, mac, and linux
+
+        function setHeight() {
+          var element = obj.contentWindow.document.documentElement;
+          // If there is no vertical scrollbar, we don't need to resize the iframe
+          if (element.scrollHeight === element.clientHeight) {
+            return;
+          }
+
+          // Create a new height that includes the scrollbar height if it's visible
+          var hasHorizontalScrollbar = element.scrollWidth > element.clientWidth;
+          var newHeight = element.scrollHeight + (hasHorizontalScrollbar ? scrollbarHeight : 0);
+
+          // Only update the height if it's different from the current height
+          if (obj.style.height !== `${newHeight}px`) {
+            obj.style.height = `${newHeight}px`;
+          }
+        }
+
+        // Resize the iframe to the height of the content and bottom scrollbar height
+        setHeight();
+
+        // Resize the iframe when the content changes
+        const resizeObserver = new ResizeObserver((entries) => {
+          setHeight();
+        });
+        resizeObserver.observe(obj.contentWindow.document.body);
+      }
+    </script>
+    <marimo-filename hidden>Abstract_Algebra_Homework_1.py</marimo-filename>
+    <!-- TODO(Trevor): Legacy, required by VS Code plugin. Remove when plugin is updated (see marimo/server/_templates/template.py) -->
+    <marimo-version data-version="0.15.4" hidden></marimo-version>
+    <marimo-user-config data-config="{&quot;display&quot;: {&quot;theme&quot;: &quot;system&quot;, &quot;default_table_page_size&quot;: 10, &quot;default_table_max_columns&quot;: 50, &quot;reference_highlighting&quot;: false, &quot;dataframes&quot;: &quot;rich&quot;, &quot;cell_output&quot;: &quot;above&quot;, &quot;code_editor_font_size&quot;: 14, &quot;default_width&quot;: &quot;compact&quot;}, &quot;completion&quot;: {&quot;activate_on_typing&quot;: true, &quot;copilot&quot;: false}, &quot;snippets&quot;: {&quot;custom_paths&quot;: [], &quot;include_default_snippets&quot;: true}, &quot;diagnostics&quot;: {&quot;enabled&quot;: true}, &quot;ai&quot;: {&quot;anthropic&quot;: {}, &quot;models&quot;: {&quot;custom_models&quot;: [], &quot;chat_model&quot;: &quot;gpt-4o-mini&quot;, &quot;displayed_models&quot;: [], &quot;edit_model&quot;: &quot;gpt-4o-mini&quot;}, &quot;open_ai&quot;: {&quot;api_key&quot;: &quot;********&quot;, &quot;model&quot;: &quot;gpt-4o-mini&quot;}, &quot;google&quot;: {}, &quot;rules&quot;: &quot;&quot;}, &quot;formatting&quot;: {&quot;line_length&quot;: 79}, &quot;language_servers&quot;: {&quot;pylsp&quot;: {&quot;enabled&quot;: true, &quot;enable_flake8&quot;: false, &quot;enable_pylint&quot;: false, &quot;enable_pydocstyle&quot;: false, &quot;enable_mypy&quot;: true, &quot;enable_ruff&quot;: true, &quot;enable_pyflakes&quot;: false}}, &quot;package_management&quot;: {&quot;manager&quot;: &quot;pip&quot;}, &quot;server&quot;: {&quot;follow_symlink&quot;: false, &quot;browser&quot;: &quot;default&quot;}, &quot;keymap&quot;: {&quot;preset&quot;: &quot;default&quot;, &quot;overrides&quot;: {}}, &quot;runtime&quot;: {&quot;default_sql_output&quot;: &quot;auto&quot;, &quot;auto_reload&quot;: &quot;off&quot;, &quot;std_stream_max_bytes&quot;: 1000000, &quot;watcher_on_save&quot;: &quot;lazy&quot;, &quot;on_cell_change&quot;: &quot;autorun&quot;, &quot;reactive_tests&quot;: true, &quot;auto_instantiate&quot;: true, &quot;output_max_bytes&quot;: 8000000, &quot;pythonpath&quot;: []}, &quot;save&quot;: {&quot;format_on_save&quot;: true, &quot;autosave&quot;: &quot;after_delay&quot;, &quot;autosave_delay&quot;: 1000}, &quot;experimental&quot;: {&quot;table_charts&quot;: true, &quot;inline_ai_tooltip&quot;: true}}" hidden></marimo-user-config>
+    <marimo-server-token data-token="BrqfoiqCPYGVKKzJkjX0WQ" hidden></marimo-server-token>
+    <!-- /TODO -->
+    <title>Abstract Algebra Homework 1</title>
+    <script type="module" crossorigin src="./assets/index-OC46250R.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CknhX2Vy.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- This is a portal for the data editor to render in -->
+    <div id="portal" data-testid="glide-portal" style="position: fixed; left: 0; top: 0; z-index: 9999"></div>
+    <script data-marimo="true">
+      window.__MARIMO_MOUNT_CONFIG__ = {
+            "filename": "Abstract_Algebra_Homework_1.py",
+            "mode": "edit",
+            "version": "0.15.4",
+            "serverToken": "BrqfoiqCPYGVKKzJkjX0WQ",
+            "config": {"ai": {"anthropic": {}, "google": {}, "models": {"chat_model": "gpt-4o-mini", "custom_models": [], "displayed_models": [], "edit_model": "gpt-4o-mini"}, "open_ai": {"api_key": "********", "model": "gpt-4o-mini"}, "rules": ""}, "completion": {"activate_on_typing": true, "copilot": false}, "diagnostics": {"enabled": true}, "display": {"cell_output": "above", "code_editor_font_size": 14, "dataframes": "rich", "default_table_max_columns": 50, "default_table_page_size": 10, "default_width": "compact", "reference_highlighting": false, "theme": "system"}, "experimental": {"inline_ai_tooltip": true, "table_charts": true}, "formatting": {"line_length": 79}, "keymap": {"overrides": {}, "preset": "default"}, "language_servers": {"pylsp": {"enable_flake8": false, "enable_mypy": true, "enable_pydocstyle": false, "enable_pyflakes": false, "enable_pylint": false, "enable_ruff": true, "enabled": true}}, "package_management": {"manager": "pip"}, "runtime": {"auto_instantiate": true, "auto_reload": "off", "default_sql_output": "auto", "on_cell_change": "autorun", "output_max_bytes": 8000000, "pythonpath": [], "reactive_tests": true, "std_stream_max_bytes": 1000000, "watcher_on_save": "lazy"}, "save": {"autosave": "after_delay", "autosave_delay": 1000, "format_on_save": true}, "server": {"browser": "default", "follow_symlink": false}, "snippets": {"custom_paths": [], "include_default_snippets": true}},
+            "configOverrides": {},
+            "appConfig": {"sql_output": "auto", "width": "compact"},
+            "view": {"showAppCode": true},
+            "notebook": null,
+            "session": null,
+            "runtimeConfig": null,
+        };
+    </script>
+  <script>
+            if ('serviceWorker' in navigator) {
+                const notebookId = 'Abstract_Algebra_Homework_1.py';
+                navigator.serviceWorker.register('./public-files-sw.js?v=2')
+                    .then(registration => {
+                        registration.active.postMessage({ notebookId });
+                    })
+                    .catch(error => {
+                        console.error('Error registering service worker:', error);
+                    });
+                navigator.serviceWorker.ready
+                    .then(registration => {
+                        registration.update().then(() => registration.active.postMessage({ notebookId }));
+                    })
+                    .catch(error => {
+                        console.error('Error updating service worker:', error);
+                    });
+            }
+            </script></body>
+</html>

@@ -1,12 +1,13 @@
 import marimo
 
-__generated_with = "0.14.16"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -89,10 +90,7 @@ def _():
 def _():
     import pandas as pd
 
-
-    def top_three_salaries(
-        employee: pd.DataFrame, department: pd.DataFrame
-    ) -> pd.DataFrame:
+    def top_three_salaries(employee: pd.DataFrame, department: pd.DataFrame) -> pd.DataFrame:
         salary_rank = (
             employee[["name", "salary", "departmentId"]]
             .rename(
@@ -104,13 +102,10 @@ def _():
             )
             .copy()
         )
-        salary_rank["rank"] = salary_rank.groupby("id")["Salary"].rank(
-            method="dense", ascending=False
-        )
+        salary_rank["rank"] = salary_rank.groupby("id")["Salary"].rank(method="dense", ascending=False)
         salary_rank = salary_rank[salary_rank["rank"] <= 3]
-        return pd.merge(salary_rank, department, on="id").rename(
-            columns={"name": "Department"}
-        )[["Department", "Employee", "Salary"]]
+        return pd.merge(salary_rank, department, on="id").rename(columns={"name": "Department"})[["Department", "Employee", "Salary"]]
+
     return
 
 

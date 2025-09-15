@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -136,9 +136,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""The curve described by $x^3 + y^3 - 3axy = 0$ for some positive $a$ is known as the folium of Descartes:"""
-    )
+    mo.md(r"""The curve described by $x^3 + y^3 - 3axy = 0$ for some positive $a$ is known as the folium of Descartes:""")
     return
 
 
@@ -188,9 +186,7 @@ def _(go, np):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""This curve fails the vertical-line-test, but can be expressed as few pieces of graphs of functions together:"""
-    )
+    mo.md(r"""This curve fails the vertical-line-test, but can be expressed as few pieces of graphs of functions together:""")
     return
 
 
@@ -211,8 +207,7 @@ def _(go, np):
     # Categorize by quadrant
     branches = {
         "lower-right": (x_vals > 0) & (y_vals < 0),
-        "upper-left": ((x_vals < 0) & (y_vals > 0))
-        | ((x_vals > 0) & (y_vals > 0) & (x_vals > y_vals)),
+        "upper-left": ((x_vals < 0) & (y_vals > 0)) | ((x_vals > 0) & (y_vals > 0) & (x_vals > y_vals)),
         "upper-right": (x_vals > 0) & (y_vals > 0) & (x_vals < y_vals),
     }
 

@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.4"
 app = marimo.App()
 
 
@@ -133,9 +133,7 @@ def _(go, make_subplots, np):
 
     # --- Plot x^2
     fig_side.add_trace(
-        go.Scatter(
-            x=x_vals_side, y=y_up, mode="lines", name="x²", line=dict(color="blue")
-        ),
+        go.Scatter(x=x_vals_side, y=y_up, mode="lines", name="x²", line=dict(color="blue")),
         row=1,
         col=1,
     )
@@ -170,9 +168,7 @@ def _(go, make_subplots, np):
 
     # --- Plot -x^2
     fig_side.add_trace(
-        go.Scatter(
-            x=x_vals_side, y=y_down, mode="lines", name="-x²", line=dict(color="red")
-        ),
+        go.Scatter(x=x_vals_side, y=y_down, mode="lines", name="-x²", line=dict(color="red")),
         row=2,
         col=1,
     )
