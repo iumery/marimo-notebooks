@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.14.9"
+__generated_with = "0.15.3"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -318,7 +317,9 @@ def _():
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(r"""Not bad at all! Everyone is assigned to one of their top-two preferred projects, and the skills across groups seem well-balanced!""")
+    mo.md(
+        r"""Not bad at all! Everyone is assigned to one of their top-two preferred projects, and the skills across groups seem well-balanced!"""
+    )
     return
 
 

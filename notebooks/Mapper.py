@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.3"
 app = marimo.App()
 
 
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -72,7 +71,6 @@ def _():
     import networkx as nx
     import matplotlib.pyplot as plt
     from sklearn.cluster import DBSCAN
-
     return DBSCAN, np, nx, plt
 
 
@@ -102,7 +100,9 @@ def _(np, plt):
     y_inner += np.random.normal(0, randomness, num_inner)
 
     # Combine both sets of points into one list of tuples
-    point_cloud = list(zip(np.concatenate((x_outer, x_inner)), np.concatenate((y_outer, y_inner))))
+    point_cloud = list(
+        zip(np.concatenate((x_outer, x_inner)), np.concatenate((y_outer, y_inner)))
+    )
 
     # Plot to visualize
     x_coords, y_coords = zip(*point_cloud)
@@ -137,6 +137,7 @@ def _(np, plt, point_cloud):
         normalized_array = (array - min_vals) / range_vals
         return [tuple(point) for point in normalized_array]
 
+
     # 2. Standardization (Z-score Normalization)
     def standardize(tuples):
         array = np.array(tuples)
@@ -145,6 +146,7 @@ def _(np, plt, point_cloud):
         std_vals = np.where(std_vals == 0, 1, std_vals)
         standardized_array = (array - mean_vals) / std_vals
         return [tuple(point) for point in standardized_array]
+
 
     # 3. Mean Normalization (Centers data to approximately [-0.5, 0.5])
     def mean_normalize(tuples):
@@ -156,6 +158,7 @@ def _(np, plt, point_cloud):
         normalized_array = (array - mean_vals) / range_vals
         return [tuple(point) for point in normalized_array]
 
+
     # 4. Unit Vector Normalization (Normalize each vector to unit length)
     def unit_vector_normalize(tuples):
         array = np.array(tuples)
@@ -163,6 +166,7 @@ def _(np, plt, point_cloud):
         norms = np.where(norms == 0, 1, norms)
         normalized_array = array / norms
         return [tuple(point) for point in normalized_array]
+
 
     # 5. Robust Scaling (Using Median and IQR)
     def robust_scale(tuples):
@@ -173,6 +177,7 @@ def _(np, plt, point_cloud):
         scaled_array = (array - median_vals) / iqr_vals
         return [tuple(point) for point in scaled_array]
 
+
     # 6. Log Transformation (For skewed data)
     def log_transform(tuples, shift_constant=1e-5):
         array = np.array(tuples)
@@ -182,6 +187,7 @@ def _(np, plt, point_cloud):
         log_transformed_array = np.log(array)
         return [tuple(point) for point in log_transformed_array]
 
+
     # 7. Max-Abs Scaling (Scaling each feature to [-1, 1] by its maximum absolute value)
     def max_abs_scale(tuples):
         array = np.array(tuples)
@@ -190,6 +196,7 @@ def _(np, plt, point_cloud):
         scaled_array = array / max_abs_vals
         return [tuple(point) for point in scaled_array]
 
+
     # 8. Decimal Scaling (Scaling by a power of 10 to fit [-1, 1])
     def decimal_scale(tuples):
         array = np.array(tuples)
@@ -197,6 +204,7 @@ def _(np, plt, point_cloud):
         j_vals = np.ceil(np.log10(np.where(max_abs_vals == 0, 1, max_abs_vals)))
         scaled_array = array / (10**j_vals)
         return [tuple(point) for point in scaled_array]
+
 
     normalized_point_cloud = min_max_normalize(point_cloud)
     x_coords_normal, y_coords_normal = zip(*normalized_point_cloud)
@@ -255,11 +263,16 @@ def _(np):
             # Iterate through each dimension and calculate lower and upper bounds
             for dim, idx in enumerate(indices):
                 lower_bound = grid_points[dim][idx] - overlap  # Apply overlap
-                upper_bound = lower_bound + step + 2 * overlap  # Extend by step and overlap
-                cube_bounds.append((lower_bound, upper_bound))  # Store bounds for this dimension
+                upper_bound = (
+                    lower_bound + step + 2 * overlap
+                )  # Extend by step and overlap
+                cube_bounds.append(
+                    (lower_bound, upper_bound)
+                )  # Store bounds for this dimension
             small_cubes.append(tuple(cube_bounds))  # Add the bounds as a subcube
 
         return small_cubes  # Return the list of small subcubes
+
 
     def dummy_process(point):
         """
@@ -273,6 +286,7 @@ def _(np):
         """
         return point
 
+
     def projection_process(point):
         """
         Project the input point to a lower-dimensional space.
@@ -285,7 +299,10 @@ def _(np):
         Returns:
             A tuple representing the projected point (in this case, just the y-coordinate).
         """
-        return (point[1],)  # Return the second component of the point as the projection
+        return (
+            point[1],
+        )  # Return the second component of the point as the projection
+
 
     def preimage_cover(point_cloud, cover_codomain, process_function):
         """
@@ -325,7 +342,6 @@ def _(np):
                         cover_domain[item].append(point)
 
         return cover_domain  # Return the dictionary mapping subcubes to preimage points
-
     return divide_unit_n_cube, preimage_cover, projection_process
 
 
@@ -358,10 +374,14 @@ def _(
     # Example usage of the functions
     n = 1  # Number of dimensions (1D unit interval)
     m = 6  # Number of divisions per dimension (6 divisions of the unit interval)
-    cover_codomain = divide_unit_n_cube(n, m)  # Divide the unit interval into overlapping subintervals
+    cover_codomain = divide_unit_n_cube(
+        n, m
+    )  # Divide the unit interval into overlapping subintervals
 
     # Assume `normalized_point_cloud` is a list of points in the original space (e.g., a 2D point cloud)
-    cover_domain = preimage_cover(normalized_point_cloud, cover_codomain, projection_process)
+    cover_domain = preimage_cover(
+        normalized_point_cloud, cover_codomain, projection_process
+    )
 
     # Create a figure with a specific size for the plot
     plt.figure(figsize=(6, 6))
@@ -369,7 +389,9 @@ def _(
     # Loop through each key-value pair in cover_domain
     # First, plot the points for even-indexed covers
     for key_group, values_group in cover_domain.items():
-        index = list(cover_domain.keys()).index(key_group)  # Get the index of the key in the dictionary
+        index = list(cover_domain.keys()).index(
+            key_group
+        )  # Get the index of the key in the dictionary
         if index % 2 == 0:  # Handle even-indexed covers
             # Separate the x and y coordinates from the values (assumed to be 2D points)
             x_coords_group, y_coords_group = zip(*values_group)
@@ -385,7 +407,9 @@ def _(
 
     # Loop again for odd-indexed covers (this ensures they are plotted on top of the even-indexed points)
     for key_group, values_group in cover_domain.items():
-        index = list(cover_domain.keys()).index(key_group)  # Get the index of the key in the dictionary
+        index = list(cover_domain.keys()).index(
+            key_group
+        )  # Get the index of the key in the dictionary
         if index % 2 == 1:  # Handle odd-indexed covers
             # Separate the x and y coordinates from the values (assumed to be 2D points)
             x_coords_group, y_coords_group = zip(*values_group)
@@ -443,14 +467,19 @@ def _(DBSCAN, cover_domain, plt):
         # Organize the points into clusters based on their labels
         clusters = {}
         for label in set(labels):  # Iterate over unique labels (clusters)
-            clusters[label] = [point for point, l in zip(points, labels) if l == label]
+            clusters[label] = [
+                point for point, l in zip(points, labels) if l == label
+            ]
 
         return clusters  # Return the clusters (including noise points if any)
+
 
     # Example: Choose a specific cover to cluster (e.g., the 3rd cover)
     k = 3
     k = k % len(cover_domain)  # Ensure k is within the range of the cover domain
-    cover_points = cover_domain[list(cover_domain.keys())[k]]  # Select the points from the k-th cover
+    cover_points = cover_domain[
+        list(cover_domain.keys())[k]
+    ]  # Select the points from the k-th cover
 
     # Perform DBSCAN clustering on the selected cover's points
     clusters_dbscan = dbscan_clustering(cover_points)
@@ -461,7 +490,9 @@ def _(DBSCAN, cover_domain, plt):
     # Ensure enough colors for the number of clusters
     num_clusters = len(set(clusters_dbscan.keys()))
     if num_clusters > len(colors):
-        colors = plt.cm.get_cmap("tab10", num_clusters)  # Dynamically generate colors if needed
+        colors = plt.cm.get_cmap(
+            "tab10", num_clusters
+        )  # Dynamically generate colors if needed
 
     # Create a plot to visualize the clusters
     plt.figure(figsize=(5, 5))
@@ -469,7 +500,9 @@ def _(DBSCAN, cover_domain, plt):
     # Plot each cluster with a different color
     for key, values in clusters_dbscan.items():
         if values:  # Ensure the cluster is not empty
-            x_coords_emp, y_coords_emp = zip(*values)  # Separate the x and y coordinates
+            x_coords_emp, y_coords_emp = zip(
+                *values
+            )  # Separate the x and y coordinates
             if isinstance(colors, list):
                 # Use pre-defined colors if available
                 plt.scatter(
@@ -556,7 +589,9 @@ def _(cover_domain, dbscan_clustering, nx, plt):
     nx.draw_networkx_edges(G, pos, width=1.5, alpha=0.7, edge_color="gray")
 
     # Add a title and display the plot
-    plt.title("Cluster Intersection Graph with Node Sizes Proportional to Cluster Sizes")
+    plt.title(
+        "Cluster Intersection Graph with Node Sizes Proportional to Cluster Sizes"
+    )
     plt.show()
     return
 

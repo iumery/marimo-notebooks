@@ -1,13 +1,12 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.15.3"
 app = marimo.App()
 
 
 @app.cell
 def _():
     import marimo as mo
-
     return (mo,)
 
 
@@ -74,7 +73,6 @@ def _(mo):
     Proof
 
     If it is, then regular $13$-gon should be constructible, which happens if and only if $\cos(2\pi/13)$ is constructible, but $[\mathbb{Q}(\cos(2\pi/13)):\mathbb{Q}]$ is a degree $6$ extension: this degree should be half of $[\mathbb{Q}(e^{2\pi i /13}):\mathbb{Q}] = [\mathbb{Q}_{13}:\mathbb{Q}] = 12$. Since $6$ has a factor that is not $2$, $13$-gon is not constructible.
-
     """
     )
     return
@@ -187,7 +185,6 @@ def _(mo):
     Proof
 
     Decompose $\mathbb{C}G = M_{f_1}(\mathbb{C}) \oplus \dots \oplus M_{f_r}(\mathbb{C})$ and decompose $I = e_1 + \dots + e_r$, then $\chi_i(e_i) = f_i$ and $\chi_j(e_i) = 0$ if $i \ne j$. If $\lambda_1,\dots, \lambda_r \in \mathbb{C}$ so that $\sum \lambda_i \chi_i = 0$, then $0 = \sum \lambda_i \chi_i(e_j) = \lambda_j f_j$ for each $j$ so $\lambda_j = 0$ for each $j$.
-
     """
     )
     return
@@ -308,7 +305,6 @@ def _(mo):
     ($\implies$) Suppose $I | J$, then $J = IL$ for some $L \in S$. Then for any $j \in J$, $j = i\cdot s \in I$ by definition of ideal;
 
     ($\impliedby$) Suppose now $I \supseteq J$. Since $S$ is Dedekind, any fractional ideal is invertible, thus we can write $S = II^{-1} = JJ^{-1}$, thus $J = II^{-1}J$. Since $J \subseteq I$, $I^{-1}J \subseteq II^{-1} = S$ thus $I^{-1}J$ is an integral ideal, and we are done.
-
     """
     )
     return
