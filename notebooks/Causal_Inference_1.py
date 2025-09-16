@@ -9,6 +9,7 @@ def _():
     import marimo as mo
     import pandas as pd
     from scipy.stats import binomtest
+
     return mo, pd
 
 
@@ -74,9 +75,7 @@ def _(df):
     vif = 0.5 * (1 - 0.5) / ((n_1 / N) * (1 - n_1 / N))
     power_loss_pct = (vif - 1) * 100
 
-    print(
-        f"Variance inflation factor: {vif:.8f}, Percentage power loss: {power_loss_pct:.2f}%"
-    )
+    print(f"Variance inflation factor: {vif:.8f}, Percentage power loss: {power_loss_pct:.2f}%")
     return
 
 
