@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -74,20 +75,14 @@ def _():
 def _():
     import pandas as pd
 
-
     def compute_rating(students: pd.DataFrame) -> pd.DataFrame:
-        students["rank"] = students.groupby("department_id")["mark"].rank(
-            method="min", ascending=False
-        )
-        students["num_students"] = students.groupby("department_id")[
-            "student_id"
-        ].transform("count")
-        students["percentage"] = ((students["rank"] - 1) * 100) / (
-            students["num_students"] - 1
-        )
+        students["rank"] = students.groupby("department_id")["mark"].rank(method="min", ascending=False)
+        students["num_students"] = students.groupby("department_id")["student_id"].transform("count")
+        students["percentage"] = ((students["rank"] - 1) * 100) / (students["num_students"] - 1)
         students.loc[students["num_students"] == 1, "percentage"] = 0.00
         students["percentage"] = students["percentage"].round(2)
         return students[["student_id", "department_id", "percentage"]]
+
     return
 
 
