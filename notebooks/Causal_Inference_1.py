@@ -228,9 +228,7 @@ def _(df_winsor):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""After winsorization at the 99th percentile, the distribution of total game rounds played has become much more stable: the mean is about 49 for both groups, the medians are 17 and 16, and the standard deviations have dropped to around 84 from the highly inflated values in the raw data – notice this means heteroskedasticity is also mitigated. The maximum values are now around 493 and 492, a sharp reduction from the tens of thousands observed earlier, confirming that the extreme outliers have been capped. Importantly, retention metrics are unchanged by this adjustment, with day-1 retention at roughly 0.448 vs. 0.442 and day-7 retention at 0.190 vs. 0.182. Overall, winsorization yields a distribution of engagement that is more comparable across groups and easier to analyze, while the slight differences in retention remain the key point for further statistical testing."""
-    )
+    mo.md(r"""After winsorization at the 99th percentile, the distribution of total game rounds played has become much more stable: the mean is about 49 for both groups, the medians are 17 and 16, and the standard deviations have dropped to around 84 from the highly inflated values in the raw data – notice this means heteroskedasticity is also mitigated. The maximum values are now around 493 and 492, a sharp reduction from the tens of thousands observed earlier, confirming that the extreme outliers have been capped. Importantly, retention metrics are unchanged by this adjustment, with day-1 retention at roughly 0.448 vs. 0.442 and day-7 retention at 0.190 vs. 0.182. Overall, winsorization yields a distribution of engagement that is more comparable across groups and easier to analyze, while the slight differences in retention remain the key point for further statistical testing.""")
     return
 
 
@@ -414,9 +412,7 @@ def _(cohens_h, df, np, sm, totals):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""The day-1 retention difference between groups is small and not statistically significant, meaning we cannot rule out random variation as the cause. Even if real, the effect is tiny in magnitude and unlikely to have meaningful business impact."""
-    )
+    mo.md(r"""The day-1 retention difference between groups is small and not statistically significant, meaning we cannot rule out random variation as the cause. Even if real, the effect is tiny in magnitude and unlikely to have meaningful business impact.""")
     return
 
 
