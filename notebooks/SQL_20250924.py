@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -90,18 +91,11 @@ def _():
 def _():
     import pandas as pd
 
-
     def consecutive_increasing_transactions(
         transactions: pd.DataFrame,
     ) -> pd.DataFrame:
-        df = (
-            transactions.sort_values(["customer_id", "transaction_date"])
-            .reset_index(drop=True)
-            .reset_index()
-        )
-        df["group1"] = (
-            df["transaction_date"] - pd.to_datetime("2023-01-01")
-        ).dt.days - df.index
+        df = transactions.sort_values(["customer_id", "transaction_date"]).reset_index(drop=True).reset_index()
+        df["group1"] = (df["transaction_date"] - pd.to_datetime("2023-01-01")).dt.days - df.index
         df["group2"] = (df.amount <= df.amount.shift(1)).cumsum().fillna(0)
         df = (
             df.groupby(["customer_id", "group1", "group2"])
@@ -112,10 +106,9 @@ def _():
             )
             .reset_index()
         )
-        df = df[df["cnt"] >= 3][
-            ["customer_id", "consecutive_start", "consecutive_end"]
-        ]
+        df = df[df["cnt"] >= 3][["customer_id", "consecutive_start", "consecutive_end"]]
         return df
+
     return
 
 

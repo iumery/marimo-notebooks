@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -69,13 +70,11 @@ def _():
 def _():
     import pandas as pd
 
-
     def count_occurrences(files: pd.DataFrame) -> pd.DataFrame:
         bullcnt = files["content"].str.contains(" bull ").sum()
         bearcnt = files["content"].str.contains(" bear ").sum()
-        return pd.DataFrame(
-            {"word": ["bull", "bear"], "count": [bullcnt, bearcnt]}
-        )
+        return pd.DataFrame({"word": ["bull", "bear"], "count": [bullcnt, bearcnt]})
+
     return
 
 

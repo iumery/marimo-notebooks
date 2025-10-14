@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -89,22 +90,16 @@ def _():
 def _():
     import pandas as pd
 
-
-    def employees_with_deductions(
-        employees: pd.DataFrame, logs: pd.DataFrame
-    ) -> pd.DataFrame:
-        logs["session_hour"] = (
-            -(-(logs["out_time"] - logs["in_time"]).dt.total_seconds() / 60 // 1)
-        ) / 60
+    def employees_with_deductions(employees: pd.DataFrame, logs: pd.DataFrame) -> pd.DataFrame:
+        logs["session_hour"] = (-(-(logs["out_time"] - logs["in_time"]).dt.total_seconds() / 60 // 1)) / 60
         df = pd.merge(
             employees,
             logs.groupby("employee_id", as_index=False)["session_hour"].sum(),
             how="left",
             on="employee_id",
         )
-        return df[
-            (df["session_hour"].isna()) | (df["session_hour"] < df["needed_hours"])
-        ][["employee_id"]]
+        return df[(df["session_hour"].isna()) | (df["session_hour"] < df["needed_hours"])][["employee_id"]]
+
     return
 
 

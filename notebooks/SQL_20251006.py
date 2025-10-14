@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -82,28 +83,15 @@ def _():
 def _():
     import pandas as pd
 
-
     def rolling_average(steps: pd.DataFrame) -> pd.DataFrame:
         df = steps.sort_values(["user_id", "steps_date"]).set_index("steps_date")
 
-        df["rolling_average"] = (
-            df.groupby("user_id")["steps_count"]
-            .rolling("2D", closed="both")
-            .mean()
-            .round(2)
-            .reset_index(level=0, drop=True)
-        )
-        df["rolling_count"] = (
-            df.groupby("user_id")["steps_count"]
-            .rolling("2D", closed="both")
-            .count()
-            .reset_index(level=0, drop=True)
-        )
+        df["rolling_average"] = df.groupby("user_id")["steps_count"].rolling("2D", closed="both").mean().round(2).reset_index(level=0, drop=True)
+        df["rolling_count"] = df.groupby("user_id")["steps_count"].rolling("2D", closed="both").count().reset_index(level=0, drop=True)
         df.reset_index(inplace=True)
-        df = df[df["rolling_count"] == 3][
-            ["user_id", "steps_date", "rolling_average"]
-        ].sort_values(["user_id", "steps_date"])
+        df = df[df["rolling_count"] == 3][["user_id", "steps_date", "rolling_average"]].sort_values(["user_id", "steps_date"])
         return df
+
     return
 
 

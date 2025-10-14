@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -71,7 +72,6 @@ def _():
 def _():
     import pandas as pd
 
-
     def loan_types(loans: pd.DataFrame) -> pd.DataFrame:
         summary = loans.pivot_table(
             index="user_id",
@@ -79,10 +79,9 @@ def _():
             values="loan_id",
             aggfunc="count",
         ).reset_index()
-        df = summary[(summary["Mortgage"] > 0) & (summary["Refinance"] > 0)][
-            ["user_id"]
-        ]
+        df = summary[(summary["Mortgage"] > 0) & (summary["Refinance"] > 0)][["user_id"]]
         return df
+
     return
 
 

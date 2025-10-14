@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -74,12 +75,12 @@ def _():
 def _():
     import pandas as pd
 
-
     def sort_table(olympic: pd.DataFrame) -> pd.DataFrame:
         return olympic.sort_values(
             by=["gold_medals", "silver_medals", "bronze_medals", "country"],
             ascending=[False, False, False, True],
         )
+
     return
 
 

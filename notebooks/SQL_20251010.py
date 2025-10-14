@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -81,22 +82,16 @@ def _():
 def _():
     import pandas as pd
 
-
     def peak_calling_hours(calls: pd.DataFrame) -> pd.DataFrame:
         df = calls.copy()
         df["peak_calling_hour"] = df["call_time"].dt.hour
-        df = (
-            df.groupby(["city", "peak_calling_hour"])["caller_id"]
-            .count()
-            .reset_index(name="number_of_calls")
-        )
-        df["rnk"] = df.groupby("city")["number_of_calls"].rank(
-            method="min", ascending=False
-        )
-        df = df[df["rnk"] == 1].sort_values(
-            by=["peak_calling_hour", "city"], ascending=[False, False]
-        )[["city", "peak_calling_hour", "number_of_calls"]]
+        df = df.groupby(["city", "peak_calling_hour"])["caller_id"].count().reset_index(name="number_of_calls")
+        df["rnk"] = df.groupby("city")["number_of_calls"].rank(method="min", ascending=False)
+        df = df[df["rnk"] == 1].sort_values(by=["peak_calling_hour", "city"], ascending=[False, False])[
+            ["city", "peak_calling_hour", "number_of_calls"]
+        ]
         return df
+
     return
 
 

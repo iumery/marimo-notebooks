@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -73,24 +74,14 @@ def _():
 def _():
     import pandas as pd
 
-
     def symmetric_pairs(coordinates: pd.DataFrame) -> pd.DataFrame:
         coordinates["rnk"] = coordinates.index
         df = pd.merge(coordinates, coordinates, how="cross", suffixes=("_1", "_2"))
-        df = df[
-            (df["X_1"] == df["Y_2"])
-            & (df["X_2"] == df["Y_1"])
-            & (df["X_1"] <= df["Y_1"])
-            & (df["rnk_1"] != df["rnk_2"])
-        ]
-        df = (
-            df[["X_1", "Y_1"]]
-            .drop_duplicates()
-            .rename(columns={"X_1": "x", "Y_1": "y"})
-            .sort_values(by=["x", "y"])
-        )
+        df = df[(df["X_1"] == df["Y_2"]) & (df["X_2"] == df["Y_1"]) & (df["X_1"] <= df["Y_1"]) & (df["rnk_1"] != df["rnk_2"])]
+        df = df[["X_1", "Y_1"]].drop_duplicates().rename(columns={"X_1": "x", "Y_1": "y"}).sort_values(by=["x", "y"])
 
         return df
+
     return
 
 

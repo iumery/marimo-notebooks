@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -85,22 +86,14 @@ def _():
 def _():
     import pandas as pd
 
-
-    def waitlist_analysis(
-        flights: pd.DataFrame, passengers: pd.DataFrame
-    ) -> pd.DataFrame:
-        number_passenger = passengers.groupby("flight_id", as_index=False)[
-            "passenger_id"
-        ].nunique()
-        df = pd.merge(
-            flights, number_passenger, how="left", on="flight_id"
-        ).fillna(0)
+    def waitlist_analysis(flights: pd.DataFrame, passengers: pd.DataFrame) -> pd.DataFrame:
+        number_passenger = passengers.groupby("flight_id", as_index=False)["passenger_id"].nunique()
+        df = pd.merge(flights, number_passenger, how="left", on="flight_id").fillna(0)
         df["booked_cnt"] = df[["capacity", "passenger_id"]].min(axis=1)
         df["waitlist_cnt"] = (df["passenger_id"] - df["capacity"]).clip(lower=0)
-        df = df[["flight_id", "booked_cnt", "waitlist_cnt"]].sort_values(
-            "flight_id"
-        )
+        df = df[["flight_id", "booked_cnt", "waitlist_cnt"]].sort_values("flight_id")
         return df
+
     return
 
 

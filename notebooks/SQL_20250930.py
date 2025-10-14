@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -97,19 +98,15 @@ def _():
 def _():
     import pandas as pd
 
-
     def find_customers(transactions: pd.DataFrame) -> pd.DataFrame:
         df = transactions.sort_values(by=["customer_id", "transaction_date"])
         df["rn"] = df.groupby("customer_id").cumcount()
         df["anchor"] = df["transaction_date"] - pd.to_timedelta(df["rn"], unit="D")
-        df = df.groupby(["customer_id", "anchor"], as_index=False)[
-            "transaction_date"
-        ].count()
+        df = df.groupby(["customer_id", "anchor"], as_index=False)["transaction_date"].count()
         max_days = df["transaction_date"].max()
-        df = df[df["transaction_date"] == max_days][["customer_id"]].sort_values(
-            by="customer_id"
-        )
+        df = df[df["transaction_date"] == max_days][["customer_id"]].sort_values(by="customer_id")
         return df
+
     return
 
 

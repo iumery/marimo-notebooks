@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -71,9 +72,9 @@ def _():
 def _():
     import pandas as pd
 
-
     def change_null_values(coffee_shop: pd.DataFrame) -> pd.DataFrame:
         return coffee_shop.fillna(method="ffill")
+
     return
 
 

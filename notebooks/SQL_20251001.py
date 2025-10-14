@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -81,16 +82,14 @@ def _():
 def _():
     import pandas as pd
 
-
-    def ticket_status(
-        flights: pd.DataFrame, passengers: pd.DataFrame
-    ) -> pd.DataFrame:
+    def ticket_status(flights: pd.DataFrame, passengers: pd.DataFrame) -> pd.DataFrame:
         df = pd.merge(passengers, flights, how="left", on="flight_id")
         df["rank"] = df.sort_values("booking_time").groupby("flight_id").cumcount()
         df["Status"] = df["rank"] < df["capacity"]
         df["Status"] = df["Status"].map({True: "Confirmed", False: "Waitlist"})
         df = df[["passenger_id", "Status"]].sort_values("passenger_id")
         return df
+
     return
 
 

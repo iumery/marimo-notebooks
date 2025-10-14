@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -91,7 +92,6 @@ def _():
 def _():
     import pandas as pd
 
-
     def get_election_results(votes: pd.DataFrame) -> pd.DataFrame:
         df = votes.dropna()
         df["vote_weight"] = 1.0 / df.groupby("voter").transform("count")
@@ -99,6 +99,7 @@ def _():
         df["rank"] = df["vote_weight"].rank(method="min", ascending=False)
         df = df[df["rank"] == 1][["candidate"]].sort_values("candidate")
         return df
+
     return
 
 

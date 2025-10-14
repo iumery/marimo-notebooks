@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -61,17 +62,13 @@ def _():
 def _():
     import pandas as pd
 
-
     def salaries_difference(salaries: pd.DataFrame) -> pd.DataFrame:
-        mkt_highest = salaries[salaries["department"] == "Marketing"][
-            "salary"
-        ].max()
-        eng_highest = salaries[salaries["department"] == "Engineering"][
-            "salary"
-        ].max()
+        mkt_highest = salaries[salaries["department"] == "Marketing"]["salary"].max()
+        eng_highest = salaries[salaries["department"] == "Engineering"]["salary"].max()
         diff = abs(mkt_highest - eng_highest)
         df = pd.DataFrame({"salary_difference": [diff]})
         return df
+
     return
 
 

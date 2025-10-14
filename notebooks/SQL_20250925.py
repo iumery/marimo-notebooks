@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -80,20 +81,14 @@ def _():
 def _():
     import pandas as pd
 
-
     def popularity_percentage(friends: pd.DataFrame) -> pd.DataFrame:
-        friends_reverse = friends[["user2", "user1"]].rename(
-            columns={"user1": "user2", "user2": "user1"}
-        )
+        friends_reverse = friends[["user2", "user1"]].rename(columns={"user1": "user2", "user2": "user1"})
         df = pd.concat([friends, friends_reverse]).drop_duplicates()
         total_user = len(df["user1"].drop_duplicates())
-        df = df.groupby("user1", as_index=False).agg(
-            percentage_popularity=("user2", "count")
-        )
-        df["percentage_popularity"] = (
-            100.0 * df["percentage_popularity"] / total_user
-        ).round(2)
+        df = df.groupby("user1", as_index=False).agg(percentage_popularity=("user2", "count"))
+        df["percentage_popularity"] = (100.0 * df["percentage_popularity"] / total_user).round(2)
         return df
+
     return
 
 
