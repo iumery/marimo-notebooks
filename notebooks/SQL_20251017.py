@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -75,18 +76,12 @@ def _():
 def _():
     import pandas as pd
 
-
     def class_performance(scores: pd.DataFrame) -> pd.DataFrame:
-        df = (
-            scores.set_index(["student_id", "student_name"])
-            .stack()
-            .rename("score")
-        )
-        difference_in_score = (
-            df.groupby(level=0).sum().max() - df.groupby(level=0).sum().min()
-        )
+        df = scores.set_index(["student_id", "student_name"]).stack().rename("score")
+        difference_in_score = df.groupby(level=0).sum().max() - df.groupby(level=0).sum().min()
         df = pd.DataFrame({"difference_in_score": [difference_in_score]})
         return df
+
     return
 
 

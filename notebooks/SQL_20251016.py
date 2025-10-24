@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -79,19 +80,17 @@ def _():
 def _():
     import pandas as pd
 
-
     def find_manager(employees: pd.DataFrame) -> pd.DataFrame:
         df = employees.copy()
         df["cnt"] = df.groupby("dep_id")["emp_id"].transform("count")
         df["rnk"] = df["cnt"].rank(method="min", ascending=False)
         df = (
-            df[(df["rnk"] == 1) & (df["position"] == "Manager")][
-                ["emp_name", "dep_id"]
-            ]
+            df[(df["rnk"] == 1) & (df["position"] == "Manager")][["emp_name", "dep_id"]]
             .rename(columns={"emp_name": "manager_name"})
             .sort_values("dep_id", ascending=True)
         )
         return df
+
     return
 
 

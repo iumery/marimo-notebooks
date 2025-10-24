@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -73,7 +74,6 @@ def _():
 def _():
     import pandas as pd
 
-
     def cost_analysis(toppings: pd.DataFrame) -> pd.DataFrame:
         df = toppings.sort_values("topping_name").reset_index(drop=True)
         pizza = []
@@ -81,20 +81,11 @@ def _():
         for i in range(len(df)):
             for j in range(i + 1, len(df)):
                 for k in range(j + 1, len(df)):
-                    pizza.append(
-                        df["topping_name"][i]
-                        + ","
-                        + df["topping_name"][j]
-                        + ","
-                        + df["topping_name"][k]
-                    )
-                    total_cost.append(
-                        round(df["cost"][i] + df["cost"][j] + df["cost"][k], 2)
-                    )
-        df = pd.DataFrame({"pizza": pizza, "total_cost": total_cost}).sort_values(
-            ["total_cost", "pizza"], ascending=[False, True]
-        )
+                    pizza.append(df["topping_name"][i] + "," + df["topping_name"][j] + "," + df["topping_name"][k])
+                    total_cost.append(round(df["cost"][i] + df["cost"][j] + df["cost"][k], 2))
+        df = pd.DataFrame({"pizza": pizza, "total_cost": total_cost}).sort_values(["total_cost", "pizza"], ascending=[False, True])
         return df
+
     return
 
 

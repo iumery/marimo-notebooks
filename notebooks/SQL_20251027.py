@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -67,18 +68,14 @@ def _():
 def _():
     import pandas as pd
 
-
     def find_candidates(candidates: pd.DataFrame) -> pd.DataFrame:
         candidate_id = set(candidates["candidate_id"])
         for skill in ["Python", "Tableau", "PostgreSQL"]:
-            sub_candidate_id = set(
-                candidates[candidates["skill"] == skill]["candidate_id"]
-            )
+            sub_candidate_id = set(candidates[candidates["skill"] == skill]["candidate_id"])
             candidate_id = candidate_id & sub_candidate_id
-        df = pd.DataFrame({"candidate_id": list(candidate_id)}).sort_values(
-            "candidate_id"
-        )
+        df = pd.DataFrame({"candidate_id": list(candidate_id)}).sort_values("candidate_id")
         return df
+
     return
 
 

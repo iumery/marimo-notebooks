@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -82,17 +83,11 @@ def _():
 def _():
     import pandas as pd
 
-
     def count_turned_streamers(sessions: pd.DataFrame) -> pd.DataFrame:
         df = sessions.sort_values(by=["user_id", "session_start"])
-        df["first_session_type"] = df.groupby("user_id")["session_type"].transform(
-            "first"
-        )
+        df["first_session_type"] = df.groupby("user_id")["session_type"].transform("first")
         df = (
-            df[
-                (df["session_type"] == "Streamer")
-                & (df["first_session_type"] == "Viewer")
-            ]
+            df[(df["session_type"] == "Streamer") & (df["first_session_type"] == "Viewer")]
             .groupby("user_id")["session_id"]
             .agg("count")
             .reset_index(name="sessions_count")
@@ -103,6 +98,7 @@ def _():
             inplace=True,
         )
         return df
+
     return
 
 

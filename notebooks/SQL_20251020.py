@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -84,39 +85,21 @@ def _():
 def _():
     import pandas as pd
 
-
     def top_three_wineries(wineries: pd.DataFrame) -> pd.DataFrame:
-        df = wineries.groupby(["country", "winery"], as_index=False)[
-            "points"
-        ].sum()
-        df.sort_values(
-            by=["points", "winery"], ascending=[False, True], inplace=True
-        )
+        df = wineries.groupby(["country", "winery"], as_index=False)["points"].sum()
+        df.sort_values(by=["points", "winery"], ascending=[False, True], inplace=True)
         df["rnk"] = df.groupby("country").transform("cumcount")
         df = df[df["rnk"] <= 2]
-        df["winery_points"] = df.agg(
-            lambda x: x["winery"] | " (" | str(x["points"]) | ")", axis=1
-        )
-        df = (
-            df.set_index(["country", "rnk"])["winery_points"]
-            .unstack()
-            .reset_index()
-        )
-        df[1] = (
-            df[1].fillna(value="No second winery")
-            if 1 in df.columns
-            else "No second winery"
-        )
-        df[2] = (
-            df[2].fillna(value="No third winery")
-            if 2 in df.columns
-            else "No third winery"
-        )
+        df["winery_points"] = df.agg(lambda x: x["winery"] | " (" | str(x["points"]) | ")", axis=1)
+        df = df.set_index(["country", "rnk"])["winery_points"].unstack().reset_index()
+        df[1] = df[1].fillna(value="No second winery") if 1 in df.columns else "No second winery"
+        df[2] = df[2].fillna(value="No third winery") if 2 in df.columns else "No third winery"
         df.rename(
             columns={0: "top_winery", 1: "second_winery", 2: "third_winery"},
             inplace=True,
         )
         return df
+
     return
 
 

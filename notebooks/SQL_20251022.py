@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -71,7 +72,6 @@ def _():
     import pandas as pd
     from datetime import datetime
 
-
     def friday_purchases(purchases: pd.DataFrame) -> pd.DataFrame:
         dates = pd.DataFrame(
             {
@@ -84,24 +84,19 @@ def _():
         )
         dates["day_of_week"] = dates["purchase_date"].dt.dayofweek
         dates["week_of_year"] = dates["purchase_date"].dt.isocalendar().week
-        dates["start_time"] = (
-            dates["purchase_date"].dt.to_period("M").dt.start_time
-        )
+        dates["start_time"] = dates["purchase_date"].dt.to_period("M").dt.start_time
         dates["first_week"] = dates["start_time"].dt.isocalendar().week
         dates["week_of_month"] = dates["week_of_year"] - dates["first_week"] + 1
-        df = purchases.groupby(by="purchase_date", as_index=False).agg(
-            total_amount=("amount_spend", "sum")
-        )
+        df = purchases.groupby(by="purchase_date", as_index=False).agg(total_amount=("amount_spend", "sum"))
         df = pd.merge(
-            dates.loc[
-                dates["day_of_week"] == 4, ["week_of_month", "purchase_date"]
-            ],
+            dates.loc[dates["day_of_week"] == 4, ["week_of_month", "purchase_date"]],
             df,
             how="left",
             on="purchase_date",
         ).fillna(0)
         df = df.sort_values(by="week_of_month", ascending=True)
         return df
+
     return
 
 
