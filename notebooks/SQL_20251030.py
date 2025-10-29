@@ -7,6 +7,7 @@ app = marimo.App()
 @app.cell(hide_code=True)
 def _():
     import marimo as mo
+
     return (mo,)
 
 
@@ -74,7 +75,6 @@ def _():
 def _():
     import pandas as pd
 
-
     def binary_tree_nodes(tree: pd.DataFrame) -> pd.DataFrame:
         df = pd.merge(tree, tree, how="left", left_on="N", right_on="P")
 
@@ -87,13 +87,9 @@ def _():
                 return "Inner"
 
         df["Type"] = df.agg(check_nodes, axis=1)
-        df = (
-            df[["N_x", "Type"]]
-            .rename(columns={"N_x": "N"})
-            .drop_duplicates()
-            .sort_values("N")
-        )
+        df = df[["N_x", "Type"]].rename(columns={"N_x": "N"}).drop_duplicates().sort_values("N")
         return df
+
     return
 
 
