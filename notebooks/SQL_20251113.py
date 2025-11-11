@@ -15,8 +15,8 @@ def _(mo):
     nav_menu = mo.nav_menu(
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
-            "/notebooks/SQL_20251110.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
-            "/notebooks/SQL_20251112.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
+            "/notebooks/SQL_20251112.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
+            "/notebooks/SQL_20251114.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
@@ -27,7 +27,7 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ### LeetCode 3087
+    ### LeetCode 3103
 
     Table: Tweets
 
@@ -39,10 +39,11 @@ def _(mo):
     | tweet       | varchar |
 
     tweet_id is the primary key (column with unique values) for this table. Each row of this table contains user_id, tweet_id, tweet_date and tweet.
+    It is guaranteed that all tweet_date are valid dates in February 2024.
 
-    Write a solution to find the top 3 trending hashtags in February 2024. Each tweet only contains one hashtag.
+    Write a solution to find the top 3 trending hashtags in February 2024. Every tweet may contain several hashtags.
 
-    Return the result table orderd by count of hashtag, hashtag in descending order.
+    Return the result table ordered by count of hashtag, hashtag in descending order.
     """)
     return
 
@@ -50,17 +51,22 @@ def _(mo):
 @app.cell
 def _():
     """
+    WITH extracted AS (
+        SELECT
+            REGEXP_MATCHES(tweet, '(#[A-z]+)', 'g') AS hashtag
+        FROM
+            Tweets
+    )
     SELECT
-        '#' || SPLIT_PART(SPLIT_PART(tweet, '#', 2),' ',1) AS hashtag,
-        COUNT(*) AS hashtag_count
+        hashtag[1],
+        COUNT(*) AS count
     FROM
-        Tweets
-    WHERE
-        tweet_date BETWEEN '2024-02-01' AND '2024-02-29'
+        extracted
     GROUP BY
         1
     ORDER BY
-        2 desc,1 desc
+        2 desc,
+        1 desc
     LIMIT
         3;
     """
@@ -73,20 +79,15 @@ def _():
 
 
     def find_trending_hashtags(tweets: pd.DataFrame) -> pd.DataFrame:
-        df = tweets.copy()
-        df = df[
-            (df["tweet_date"].dt.year == 2024) & (df["tweet_date"].dt.month == 2)
+        df = tweets[
+            (tweets["tweet_date"].dt.year == 2024)
+            & (tweets["tweet_date"].dt.month == 2)
         ]
-        df["hashtag"] = df["tweet"].str.split("#", expand=True)[1]
-        df["hashtag"] = "#" + df["hashtag"].str.split(" ", expand=True)[0]
-        df = (
-            df.groupby("hashtag")["tweet_id"]
-            .count()
-            .reset_index(name="hashtag_count")
-        )
+        df = df["tweet"].str.findall(r"(#\w+)").explode()
+        df = df.value_counts().reset_index().rename(columns={"tweet": "hashtag"})
         df = df.sort_values(
-            by=["hashtag_count", "hashtag"], ascending=[False, False]
-        ).iloc[:3]
+            by=["count", "hashtag"], ascending=[False, False]
+        ).head(3)
         return df
     return
 
