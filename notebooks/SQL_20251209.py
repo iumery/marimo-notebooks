@@ -15,7 +15,7 @@ def _(mo):
     nav_menu = mo.nav_menu(
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
-            "/notebooks/SQL_20251208.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
+            "/notebooks/SQL_20251205.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
             "/notebooks/SQL_20251210.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
@@ -27,29 +27,29 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ### LeetCode 3705
+    ### LeetCode 3673
 
-    Table: restaurant_orders
+    Table: app_events
 
     | Column Name      | Type     |
     |------------------|----------|
-    | order_id         | int      |
-    | customer_id      | int      |
-    | order_timestamp  | datetime |
-    | order_amount     | decimal  |
-    | payment_method   | varchar  |
-    | order_rating     | int      |
+    | event_id         | int      |
+    | user_id          | int      |
+    | event_timestamp  | datetime |
+    | event_type       | varchar  |
+    | session_id       | varchar  |
+    | event_value      | int      |
 
-    order_id is the unique identifier for this table. payment_method can be cash, card, or app. order_rating is between 1 and 5, where 5 is the best (NULL if not rated). order_timestamp contains both date and time information.
+    event_id is the unique identifier for this table. event_type can be app_open, click, scroll, purchase, or app_close. session_id groups events within the same user session. event_value represents: for purchase - amount in dollars, for scroll - pixels scrolled, for others - NULL.
 
-    Write a solution to find golden hour customers - customers who consistently order during peak hours and provide high satisfaction. A customer is a golden hour customer if they meet ALL the following criteria:
+    Write a solution to identify zombie sessions, sessions where users appear active but show abnormal behavior patterns. A session is considered a zombie session if it meets ALL the following criteria:
 
-    - Made at least 3 orders.
-    - At least 60% of their orders are during peak hours (11:00-14:00 or 18:00-21:00).
-    - Their average rating for rated orders is at least 4.0, round it to 2 decimal places.
-    - Have rated at least 50% of their orders.
+    - The session duration is more than 30 minutes.
+    - Has at least 5 scroll events.
+    - The click-to-scroll ratio is less than 0.20 .
+    - No purchases were made during the session.
 
-    Return the result table ordered by average_rating in descending order, then by customer_id in descending order.
+    Return the result table ordered by scroll_count in descending order, then by session_id in ascending order.
     """)
     return
 
@@ -58,21 +58,24 @@ def _(mo):
 def _():
     """
     SELECT
-        customer_id,
-        COUNT(order_id) AS total_orders,
-        ROUND((COUNT(order_id) FILTER (WHERE order_timestamp::TIME BETWEEN '11:00:00' AND '14:00:00' OR order_timestamp::TIME BETWEEN '18:00:00' AND '21:00:00'))*100.0 / COUNT(order_id), 0) AS peak_hour_percentage,
-        ROUND(AVG(order_rating), 2) AS average_rating
+        session_id,
+        user_id,
+        EXTRACT(EPOCH FROM MAX(event_timestamp) - MIN(event_timestamp)) / 60 AS session_duration_minutes,
+        COUNT(*) FILTER (WHERE event_type = 'scroll') AS scroll_count
     FROM
-        restaurant_orders
+        app_events
     GROUP BY
-        customer_id
+        1, 2
     HAVING
-        COUNT(order_id) >= 3
-            AND (COUNT(order_id) FILTER (WHERE order_timestamp::TIME BETWEEN '11:00:00' AND '14:00:00' OR order_timestamp::TIME BETWEEN '18:00:00' AND '21:00:00'))*100.0 / COUNT(order_id) >= 60
-            AND ROUND(AVG(order_rating), 2) >= 4.0
-            AND COUNT(order_rating)*100.0 /  COUNT(order_id) >= 50
+        MAX(event_timestamp) - INTERVAL '30 mins' > MIN(event_timestamp)
+            AND COUNT(*) FILTER (WHERE event_type = 'scroll') >= 5
+            AND ROUND(
+                (COUNT(*) FILTER (WHERE event_type = 'click'))::NUMERIC /
+                (COUNT(*) FILTER (WHERE event_type = 'scroll'))::NUMERIC, 2
+                ) < 0.2
+            AND COUNT(*) FILTER (WHERE event_type = 'purchase') = 0
     ORDER BY
-        4 DESC, 1 DESC
+        4 DESC, 1;
     """
     return
 
@@ -82,50 +85,28 @@ def _():
     import pandas as pd
 
 
-    def find_golden_hour_customers(
-        restaurant_orders: pd.DataFrame,
-    ) -> pd.DataFrame:
-        df = restaurant_orders.copy()
-        df["order_timestamp"] = pd.to_datetime(df["order_timestamp"])
-        df["hour"] = df["order_timestamp"].dt.hour
-
-        df = df.groupby("customer_id", as_index=False).agg(
-            total_orders=("order_id", "nunique"),
-            peak_cnt=(
-                "order_id",
-                lambda x: x[
-                    (df.loc[:, "hour"].between(11, 13))
-                    | (df.loc[:, "hour"].between(18, 20))
-                ].nunique(),
-            ),
-            average_rating=("order_rating", "mean"),
-            rating_cnt=("order_rating", "count"),
+    def find_zombie_sessions(app_events: pd.DataFrame) -> pd.DataFrame:
+        df = app_events.copy()
+        df["event_timestamp"] = pd.to_datetime(df["event_timestamp"])
+        df = df.groupby(["session_id", "user_id"], as_index=False).agg(
+            purchase_count=("event_type", lambda x: (x == "purchase").sum()),
+            scroll_count=("event_type", lambda x: (x == "scroll").sum()),
+            click_count=("event_type", lambda x: (x == "click").sum()),
+            max_time=("event_timestamp", max),
+            min_time=("event_timestamp", min),
         )
-
-        df["peak_hour_percentage"] = (df["peak_cnt"] * 100) / df["total_orders"]
-        df["rating_percentage"] = df["rating_cnt"] / df["total_orders"]
-
+        df["session_duration_minutes"] = (
+            df["max_time"] - df["min_time"]
+        ).dt.seconds / 60
         df = df[
-            (df["total_orders"] >= 3)
-            & (df["peak_hour_percentage"] >= 60)
-            & (df["average_rating"] >= 4)
-            & (df["rating_percentage"] >= 0.5)
-        ]
-
-        df["average_rating"] = df["average_rating"].round(2)
-        df["peak_hour_percentage"] = df["peak_hour_percentage"].round()
-
-        df = df[
-            [
-                "customer_id",
-                "total_orders",
-                "peak_hour_percentage",
-                "average_rating",
-            ]
-        ].sort_values(
-            by=["average_rating", "customer_id"], ascending=[False, False]
+            (df.session_duration_minutes > 30)
+            & (df.scroll_count >= 5)
+            & (5 * df.click_count < df.scroll_count)
+            & (df.purchase_count == 0)
+        ][["session_id", "user_id", "session_duration_minutes", "scroll_count"]]
+        df.sort_values(
+            ["scroll_count", "session_id"], ascending=[False, True], inplace=True
         )
-
         return df
     return
 

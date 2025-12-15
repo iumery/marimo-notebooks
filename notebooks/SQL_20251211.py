@@ -16,7 +16,7 @@ def _(mo):
         {
             "/index.html": f"{mo.icon('lucide:home')} Home",
             "/notebooks/SQL_20251210.html": f"{mo.icon('lucide:arrow-big-left')} Last Day",
-            "/notebooks/SQL_20251214.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
+            "/notebooks/SQL_20251212.html": f"{mo.icon('lucide:arrow-big-right')} Next Day",
         },
         orientation="horizontal",
     )
@@ -27,28 +27,29 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ### LeetCode 3764
+    ### LeetCode 3716
 
-    Table: course_completions
+    Table: subscription_events
 
-    | Column Name       | Type    |
-    |-------------------|---------|
-    | user_id           | int     |
-    | course_id         | int     |
-    | course_name       | varchar |
-    | completion_date   | date    |
-    | course_rating     | int     |
+    | Column Name      | Type    |
+    |------------------|---------|
+    | event_id         | int     |
+    | user_id          | int     |
+    | event_date       | date    |
+    | event_type       | varchar |
+    | plan_name        | varchar |
+    | monthly_amount   | decimal |
 
-    (user_id, course_id) is the combination of columns with unique values for this table. Each row represents a completed course by a user with their rating (1-5 scale).
+    event_id is the unique identifier for this table. event_type can be start, upgrade, downgrade, or cancel. plan_name can be basic, standard, premium, or NULL (when event_type is cancel). monthly_amount represents the monthly subscription cost after this event. For cancel events, monthly_amount is 0.
 
-    Write a solution to identify skill mastery pathways by analyzing course completion sequences among top-performing students:
+    Write a solution to Find Churn Risk Customers - users who show warning signs before churning. A user is considered churn risk customer if they meet ALL the following criteria:
 
-    - Consider only top-performing students (those who completed at least 5 courses with an average rating of 4 or higher).
-    - For each top performer, identify the sequence of courses they completed in chronological order.
-    - Find all consecutive course pairs (Course A → Course B) taken by these students.
-    - Return the pair frequency, identifying which course transitions are most common among high achievers.
+    - Currently have an active subscription (their last event is not cancel).
+    - Have performed at least one downgrade in their subscription history.
+    - Their current plan revenue is less than 50% of their historical maximum plan revenue.
+    - Have been a subscriber for at least 60 days.
 
-    Return the result table ordered by pair frequency in descending order and then by first course name and second course name in ascending order.
+    Return the result table ordered by days_as_subscriber in descending order, then by user_id in ascending order.
     """)
     return
 
@@ -56,35 +57,36 @@ def _(mo):
 @app.cell
 def _():
     """
-    WITH course_info AS (
+    WITH churn_info AS (
         SELECT
             user_id,
-            completion_date,
-            course_name
+            FIRST_VALUE(event_date) OVER (PARTITION BY user_id ORDER BY event_date) AS first_login,
+            FIRST_VALUE(plan_name) OVER (PARTITION BY user_id ORDER BY event_date DESC) AS current_plan,
+            FIRST_VALUE(monthly_amount) OVER (PARTITION BY user_id ORDER BY event_date DESC) AS current_monthly_amount,
+            FIRST_VALUE(event_date) OVER (PARTITION BY user_id order by event_date DESC) AS last_ogin,
+            COUNT(*) FILTER (WHERE event_type ='downgrade') OVER (PARTITION BY user_id) AS cnt_upgrade,
+            COUNT(*) FILTER (WHERE event_type ='cancel') OVER (PARTITION BY user_id) AS cnt_cancel,
+            ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY event_date DESC) AS rn,
+            MAX(monthly_amount) OVER (PARTITION BY user_id) AS max_historical_amount
         FROM
-            course_completions
-        WHERE
-            user_id IN (SELECT user_id FROM course_completions GROUP BY 1 HAVING COUNT(*) >= 5 AND AVG(course_rating)>=4)
-    ),
-    course_pairs AS (
-        SELECT
-            course_name AS first_course,
-            LEAD(course_name, 1) OVER (PARTITION BY user_id ORDER BY completion_date) AS second_course
-        FROM
-            course_info
+            subscription_events
     )
     SELECT
-        first_course,
-        second_course,
-        COUNT(*) AS transition_count
+        user_id,
+        current_plan,
+        current_monthly_amount,
+        max_historical_amount,
+        last_ogin - first_login AS days_as_subscriber
     FROM
-        course_pairs
+        churn_info
     WHERE
-        second_course IS NOT NULL
-    GROUP BY
-        1, 2
+        rn=1
+            AND cnt_upgrade > 0
+            AND cnt_cancel = 0
+            AND last_ogin - first_login >=60
+            AND current_monthly_amount < 0.5 * max_historical_amount
     ORDER BY
-        3 DESC, LOWER(first_course), LOWER(second_course);
+        5 DESC, 1;
     """
     return
 
@@ -93,41 +95,47 @@ def _():
 def _():
     import pandas as pd
 
-    def topLearnerCourseTransitions(courses: pd.DataFrame) -> pd.DataFrame:
-        df = courses.copy()
-        df["course_rating"] = df["course_rating"].fillna(4)
-        df["ave"] = df.groupby("user_id")["course_rating"].transform("mean")
-        df["cnt"] = df.groupby("user_id")["course_rating"].transform("count")
-        df = df.sort_values(["user_id", "completion_date"])
-        df["second_course"] = df["course_name"].shift(-1)
 
-        mask = (
-            (df["ave"] >= 4)
-            & (df["cnt"] >= 5)
-            & (df["user_id"] == df["user_id"].shift(-1))
-        )
-
-        transitions = (
-            df.loc[mask]
-            .rename(columns={"course_name": "first_course"})
-            .groupby(["first_course", "second_course"], as_index=False)
-            .size()
-            .rename(columns={"size": "transition_count"})
-        )
-
-        transitions = (
-            transitions.assign(
-                _lower_first=lambda d: d["first_course"].str.lower(),
-                _lower_second=lambda d: d["second_course"].str.lower(),
+    def find_churn_risk_customers(
+        subscription_events: pd.DataFrame,
+    ) -> pd.DataFrame:
+        df = subscription_events.copy()
+        df["event_date"] = pd.to_datetime(df["event_date"])
+        df = (
+            df.groupby("user_id")
+            .agg(
+                latest_event=("event_type", "last"),
+                has_downgrade=("event_type", lambda x: "downgrade" in x.values),
+                current_monthly_amount=("monthly_amount", "last"),
+                max_historical_amount=("monthly_amount", "max"),
+                days_as_subscriber=(
+                    "event_date",
+                    lambda x: (x.max() - x.min()).days,
+                ),
+                current_plan=("plan_name", "last"),
             )
-            .sort_values(
-                ["transition_count", "_lower_first", "_lower_second"],
-                ascending=[False, True, True],
-            )
-            .drop(columns=["_lower_first", "_lower_second"])
+            .reset_index()
         )
-
-        return transitions[["first_course", "second_course", "transition_count"]]
+        df = df[
+            (df["latest_event"] != "cancel")
+            & (df["has_downgrade"] == True)
+            & (df["current_monthly_amount"] / df["max_historical_amount"] < 0.5)
+            & (df["days_as_subscriber"] >= 60)
+        ][
+            [
+                "user_id",
+                "current_plan",
+                "current_monthly_amount",
+                "max_historical_amount",
+                "days_as_subscriber",
+            ]
+        ]
+        df.sort_values(
+            ["days_as_subscriber", "user_id"],
+            ascending=[False, True],
+            inplace=True,
+        )
+        return df
     return
 
 

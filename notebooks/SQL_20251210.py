@@ -27,29 +27,29 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ### LeetCode 3716
+    ### LeetCode 3705
 
-    Table: subscription_events
+    Table: restaurant_orders
 
-    | Column Name      | Type    |
-    |------------------|---------|
-    | event_id         | int     |
-    | user_id          | int     |
-    | event_date       | date    |
-    | event_type       | varchar |
-    | plan_name        | varchar |
-    | monthly_amount   | decimal |
+    | Column Name      | Type     |
+    |------------------|----------|
+    | order_id         | int      |
+    | customer_id      | int      |
+    | order_timestamp  | datetime |
+    | order_amount     | decimal  |
+    | payment_method   | varchar  |
+    | order_rating     | int      |
 
-    event_id is the unique identifier for this table. event_type can be start, upgrade, downgrade, or cancel. plan_name can be basic, standard, premium, or NULL (when event_type is cancel). monthly_amount represents the monthly subscription cost after this event. For cancel events, monthly_amount is 0.
+    order_id is the unique identifier for this table. payment_method can be cash, card, or app. order_rating is between 1 and 5, where 5 is the best (NULL if not rated). order_timestamp contains both date and time information.
 
-    Write a solution to Find Churn Risk Customers - users who show warning signs before churning. A user is considered churn risk customer if they meet ALL the following criteria:
+    Write a solution to find golden hour customers - customers who consistently order during peak hours and provide high satisfaction. A customer is a golden hour customer if they meet ALL the following criteria:
 
-    - Currently have an active subscription (their last event is not cancel).
-    - Have performed at least one downgrade in their subscription history.
-    - Their current plan revenue is less than 50% of their historical maximum plan revenue.
-    - Have been a subscriber for at least 60 days.
+    - Made at least 3 orders.
+    - At least 60% of their orders are during peak hours (11:00-14:00 or 18:00-21:00).
+    - Their average rating for rated orders is at least 4.0, round it to 2 decimal places.
+    - Have rated at least 50% of their orders.
 
-    Return the result table ordered by days_as_subscriber in descending order, then by user_id in ascending order.
+    Return the result table ordered by average_rating in descending order, then by customer_id in descending order.
     """)
     return
 
@@ -57,36 +57,22 @@ def _(mo):
 @app.cell
 def _():
     """
-    WITH churn_info AS (
-        SELECT
-            user_id,
-            FIRST_VALUE(event_date) OVER (PARTITION BY user_id ORDER BY event_date) AS first_login,
-            FIRST_VALUE(plan_name) OVER (PARTITION BY user_id ORDER BY event_date DESC) AS current_plan,
-            FIRST_VALUE(monthly_amount) OVER (PARTITION BY user_id ORDER BY event_date DESC) AS current_monthly_amount,
-            FIRST_VALUE(event_date) OVER (PARTITION BY user_id order by event_date DESC) AS last_ogin,
-            COUNT(*) FILTER (WHERE event_type ='downgrade') OVER (PARTITION BY user_id) AS cnt_upgrade,
-            COUNT(*) FILTER (WHERE event_type ='cancel') OVER (PARTITION BY user_id) AS cnt_cancel,
-            ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY event_date DESC) AS rn,
-            MAX(monthly_amount) OVER (PARTITION BY user_id) AS max_historical_amount
-        FROM
-            subscription_events
-    )
     SELECT
-        user_id,
-        current_plan,
-        current_monthly_amount,
-        max_historical_amount,
-        last_ogin - first_login AS days_as_subscriber
+        customer_id,
+        COUNT(order_id) AS total_orders,
+        ROUND((COUNT(order_id) FILTER (WHERE order_timestamp::TIME BETWEEN '11:00:00' AND '14:00:00' OR order_timestamp::TIME BETWEEN '18:00:00' AND '21:00:00'))*100.0 / COUNT(order_id), 0) AS peak_hour_percentage,
+        ROUND(AVG(order_rating), 2) AS average_rating
     FROM
-        churn_info
-    WHERE
-        rn=1
-            AND cnt_upgrade > 0
-            AND cnt_cancel = 0
-            AND last_ogin - first_login >=60
-            AND current_monthly_amount < 0.5 * max_historical_amount
+        restaurant_orders
+    GROUP BY
+        customer_id
+    HAVING
+        COUNT(order_id) >= 3
+            AND (COUNT(order_id) FILTER (WHERE order_timestamp::TIME BETWEEN '11:00:00' AND '14:00:00' OR order_timestamp::TIME BETWEEN '18:00:00' AND '21:00:00'))*100.0 / COUNT(order_id) >= 60
+            AND ROUND(AVG(order_rating), 2) >= 4.0
+            AND COUNT(order_rating)*100.0 /  COUNT(order_id) >= 50
     ORDER BY
-        5 DESC, 1;
+        4 DESC, 1 DESC
     """
     return
 
@@ -96,45 +82,50 @@ def _():
     import pandas as pd
 
 
-    def find_churn_risk_customers(
-        subscription_events: pd.DataFrame,
+    def find_golden_hour_customers(
+        restaurant_orders: pd.DataFrame,
     ) -> pd.DataFrame:
-        df = subscription_events.copy()
-        df["event_date"] = pd.to_datetime(df["event_date"])
-        df = (
-            df.groupby("user_id")
-            .agg(
-                latest_event=("event_type", "last"),
-                has_downgrade=("event_type", lambda x: "downgrade" in x.values),
-                current_monthly_amount=("monthly_amount", "last"),
-                max_historical_amount=("monthly_amount", "max"),
-                days_as_subscriber=(
-                    "event_date",
-                    lambda x: (x.max() - x.min()).days,
-                ),
-                current_plan=("plan_name", "last"),
-            )
-            .reset_index()
+        df = restaurant_orders.copy()
+        df["order_timestamp"] = pd.to_datetime(df["order_timestamp"])
+        df["hour"] = df["order_timestamp"].dt.hour
+
+        df = df.groupby("customer_id", as_index=False).agg(
+            total_orders=("order_id", "nunique"),
+            peak_cnt=(
+                "order_id",
+                lambda x: x[
+                    (df.loc[:, "hour"].between(11, 13))
+                    | (df.loc[:, "hour"].between(18, 20))
+                ].nunique(),
+            ),
+            average_rating=("order_rating", "mean"),
+            rating_cnt=("order_rating", "count"),
         )
+
+        df["peak_hour_percentage"] = (df["peak_cnt"] * 100) / df["total_orders"]
+        df["rating_percentage"] = df["rating_cnt"] / df["total_orders"]
+
         df = df[
-            (df["latest_event"] != "cancel")
-            & (df["has_downgrade"] == True)
-            & (df["current_monthly_amount"] / df["max_historical_amount"] < 0.5)
-            & (df["days_as_subscriber"] >= 60)
-        ][
-            [
-                "user_id",
-                "current_plan",
-                "current_monthly_amount",
-                "max_historical_amount",
-                "days_as_subscriber",
-            ]
+            (df["total_orders"] >= 3)
+            & (df["peak_hour_percentage"] >= 60)
+            & (df["average_rating"] >= 4)
+            & (df["rating_percentage"] >= 0.5)
         ]
-        df.sort_values(
-            ["days_as_subscriber", "user_id"],
-            ascending=[False, True],
-            inplace=True,
+
+        df["average_rating"] = df["average_rating"].round(2)
+        df["peak_hour_percentage"] = df["peak_hour_percentage"].round()
+
+        df = df[
+            [
+                "customer_id",
+                "total_orders",
+                "peak_hour_percentage",
+                "average_rating",
+            ]
+        ].sort_values(
+            by=["average_rating", "customer_id"], ascending=[False, False]
         )
+
         return df
     return
 
