@@ -1,6 +1,18 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#     "marimo>=0.17.0",
+#     "matplotlib>=3.10.8",
+#     "networkx>=3.6.1",
+#     "numpy>=2.3.5",
+#     "pyzmq>=27.1.0",
+#     "scipy>=1.16.3",
+# ]
+# ///
+
 import marimo
 
-__generated_with = "0.15.4"
+__generated_with = "0.18.4"
 app = marimo.App()
 
 
@@ -24,8 +36,7 @@ def _(mo):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     # Simplicial Homology, Persistence, and Bottleneck Distance
 
     In this notebook, we go beyond the construction of simplicial complexes, and begin to compute actual homological invariants that capture the shape of data.
@@ -37,15 +48,13 @@ def _(mo):
     - Compare persistence diagrams using bottleneck distance.
 
     All computations are performed directly in Python, without external TDA libraries, to give maximum transparency into the algorithms.
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Simplicial Homology
 
     Recall that a simplicial complex is a collection of simplices (vertices, edges, triangles, etc.) that satisfy the closure property: every face of a simplex is also a simplex.
@@ -61,15 +70,13 @@ def _(mo):
     - $H_1$: holes ($1$-dimensional cycles),
     - $H_2$: voids ($2$-dimensional cavities),
     - And so on.
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Two Methods for Computing Homology
 
     In this notebook, we compute homology using two different approaches.
@@ -88,8 +95,7 @@ def _(mo):
     - In later sections, we extend this idea to actual filtrations.
 
     Both methods give the same Betti numbers (as they should), but they reflect two different viewpoints: algebraic versus filtration-based computation.
-    """
-    )
+    """)
     return
 
 
@@ -120,15 +126,11 @@ def _(np):
             """
             # Sort the vertices in each simplex if not sorted
             if not is_sorted:
-                all_simplices = [
-                    tuple(sorted(simplex)) for simplex in all_simplices
-                ]
+                all_simplices = [tuple(sorted(simplex)) for simplex in all_simplices]
 
             # Ensure the input forms a valid simplicial complex
             if not self._is_simplicial_complex(all_simplices):
-                raise ValueError(
-                    "The input set is not a valid simplicial complex."
-                )
+                raise ValueError("The input set is not a valid simplicial complex.")
 
             # Store simplices in the complex
             self.all_simplices = all_simplices
@@ -143,15 +145,11 @@ def _(np):
             and homology groups.
             """
             # Sort and flatten the simplices into a single list
-            self.all_simplices = [
-                simplex for dim in self.dim_simplices for simplex in dim
-            ]
+            self.all_simplices = [simplex for dim in self.dim_simplices for simplex in dim]
             # Build incidence matrices for the complex
             self.incidence_matrices = self._build_incidence_matrix()
             # Reduce the incidence matrices to find persistence pairs
-            self.reduced_incidence_matrices = (
-                self._build_reduced_incidence_matrix()
-            )
+            self.reduced_incidence_matrices = self._build_reduced_incidence_matrix()
             # Compute finite persistence pairs
             self.finite_persistence_pairs = self._finite_persistence_pairs()
             # Compute infinite persistence pairs
@@ -167,16 +165,7 @@ def _(np):
                 A list of lists, where each sublist contains simplices of a specific dimension.
             """
             # Group simplices by their dimension
-            return [
-                sorted(
-                    [
-                        simplex
-                        for simplex in self.all_simplices
-                        if len(simplex) == i
-                    ]
-                )
-                for i in range(1, self.dimension + 2)
-            ]
+            return [sorted([simplex for simplex in self.all_simplices if len(simplex) == i]) for i in range(1, self.dimension + 2)]
 
         def _is_simplicial_complex(self, all_simplices):
             """
@@ -214,27 +203,17 @@ def _(np):
             """
             incidence_matrices = []
             # Iterate over adjacent dimensions to construct boundary matrices
-            for k_simplices, kp1_simplices in zip(
-                self.dim_simplices, self.dim_simplices[1:]
-            ):
+            for k_simplices, kp1_simplices in zip(self.dim_simplices, self.dim_simplices[1:]):
                 # Initialize an empty incidence matrix of size (number of k-simplices) x (number of k+1-simplices)
-                incidence_matrix_k = np.zeros(
-                    (len(k_simplices), len(kp1_simplices)), dtype=int
-                )
+                incidence_matrix_k = np.zeros((len(k_simplices), len(kp1_simplices)), dtype=int)
 
                 # Fill the incidence matrix based on the boundary relations
                 for simplex_index, simplex in enumerate(kp1_simplices):
                     # For each k+1-simplex, find the k-dimensional faces
                     for i in range(len(simplex)):
-                        face = tuple(
-                            simplex[:i] + simplex[i + 1 :]
-                        )  # Create the face by removing one vertex
-                        face_index = k_simplices.index(
-                            face
-                        )  # Find the index of the face in k-simplices
-                        incidence_matrix_k[face_index, simplex_index] = (
-                            1  # Boundary relation is marked as 1
-                        )
+                        face = tuple(simplex[:i] + simplex[i + 1 :])  # Create the face by removing one vertex
+                        face_index = k_simplices.index(face)  # Find the index of the face in k-simplices
+                        incidence_matrix_k[face_index, simplex_index] = 1  # Boundary relation is marked as 1
                 incidence_matrices.append(incidence_matrix_k)
             return incidence_matrices
 
@@ -268,9 +247,7 @@ def _(np):
                 for col in range(cols):
                     indices = np.where(matrix[:, col] == 1)[0]
                     if len(indices) > 0:
-                        low_row_indices.append(
-                            indices[-1]
-                        )  # Last occurrence of '1'
+                        low_row_indices.append(indices[-1])  # Last occurrence of '1'
                     else:
                         low_row_indices.append(-1)  # No '1' in the column
                 return low_row_indices
@@ -315,15 +292,11 @@ def _(np):
                         if low_row == -1:
                             continue  # Skip zero columns
                         if low_row not in seen:
-                            seen[low_row] = (
-                                col  # Store the first column with this low-row index
-                            )
+                            seen[low_row] = col  # Store the first column with this low-row index
                         else:
                             # If two columns share the same low-row index, add them (mod 2)
                             first_col = seen[low_row]
-                            matrix[:, col] = (
-                                matrix[:, col] + matrix[:, first_col]
-                            ) % 2
+                            matrix[:, col] = (matrix[:, col] + matrix[:, first_col]) % 2
 
             reduced_incidence_matrices = []
             remove_list = []
@@ -356,9 +329,7 @@ def _(np):
             # Iterate over each reduced incidence matrix (for each dimension)
             for dimension in range(len(self.reduced_incidence_matrices)):
                 k_persistence_pairs = []
-                reduced_incidence_matrix = self.reduced_incidence_matrices[
-                    dimension
-                ]
+                reduced_incidence_matrix = self.reduced_incidence_matrices[dimension]
                 rows, cols = reduced_incidence_matrix.shape
 
                 # Find persistence pairs from the reduced matrix
@@ -366,18 +337,10 @@ def _(np):
                     # Check if the column represents the death of a topological feature
                     indices = np.where(reduced_incidence_matrix[:, col] == 1)[0]
                     if len(indices) > 0:
-                        last_row = indices[
-                            -1
-                        ]  # The low-row index indicates where the feature dies
-                        birth_simplex_index = self.all_simplices.index(
-                            self.dim_simplices[dimension][last_row]
-                        )
-                        death_simplex_index = self.all_simplices.index(
-                            self.dim_simplices[dimension + 1][col]
-                        )
-                        k_persistence_pairs.append(
-                            (birth_simplex_index, death_simplex_index)
-                        )
+                        last_row = indices[-1]  # The low-row index indicates where the feature dies
+                        birth_simplex_index = self.all_simplices.index(self.dim_simplices[dimension][last_row])
+                        death_simplex_index = self.all_simplices.index(self.dim_simplices[dimension + 1][col])
+                        k_persistence_pairs.append((birth_simplex_index, death_simplex_index))
                 finite_persistence_pairs.append(k_persistence_pairs)
 
             return finite_persistence_pairs
@@ -393,26 +356,12 @@ def _(np):
                 A list of infinite persistence pairs for each dimension.
             """
             # Collect simplices that are paired (i.e., they die at some point)
-            paired_simplices = {
-                num
-                for sublist in self.finite_persistence_pairs
-                for tup in sublist
-                for num in tup
-            }
+            paired_simplices = {num for sublist in self.finite_persistence_pairs for tup in sublist for num in tup}
             all_simplices = set(range(len(self.all_simplices)))
             # Infinite persistence corresponds to simplices that are never paired with a death simplex
-            infinite_persistence_pairs = [
-                (simplex, np.inf) for simplex in all_simplices - paired_simplices
-            ]
+            infinite_persistence_pairs = [(simplex, np.inf) for simplex in all_simplices - paired_simplices]
             return [
-                sorted(
-                    [
-                        pair
-                        for pair in infinite_persistence_pairs
-                        if len(self.all_simplices[pair[0]]) == i
-                    ]
-                )
-                for i in range(1, self.dimension + 2)
+                sorted([pair for pair in infinite_persistence_pairs if len(self.all_simplices[pair[0]]) == i]) for i in range(1, self.dimension + 2)
             ]
 
         def _homology(self):
@@ -427,11 +376,7 @@ def _(np):
             """
             homology = [0] * (self.dimension + 1)
             # Flatten the list of infinite persistence pairs
-            infinite_persistence_pairs = [
-                tup
-                for sublist in self.infinite_persistence_pairs
-                for tup in sublist
-            ]
+            infinite_persistence_pairs = [tup for sublist in self.infinite_persistence_pairs for tup in sublist]
 
             # Count the number of infinite persistence pairs in each dimension
             for infinite_persistence_pair in infinite_persistence_pairs:
@@ -455,9 +400,7 @@ def _(la, np):
             # Null space of an m×0 matrix is {0}
             return np.zeros((0, 0))
         # Use a more forgiving LAPACK driver for edge shapes
-        u, s, vh = la.svd(
-            A, full_matrices=True, lapack_driver="gesvd", check_finite=False
-        )
+        u, s, vh = la.svd(A, full_matrices=True, lapack_driver="gesvd", check_finite=False)
         tol = (s.max() if s.size else 0.0) * rcond
         r = (s > tol).sum()
         return vh[r:].T  # columns span the null space
@@ -497,32 +440,16 @@ def _(np, safe_null_space):
             boundary_ops = []
 
             # Build boundary operators for each dimension (except the last one)
-            for k_simplices, kp1_simplices in zip(
-                dim_simplices, dim_simplices[1:]
-            ):
+            for k_simplices, kp1_simplices in zip(dim_simplices, dim_simplices[1:]):
                 matrix = []
                 # For each (k+1)-simplex, compute its boundary (k-simplices)
                 for simplex in kp1_simplices:
-                    faces = [
-                        simplex[:i] + simplex[i + 1 :] for i in range(len(simplex))
-                    ]
+                    faces = [simplex[:i] + simplex[i + 1 :] for i in range(len(simplex))]
                     # Create a row for each face in the k-simplices
                     matrix.append(
-                        [
-                            (
-                                1
-                                if simplex in faces
-                                and faces.index(simplex) % 2 == 0
-                                else -1
-                                if simplex in faces
-                                else 0
-                            )
-                            for simplex in k_simplices
-                        ]
+                        [(1 if simplex in faces and faces.index(simplex) % 2 == 0 else -1 if simplex in faces else 0) for simplex in k_simplices]
                     )
-                boundary_ops.append(
-                    np.array(matrix).T
-                )  # Transpose the matrix to align with the chain maps
+                boundary_ops.append(np.array(matrix).T)  # Transpose the matrix to align with the chain maps
 
             return boundary_ops
 
@@ -540,26 +467,16 @@ def _(np, safe_null_space):
 
             # Add zero maps at the end to handle boundary maps between the highest and lowest dimensions
             if boundary_ops:
-                mm = boundary_ops[-1].shape[
-                    1
-                ]  # Number of columns in the last boundary matrix
-                boundary_ops.append(
-                    np.ones((mm, 0))
-                )  # Zero map from top-dimensional chains
+                mm = boundary_ops[-1].shape[1]  # Number of columns in the last boundary matrix
+                boundary_ops.append(np.ones((mm, 0)))  # Zero map from top-dimensional chains
             if boundary_ops:
-                nn = boundary_ops[0].shape[
-                    0
-                ]  # Number of rows in the first boundary matrix
-                boundary_ops.insert(
-                    0, np.ones((0, nn))
-                )  # Zero map from 0-chains to -1-chains
+                nn = boundary_ops[0].shape[0]  # Number of rows in the first boundary matrix
+                boundary_ops.insert(0, np.ones((0, nn)))  # Zero map from 0-chains to -1-chains
 
             homology_groups = []
 
             # Compute the homology for each dimension using null space and image
-            for k_boundary_ops, kp1_boundary_ops in zip(
-                boundary_ops, boundary_ops[1:]
-            ):
+            for k_boundary_ops, kp1_boundary_ops in zip(boundary_ops, boundary_ops[1:]):
                 # Kernel (null space) of the boundary operator ∂_k
                 kappa = safe_null_space(k_boundary_ops)
                 # Compute the image of ∂_(k+1)
@@ -575,8 +492,7 @@ def _(np, safe_null_space):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Persistence Diagrams
 
     The power of TDA lies in studying filtrations: instead of computing homology at a single scale, we analyze how homological features evolve across scales.
@@ -584,15 +500,13 @@ def _(mo):
     A filtration is a nested sequence of complexes: $$K_0 \subseteq K_1 \subseteq \dots \subseteq K_n$$ As the scale increases, new features appear (birth) and old features disappear (death). The persistence diagram records this as a multiset of points $(b_i, d_i)$ in the plane. Each point represents a topological feature born at scale $b_i$ and dying at $d_i$.
 
     In this notebook, we construct and visualize persistence diagrams manually.
-    """
-    )
+    """)
     return
 
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Bottleneck Distance
 
     Persistence diagrams provide a natural way to compare datasets. The bottleneck distance measures similarity between two persistence diagrams by finding an optimal matching between their points.
@@ -603,8 +517,7 @@ def _(mo):
     - If two datasets have very different topological structures, the bottleneck distance will be large.
 
     We compute bottleneck distances directly from point sets representing persistence diagrams.
-    """
-    )
+    """)
     return
 
 
@@ -637,11 +550,7 @@ def _(math, nx):
         persistence_2 += closest_points_1
 
         # Compute all possible pairwise distances between points in persistence_1 and persistence_2
-        distances = [
-            math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-            for (x1, y1) in persistence_1
-            for (x2, y2) in persistence_2
-        ]
+        distances = [math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2) for (x1, y1) in persistence_1 for (x2, y2) in persistence_2]
 
         # Sort distances to prepare for the bottleneck distance computation
         sorted_distances = sorted(distances)
@@ -681,21 +590,17 @@ def _(math, nx):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Persistence Diagram Visualization
 
     We visualize the persistence diagrams as scatter plots of birth vs. death pairs, to better illustrate how topological features evolve across the filtration.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(plt):
-    def plot_persistence_diagram_single_dimension(
-        simplicial_complex, dimension, size_plot=10
-    ):
+    def plot_persistence_diagram_single_dimension(simplicial_complex, dimension, size_plot=10):
         """
         Plots the persistence diagram for a single dimension of a simplicial complex.
 
@@ -726,10 +631,7 @@ def _(plt):
         )
 
         # Adjust infinite persistence pairs for plotting
-        infinite_persistence_pairs = [
-            [(x, top_level) for (x, y) in sublist]
-            for sublist in infinite_persistence_pairs
-        ]
+        infinite_persistence_pairs = [[(x, top_level) for (x, y) in sublist] for sublist in infinite_persistence_pairs]
 
         # Create a scatter plot for the persistence diagram
         plt.figure(figsize=(size_plot, size_plot))
@@ -782,7 +684,6 @@ def _(plt):
 
         return
 
-
     def plot_persistence_diagram_all_dimension(simplicial_complex, size_plot=10):
         """
         Plots the persistence diagram for all dimensions of a simplicial complex.
@@ -805,10 +706,7 @@ def _(plt):
         )
 
         # Adjust infinite persistence pairs for plotting
-        infinite_persistence_pairs = [
-            [(x, top_level) for (x, y) in sublist]
-            for sublist in infinite_persistence_pairs
-        ]
+        infinite_persistence_pairs = [[(x, top_level) for (x, y) in sublist] for sublist in infinite_persistence_pairs]
 
         # Create a scatter plot for the persistence diagram of all dimensions
         plt.figure(figsize=(size_plot, size_plot))
@@ -818,9 +716,7 @@ def _(plt):
             # Plot infinite persistence pairs (red text for infinite persistence)
             k_infinite_persistence_pairs = infinite_persistence_pairs[dimension]
             for x, y in k_infinite_persistence_pairs:
-                plt.text(
-                    x, y, str(dimension), fontsize=size_plot * 1.4, color="red"
-                )
+                plt.text(x, y, str(dimension), fontsize=size_plot * 1.4, color="red")
 
             # Plot finite persistence pairs (blue text for finite persistence)
             if dimension < simplicial_complex.dimension:
@@ -857,9 +753,7 @@ def _(plt):
         # Add labels and title
         plt.xlabel("Birth", fontsize=size_plot * 1.4)
         plt.ylabel("Death", fontsize=size_plot * 1.4)
-        plt.title(
-            "Persistence Diagram of All Dimensions", fontsize=size_plot * 1.8
-        )
+        plt.title("Persistence Diagram of All Dimensions", fontsize=size_plot * 1.8)
         plt.legend()
         plt.grid(True)
 
@@ -875,8 +769,7 @@ def _(plt):
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Example
 
     In this example, we construct two simplicial complexes manually.
@@ -898,8 +791,7 @@ def _(mo):
     The second complex resembles two overlapping triangles glued along a shared edge, which produces a different homological structure compared to the first complex.
 
     We compute homology for both complexes using two different methods: directly via chain complexes (using `ChainComplex`) and via persistence pairs (using `SimplicialComplex`). Finally, we compute the bottleneck distance between their persistence diagrams to compare the topological summaries of the two complexes.
-    """
-    )
+    """)
     return
 
 
@@ -997,8 +889,7 @@ def _(
 
 @app.cell(hide_code=True)
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     ## Filtrations in Context
 
     Although we compute persistence diagrams here, this notebook operates mainly on fixed simplicial complexes. In full-scale TDA, filtrations are essential.
@@ -1008,8 +899,7 @@ def _(mo):
     - Zigzag filtrations allow for non-monotonic data where simplices may appear and disappear.
 
     The persistent homology pipeline extracts stable topological summaries across these filtrations.
-    """
-    )
+    """)
     return
 
 
