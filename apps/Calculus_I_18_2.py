@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.15.4"
+__generated_with = "0.21.1"
 app = marimo.App()
 
 
@@ -33,21 +33,25 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""# 3.5 Optimization Problems Example Set 2""")
+    mo.md(r"""
+    # 3.5 Optimization Problems Example Set 2
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""### Example 3""")
+    mo.md(r"""
+    ### Example 3
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""Find the area of the largest rectangle that can be inscribed inside the ellipse $\displaystyle \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ for arbitrary positive constant $a, b$."""
-    )
+    mo.md(r"""
+    Find the area of the largest rectangle that can be inscribed inside the ellipse $\displaystyle \frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$ for arbitrary positive constant $a, b$.
+    """)
     return
 
 
@@ -64,7 +68,9 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Try it youself using the above slidebar!**""")
+    mo.md(r"""
+    **Try it youself using the above slidebar!**
+    """)
     return
 
 
@@ -152,8 +158,7 @@ def _(go, np, x_slider):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     Solution:
 
     Notice that, the vertices of the rectangle is on four different quadrant, and once the vertices inside one quadrant is chosen, the other three are fixed. Thus we can assume we are choosing from the first quadrant - that is, both $x, y$ are positive.
@@ -163,21 +168,21 @@ def _(mo):
     Take the derivative we get $\displaystyle A' = \frac{4b(a^2 - 2x^2)}{a^2\sqrt{1-\frac{x^2}{a^2}}}$, thus it equals $0$ when $2x^2 = a^2$, or $\displaystyle x = \frac{\sqrt{2}}{2}\cdot a$ (we assumed $x$ and $a$ are positive). It is not hard to check with the First Derivative Test and Closed Interval Method (notice $0\le x \le a$) that this is the (absolute) maximum.
 
     If $\displaystyle x = \frac{\sqrt{2}}{2}\cdot a$, then $\displaystyle y = \frac{\sqrt{2}}{2}\cdot b$, and thus the area of the rectangle is $4xy = 2ab$.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""### Example 3.1""")
+    mo.md(r"""
+    ### Example 3.1
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     Let us do example 3 again but this time without using calculus.
 
     Let $m, n$ be any two values, we must have $(m-n)^2 \ge 0$ because LHS is a square. Expand it, we get $m^2 + n^2 - 2mn \ge 0$, or $m^2 + n^2 \ge 2mn$. That is, for any two quantities $m, n$, we must have $m^2 + n^2 \ge 2mn$, and $m^2 + n^2 = 2mn$ if and only if $m = n$ (that is when $(m-n)^2 = 0$).
@@ -185,20 +190,23 @@ def _(mo):
     Now take $\displaystyle m = \frac{x}{a}$ and $\displaystyle n = \frac{y}{b}$, we must have $\displaystyle 1 = \frac{x^2}{a^2} + \frac{y^2}{b^2} \ge 2\frac{xy}{ab}$.
 
     Now remember to maximize the area, it is the same to maximize $4xy$. We know from above that $\displaystyle 2 \frac{xy}{ab}$ is bounded above by $1$ (and it is achievable, when $\displaystyle \frac{x}{a} = \frac{y}{b}$), thus $4xy$ is bounded above by $2ab$ and it is achieved when $\displaystyle \frac{x}{a} = \frac{y}{b}$.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""### Example 4""")
+    mo.md(r"""
+    ### Example 4
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""What is the minimum vertical distance between the parabolas $y = x^2 + 1$ and $y = x - x^2$?""")
+    mo.md(r"""
+    What is the minimum vertical distance between the parabolas $y = x^2 + 1$ and $y = x - x^2$?
+    """)
     return
 
 
@@ -215,7 +223,9 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Try it youself using the above slidebar!**""")
+    mo.md(r"""
+    **Try it youself using the above slidebar!**
+    """)
     return
 
 
@@ -276,7 +286,9 @@ def _(go, np, x_slider_1):
 
     # Layout
     fig_dist.update_layout(
-        title="Vertical Distance Between f(x) and g(x) at x = {:.2f}".format(x_point),
+        title="Vertical Distance Between f(x) and g(x) at x = {:.2f}".format(
+            x_point
+        ),
         xaxis_title="x",
         yaxis_title="y",
         template="plotly_white",
@@ -289,13 +301,11 @@ def _(go, np, x_slider_1):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     Solution Sketch:
 
     Vertical distance is simply calculated by subtracting the smaller $y$-coordinate from the other one. After figuring out that $y = x^2 + 1$ is always on top, the distance is then $d = (x^2 + 1) - (x - x^2)$ which is $d = 2x^2 - x + 1$. Proceed to find critical point(s) and find (absolute) minimum(s).
-    """
-    )
+    """)
     return
 
 

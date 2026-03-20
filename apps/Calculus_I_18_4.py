@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.15.4"
+__generated_with = "0.21.1"
 app = marimo.App()
 
 
@@ -33,21 +33,25 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""# 3.5 Optimization Problems Example Set 4""")
+    mo.md(r"""
+    # 3.5 Optimization Problems Example Set 4
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""### Example 7""")
+    mo.md(r"""
+    ### Example 7
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A box with an open top is to be constructed from a square piece of cardboard, $30$ cm wide, by cutting out a square from each of the four corners and bending up the sides. Find the largest volume that such a box can have."""
-    )
+    mo.md(r"""
+    A box with an open top is to be constructed from a square piece of cardboard, $30$ cm wide, by cutting out a square from each of the four corners and bending up the sides. Find the largest volume that such a box can have.
+    """)
     return
 
 
@@ -64,7 +68,9 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Try it youself using the above slidebar!**""")
+    mo.md(r"""
+    **Try it youself using the above slidebar!**
+    """)
     return
 
 
@@ -203,7 +209,9 @@ def _(corner_slider, go, np):
     fig_box_fixed.add_trace(
         go.Surface(
             x=np.array([[0, box_base_val], [0, box_base_val]]),
-            y=np.array([[box_base_val, box_base_val], [box_base_val, box_base_val]]),
+            y=np.array(
+                [[box_base_val, box_base_val], [box_base_val, box_base_val]]
+            ),
             z=np.array([[0, 0], [box_height_val, box_height_val]]),
             showscale=False,
             colorscale="Blues",
@@ -226,7 +234,9 @@ def _(corner_slider, go, np):
     # Right wall (x=max)
     fig_box_fixed.add_trace(
         go.Surface(
-            x=np.array([[box_base_val, box_base_val], [box_base_val, box_base_val]]),
+            x=np.array(
+                [[box_base_val, box_base_val], [box_base_val, box_base_val]]
+            ),
             y=np.array([[0, box_base_val], [0, box_base_val]]),
             z=np.array([[0, 0], [box_height_val, box_height_val]]),
             showscale=False,
@@ -267,27 +277,27 @@ def _(corner_slider, go, np):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     Solution Sketch:
 
     Suppose we cut out squares with side-length $x$, then the box we create will have base-square with side-length $30 - 2x$, and height being $x$. Thus, we have $V = (30 - 2x)^2 \cdot x$. Proceed to take derivative to find critical point(s) and find (absolute) maximum(s).
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""### Example 8""")
+    mo.md(r"""
+    ### Example 8
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A rectangular page (white rectangle) is to contain $24$ square inches of print (gray rectangle). The margins at top, left, and right are to be $1$ inches, and the margin at bottom is to be $2$ inches. What should the dimensions of the page be so that least amount of paper is used?"""
-    )
+    mo.md(r"""
+    A rectangular page (white rectangle) is to contain $24$ square inches of print (gray rectangle). The margins at top, left, and right are to be $1$ inches, and the margin at bottom is to be $2$ inches. What should the dimensions of the page be so that least amount of paper is used?
+    """)
     return
 
 
@@ -304,7 +314,9 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Try it youself using the above slidebar!**""")
+    mo.md(r"""
+    **Try it youself using the above slidebar!**
+    """)
     return
 
 
@@ -461,13 +473,11 @@ def _(go, height_slider):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     Solution Sketch:
 
     If the height of the page is $h$, then the height of the printing area is $h - 1 - 2 = h - 3$ (taking out top and bottom margin). If the width of the page is $w$, then the width of the printing area is $w - 1- 1 = w- 2$. We know $24 = (h-3)(w-2)$ thus $\displaystyle w = \frac{24}{h-3}+2$, thus the area of the page is $\displaystyle A = h \cdot w = h \cdot (\frac{24}{h-3}+2)$. Proceed to take derivative to find critical point(s) and find (absolute) minimum(s).
-    """
-    )
+    """)
     return
 
 

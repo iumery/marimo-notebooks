@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.15.4"
+__generated_with = "0.21.1"
 app = marimo.App()
 
 
@@ -33,21 +33,25 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""# 3.5 Optimization Problems Example Set 1""")
+    mo.md(r"""
+    # 3.5 Optimization Problems Example Set 1
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""### Example 1""")
+    mo.md(r"""
+    ### Example 1
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A company needs to produce a container of cylindrical shape to hold $1 \text{ L}$ (or $1000 \text{ cm}^3$) of liquid. Find the dimension of the container that minimize the material usage."""
-    )
+    mo.md(r"""
+    A company needs to produce a container of cylindrical shape to hold $1 \text{ L}$ (or $1000 \text{ cm}^3$) of liquid. Find the dimension of the container that minimize the material usage.
+    """)
     return
 
 
@@ -64,7 +68,9 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Try it youself using the above slidebar!**""")
+    mo.md(r"""
+    **Try it youself using the above slidebar!**
+    """)
     return
 
 
@@ -117,8 +123,7 @@ def _(go, np, r_slider):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     Solution:
 
     Suppose we have a cylindrical container with height $h$ and radius $r$, then the volume of the container is $\pi r^2 h$, we want it to be $1000$. On the other hand, to produce such a cylindrical container we need two disks, and a rectangle shape of material.
@@ -132,22 +137,23 @@ def _(mo):
     Observe that if $r < \sqrt[3]{500/\pi}$, then $A'(r)<0$ and if $r > \sqrt[3]{500/\pi}$, then $A'(r) > 0$. Thus by the First Derivative Test, $A$ at $\sqrt[3]{500/\pi}$ is a local minimum. In fact, it is the absolute minimum.
 
     We can then calculate $h$ corresponds to this $r$, that is $\displaystyle h = \frac{1000}{\pi r^2} = \frac{1000}{\pi(500/\pi)^{2/3}}$.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""### Example 2""")
+    mo.md(r"""
+    ### Example 2
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""There are $50$ apple trees in an orchard and each of them are producing $800$ apples. For each additional tree planted in the orchard, the output of each tree drops by $10$ apples. How many trees should be added to the existing orchard to maximize the total output?"""
-    )
+    mo.md(r"""
+    There are $50$ apple trees in an orchard and each of them are producing $800$ apples. For each additional tree planted in the orchard, the output of each tree drops by $10$ apples. How many trees should be added to the existing orchard to maximize the total output?
+    """)
     return
 
 
@@ -160,7 +166,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Try it youself using the above slidebar!**""")
+    mo.md(r"""
+    **Try it youself using the above slidebar!**
+    """)
     return
 
 
@@ -176,13 +184,11 @@ def _(mo, n_trees):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-    Solution: 
+    mo.md(r"""
+    Solution:
 
     Suppose we add $x$ apple trees, then there are $50+x$ trees and the output per tree becomes $800 - 10x$, thus the total output is $(50+x)(800 - 10x) = O$. Take derivative with respect to $x$, we get $O' = 300 - 20x$, it is $0$ when $x = 15$. It is easy to see that when $x<15$, $O'>0$, and when $x > 15$, $O'<0$, so this is the absolute maximum. Thus we should plant $15$ more trees.
-    """
-    )
+    """)
     return
 
 

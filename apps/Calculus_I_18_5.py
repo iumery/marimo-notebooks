@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.15.4"
+__generated_with = "0.21.1"
 app = marimo.App()
 
 
@@ -34,21 +34,25 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""# 3.5 Optimization Problems Example Set 5""")
+    mo.md(r"""
+    # 3.5 Optimization Problems Example Set 5
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""### Example 9""")
+    mo.md(r"""
+    ### Example 9
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A cone-shaped drinking cup is made from a circular piece of paper of radius $10$ cm by cutting out a sector and joining the edges. Find the maximum capacity of such a cup."""
-    )
+    mo.md(r"""
+    A cone-shaped drinking cup is made from a circular piece of paper of radius $10$ cm by cutting out a sector and joining the edges. Find the maximum capacity of such a cup.
+    """)
     return
 
 
@@ -65,7 +69,9 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Try it youself using the above slidebar!**""")
+    mo.md(r"""
+    **Try it youself using the above slidebar!**
+    """)
     return
 
 
@@ -132,7 +138,12 @@ def _(go, make_subplots, np, theta_slider_1):
     x_remain = R_paper * np.cos(theta_remain)
     y_remain = R_paper * np.sin(theta_remain)
     fig.add_trace(
-        go.Scatter(x=x_remain, y=y_remain, mode="lines", line=dict(color="blue", dash="dot")),
+        go.Scatter(
+            x=x_remain,
+            y=y_remain,
+            mode="lines",
+            line=dict(color="blue", dash="dot"),
+        ),
         row=1,
         col=1,
     )
@@ -198,7 +209,7 @@ def _(go, make_subplots, np, theta_slider_1):
             x=[0, r_cone],
             y=[0, 0],
             mode="lines+text",
-            text=[f"r= Perimeter/2π<br>={arc_length_remain/(2*np.pi):.1f} cm"],
+            text=[f"r= Perimeter/2π<br>={arc_length_remain / (2 * np.pi):.1f} cm"],
             textposition="middle right",
             line=dict(color="black", dash="dot"),
             showlegend=False,
@@ -242,7 +253,7 @@ def _(go, make_subplots, np, theta_slider_1):
             x=[0],
             y=[-1.5],
             mode="text",
-            text=[f"2r={arc_length_remain/(np.pi):.1f} cm"],
+            text=[f"2r={arc_length_remain / (np.pi):.1f} cm"],
             textfont=dict(size=14),
             showlegend=False,
         ),
@@ -383,27 +394,27 @@ def _(V_cone, go, h_cone, np, r_cone):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     Solution Sketch:
 
     If the sector removed has angle $\theta$, then the remaining angle is $2\pi - \theta$, and the arc length becomes the base circumference of the cone. Since the radius of the paper is $10$ cm, the slant height of the cone is $10$. The base circumference is $C = 10(2\pi - \theta)$ so the radius of the cone is $r = \frac{10(2\pi - \theta)}{2\pi}$. By the Pythagorean theorem, the height of the cone is $h = \sqrt{10^2 - r^2}$ and the volume is $V = \frac{1}{3} \pi r^2 h = \frac{1}{3} \pi \left( \frac{10(2\pi - \theta)}{2\pi} \right)^2 \cdot \sqrt{100 - \left( \frac{10(2\pi - \theta)}{2\pi} \right)^2}$. Now differentiate $V(\theta)$ to find the maximum.
-    """
-    )
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""### Example 10""")
+    mo.md(r"""
+    ### Example 10
+    """)
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""A box with a square base and open top must have a volume of $32000$ cm³. Find the dimensions of the box that minimize the amount of material used."""
-    )
+    mo.md(r"""
+    A box with a square base and open top must have a volume of $32000$ cm³. Find the dimensions of the box that minimize the amount of material used.
+    """)
     return
 
 
@@ -420,7 +431,9 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""**Try it youself using the above slidebar!**""")
+    mo.md(r"""
+    **Try it youself using the above slidebar!**
+    """)
     return
 
 
@@ -536,14 +549,12 @@ def _(base_slider, go, np):
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
+    mo.md(r"""
     Solution Sketch:
 
     If the base has side length $x$ and the height is $h$, then the volume is
     $\displaystyle V = x^2 h = 32000 \quad \Rightarrow \quad h = \frac{32000}{x^2}$. The surface area (amount of material used) is the area of the base plus the four sides: $\displaystyle A = x^2 + 4xh = x^2 + 4x \cdot \frac{32000}{x^2} = x^2 + \frac{128000}{x}$. Now differentiate $A(x)$ to find the minimum.
-    """
-    )
+    """)
     return
 
 
