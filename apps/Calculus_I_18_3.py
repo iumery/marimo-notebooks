@@ -1,3 +1,12 @@
+# /// script
+# requires-python = ">=3.12"
+# dependencies = [
+#   "marimo",
+#   "numpy",
+#   "plotly",
+# ]
+# ///
+
 import marimo
 
 __generated_with = "0.21.1"
@@ -33,25 +42,31 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     # 3.5 Optimization Problems Example Set 3
-    """)
+    """
+    )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     ### Example 5
-    """)
+    """
+    )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     Find the points on the ellipse $4x^2 + y^2 = 4$ that are farthest away from the point $(2,0)$.
-    """)
+    """
+    )
     return
 
 
@@ -68,9 +83,11 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     **Try it youself using the above slidebar!**
-    """)
+    """
+    )
     return
 
 
@@ -159,7 +176,8 @@ def _(go, np, y_slider):
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     Solution Sketch:
 
     Since we are looking for point farthest away from $(2, 0)$, a point on the right half of the $xy$-plane, we can safely ignore points on the right half of the ellipse since they are always going to be closer to $(2, 0)$ compare to their mirrored point on the left half.
@@ -169,23 +187,28 @@ def _(mo):
     Distance between two points $(x_1, y_1)$ and $(x_2, y_2)$ is $d = \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}$. To make our calculation simpler, we can consider $d^2$ which takes out the square-root (**why can we do this?**).
 
     In particular, $d^2 = \left(- \sqrt{1 - \frac{1}{4}y^2} - 2\right)^2 + (y - 0)^2$. Simplify this expression, proceed to take derivative to find critical point(s) and find (absolute) maximum(s).
-    """)
+    """
+    )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     ### Example 6
-    """)
+    """
+    )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     Find the area of the largest trapezoid that can be inscribed in a circle of radius $1$ and whose base is a diameter of the circle.
-    """)
+    """
+    )
     return
 
 
@@ -202,9 +225,11 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     **Try it youself using the above slidebar!**
-    """)
+    """
+    )
     return
 
 
@@ -325,19 +350,23 @@ def _(go, np, x_slider_2):
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     Solution Sketch:
 
     A trapezoid has area (top-base + bottom-base) x height / 2. In particular, if the top-right corner of the trapezoid has coordinate $(x, y)$, then we have $A = (2x + 2) \times y / 2 = (x + 1) \times y$. Since $(x, y)$ is also on the unit circle, we can express $y = \sqrt{1-x^2}$ thus $A = (x+1)\cdot \sqrt{1 - x^2}$. Proceed to take derivative to find critical point(s) and find (absolute) maximum(s).
-    """)
+    """
+    )
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     ### Example 6.1
-    """)
+    """
+    )
     return
 
 
@@ -354,9 +383,11 @@ def _(mo, np):
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     **Try it youself using the above slidebar!**
-    """)
+    """
+    )
     return
 
 
@@ -522,9 +553,11 @@ def _(go, np, theta_slider):
 
 @app.cell
 def _(mo):
-    mo.md(r"""
+    mo.md(
+        r"""
     Another way of doing this is to utilize trignometry functions. A point on unit circle always can be expressed as $(\cos(\theta), \sin(\theta))$, thus the area can be expressed as $A = (\cos(\theta) + 1)\cdot \sin(\theta)$. Proceed to take derivative to find critical point(s) and find (absolute) maximum(s).
-    """)
+    """
+    )
     return
 
 
